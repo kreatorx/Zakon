@@ -17,22 +17,21 @@
                     <p class="text-blue-200 text-sm">Pametni sistem za pretragu i AI analizu pravnih članova</p>
                 </div>
                 <div class="flex items-center gap-3">
-                    <span class="text-xs bg-blue-800 text-blue-200 px-3 py-1 rounded-full border border-blue-700">Lokalni Python Server</span>
+                    <span class="text-xs bg-blue-800 text-blue-200 px-3 py-1 rounded-full border border-blue-700">Platforma: GitHub Pages</span>
                 </div>
             </div>
         </header>
 
         <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
-
+            
             <div class="lg:col-span-1 flex flex-col gap-6">
-
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
                     <div class="flex items-center gap-2 mb-3 text-purple-700 font-semibold text-lg">
                         <i class="fa-solid fa-brain"></i>
                         <h2>AI Pravni Asistent</h2>
                     </div>
                     <p class="text-xs text-gray-500 mb-4">Opišite životni problem ili situaciju prirodnim jezikom, a AI će analizirati zakon i predložiti članove.</p>
-
+                    
                     <div class="mb-4">
                         <label class="block text-xs font-medium text-gray-700 mb-1">Vaš problem / Situacija:</label>
                         <textarea id="ai-problem" rows="4" class="w-full p-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-purple-500 focus:outline-none placeholder-gray-400" placeholder="Npr: Netko mi je provalio u kuću preko noći i ukrao novčanik sa stola dok sam spavao..."></textarea>
@@ -48,17 +47,15 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <h2>Klasična Pretraga</h2>
                     </div>
-
+                    
                     <div class="mb-3">
                         <input type="text" id="classic-search" oninput="klasicnaPretraga()" class="w-full p-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Unesite pojam ili broj člana (npr. Član 2)...">
                     </div>
-                    <div id="search-stats" class="text-xs text-gray-500">Učitavanje zakona iz JSON fajla...</div>
+                    <div id="search-stats" class="text-xs text-gray-500">Učitavanje zakona...</div>
                 </div>
-
             </div>
 
             <div class="lg:col-span-2 flex flex-col gap-4">
-
                 <div id="ai-response-box" class="hidden bg-purple-50 p-5 rounded-xl border border-purple-200 shadow-sm">
                     <div class="flex justify-between items-start mb-2">
                         <div class="flex items-center gap-2 text-purple-800 font-semibold">
@@ -80,35 +77,33 @@
                     <p class="text-sm text-gray-500">AI analizira zakonsku bazu podataka...</p>
                 </div>
 
-                <div id="laws-container" class="flex flex-col gap-4 overflow-y-auto max-h-[75vh] pr-2">
-                </div>
-
+                <div id="laws-container" class="flex flex-col gap-4 overflow-y-auto max-h-[75vh] pr-2"></div>
             </div>
         </main>
     </div>
 
     <script>
-        // Konfiguracija putanja i API-ja
-        const JSON_URL = './krivicni_zakon_fbih.json';
+        // Pošto su oba fajla u root-u, putanja je jednostavna
+        const JSON_URL = './krivicni_zakon_fbih.json'; 
         const AI_API_URL = 'https://almedin.vercel.app/v1/chat/completions';
-
+        
         let zakonPodaci = [];
 
-        // 1. Učitavanje lokalnog JSON-a preko Python lokalnog servera
+        // 1. Učitavanje JSON datoteke zakona
         async function ucitajZakon() {
             try {
                 const response = await fetch(JSON_URL);
-                if (!response.ok) throw new Error("Fajl nije pronađen na serveru.");
+                if (!response.ok) throw new Error("JSON datoteka nije pronađena.");
                 zakonPodaci = await response.json();
                 document.getElementById('search-stats').innerText = `Baza uspješno učitana. Ukupno članova: ${zakonPodaci.length}`;
                 prikaziClanove(zakonPodaci);
             } catch (error) {
                 console.error("Greška pri učitavanju JSON-a:", error);
-                document.getElementById('search-stats').innerHTML = `<span class="text-red-500 font-semibold">Greška: Provjerite da li se 'krivicni_zakon_fbih.json' nalazi u istom folderu kao i ovaj index.html fajl.</span>`;
+                document.getElementById('search-stats').innerHTML = `<span class="text-red-500 font-semibold">Greška pri učitavanju baze. Provjerite da li je JSON u istom folderu.</span>`;
             }
         }
 
-        // 2. Funkcija za renderovanje članova na ekranu
+        // 2. Prikaz članova na ekranu
         function prikaziClanove(clanovi, istaknutiClanovi = []) {
             const container = document.getElementById('laws-container');
             document.getElementById('results-count').innerText = clanovi.length;
@@ -125,7 +120,7 @@
 
             clanovi.forEach(clan => {
                 const jeAIPreporuka = istaknutiClanovi.includes(clan.broj_clana);
-
+                
                 let segmentiHtml = '';
                 if (clan.segmenti && clan.segmenti.length > 0) {
                     segmentiHtml = `<div class="mt-3 pl-3 border-l-2 border-gray-200 space-y-2">`;
@@ -145,7 +140,7 @@
 
                 const card = document.createElement('div');
                 card.className = `p-5 rounded-xl border transition bg-white shadow-sm ${jeAIPreporuka ? 'border-purple-400 ring-2 ring-purple-100 bg-purple-50/50' : 'border-gray-200 hover:border-gray-300'}`;
-
+                
                 card.innerHTML = `
                     <div class="flex justify-between items-start gap-2">
                         <div>
@@ -161,11 +156,11 @@
             });
         }
 
-        // 3. Klasična brza tekstualna pretraga
+        // 3. Klasična tekstualna pretraga
         function klasicnaPretraga() {
             const upit = document.getElementById('classic-search').value.toLowerCase().trim();
             document.getElementById('results-title').innerText = "Rezultati pretrage";
-
+            
             if (!upit) {
                 document.getElementById('results-title').innerText = "Svi članovi zakona";
                 prikaziClanove(zakonPodaci);
@@ -182,7 +177,7 @@
             prikaziClanove(filtrirani);
         }
 
-        // 4. Pametna AI Pretraga preko tvog Vercel Proxy-ja
+        // 4. Poziv za AI pretragu
         async function traziAI() {
             const problemText = document.getElementById('ai-problem').value.trim();
             if (!problemText) {
@@ -195,26 +190,14 @@
             document.getElementById('ai-response-box').classList.add('hidden');
             document.getElementById('laws-container').innerHTML = '';
 
-            // Šaljemo AI samo brojeve i naslove radi štednje tokena i brzine
-            const skraceniZakonZaAI = zakonPodaci.map(c => ({
-                broj: c.broj_clana,
-                naziv: c.naziv_clana
-            }));
-
             const prompt = `
-            Korisnik ima sljedeći problem: "${problemText}".
-
-            Kao stručni pravni asistent za Krivični zakon Federacije Bosne i Hercegovine, tvoj zadatak je da:
-            1. Analiziraš situaciju.
-            2. Izvučeš tačne brojeve članova koji se direktno odnose na ovaj slučaj (npr. "Član 286.", "Član 287.").
-            3. Napišeš kratko i jasno pravno obrazloženje za korisnika na bosanskom jeziku.
-
-            Odgovor MORA biti u striktnom JSON formatu:
+            Korisnik ima problem: "${problemText}".
+            Kao pravni asistent za Krivični zakon FBiH, analiziraj situaciju i vrati ISKLJUČIVO validan JSON u ovom obliku, bez ikakvog dodatnog teksta okolo:
             {
-                "objasnjenje": "Ovdje napiši tekstualno pravno mišljenje...",
+                "objasnjenje": "Ovdje napiši svoje kratko pravno obrazloženje i analizu situacije na bosanskom jeziku...",
                 "predlozeni_clanovi": ["Član 286.", "Član 287."]
             }
-            Nemoj dodavati nikakav tekst izvan ovog JSON-a. Pazite da formati članova tačno odgovaraju tekstu (npr. 'Član 1.').
+            Pazi da članovi u nizu tačno odgovaraju formatu u bazi podataka (npr. 'Član 1.').
             `;
 
             try {
@@ -224,7 +207,7 @@
                     body: JSON.stringify({
                         model: "gpt-4o-mini",
                         messages: [
-                            { role: "system", content: "Ti si stručni pravni asistent koji komunicira isključivo putem validnog JSON-a." },
+                            { role: "system", content: "Ti si stručni pravni asistent koji vraća isključivo validan JSON objekat." },
                             { role: "user", content: prompt }
                         ],
                         response_format: { type: "json_object" },
@@ -232,28 +215,25 @@
                     })
                 });
 
-                if (!response.ok) throw new Error("Neuspješan zahtjev prema Vercel API-ju.");
+                if (!response.ok) throw new Error("Problem sa API zahtjevom.");
 
                 const data = await response.json();
                 const aiContent = JSON.parse(data.choices[0].message.content);
-
+                
                 document.getElementById('ai-response-text').innerText = aiContent.objasnjenje;
                 document.getElementById('ai-response-box').classList.remove('hidden');
 
                 const preporuceniBrojevi = aiContent.predlozeni_clanovi || [];
-
                 const filtriraniZakon = zakonPodaci.filter(clan => preporuceniBrojevi.includes(clan.broj_clana));
                 const ostatakZakona = zakonPodaci.filter(clan => !preporuceniBrojevi.includes(clan.broj_clana));
-
-                const finalniPrikaz = [...filtriraniZakon, ...ostatakZakona];
-
+                
                 document.getElementById('results-title').innerText = `AI Preporuke (${filtriraniZakon.length} pronađeno)`;
-                prikaziClanove(finalniPrikaz, preporuceniBrojevi);
+                prikaziClanove([...filtriraniZakon, ...ostatakZakona], preporuceniBrojevi);
                 document.getElementById('laws-container').scrollTop = 0;
 
             } catch (error) {
-                console.error("Greška sa AI pretragom:", error);
-                alert("Greška pri komunikaciji sa AI. Provjerite konzolu preglednika ili provjerite podržava li Vaš Vercel proxy CORS za localhost.");
+                console.error("Greška:", error);
+                alert("Greška sa AI pretragom. Provjeri CORS postavke na svom Vercel proxy serveru.");
                 prikaziClanove(zakonPodaci);
             } finally {
                 document.getElementById('btn-ai-search').disabled = false;
@@ -267,7 +247,6 @@
             prikaziClanove(zakonPodaci);
         }
 
-        // Pokretanje skripte nakon učitavanja prozora
         window.onload = ucitajZakon;
     </script>
 </body>
