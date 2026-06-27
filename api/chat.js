@@ -33,7 +33,7 @@ export default async function handler(req, res) {
         messages,
         response_format,
         temperature,
-        stream=True
+        stream:true
       })
     });
 
