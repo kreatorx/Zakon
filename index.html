@@ -85,7 +85,7 @@
     <script>
         // Pošto su oba fajla u root-u, putanja je jednostavna
         const JSON_URL = './krivicni_zakon_fbih.json'; 
-        const AI_API_URL = '/api/chat';
+        const AI_API_URL = 'https://zakon-nine.vercel.app/api/chat';
         
         let zakonPodaci = [];
 
@@ -205,7 +205,7 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        model: "gpt-4o-mini",
+                        model: "gpt-5o-mini",
                         messages: [
                             { role: "system", content: "Ti si stručni pravni asistent koji vraća isključivo validan JSON objekat." },
                             { role: "user", content: prompt }
