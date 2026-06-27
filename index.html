@@ -326,12 +326,41 @@
                 return;
             }
 
+            const bojeZakona = {
+        'Krivični Zakon FBiH': {
+            pozadina: 'bg-red-50/40',
+            okvir: 'border-red-200/60'
+        },
+        'Ustav FBiH': {
+            pozadina: 'bg-blue-50/40',
+            okvir: 'border-blue-200/60'
+        },
+        'Zakon o zabrani diskriminacije': {
+            pozadina: 'bg-emerald-50/40',
+            okvir: 'border-emerald-200/60'
+        },
+        'Zakon o zaštiti od klevete': {
+            pozadina: 'bg-amber-50/40',
+            okvir: 'border-amber-200/60'
+        }
+    };
+            
+            const podrazumijevanaBoja = { pozadina: 'bg-white', okvir: 'border-gray-200' };
+            
             clanovi.forEach(clan => {
                 const jedinstveniKljuc = `${clan.naziv_zakona}__${clan.broj_clana}`;
                 const jeAIPreporuka = istaknutiKljucevi.includes(jedinstveniKljuc);
+
+                const stilZakona = bojeZakona[clan.naziv_zakona] || podrazumijevanaBoja;
                 
                 const card = document.createElement('div');
                 card.className = `p-2.5 rounded-lg border bg-white shadow-sm flex flex-col justify-between h-full relative group cursor-pointer transition ${jeAIPreporuka ? 'border-purple-400 ring-1 ring-purple-100 bg-purple-50/30' : 'border-gray-200 hover:border-blue-300'}`;
+
+                        if (jeAIPreporuka) {
+                            card.className = `p-2.5 rounded-lg border bg-purple-50/30 border-purple-400 ring-1 ring-purple-100 flex flex-col justify-between h-full relative group cursor-pointer transition`;
+                        } else {
+                            card.className = `p-2.5 rounded-lg border ${stilZakona.pozadina} ${stilZakona.okvir} hover:border-gray-400 flex flex-col justify-between h-full relative group cursor-pointer transition`;
+                        }
                 
                 card.setAttribute('onclick', `otvoriModal('${clan.id_sistema}')`);
 
