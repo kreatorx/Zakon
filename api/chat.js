@@ -1,5 +1,11 @@
 export default async function handler(req, res) {
-  // Rješavanje Preflight (OPTIONS) zahtjeva za CORS
+  // Eksplicitno rukovanje CORS-om unutar koda za svaki slučaj
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization');
+
+  // Ako je preflight zahtjev, odmah prekidamo i vraćamo usmjeravanje
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -10,7 +16,7 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: 'OPENAI_API_KEY is not configured on Vercel' });
+    return res.status(500).json({ error: 'OPENAI_API_KEY nije podešen u Vercel Environment Variables.' });
   }
 
   try {
