@@ -32,7 +32,8 @@ export default async function handler(req, res) {
         model: 'gpt-5.4',
         messages,
         response_format,
-        temperature
+        temperature,
+        stream=True
       })
     });
 
