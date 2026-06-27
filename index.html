@@ -311,13 +311,14 @@
 
         function prikaziClanove(clanovi, istaknutiKljucevi = []) {
     trenutniPrikazaniClanovi = clanovi;
-    globalniIstaknutiKljucevi = istaknutiKljucevi;
+    // Osiguravamo da je globalni ključ uvijek niz, čak i ako se proslijedi null/undefined
+    globalniIstaknutiKljucevi = Array.isArray(istaknutiKljucevi) ? istaknutiKljucevi : [];
 
     const container = document.getElementById('laws-container');
-    document.getElementById('results-count').innerText = clanovi.length;
+    document.getElementById('results-count').innerText = clanovi ? clanovi.length : 0;
     container.innerHTML = '';
 
-    if (clanovi.length === 0) {
+    if (!clanovi || clanovi.length === 0) {
         container.innerHTML = `
             <div class="text-center py-6 text-gray-400 bg-white rounded-lg border border-gray-200 col-span-full">
                 <i class="fa-solid fa-folder-open text-xl mb-1"></i>
@@ -338,9 +339,11 @@
 
     clanovi.forEach(clan => {
         const jedinstveniKljuc = `${clan.naziv_zakona}__${clan.broj_clana}`;
-        const jeAIPreporuka = istaknutiKljucevi.includes(jedinstveniKljuc);
+        
+        // Sigurna provjera: ako globalniIstaknutiKljucevi nije prazan, provjeri sadrži li ključ
+        const jeAIPreporuka = globalniIstaknutiKljucevi.length > 0 && globalniIstaknutiKljucevi.includes(jedinstveniKljuc);
 
-        // Dinamičko pronalaženje boje kroz djelomično poklapanje teksta (case-insensitive)
+        // Dinamičko pronalaženje boje kroz djelomično poklapanje teksta
         let stilZakona = podrazumijevanaBoja;
         const nazivZ_malo = (clan.naziv_zakona || "").toLowerCase();
         
@@ -353,7 +356,7 @@
 
         const card = document.createElement('div');
         
-        // Primjena odgovarajućih klasa ovisno o tome je li kartica AI preporuka ili regularni član
+        // Primjena odgovarajućih klasa ovisno o AI preporuci ili regularnom članu
         if (jeAIPreporuka) {
             card.className = `p-2.5 rounded-lg border bg-purple-50/30 border-purple-400 ring-1 ring-purple-100 flex flex-col justify-between h-full relative group cursor-pointer transition`;
         } else {
