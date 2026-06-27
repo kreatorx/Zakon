@@ -122,8 +122,8 @@
         const IZVORI_ZAKONA = [
             { id: 'kz', naziv: 'Krivični Zakon FBiH', url: './krivicni_zakon_fbih.json' },
             { id: 'uz', naziv: 'Ustav FBiH', url: './ustav_fbih.json' },
-            { id: 'zd', naziv: 'Zakon o zabrani diskriminacije', url: './ustav_fbih.json' }, // Zamijenite sa pravom putanjom kad dodate fajl
-            { id: 'zk', naziv: 'Zakon o zaštiti od klevete', url: './ustav_fbih.json' }    // Zamijenite sa pravom putanjom kad dodate fajl
+            { id: 'zd', naziv: 'Zakon o zabrani diskriminacije', url: './diskriminacija_fbih.json' }, // Zamijenite sa pravom putanjom kad dodate fajl
+            { id: 'zk', naziv: 'Zakon o zaštiti od klevete', url: './kleveta_fbih.json' }    // Zamijenite sa pravom putanjom kad dodate fajl
         ];
 
         const AI_API_URL = 'https://zakon-nine.vercel.app/api/chat';
@@ -141,7 +141,7 @@
                             // Osiguravamo da svaki objekat ima polje za identifikaciju zakona
                             const mapiraniPodaci = podaci.map(clan => ({
                                 ...clan,
-                                naziv_zakona: clan.naziv_zakona || izvor.naziv
+                                naslov: clan.naslov || izvor.naziv
                             }));
                             sviZakonPodaci = [...sviZakonPodaci, ...mapiraniPodaci];
                         }
@@ -184,7 +184,7 @@
             const sviCekirani = Array.from(checkboxes).every(cb => cb.checked);
             chkAll.checked = sviCekirani;
 
-            const filtriraniPodaci = sviZakonPodaci.filter(clan => selektovani.includes(clan.naziv_zakona));
+            const filtriraniPodaci = sviZakonPodaci.filter(clan => selektovani.includes(clan.naslov));
             prikaziClanove(filtriraniPodaci);
         }
 
@@ -205,8 +205,8 @@
 
             clanovi.forEach(clan => {
                 // Jedinstveni ključ za provjeru preporuke kombinacijom zakona i broja člana
-                const jedinstveniKljuc = `${clan.naziv_zakona}__${clan.broj_clana}`;
-                const jeAIPreporuka = istaknutiKljucevi.includes(jedinstveniKljuc) || istaknutiKljucevi.includes(clan.broj_clana);
+                const jedinstveniKljuc = `${clan.naslov}__${clan.clan_broj}`;
+                const jeAIPreporuka = istaknutiKljucevi.includes(jedinstveniKljuc) || istaknutiKljucevi.includes(clan.clan_broj);
                 
                 let segmentiHtml = '';
                 if (clan.segmenti && clan.segmenti.length > 0) {
@@ -231,12 +231,12 @@
                 card.innerHTML = `
                     <div class="flex justify-between items-start gap-2">
                         <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 px-2 py-0.5 bg-blue-50 rounded">${clan.broj_clana}</span>
-                            <h3 class="text-base font-bold text-gray-900 mt-1">${clan.naziv_clana || 'Bez naziva'}</h3>
+                            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 px-2 py-0.5 bg-blue-50 rounded">${clan.clan_broj}</span>
+                            <h3 class="text-base font-bold text-gray-900 mt-1">${clan.tekst || 'Bez naziva'}</h3>
                         </div>
                         ${jeAIPreporuka ? '<span class="text-xs font-semibold bg-purple-600 text-white px-2 py-0.5 rounded-full shrink-0 flex items-center gap-1"><i class="fa-solid fa-star"></i> AI Preporuka</span>' : ''}
                     </div>
-                    <p class="text-xs text-gray-500 font-medium mt-1"><i class="fa-solid fa-scale-balanced text-gray-400 mr-1"></i> Izvor: ${clan.naziv_zakona}</p>
+                    <p class="text-xs text-gray-500 font-medium mt-1"><i class="fa-solid fa-scale-balanced text-gray-400 mr-1"></i> Izvor: ${clan.naslov}</p>
                     ${segmentiHtml}
                 `;
                 container.appendChild(card);
@@ -250,7 +250,7 @@
             
             document.getElementById('results-title').innerText = "Rezultati pretrage";
             
-            const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovani.includes(clan.naziv_zakona));
+            const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovani.includes(clan.naslov));
 
             if (!upit) {
                 document.getElementById('results-title').innerText = "Svi aktivni članovi zakona";
@@ -259,8 +259,8 @@
             }
 
             const filtrirani = aktivniZakoniPodaci.filter(clan => {
-                const uBroju = clan.broj_clana.toLowerCase().includes(upit);
-                const uNazivu = clan.naziv_clana && clan.naziv_clana.toLowerCase().includes(upit);
+                const uBroju = clan.clan_broj.toLowerCase().includes(upit);
+                const uNazivu = clan.tekst && clan.tekst.toLowerCase().includes(upit);
                 const uSegmentima = clan.segmenti && clan.segmenti.some(s => s.tekst.toLowerCase().includes(upit));
                 return uBroju || uNazivu || uSegmentima;
             });
@@ -334,15 +334,15 @@
                 const preporuceniKljucevi = preporuke.map(p => `${p.zakon}__${p.clan}`);
 
                 // Filtriramo aktivne i preporučene članove
-                const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
+                const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naslov));
                 
                 const filtriraniZakon = aktivniZakoniPodaci.filter(clan => {
-                    const kljuc = `${clan.naziv_zakona}__${clan.broj_clana}`;
+                    const kljuc = `${clan.naslov}__${clan.clan_broj}`;
                     return preporuceniKljucevi.includes(kljuc);
                 });
 
                 const ostatakZakona = aktivniZakoniPodaci.filter(clan => {
-                    const kljuc = `${clan.naziv_zakona}__${clan.broj_clana}`;
+                    const kljuc = `${clan.naslov}__${clan.clan_broj}`;
                     return !preporuceniKljucevi.includes(kljuc);
                 });
                 
