@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: 'OPENAI_API_KEY nije podešen u Vercel Environment Variables.' });
+    return res.status(500).json({ error: 'OPEN_API_KEY nije podešen u Vercel Environment Variables.' });
   }
 
   try {
