@@ -525,26 +525,41 @@
     document.getElementById('ai-response-box').classList.add('hidden');
     document.getElementById('laws-container').innerHTML = '';
 
-    // --- STRUKTUIRANJE UPITA (PROMPTA) ZA MODEL ---
+    // --- PROMIJENI OVO: Unesi tačnu putanju do tvog Raw GitHub foldera gdje stoje JSON fajlovi
+    const bazniGithubUrl = "https://raw.githubusercontent.com/kreatorx/Zakon/refs/heads/main";
+
+    // Dinamičko generisanje liste linkova na osnovu onoga što je korisnik čekirao
+    let linkoviZaModel = [];
+    selektovaniZakoni.forEach(naziv => {
+        const izvor = IZVORI_ZAKONA.find(izv => izv.naziv === naziv);
+        if (izvor) {
+            // Pretvaramo lokalnu putanju './fajl.json' u puni javni GitHub Raw URL
+            const cistaPutanja = izvor.url.replace('./', '/');
+            linkoviZaModel.push(`- ${izvor.naziv}: ${bazniGithubUrl}${cistaPutanja}`);
+        }
+    });
+
+    // --- STRUKTUIRANJE UPITA SA DIREKTNIM LINKOVIMA ---
     const struktuiraniPrompt = `
-    [SISTEMSKA UPUTSTVA ZA MODEL]
-    Ti si profesionalni pravni asistent za zakonodavstvo Federacije Bosne i Hercegovine. 
+    [SISTEMSKI REZIME I ZADATAK]:
+    Ti si pravni asistent za zakonodavstvo Federacije Bosne i Hercegovine. 
     Tvoj zadatak je da analiziraš opisani pravni problem klijenta i povežeš ga sa relevantnim članovima zakona.
 
-    [FUNKCIJA / KORACI ZA RAD]:
-    1. Obavezno pokreni detaljnu funkciju VEB PRETRAGE (websearch) za sljedeće zakone koji su aktivni: [ ${selektovaniZakoni.join(', ')} ].
-    2. Detaljno analiziraj problem klijenta i pronađi tačne brojeve članova u tim zakonima koji najbolje pravno opisuju ili tretiraju navedenu situaciju.
-    3. Kreiraj kratko pravno obrazloženje i savjet za klijenta na bosanskom jeziku.
+    [IZVORI PODATAKA I WEBSEARCH NAREDBA]:
+    Korisnik je aktivirao sljedeće zakone. Koristeći svoju funkciju websearch, OBAVEZNO posjeti i pročitaj sirove JSON podatke sa ovih direktnih javnih GitHub linkova:
+    ${linkoviZaModel.join('\n')}
 
     [OPIS PROBLEMA KLIJENTA]:
     "${problemText}"
 
-    [FORMAT ODGOVORA - STROGO RESTRKTUIRANO]:
-    Vrati ISKLJUČIVO validan JSON objekat i apsolutno ništa izvan njega (bez markdown oznaka poput \`\`\`json). 
-    Ključevi unutar "predlozeni_clanovi" moraju sadržavati tačan naziv zakona i tačan format broja člana (npr. "Član 1." ili "Član 45.") kako bi ga lokalni sistem uporedio sa bazom podataka.
+    [UPUTSTVO ZA ANALIZU]:
+    Nakon što otvoriš i analiziraš navedene linkove, pronađi tačne brojeve članova (npr. "Član 1.", "Član 286.") koji se nalaze u tim dokumentima, a koji najbolje opisuju ili rješavaju situaciju klijenta.
 
+    [FORMAT ODGOVORA - STROGO RESTRKTUIRANO]:
+    Vrati ISKLJUČIVO validan JSON objekat i apsolutno ništa izvan njega (nemoj pisati uvod, zaključak, niti markdown oznake poput \`\`\`json).
+    Format mora biti tačno ovakav:
     {
-        "objasnjenje": "Ovdje unesi detaljno pravno obrazloženje situacije i savjet na bosanskom jeziku...",
+        "objasnjenje": "Ovdje unesi detaljno pravno obrazloženje situacije i savjet za klijenta na bosanskom jeziku...",
         "predlozeni_clanovi": [
             {"zakon": "Krivični Zakon FBiH", "clan": "Član 286."},
             {"zakon": "Ustav FBiH", "clan": "Član 1."}
@@ -557,40 +572,34 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                model: "gpt-5.4-nano", // Zadržan tvoj model
+                model: "gpt-5.4-nano",
                 messages: [
                     { 
                         role: "system", 
-                        content: "Ti si napredni pravni asistent koji vraća isključivo strukturirane JSON podatke na osnovu opsežne veb pretrage službenih novina i zakona FBiH." 
+                        content: "Ti si napredni pravni asistent koji koristi websearch za čitanje proslijeđenih javnih JSON datoteka i vraća strukturirane podatke." 
                     },
                     { 
                         role: "user", 
                         content: struktuiraniPrompt 
                     }
                 ],
-                response_format: { type: "json_object" }, // Osigurava da model forsira JSON output
-                temperature: 0.2
+                response_format: { type: "json_object" },
+                temperature: 0.1 // Smanjeno na 0.1 radi maksimalne preciznosti kod pretrage članova
             })
         });
 
         if (!response.ok) throw new Error("Problem sa API zahtjevom.");
 
         const data = await response.json();
-        
-        // Čišćenje potencijalnog whitespace-a ili neželjenih karaktera prije parsiranja
         let cistiContent = data.choices[0].message.content.trim();
         const aiContent = JSON.parse(cistiContent);
         
-        // Prikaz AI obrazloženja u ljubičasti box
         document.getElementById('ai-response-text').innerText = aiContent.objasnjenje;
         document.getElementById('ai-response-box').classList.remove('hidden');
 
-        // Izvlačenje preporučenih članova i kreiranje ključeva za poređenje sa tvojim JSON-om
         const preporuke = aiContent.predlozeni_clanovi || [];
         
-        // Mapiramo ključ npr: "Krivični Zakon FBiH__Član 286." ili "Ustav FBiH__Član 1."
         const preporuceniKljucevi = preporuke.map(p => {
-            // Standardizacija naziva zakona iz AI odgovora u slučaju malih varijacija
             let nazivZakona = p.zakon;
             if (nazivZakona.toLowerCase().includes("ustav")) nazivZakona = "Ustav FBiH";
             if (nazivZakona.toLowerCase().includes("krivični")) nazivZakona = "Krivični Zakon FBiH";
@@ -600,28 +609,24 @@
             return `${nazivZakona}__${p.clan}`;
         });
 
-        // Filtriranje tvoje lokalne baze (sviZakonPodaci učitani iz tvojih JSON fajlova)
         const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
         
-        // Razdvajamo članove: oni koje je AI predložio idu prve, ostali ispod njih
         const filtriraniZakon = aktivniZakoniPodaci.filter(clan => preporuceniKljucevi.includes(`${clan.naziv_zakona}__${clan.broj_clana}`));
         const ostatakZakona = aktivniZakoniPodaci.filter(clan => !preporuceniKljucevi.includes(`${clan.naziv_zakona}__${clan.broj_clana}`));
         
-        // Ispis na vrh i reset skrola na vrh kontejnera
         document.getElementById('results-title').innerText = `AI Preporuke (${filtriraniZakon.length})`;
         prikaziClanove([...filtriraniZakon, ...ostatakZakona], preporuceniKljucevi);
         document.getElementById('laws-container').scrollTop = 0;
 
     } catch (error) {
         console.error("Greška prilikom AI analize:", error);
-        alert("Došlo je do greške prilikom AI pretrage ili parsiranja podataka. Vraćam standardni prikaz.");
+        alert("Došlo je do greške prilikom AI pretrage. Vraćam standardni prikaz.");
         filtrirajPrikaz();
     } finally {
         document.getElementById('btn-ai-search').disabled = false;
         document.getElementById('loader').classList.add('hidden');
     }
 }
-
         function zatvoriAiBox() {
             document.getElementById('ai-response-box').classList.add('hidden');
             document.getElementById('results-title').innerText = "Svi aktivni članovi zakona";
