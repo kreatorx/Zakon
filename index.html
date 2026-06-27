@@ -12,7 +12,6 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         
-        /* CSS za rezanje teksta na tačno 4 reda sa tri tačke na dnu */
         .skrati-tekst {
             display: -webkit-box;
             -webkit-line-clamp: 4;
@@ -183,10 +182,10 @@
     </div>
 
     <script>
+        // Korigovani nazivi fajlova koji odgovaraju tvom Git serveru (bez razmaka)
         const IZVORI_ZAKONA = [
             { id: 'kz', naziv: 'Krivični Zakon FBiH', url: './krivicni_zakon_fbih.json' },
-            { id: 'uz', naziv: 'Ustav FBiH', url: './ustav_fbih.json' },
-            // Ispravljene putanje u slučaju da na repozitoriju nemate razmake
+            { id: 'uz', naziv: 'Ustav FBiH', url: './ustav_federacije_bih.json' },
             { id: 'zd', naziv: 'Zakon o zabrani diskriminacije', url: './diskriminacija_fbih.json' }, 
             { id: 'zk', naziv: 'Zakon o zaštiti od klevete', url: './kleveta_fbih.json' }
         ];
@@ -198,6 +197,31 @@
         let listaZaPrint = []; 
         let trenutniLayout = 'list'; 
 
+        // Funkcija za dinamičko parsiranje teksta/segmenata iz tvog JSON formata
+        function izvuciTekstClana(clan) {
+            if (clan.tekst && clan.tekst.trim() !== "") {
+                return `<p class="leading-normal">${clan.tekst}</p>`;
+            }
+            
+            if (clan.segmenti && clan.segmenti.length > 0) {
+                let html = `<div class="space-y-1">`;
+                clan.segmenti.forEach(seg => {
+                    if (typeof seg === 'object' && seg !== null) {
+                        // Slučaj kada objekat ima ključ npr. "Stav (1)" i vrijednost tekst
+                        const kljuc = Object.keys(seg)[0] || '';
+                        const vrijednost = seg[kljuc] || '';
+                        html += `<p><span class="font-semibold text-blue-900">${kljuc}:</span> ${vrijednost}</p>`;
+                    } else if (typeof seg === 'string') {
+                        // Slučaj kada je segment obični string u nizu
+                        html += `<p>${seg}</p>`;
+                    }
+                });
+                html += `</div>`;
+                return html;
+            }
+            return `<p class="italic text-gray-400">Sadržaj prazan.</p>`;
+        }
+
         async function ucitajSveZakone() {
             document.getElementById('search-stats').innerText = `Učitavanje zakona...`;
             
@@ -207,13 +231,13 @@
                     if (!response.ok) throw new Error(`Status: ${response.status}`);
                     const podaci = await response.json();
                     
-                    // MAPIRANJE: Prebacivanje Vaših atributa (clan_broj, naslov) u standardizovane varijable za aplikaciju
+                    // MAPIRANJE: Tvoji ključevi 'clan_broj' i 'naslov' se uvoze bez greške
                     const mapiraniPodaci = podaci.map((clan, indeks) => ({
                         id_sistema: `${izvor.id}_${indeks}`,
-                        broj_clana: clan.clan_broj || clan.broj_clana || "Član nepoznat",
-                        naziv_clana: clan.naslov || clan.naziv_clana || "Bez naslova",
-                        tekst: clan.tekst || "",
-                        segmenti: clan.segmenti || [],
+                        broj_clana: clan.clan_broj || "Član nepoznat",
+                        naziv_clana: clan.naslov || "Bez naslova",
+                        sadrzaj_html: izvuciTekstClana(clan),
+                        cisti_tekst: clan.tekst || (clan.segmenti ? JSON.stringify(clan.segmenti) : ""),
                         naziv_zakona: izvor.naziv
                     }));
                     sviZakonPodaci = [...sviZakonPodaci, ...mapiraniPodaci];
@@ -285,7 +309,6 @@
             prikaziClanove(trenutniPrikazaniClanovi, globalniIstaknutiKljucevi);
         }
 
-        // Prikaz članova sa restrikcijom visine (skrati-tekst klasa)
         function prikaziClanove(clanovi, istaknutiKljucevi = []) {
             trenutniPrikazaniClanovi = clanovi;
             globalniIstaknutiKljucevi = istaknutiKljucevi;
@@ -307,30 +330,9 @@
                 const jedinstveniKljuc = `${clan.naziv_zakona}__${clan.broj_clana}`;
                 const jeAIPreporuka = istaknutiKljucevi.includes(jedinstveniKljuc);
                 
-                let sadrzajHtml = '';
-                
-                // Generisanje segmentiranog ili običnog teksta člana
-                if (clan.segmenti && clan.segmenti.length > 0) {
-                    sadrzajHtml = `<div class="skrati-tekst space-y-0.5 mt-1 text-gray-600">`;
-                    clan.segmenti.forEach(seg => {
-                        // Podrška za slučajeve objekata ili nizova stringova u zavisnosti od Vašeg JSON-a
-                        if (typeof seg === 'object' && seg !== null) {
-                            const kljucSegmenta = seg.segment || Object.keys(seg)[0] || '';
-                            const tekstSegmenta = seg.tekst || seg[kljucSegmenta] || '';
-                            sadrzajHtml += `<p><span class="font-semibold text-blue-800">${kljucSegmenta}:</span> ${tekstSegmenta}</p>`;
-                        } else {
-                            sadrzajHtml += `<p>${seg}</p>`;
-                        }
-                    });
-                    sadrzajHtml += `</div>`;
-                } else {
-                    sadrzajHtml = `<p class="skrati-tekst text-gray-600 mt-1 leading-normal">${clan.tekst}</p>`;
-                }
-
                 const card = document.createElement('div');
                 card.className = `p-2.5 rounded-lg border bg-white shadow-sm flex flex-col justify-between h-full relative group cursor-pointer transition ${jeAIPreporuka ? 'border-purple-400 ring-1 ring-purple-100 bg-purple-50/30' : 'border-gray-200 hover:border-blue-300'}`;
                 
-                // Klik na samu karticu otvara modalni prozor
                 card.setAttribute('onclick', `otvoriModal('${clan.id_sistema}')`);
 
                 card.innerHTML = `
@@ -338,7 +340,7 @@
                         <div class="flex justify-between items-start gap-4">
                             <div class="min-w-0">
                                 <span class="text-[9px] font-bold uppercase text-blue-600 px-1 py-0.2 bg-blue-50 rounded">${clan.broj_clana}</span>
-                                <h3 class="text-xs font-bold text-gray-900 mt-0.5 truncate">${clan.naziv_clana}</h3>
+                                <h3 class="text-xs font-bold text-gray-900 mt-0.5 truncate" title="${clan.naziv_clana}">${clan.naziv_clana}</h3>
                             </div>
                             <div class="flex items-center gap-1 shrink-0" onclick="event.stopPropagation();">
                                 <button onclick="dodajUPrint('${clan.id_sistema}')" title="Dodaj u listu za štampu" class="text-gray-400 hover:text-green-600 p-1 text-[13px] transition">
@@ -347,7 +349,9 @@
                                 ${jeAIPreporuka ? '<span class="text-[8px] bg-purple-600 text-white px-1 rounded font-bold">AI</span>' : ''}
                             </div>
                         </div>
-                        ${sadrzajHtml}
+                        <div class="skrati-tekst text-gray-600 mt-1 text-[11px] leading-normal">
+                            ${clan.sadrzaj_html}
+                        </div>
                     </div>
                     <div class="mt-2 pt-1 border-t border-gray-100 text-[10px] text-gray-400 font-medium truncate">
                         <i class="fa-solid fa-scale-balanced text-gray-300 mr-1"></i>${clan.naziv_zakona}
@@ -357,7 +361,7 @@
             });
         }
 
-        // FUNKCIJE ZA MODALNI PROZOR (Prikaz cijelog člana na klik)
+        // MODAL FUNKCIJE
         function otvoriModal(idSistema) {
             const clan = sviZakonPodaci.find(c => c.id_sistema === idSistema);
             if (!clan) return;
@@ -367,27 +371,9 @@
             document.getElementById('modal-footer-law').innerText = clan.naziv_zakona;
 
             const bodyContainer = document.getElementById('modal-body-content');
-            bodyContainer.innerHTML = '';
+            bodyContainer.innerHTML = clan.sadrzaj_html;
 
-            if (clan.segmenti && clan.segmenti.length > 0) {
-                clan.segmenti.forEach(seg => {
-                    const p = document.createElement('p');
-                    if (typeof seg === 'object' && seg !== null) {
-                        const kljuc = seg.segment || Object.keys(seg)[0] || '';
-                        const tekst = seg.tekst || seg[kljuc] || '';
-                        p.innerHTML = `<span class="font-bold text-blue-900">${kljuc}:</span> ${tekst}`;
-                    } else {
-                        p.innerText = seg;
-                    }
-                    bodyContainer.appendChild(p);
-                });
-            } else {
-                bodyContainer.innerHTML = `<p>${clan.tekst}</p>`;
-            }
-
-            // Postavljanje i ažuriranje dugmeta za print unutar samog modala
             const printBtn = document.getElementById('modal-print-btn');
-            printBtn.setAttribute('onclick', `dodajUPrint('${clan.id_sistema}'); event.stopPropagation();`);
             
             if (listaZaPrint.some(c => c.id_sistema === idSistema)) {
                 printBtn.className = "bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded font-medium flex items-center gap-1 text-xs";
@@ -396,6 +382,7 @@
             } else {
                 printBtn.className = "bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded font-medium flex items-center gap-1 text-xs";
                 printBtn.innerHTML = `<i class="fa-solid fa-print"></i> Dodaj za štampu`;
+                printBtn.setAttribute('onclick', `dodajUPrint('${clan.id_sistema}'); otvoriModal('${clan.id_sistema}'); event.stopPropagation();`);
             }
 
             document.getElementById('member-modal').classList.remove('hidden');
@@ -405,7 +392,7 @@
             document.getElementById('member-modal').classList.add('hidden');
         }
 
-        // FUNKCIJE ZA PRINT SISTEM (Append tekst mehanizam)
+        // PRINT SISTEM
         function dodajUPrint(idSistema) {
             const clan = sviZakonPodaci.find(c => c.id_sistema === idSistema);
             if (!clan || listaZaPrint.some(c => c.id_sistema === idSistema)) return;
@@ -430,12 +417,12 @@
             if (listaZaPrint.length === 0) {
                 previewList.innerHTML = `<p class="italic text-gray-400">Nema odabranih članova za štampu.</p>`;
                 printBtn.disabled = true;
-                printBtn.className = "w-full bg-gray-400 text-white font-medium py-1.5 px-3 rounded text-xs cursor-not-allowed transition flex items-center justify-center gap-1.5 shadow-sm";
+                printBtn.className = "w-full bg-gray-400 text-white font-medium py-1.5 px-3 rounded text-xs cursor-not-allowed flex items-center justify-center gap-1.5 shadow-sm";
                 return;
             }
 
             printBtn.disabled = false;
-            printBtn.className = "w-full bg-green-600 hover:bg-green-700 text-white font-medium py-1.5 px-3 rounded text-xs cursor-pointer transition flex items-center justify-center gap-1.5 shadow-sm";
+            printBtn.className = "w-full bg-green-600 hover:bg-green-700 text-white font-medium py-1.5 px-3 rounded text-xs cursor-pointer flex items-center justify-center gap-1.5 shadow-sm";
 
             listaZaPrint.forEach(clan => {
                 const item = document.createElement('div');
@@ -451,7 +438,6 @@
         function stampajOdabrano() {
             if (listaZaPrint.length === 0) return;
 
-            // Otvaranje novog čistog prozora isključivo strukturiranog za papirni ispis
             const printProzor = window.open('', '_blank');
             
             let htmlSadrzaj = `
@@ -467,8 +453,6 @@
                         .clan-broj { font-weight: bold; color: #1e3a8a; font-size: 14px; background: #f0f4f8; padding: 2px 6px; border-radius: 3px; display: inline-block; }
                         .clan-naslov { font-weight: bold; font-size: 14px; margin-top: 5px; color: #111; }
                         .clan-izvor { font-size: 11px; color: #777; font-style: italic; margin-top: 10px; border-top: 1px solid #eee; padding-top: 5px; }
-                        .segment-red { margin-bottom: 4px; }
-                        .segment-naziv { font-weight: bold; color: #2563eb; }
                         @media print {
                             body { padding: 0; }
                             .clan-blok { border: none; border-bottom: 1px dashed #ccc; padding: 15px 0; border-radius: 0; }
@@ -477,54 +461,34 @@
                 </head>
                 <body>
                     <div class="print-header">
-                        <h1>Sveobuhvatna Pravna Baza FBiH - Izvještaj</h1>
+                        <h1>Sveobuhvatna Pravna Baza FBiH - Izvještaj za štampu</h1>
                         <p>Dokument generisan: ${new Date().toLocaleDateString('bs')} u ${new Date().toLocaleTimeString('bs')}</p>
                     </div>
             `;
 
             listaZaPrint.forEach(clan => {
-                let tekstClanaHtml = '';
-                if (clan.segmenti && clan.segmenti.length > 0) {
-                    clan.segmenti.forEach(seg => {
-                        if (typeof seg === 'object' && seg !== null) {
-                            const kljuc = seg.segment || Object.keys(seg)[0] || '';
-                            const tekst = seg.tekst || seg[kljuc] || '';
-                            tekstClanaHtml += `<div class="segment-red"><span class="segment-naziv">${kljuc}:</span> ${tekst}</div>`;
-                        } else {
-                            tekstClanaHtml += `<div class="segment-red">${seg}</div>`;
-                        }
-                    });
-                } else {
-                    tekstClanaHtml = `<p style="margin: 5px 0 0 0;">${clan.tekst}</p>`;
-                }
-
                 htmlSadrzaj += `
                     <div class="clan-blok">
                         <div>
                             <span class="clan-broj">${clan.broj_clana}</span>
                             <div class="clan-naslov">${clan.naziv_clana}</div>
                         </div>
-                        <div style="margin-top: 10px;">${tekstClanaHtml}</div>
+                        <div style="margin-top: 10px;">${clan.sadrzaj_html}</div>
                         <div class="clan-izvor">Izvor: ${clan.naziv_zakona}</div>
                     </div>
                 `;
             });
 
-            htmlSadrzaj += `
-                </body>
-                </html>
-            `;
+            htmlSadrzaj += `</body></html>`;
 
             printProzor.document.write(htmlSadrzaj);
             printProzor.document.close();
             
-            // Pokretanje sistemskog ispisa odmah po završetku učitavanja sadržaja
             printProzor.focus();
-            setTimeout(() => {
-                printProzor.print();
-            }, 500);
+            setTimeout(() => { printProzor.print(); }, 500);
         }
 
+        // KLASIČNA PRETRAGA
         function klasicnaPretraga() {
             const upit = document.getElementById('classic-search').value.toLowerCase().trim();
             const selektovani = getSelektovaniZakoni();
@@ -540,20 +504,15 @@
 
             const filtrirani = aktivniZakoniPodaci.filter(clan => {
                 const uBroju = clan.broj_clana.toLowerCase().includes(upit);
-                const uNazivu = clan.naziv_clana && clan.naziv_clana.toLowerCase().includes(upit);
-                const uTekstu = clan.tekst && clan.tekst.toLowerCase().includes(upit);
-                const uSegmentima = clan.segmenti && clan.segmenti.some(s => {
-                    if (typeof s === 'object') {
-                        return JSON.stringify(s).toLowerCase().includes(upit);
-                    }
-                    return s.toLowerCase().includes(upit);
-                });
-                return uBroju || uNazivu || uTekstu || uSegmentima;
+                const uNazivu = clan.naziv_clana.toLowerCase().includes(upit);
+                const uTekstu = clan.cisti_tekst.toLowerCase().includes(upit);
+                return uBroju || uNazivu || uTekstu;
             });
 
             prikaziClanove(filtrirani, globalniIstaknutiKljucevi);
         }
 
+        // AI PRETRAGA
         async function traziAI() {
             const problemText = document.getElementById('ai-problem').value.trim();
             const selektovaniZakoni = getSelektovaniZakoni();
@@ -571,9 +530,9 @@
             Analiziraj situaciju uzimajući u obzir zakone: [${selektovaniZakoni.join(', ')}].
             Vrati ISKLJUČIVO validan JSON objekat u formatu bez ikakvog dodatnog teksta:
             {
-                "objasnjenje": "Pravno obrazloženje na bosanskom jeziku...",
+                "objasnjenje": "Pravno Wildcard obrazloženje na bosanskom jeziku...",
                 "predlozeni_clanovi": [
-                    {"zakon": "Krivični Zakon FBiH", "clan": "Član 286."}
+                    {"zakon": "Krivični Zakon FBiH", "clan": "Član 1."}
                 ]
             }`;
 
@@ -582,7 +541,7 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        model: "gpt-4o",
+                        model: "gpt-5.4-nano",
                         messages: [
                             { role: "system", content: "Ti si ekspertni pravni asistent." },
                             { role: "user", content: prompt }
@@ -628,12 +587,9 @@
             filtrirajPrikaz();
         }
 
-        // Zatvaranje modala na klik izvan prozora
         window.onclick = function(event) {
             const modal = document.getElementById('member-modal');
-            if (event.target == modal) {
-                zatvoriModal();
-            }
+            if (event.target == modal) zatvoriModal();
         }
 
         window.onload = ucitajSveZakone;
