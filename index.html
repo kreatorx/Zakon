@@ -503,7 +503,7 @@
             }
 
             const filtrirani = aktivniZakoniPodaci.filter(clan => {
-                const uBroju = clan.broj_clana.toLowerCase().includes(upit);
+                const uBroju = String(clan.broj_clana).toLowerCase().includes(upit);
                 const uNazivu = clan.naziv_clana.toLowerCase().includes(upit);
                 const uTekstu = clan.cisti_tekst.toLowerCase().includes(upit);
                 return uBroju || uNazivu || uTekstu;
@@ -609,13 +609,13 @@
         
         // Razdvajanje: Članovi koje je AI izabrao idu u prvu grupu, ostali u drugu
         const filtriraniZakon = aktivniZakoniPodaci.filter(clan => {
-            let lokalniCistiBroj = clan.broj_clana.toLowerCase().replace('član', '').replace('.', '').trim();
+            let lokalniCistiBroj = String(clan.broj_clana).toLowerCase().replace('član', '').replace('.', '').trim();
             const kljuc = `${clan.naziv_zakona}__${lokalniCistiBroj}`;
             return preporuceniKljucevi.includes(kljuc);
         });
 
         const OstatakZakona = aktivniZakoniPodaci.filter(clan => {
-            let lokalniCistiBroj = clan.broj_clana.toLowerCase().replace('član', '').replace('.', '').trim();
+            let lokalniCistiBroj = String(clan.broj_clana).toLowerCase().replace('član', '').replace('.', '').trim();
             const kljuc = `${clan.naziv_zakona}__${lokalniCistiBroj}`;
             return !preporuceniKljucevi.includes(kljuc);
         });
