@@ -1,4 +1,12 @@
-export default async function handler(req, res) {
+export default function handler(req, res) {
+  res.status(200).json({
+    ok: true,
+    message: "API radi",
+    method: req.method
+  });
+}
+
+/*export default async function handler(req, res) {
   // Eksplicitno rukovanje CORS-om
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -118,4 +126,4 @@ console.log("API CHAT HIT");
     // Vraćamo tačan opis greške u JSON-u kako bi na klijentu odmah vidio šta je puklo
     return res.status(500).json({ error: 'Internal Server Error', message: error.message, stack: error.stack });
   }
-}
+}*/
