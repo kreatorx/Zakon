@@ -666,7 +666,7 @@ async function traziAI() {
 
         const data = await response.json();
         
-        // Iskačući debug ispis u konzoli - Ovdje ćemo vidjeti šta tačno server šalje!
+        // Prikazuje u konzoli (F12) šta tačno server šalje - ključno za uočavanje greške na Vercelu!
         console.log("Sirovi odgovor sa API servera:", data);
         
         let cistiContent = "";
@@ -677,41 +677,46 @@ async function traziAI() {
         } else if (typeof data === 'string') {
             cistiContent = data.trim();
         } else {
-            // Ako server vrati grešku zapakovanu u JSON (npr. { error: "..." })
+            // Ako je server vratio grešku upakovanu u objekat (npr. { error: "..." } ili { message: "..." })
             if (data.error || data.message) {
+                alert(`Greška sa servera: ${data.error || data.message}`);
                 throw new Error(`Server je vratio poruku: ${data.error || data.message}`);
             }
             throw new Error("Format odgovora nije prepoznat.");
         }
 
-        // --- SVETI GRAL ZA REGEX: Čisti markdown oznake i izoluje isključivo objekat ---
-        // Prvo uklanjamo ```json i ``` ako ih je model dodao unutar teksta
+        // Čišćenje markdown oznaka ako ih ima
         cistiContent = cistiContent.replace(/```json/g, '').replace(/```/g, '').trim();
 
-        // Tražimo najširi mogući opseg vitičastih zagrada
         const prviBrace = cistiContent.indexOf('{');
         const zadnjiBrace = cistiContent.lastIndexOf('}');
 
         if (prviBrace === -1 || zadnjiBrace === -1 || zadnjiBrace < prviBrace) {
             console.error("Sadržaj koji je izazvao problem:", cistiContent);
-            throw new Error("Server nije vratio validnu pravnu strukturu, nego običan tekst.");
+            alert("Server nije vratio pravnu strukturu. Poruka: " + cistiContent);
+            throw new Error("Server nije vratio validnu pravnu strukturu.");
         }
 
-        // Izrezujemo tačan raspon od prve { do zadnje } čime eliminišemo sve kontrolne karaktere
         let ultraCistiJson = cistiContent.substring(prviBrace, zadnjiBrace + 1).trim();
 
         let aiContent;
         try {
             aiContent = JSON.parse(ultraCistiJson);
         } catch (parseError) {
-            console.warn("Agresivni pokušaj parsiranja nije uspio, radim hirurško čišćenje karaktera...", parseError);
-            
-            // Hirurški uklanjamo skrivene kontrolne karaktere i nefunkcionalne bjelina karaktere
+            // Ako zakaže standardno, čistimo skrivene karaktere
             ultraCistiJson = ultraCistiJson.replace(/[\u0000-\u001F\u7F-\u9F\u200B-\u200D\uFEFF]/g, "");
             aiContent = JSON.parse(ultraCistiJson);
         }
         
-        // Prikaz pravnog mišljenja u ljubičastom boxu
+        // --- KLJUČNA PROVJERA STRUKTURE (Sprječava pad na poziciji 53) ---
+        // Ako je parsiran JSON, ali to nije naš pravni odgovor nego npr. sistemska greška
+        if (!aiContent.objasnjenje) {
+            console.error("Dobijeni JSON nema ispravna polja:", aiContent);
+            alert("API je vratio neočekivan odgovor ili grešku. Provjerite konzolu.");
+            throw new Error("JSON nema polje 'objasnjenje'. Vjerovatno se radi o sistemskoj grešci.");
+        }
+
+        // Ako je struktura ispravna, nastavi sa prikazom
         document.getElementById('ai-response-text').innerText = aiContent.objasnjenje;
         document.getElementById('ai-response-box').classList.remove('hidden');
 
