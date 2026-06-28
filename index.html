@@ -578,10 +578,25 @@
     document.getElementById('ai-response-box').classList.add('hidden');
     document.getElementById('laws-container').innerHTML = '';
 
+const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
+         const listaClanovaZaAnalizu = aktivniZakoniPodaci.map(clan => {
+        return {
+            zakon: clan.naziv_zakona,
+            clan: String(clan.broj_clana).trim()
+        };
+    });
+         
     // Agresivan sistemski prompt koji prisiljava model na websearch i čist JSON bez naracije
     const sistemskiPrompt = `
     Ti si napredni pravni asistent za zakonodavstvo Federacije Bosne i Hercegovine.
     Prije analize problema obavezno zaboravi prethodnu memoriju.
+
+[STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
+    U nastavku ti dostavljam tačan niz svih dostupnih članova i zakona koji se nalaze u našoj lokalnoj bazi podataka. 
+    Tvoj glavni zadatak je da analiziraš pravni problem korisnika i uporediš ga sa ovim nizom. Članovi koje predložiš u polju "clan" MORAJU postojati u ovom nizu i biti napisani u identičnom formatu (npr. "Član 2", "1" ili "1a" - zavisno kako je navedeno niže):
+    
+    ${JSON.stringify(listaClanovaZaAnalizu)}
+    
     ZADATAK:
     1. OBAVEZNO koristi alat za pretragu veba (web_search) da istražiš članove za sljedeće zakone: ${selektovaniZakoni.join(', ')}.
     2. Analiziraj pravni problem korisnika i pronađi tačne članove koji ga rješavaju.
