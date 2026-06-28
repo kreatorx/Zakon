@@ -675,14 +675,22 @@ async function traziAI() {
             throw new Error("Format odgovora nije prepoznat.");
         }
 
-        const aiContent = JSON.parse(cistiContent);
+        // --- SPASILAC PROMPTA: RegEx koji čisti sve tekstualne viškove prije i poslije JSON-a ---
+        const jsonMatch = cistiContent.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) {
+            throw new Error("Model uopšte nije vratio JSON strukturu.");
+        }
+        // Uzimamo striktno izolovani tekst unutar vitičastih zagrada
+        const ultraCistiJson = jsonMatch[0];
+
+        // Sada parsiramo bez ikakvog rizika od "Unexpected character after JSON"
+        const aiContent = JSON.parse(ultraCistiJson);
         
         document.getElementById('ai-response-text').innerText = aiContent.objasnjenje;
         document.getElementById('ai-response-box').classList.remove('hidden');
 
         const preporuke = aiContent.predlozeni_clanovi || [];
         
-        // Funkcija za čišćenje koja uklanja SVE tačke, razmake i riječ član pomoću regularnih izraza (Čuva slova poput 1a)
         const naprednoOcisti = (tekst) => {
             if (tekst === null || tekst === undefined) return '';
             return String(tekst).toLowerCase()
@@ -692,9 +700,10 @@ async function traziAI() {
                                 .trim();
         };
 
-        // Standardizacija ključeva koje je vratio AI
         const preporuceniKljucevi = preporuke.map(p => {
-            let nazivZakona = p.zakon;
+            let nazivZakona = p.custom_naziv || p.zakon; 
+            if (!nazivZakona) return '';
+            
             if (nazivZakona.toLowerCase().includes("ustav")) nazivZakona = "Ustav FBiH";
             if (nazivZakona.toLowerCase().includes("krivični")) nazivZakona = "Krivični Zakon FBiH";
             if (nazivZakona.toLowerCase().includes("diskriminaci")) nazivZakona = "Zakon o zabrani diskriminacije";
@@ -703,7 +712,6 @@ async function traziAI() {
             return `${nazivZakona}__${naprednoOcisti(p.clan)}`;
         });
 
-        // Razdvajanje članova: Poklapanje čistih identifikatora (npr "1a" sa "1a")
         const filtriraniZakon = aktivniZakoniPodaci.filter(clan => {
             let lokalniCistiBroj = naprednoOcisti(clan.broj_clana);
             const kljuc = `${clan.naziv_zakona}__${lokalniCistiBroj}`;
@@ -718,7 +726,6 @@ async function traziAI() {
         
         document.getElementById('results-title').innerText = `AI Preporuke (${filtriraniZakon.length})`;
         
-        // Šaljemo niz preporučenih ključeva u originalnom obliku radi označavanja
         const kljuceviZaBojenje = filtriraniZakon.map(clan => `${clan.naziv_zakona}__${clan.broj_clana}`);
         prikaziClanove([...filtriraniZakon, ...OstatakZakona], kljuceviZaBojenje);
         
@@ -726,7 +733,7 @@ async function traziAI() {
 
     } catch (error) {
         console.error("Greška prilikom AI analize:", error);
-        alert("Došlo je do greške prilikom mrežne pretrage modela. Vraćam standardni prikaz.");
+        alert("Došlo je do greške u parsiranju AI odgovora. Vraćam standardni prikaz baze.");
         filtrirajPrikaz();
     } finally {
         document.getElementById('btn-ai-search').disabled = false;
