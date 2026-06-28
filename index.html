@@ -699,6 +699,25 @@ async function traziAI() {
         };
     });
 
+
+// 1. Filtriramo kompletan Krivični zakon iz tvoje učitane baze
+    const cijeliKrivicniZakon = sviZakonPodaci.filter(clan => {
+        const naziv = (clan.naziv_zakona || "").toLowerCase();
+        return naziv.includes("krivični") || naziv.includes("krivicni");
+    }).map(clan => {
+        // Uzimamo samo najvažnija polja kako bismo uštedjeli tokene u promptu
+        return {
+            clan: clan.broj_clana || clan.clan_broj || "",
+            naslov: clan.naziv_clana || clan.naslov || "",
+            tekst: clan.cisti_tekst || clan.tekst || ""
+        };
+    });
+
+    // 2. Pretvaramo cijeli niz u tekstualni JSON format spreman za prompt
+    const krivicniZakonTekst = JSON.stringify(cijeliKrivicniZakon, null, 2);
+
+ 
+
     const samoBrojeviClanova = listaClanovaZaAnalizu.map(c => c.clan).join(', ');
          
     // === ISPIS REZULTATA PRETRAGE U KONZOLU PRIJE SISTEMSKOG PROMPTA ===
@@ -717,6 +736,10 @@ async function traziAI() {
     
     [STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
     Obavezno vrati odgovor u roku od 9 sekundi!
+
+    [KOMPLETNA BAZA KRIVIČNOG ZAKONA FBIH]:
+    Ovdje se nalazi kompletan sadržaj Krivičnog zakona FBiH sa svim članovima. Koristi isključivo ove podatke i tačne oznake članova (posebno obrati pažnju na specifične članove sa slovima poput 181b, 183, itd.):
+    ${krivicniZakonTekst}
     
     Kompletan sadržaj preuzmi sa sljedećih linkova (web_search), analiziraj upit i na osnovu tvoje procjene predloži zakone koristeći numeraciju iz ove 4 json baze: 
     https://raw.githubusercontent.com/kreatorx/Zakon/main/krivicni_zakon_fbih.json
