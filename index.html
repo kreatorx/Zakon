@@ -190,8 +190,7 @@
 
     <div id="member-modal" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden" onclick="zatvoriModal()">
     
-    <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden border border-gray-100 transition-all duration-200" onclick="event.stopPropagation()">
-        
+<div class="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[85vh] flex flex-col overflow-hidden border border-gray-100">        
         <div class="px-5 py-3.5 border-b border-gray-100 flex items-center justify-between bg-gray-50/80">
             <div class="flex items-center gap-2.5 min-w-0">
                 <span id="modal-badge" class="px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-100 text-[10px] font-bold rounded uppercase tracking-wider shrink-0">
@@ -468,73 +467,66 @@ function otvoriModal(idSistema) {
     const bodyContainer = document.getElementById('modal-body-content');
     let htmlSadrzaj = '';
 
-    // 1. Uzimamo sirovi tekst (skidamo HTML tagove ako ih ima)
+    // 1. Uzimamo sirovi tekst i čistimo ga od tagova i duplih razmaka
     let siroviTekst = clan.cisti_tekst || clan.tekst || clan.sadrzaj_html || "";
-    siroviTekst = siroviTekst.replace(/<[^>]*>/g, ''); // Brisanje eventualnih HTML tagova
-    siroviTekst = siroviTekst.replace(/\s+/g, ' ').trim(); // Čišćenje duplih razmaka i skrivenih \n
+    siroviTekst = siroviTekst.replace(/<[^>]*>/g, ''); 
+    siroviTekst = siroviTekst.replace(/\s+/g, ' ').trim();
 
-    // 2. PRIVREMENI NIZ ZA STAVKE
     let stavke = [];
 
-    // Ako u objektu već imamo čiste segmente, iskoristićemo njih
     if (clan.segmenti && clan.segmenti.length > 0) {
         stavke = clan.segmenti;
     } else {
-        // AKO NEMAMO SEGMENTE: Sami dinamički cijepamo tekst na osnovu stavova (1), (2) ili podtačaka a), b)
-        // Ovaj RegEx pronalazi (1), 1), a), b) i koristi ih kao tačke preloma
-        const djelovi = siroviTekst.split(/(?=\((?:\d+)\))|(?=\s[a-zžšđčć][\)|.])|(?=\s\d+[\)|.])/i);
-        stavke = djelovi.map(d => d.trim()).filter(d => d.length > 0);
+        // 2. Pametno cijepanje (samo ako ispred stoji kraj rečenice/početak stringa)
+        const regexPrelom = /(?<=\.|\?|!|^)\s*(?=\((?:\d+)\))|(?=\s[a-zžšđčć][\)|.])|(?<=\.|\?|!|^)\s*(?=\d+[\)|.])/i;
+        stavke = siroviTekst.split(regexPrelom).map(d => d.trim()).filter(d => d.length > 0);
     }
 
-    // 3. GENERISANJE HTML-A SA VIZUELNOM HIJERARHIJOM
+    // 3. Generisanje HTML-a sa ispravljenim težinama fontova
     if (stavke.length > 0) {
         stavke.forEach(stavka => {
             const tekstStavke = stavka.trim();
             if (!tekstStavke) return;
 
-            // Provjera: Da li počinje sa slovnom podtačkom npr. a), b), c) ili a., b.
             const jeSlovnaPodtacka = /^[a-zžšđčć][\)|.]/i.test(tekstStavke);
-            // Provjera: Da li počinje brojem tipa 1), 2) ili stavom (1), (2)
             const jeBrojIliStav = /^(\(?\d+\)?[\)|.])/.test(tekstStavke);
 
             if (jeSlovnaPodtacka) {
-                // Izvlačimo samo slovo i zagradu (npr. "a)")
+                // Slovne podtačke (a, b, c): Oznaka je plava i bold, a tekst je REGULAR (font-normal)
                 const matchOznaka = tekstStavke.match(/^([a-zžšđčć][\)|.])(.*)/i);
                 if (matchOznaka) {
                     htmlSadrzaj += `
                         <div class="pl-6 mb-2 flex items-start gap-2.5">
-                            <span class="font-bold text-blue-600 shrink-0 min-w-[20px] text-left text-[13px]">${matchOznaka[1]}</span>
-                            <span class="text-gray-700 text-[13px] leading-relaxed font-normal">${matchOznaka[2].trim()}</span>
+                            <span class="font-bold text-blue-600 shrink-0 min-w-[20px] text-left text-[12px]">${matchOznaka[1]}</span>
+                            <span class="font-normal text-gray-700 text-[12px] leading-relaxed">${matchOznaka[2].trim()}</span>
                         </div>`;
                 } else {
-                    htmlSadrzaj += `<p class="pl-6 mb-2 text-gray-700 text-[13px] leading-relaxed font-normal">${tekstStavke}</p>`;
+                    htmlSadrzaj += `<p class="pl-6 mb-2 font-normal text-gray-700 text-[12px] leading-relaxed">${tekstStavke}</p>`;
                 }
             } else if (jeBrojIliStav) {
-                // Izvlačimo broj ili stav (npr. "(1)" ili "2)")
+                // Glavni stavovi (1, 2, 3): Oznaka i tekst su boldirani radi jasne strukture
                 const matchOznaka = tekstStavke.match(/^(\(?\d+\)?[\)|.])(.*)/);
                 if (matchOznaka) {
                     htmlSadrzaj += `
                         <div class="mb-3 flex items-start gap-2">
                             <span class="font-bold text-gray-900 shrink-0 min-w-[22px] text-[13.5px]">${matchOznaka[1]}</span>
-                            <span class="font-medium text-gray-900 text-[13.5px] leading-relaxed">${matchOznaka[2].trim()}</span>
+                            <span class="font-bold text-gray-900 text-[13.5px] leading-relaxed">${matchOznaka[2].trim()}</span>
                         </div>`;
                 } else {
-                    htmlSadrzaj += `<p class="font-medium text-gray-900 text-[13.5px] leading-relaxed mb-3">${tekstStavke}</p>`;
+                    htmlSadrzaj += `<p class="font-bold text-gray-900 text-[13.5px] leading-relaxed mb-3">${tekstStavke}</p>`;
                 }
             } else {
-                // Običan uvodni tekst ili pasus bez oznaka
-                htmlSadrzaj += `<p class="font-medium text-gray-950 text-[13.5px] leading-relaxed mb-3.5">${tekstStavke}</p>`;
+                // Običan uvodni tekst tona "Sve osobe na teritoriji..." koji nije podtačka
+                htmlSadrzaj += `<p class="font-bold text-gray-900 text-[13.5px] leading-relaxed mb-3">${tekstStavke}</p>`;
             }
         });
     } else {
-        // Krajnji fallback ako je tekst potpuno prazan ili neuhvatljiv
-        htmlSadrzaj += `<p class="text-gray-800 text-[13px] leading-relaxed">${siroviTekst}</p>`;
+        htmlSadrzaj += `<p class="text-gray-800 text-[12px] leading-relaxed font-normal">${siroviTekst}</p>`;
     }
 
-    // Upisivanje formatiranog sadržaja u kontejner
     bodyContainer.innerHTML = htmlSadrzaj;
 
-    // --- TVOJA LOGIKA ZA DUGME ZA ŠTAMPU ---
+    // --- LOGIKA ZA DUGME ZA ŠTAMPU ---
     const printBtn = document.getElementById('modal-print-btn');
     if (listaZaPrint.some(c => c.id_sistema === idSistema)) {
         printBtn.className = "bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded font-medium flex items-center gap-1 text-xs";
@@ -546,7 +538,6 @@ function otvoriModal(idSistema) {
         printBtn.setAttribute('onclick', `dodajUPrint('${clan.id_sistema}'); otvoriModal('${clan.id_sistema}'); event.stopPropagation();`);
     }
 
-    // Prikazivanje modala
     document.getElementById('member-modal').classList.remove('hidden');
 }
 
