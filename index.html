@@ -333,7 +333,25 @@
             prikaziClanove(trenutniPrikazaniClanovi, globalniIstaknutiKljucevi);
         }
 
-        function prikaziClanove(clanovi, istaknutiKljucevi = []) {
+     // Pomoćna funkcija za automatsko prelamanje segmenata (a, b, c, 1, 2, 3...)
+function formatirajSegmenteTeksta(tekst) {
+    if (!tekst) return "";
+
+    let formatiranTekst = tekst;
+
+    // 1. Prelom za slovne oznake tipa: a) b) c) ili a. b. c.
+    // Traži slovo praćeno zagradom ili tačkom i razmakom (ali ignoriše početak teksta)
+    formatiranTekst = formatiranTekst.replace(/(?<=\s)([a-zžšđčć])[\)|.]\s/gi, '<br><span class="pl-4 font-semibold text-blue-800">$1) </span>');
+
+    // 2. Prelom za brojevne oznake tipa: 1) 2) 3) ili 1. 2. 3.
+    // Traži jednocifreni ili dvocifreni broj praćen zagradom ili tačkom i razmakom
+    formatiranTekst = formatiranTekst.replace(/(?<=\s)(\d{1,2})[\)|.]\s/g, '<br><span class="pl-2 font-semibold">$1. </span>');
+
+    // Čistimo eventualne duple prelome ako su se zadesili na početku rečenice
+    return formatiranTekst.trim();
+}
+
+function prikaziClanove(clanovi, istaknutiKljucevi = []) {
     trenutniPrikazaniClanovi = clanovi;
     // Osiguravamo da je globalni ključ uvijek niz, čak i ako se proslijedi null/undefined
     globalniIstaknutiKljucevi = Array.isArray(istaknutiKljucevi) ? istaknutiKljucevi : [];
@@ -389,6 +407,15 @@
 
         card.setAttribute('onclick', `otvoriModal('${clan.id_sistema}')`);
 
+        // --- AUTOMATSKO PRELAMANJE I FORMATIRANJE SEGMENTA (a), b), 1., 2. ...) ---
+        let siroviTekst = clan.sadrzaj_html || "";
+        
+        // 1. Prelom za slovne oznake tipa: a) b) c) ili a. b. c. sa blagim uvlačenjem (pl-2)
+        let formatiranTekst = siroviTekst.replace(/(?<=\s)([a-zžšđčć])[\)|.]\s/gi, '<br><span class="pl-2 font-semibold text-blue-800">$1) </span>');
+        
+        // 2. Prelom za brojevne oznake tipa: 1) 2) ili 1. 2. sa blagim uvlačenjem (pl-1)
+        formatiranTekst = formatiranTekst.replace(/(?<=\s)(\d{1,2})[\)|.]\s/g, '<br><span class="pl-1 font-semibold">$1. </span>');
+
         card.innerHTML = `
             <div class="flex-grow">
                 <div class="flex justify-between items-start gap-4">
@@ -404,7 +431,7 @@
                     </div>
                 </div>
                 <div class="skrati-tekst text-gray-600 mt-1 text-[11px] leading-normal">
-                    ${clan.sadrzaj_html}
+                    ${formatiranTekst}
                 </div>
             </div>
             <div class="mt-2 pt-1 border-t border-gray-100 text-[10px] text-gray-400 font-medium truncate">
