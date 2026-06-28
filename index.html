@@ -578,42 +578,56 @@
     document.getElementById('ai-response-box').classList.add('hidden');
     document.getElementById('laws-container').innerHTML = '';
 
-    // Prebacujemo unos u mala slova i čistimo razmake
-    const pojamPretrage = problemText.toLowerCase().trim();
+         const ukloniKvacice = (tekst) => {
+        if (!tekst) return "";
+        return String(tekst).toLowerCase()
+                            .replace(/[čć]/g, 'c')
+                            .replace(/ž/g, 'z')
+                            .replace(/š/g, 's')
+                            .replace(/đ/g, 'd')
+                            .trim();
+    };
+
+    // Normalizujemo korisnički unos (npr. "psihičko nasilje" postaje "psihicko nasilje")
+    const pojamPretrageNormalizovan = ukloniKvacice(problemText);
     const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
 
-    // Definišemo korijene riječi za fleksibilnost (npr. "psihi" i "nasil")
-    const rijeciKorisnika = pojamPretrage.split(' ').filter(r => r.length > 2);
-    const korijen1 = "psihi";
-    const korijen2 = "nasil";
+    // Rastavljamo normalizovani unos na riječi (npr. ["psihicko", "nasilje"])
+    const rijeciKorisnika = pojamPretrageNormalizovan.split(' ').filter(r => r.length > 2);
 
-    // --- KORAK 1: Članovi koji sadrže OBJE riječi (Najveći prioritet - npr. 181b) ---
+    // --- VIŠESTEPENA PRETRAGA BEZ DUPLIKATA SA NORMALIZACIJOM ---
+    
+    // Nivo 1: Članovi koji sadrže SVE unesene riječi istovremeno
     let nivo1_oba = aktivniZakoniPodaci.filter(clan => {
-        const tekst = ((clan.tekst || "") + " " + (clan.naslov || "")).toLowerCase();
-        return rijeciKorisnika.every(rijec => tekst.includes(rijec));
+        const tekstClana = ukloniKvacice((clan.tekst || "") + " " + (clan.naslov || ""));
+        const brojClana = ukloniKvacice(clan.broj_clana || clan.clan_broj || "");
+        
+        // Provjera da li korisnik direktno traži broj (npr. "181b")
+        if (brojClana === pojamPretrageNormalizovan || brojClana.includes(pojamPretrageNormalizovan)) return true;
+
+        // Provjera za sve riječi odjednom
+        return rijeciKorisnika.length > 0 && rijeciKorisnika.every(rijec => tekstClana.includes(rijec));
     });
 
-    // --- KORAK 2: Članovi koji imaju "psihički" u sebi (A nisu već izabrani) ---
+    // Nivo 2: Članovi koji sadrže riječ "psihi" (a nisu već ubačeni)
     let nivo2_psihi = aktivniZakoniPodaci.filter(clan => {
-        const tekst = ((clan.tekst || "") + " " + (clan.naslov || "")).toLowerCase();
-        return tekst.includes(korijen1) && !nivo1_oba.some(postojeci => postojeci.broj_clana === clan.broj_clana || postojeci.clan_broj === clan.clan_broj);
+        const tekstClana = ukloniKvacice((clan.tekst || "") + " " + (clan.naslov || ""));
+        const vecPostoji = nivo1_oba.some(p => (p.broj_clana && p.broj_clana === clan.broj_clana) || (p.clan_broj && p.clan_broj === clan.clan_broj));
+        return !vecPostoji && tekstClana.includes("psih");
     });
 
-    // --- KORAK 3: Članovi koji imaju "nasilje" u sebi (A nisu već izabrani) ---
+    // Nivo 3: Članovi koji sadrže riječ "nasil" (a nisu već ubačeni)
     let nivo3_nasilje = aktivniZakoniPodaci.filter(clan => {
-        const tekst = ((clan.tekst || "") + " " + (clan.naslov || "")).toLowerCase();
-        // Spajamo prethodna dva nivoa da izbjegnemo duplikate
+        const tekstClana = ukloniKvacice((clan.tekst || "") + " " + (clan.naslov || ""));
         const dosadasnji = [...nivo1_oba, ...nivo2_psihi];
-        return tekst.includes(korijen2) && !dosadasnji.some(postojeci => postojeci.broj_clana === clan.broj_clana || postojeci.clan_broj === clan.clan_broj);
+        const vecPostoji = dosadasnji.some(p => (p.broj_clana && p.broj_clana === clan.broj_clana) || (p.clan_broj && p.clan_broj === clan.clan_broj));
+        return !vecPostoji && tekstClana.includes("nasil");
     });
 
-    // Spajamo sve u jednu čistu, filtriranu listu bez ikakvih duplikata
-    let filtriranaListaZaPrompt = [...nivo1_oba, ...nivo2_psihi, ...nivo3_nasilje];
+    // Spajamo sve nivoe u jedinstvenu listu bez duplikata
+    let filtriranaListaZaPrompt = [...nivo1_oba, ...nivo2_psihi, ...nivo3_nasilje].slice(0, 25);
 
-    // Ograničavamo na top 25 članova da ne zagušimo prompt dosadnim Ustavom
-    filtriranaListaZaPrompt = filtriranaListaZaPrompt.slice(0, 25);
-
-    // Mapiramo pronađene članove u čist niz za prompt
+    // Mapiramo pronađene članove u čist niz za prompt, zadržavajući originalna slova za prikaz
     const listaClanovaZaAnalizu = filtriranaListaZaPrompt.map(clan => {
         return {
             zakon: clan.naziv_zakona,
@@ -622,7 +636,6 @@
         };
     });
 
-    // Izvlačimo same brojeve članova za direktnu sugestiju modelu
     const samoBrojeviClanova = listaClanovaZaAnalizu.map(c => c.clan).join(', ');
          
     // Agresivan sistemski prompt koji prisiljava model na mečovanje sa klasičnom pretragom
