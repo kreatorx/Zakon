@@ -566,7 +566,7 @@
         }
 
         // AI PRETRAGA
-async function traziAI() {
+        async function traziAI() {
     const problemText = document.getElementById('ai-problem').value.trim();
     const selektovaniZakoni = getSelektovaniZakoni();
 
@@ -578,51 +578,14 @@ async function traziAI() {
     document.getElementById('ai-response-box').classList.add('hidden');
     document.getElementById('laws-container').innerHTML = '';
 
-    // --- RAG KORAK: Lokalno izdvajanje relevantnih članova iz memorije pretraživača ---
-    const bazičneRiječi = problemText.toLowerCase().split(' ').filter(r => r.length > 3);
-    const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
-    
-    // Generišemo kompaktnu referentnu listu postojećih članova za prompt
-    let referentnaListaClanova = [];
-    aktivniZakoniPodaci.forEach(clan => {
-        let sadrziRijec = bazičneRiječi.some(r => 
-            (clan.tekst && clan.tekst.toLowerCase().includes(r)) || 
-            (clan.naslov && clan.naslov.toLowerCase().includes(r))
-        );
-        // Ako sadrži ključnu riječ, ili ako je baza mala, dodajemo u referentni niz za AI
-        if (sadrziRijec || bazičneRiječi.length === 0) {
-            referentnaListaClanova.push({
-                zakon: clan.naziv_zakona,
-                clan: String(clan.broj_clana).trim(),
-                naslov: clan.naslov || ""
-            });
-        }
-    });
-
-    // Ako je lista prazna zbog specifičnih riječi, dajemo mu barem osnovni pregled strukture
-    if (referentnaListaClanova.length === 0) {
-        referentnaListaClanova = aktivniZakoniPodaci.slice(0, 40).map(clan => ({
-            zakon: clan.naziv_zakona,
-            clan: String(clan.broj_clana).trim(),
-            naslov: clan.naslov || ""
-        }));
-    }
-
-    // Agresivan sistemski prompt sa ugrađenom referentnom listom iz tvojih JSON datoteka
+    // Agresivan sistemski prompt koji prisiljava model na websearch i čist JSON bez naracije
     const sistemskiPrompt = `
     Ti si napredni pravni asistent za zakonodavstvo Federacije Bosne i Hercegovine.
     Prije analize problema obavezno zaboravi prethodnu memoriju.
-    
     ZADATAK:
     1. OBAVEZNO koristi alat za pretragu veba (web_search) da istražiš članove za sljedeće zakone: ${selektovaniZakoni.join(', ')}.
     2. Analiziraj pravni problem korisnika i pronađi tačne članove koji ga rješavaju.
-    
-    [PRIMARNI IZVOR I PRIORITET ZA NUMERACIJU]:
-    U nastavku ti dostavljam tačnu listu članova i njihovih identifikatora koji se nalaze u našem sistemu. 
-    Tvoj izlazni JSON u polju "clan" MORA pratiti tačnu sintaksu (uključujući i slova poput 1a, 2b ako postoje) iz ove liste:
-    ${JSON.stringify(referentnaListaClanova.slice(0, 60), null, 2)}
-    
-    Numeraciju i kompletan tekst takođe možeš verifikovati na ovim raw linkovima: 
+    3. Numeraciju članova potraži na ovim linkovima: 
         https://raw.githubusercontent.com/kreatorx/Zakon/main/krivicni_zakon_fbih.json
         https://raw.githubusercontent.com/kreatorx/Zakon/main/ustav_fbih.json
         https://raw.githubusercontent.com/kreatorx/Zakon/main/kleveta_fbih.json
@@ -635,22 +598,24 @@ async function traziAI() {
     {
         "objasnjenje": "Detaljno pravno obrazloženje i savjet na bosanskom jeziku...",
         "predlozeni_clanovi": [
-            {"zakon": "Zakon o zabrani diskriminacije", "clan": "Član 1a"},
+            {"zakon": "Zakon o zabrani diskriminacije", "clan": "Član 2"},
             {"zakon": "Krivični Zakon FBiH", "clan": "Član 286"}
         ]
     }
     `;
 
     try {
+        // Vraćamo standardnu strukturu tijela koju tvoj API proxy na Vercelu očekuje
         const response = await fetch(AI_API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                model: "gpt-5.4-nano",
+                model: "gpt-5.4-mini",
                 messages: [
                     { "role": "system", "content": sistemskiPrompt },
                     { "role": "user", "content": `Problem: "${problemText}"` }
                 ],
+                // Uključivanje alata unutar standardnog zahtjeva za kompatibilnost sa API-jem
                 tools: [
                     {
                         "type": "web_search",
@@ -666,105 +631,63 @@ async function traziAI() {
 
         const data = await response.json();
         
-        // Prikazuje u konzoli (F12) šta tačno server šalje - ključno za uočavanje greške na Vercelu!
-        console.log("Sirovi odgovor sa API servera:", data);
-        
+        // Izvlačenje čistog sadržaja u zavisnosti od toga kako tvoj Vercel API pakuje odgovor
         let cistiContent = "";
         if (data.choices && data.choices[0].message && data.choices[0].message.content) {
             cistiContent = data.choices[0].message.content.trim();
         } else if (data.output) {
             cistiContent = data.output.trim();
-        } else if (typeof data === 'string') {
-            cistiContent = data.trim();
         } else {
-            // Ako je server vratio grešku upakovanu u objekat (npr. { error: "..." } ili { message: "..." })
-            if (data.error || data.message) {
-                alert(`Greška sa servera: ${data.error || data.message}`);
-                throw new Error(`Server je vratio poruku: ${data.error || data.message}`);
-            }
             throw new Error("Format odgovora nije prepoznat.");
         }
 
-        // Čišćenje markdown oznaka ako ih ima
-        cistiContent = cistiContent.replace(/```json/g, '').replace(/```/g, '').trim();
-
-        const prviBrace = cistiContent.indexOf('{');
-        const zadnjiBrace = cistiContent.lastIndexOf('}');
-
-        if (prviBrace === -1 || zadnjiBrace === -1 || zadnjiBrace < prviBrace) {
-            console.error("Sadržaj koji je izazvao problem:", cistiContent);
-            alert("Server nije vratio pravnu strukturu. Poruka: " + cistiContent);
-            throw new Error("Server nije vratio validnu pravnu strukturu.");
-        }
-
-        let ultraCistiJson = cistiContent.substring(prviBrace, zadnjiBrace + 1).trim();
-
-        let aiContent;
-        try {
-            aiContent = JSON.parse(ultraCistiJson);
-        } catch (parseError) {
-            // Ako zakaže standardno, čistimo skrivene karaktere
-            ultraCistiJson = ultraCistiJson.replace(/[\u0000-\u001F\u7F-\u9F\u200B-\u200D\uFEFF]/g, "");
-            aiContent = JSON.parse(ultraCistiJson);
-        }
+        const aiContent = JSON.parse(cistiContent);
         
-        // --- KLJUČNA PROVJERA STRUKTURE (Sprječava pad na poziciji 53) ---
-        // Ako je parsiran JSON, ali to nije naš pravni odgovor nego npr. sistemska greška
-        if (!aiContent.objasnjenje) {
-            console.error("Dobijeni JSON nema ispravna polja:", aiContent);
-            alert("API je vratio neočekivan odgovor ili grešku. Provjerite konzolu.");
-            throw new Error("JSON nema polje 'objasnjenje'. Vjerovatno se radi o sistemskoj grešci.");
-        }
-
-        // Ako je struktura ispravna, nastavi sa prikazom
+        // Prikaz pravnog mišljenja u ljubičastom boxu
         document.getElementById('ai-response-text').innerText = aiContent.objasnjenje;
         document.getElementById('ai-response-box').classList.remove('hidden');
 
         const preporuke = aiContent.predlozeni_clanovi || [];
         
-        const naprednoOcisti = (tekst) => {
-            if (tekst === null || tekst === undefined) return '';
-            return String(tekst).toLowerCase()
-                                .replace(/član/g, '')
-                                .replace(/\./g, '')
-                                .replace(/\s+/g, '')
-                                .trim();
-        };
-
+        // Standardizacija ključeva koje je vratio AI radi lakšeg poređenja
         const preporuceniKljucevi = preporuke.map(p => {
-            let nazivZakona = p.custom_naziv || p.zakon; 
-            if (!nazivZakona) return '';
-            
+            let nazivZakona = p.zakon;
             if (nazivZakona.toLowerCase().includes("ustav")) nazivZakona = "Ustav FBiH";
             if (nazivZakona.toLowerCase().includes("krivični")) nazivZakona = "Krivični Zakon FBiH";
             if (nazivZakona.toLowerCase().includes("diskriminaci")) nazivZakona = "Zakon o zabrani diskriminacije";
             if (nazivZakona.toLowerCase().includes("klevet")) nazivZakona = "Zakon o zaštiti od klevete";
             
-            return `${nazivZakona}__${naprednoOcisti(p.clan)}`;
+            // Čistimo broj člana od tačaka, razmaka i riječi "Član" radi 100% poklapanja sa tvojom bazom
+            let cistiBroj = p.clan.toLowerCase().replace('član', '').replace('.', '').trim();
+            return `${nazivZakona}__${cistiBroj}`;
         });
 
+        // Filtriranje lokalne baze (sviZakonPodaci) koja je već učitana u pretraživaču
+        const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
+        
+        // Razdvajanje: Članovi koje je AI izabrao idu u prvu grupu, ostali u drugu
         const filtriraniZakon = aktivniZakoniPodaci.filter(clan => {
-            let lokalniCistiBroj = naprednoOcisti(clan.broj_clana);
+            let lokalniCistiBroj = String(clan.broj_clana).toLowerCase().replace('član', '').replace('.', '').trim();
             const kljuc = `${clan.naziv_zakona}__${lokalniCistiBroj}`;
             return preporuceniKljucevi.includes(kljuc);
         });
 
         const OstatakZakona = aktivniZakoniPodaci.filter(clan => {
-            let lokalniCistiBroj = naprednoOcisti(clan.broj_clana);
+            let lokalniCistiBroj = String(clan.broj_clana).toLowerCase().replace('član', '').replace('.', '').trim();
             const kljuc = `${clan.naziv_zakona}__${lokalniCistiBroj}`;
             return !preporuceniKljucevi.includes(kljuc);
         });
         
+        // Slanje spojenog niza nazad u tvoju funkciju prikaziClanove()
         document.getElementById('results-title').innerText = `AI Preporuke (${filtriraniZakon.length})`;
+        prikaziClanove([...filtriraniZakon, ...OstatakZakona], preporuceniKljucevi);
         
-        const kljuceviZaBojenje = filtriraniZakon.map(clan => `${clan.naziv_zakona}__${clan.broj_clana}`);
-        prikaziClanove([...filtriraniZakon, ...OstatakZakona], kljuceviZaBojenje);
-        
+        // Vraćanje skrola na vrh kontejnera kako bi korisnik odmah vidio predložene stavke
         document.getElementById('laws-container').scrollTop = 0;
 
     } catch (error) {
         console.error("Greška prilikom AI analize:", error);
-        alert("Došlo je do greške u parsiranju AI odgovora. Vraćam standardni prikaz baze.");
+        alert("Došlo je do greške prilikom mrežne pretrage modela. Vraćam standardni prikaz.");
         filtrirajPrikaz();
     } finally {
         document.getElementById('btn-ai-search').disabled = false;
