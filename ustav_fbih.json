@@ -1,16 +1,16 @@
 [
   {
     "clan_broj": 1,
-    "naslov": "Uspostavljanje Federacije",
+    "naslov": "I USPOSTAVLJANJE FEDERACIJE",
     "tekst": "(1) Bošnjaci i Hrvati kao konstitutivni narodi, zajedno sa ostalima, i građani Republike Bosne i Hercegovine, ostvarujući svoja suverena prava, preoblikuju unutrašnju strukturu teritorija sa većinskim bošnjačkim i hrvatskim stanovništvom u Republici Bosni i Hercegovini u Federaciju Bosne i Hercegovine koja se sastoji od federalnih jedinica sa jednakim pravima i odgovornostima.\n(2) Odluke o ustavnom statusu teritorije Republike Bosne i Hercegovine sa većinskim srpskim stanovništvom biće donesene u toku pregovora o miru na Međunarodnoj konferenciji o bivšoj Jugoslaviji.",
     "segmenti": [
-      "Bošnjaci i Hrvati kao konstitutivni narodi, zajedno sa ostalima, i građani Republike Bosne i Hercegovine, ostvarujući svoja suverena prava, preoblikuju unutrašnju strukturu teritorija sa većinskim bošnjačkim i hrvatskim stanovništvom u Republici Bosni i Hercegovini u Federaciju Bosne i Hercegovine koja se sastoji od federalnih jedinica sa jednakim pravima i odgovornostima.",
-      "Odluke o ustavnom statusu teritorije Republike Bosne i Hercegovine sa većinskim srpskim stanovništvom biće donesene u toku pregovora o miru na Međunarodnoj konferenciji o bivšoj Jugoslaviji."
+      "(1) Bošnjaci i Hrvati kao konstitutivni narodi, zajedno sa ostalima, i građani Republike Bosne i Hercegovine, ostvarujući svoja suverena prava, preoblikuju unutrašnju strukturu teritorija sa većinskim bošnjačkim i hrvatskim stanovništvom u Republici Bosni i Hercegovini u Federaciju Bosne i Hercegovine koja se sastoji od federalnih jedinica sa jednakim pravima i odgovornostima.",
+      "(2) Odluke o ustavnom statusu teritorije Republike Bosne i Hercegovine sa većinskim srpskim stanovništvom biće donesene u toku pregovora o miru na Međunarodnoj konferenciji o bivšoj Jugoslaviji."
     ]
   },
   {
     "clan_broj": 2,
-    "naslov": "Sastav Federacije",
+    "naslov": "I USPOSTAVLJANJE FEDERACIJE",
     "tekst": "Federacija Bosne i Hercegovine sastoji se od federalnih jedinica (kantona). Metodi i postupci za fizičko određivanje granica između kantona utvrdit će se federalnim propisima. Kantoni će imati nazive određene isključivo prema gradovima koji su sjedišta odgovarajućih kantonalnih vlasti ili prema regionalnim geografskim karakteristikama.",
     "segmenti": [
       "Federacija Bosne i Hercegovine sastoji se od federalnih jedinica (kantona).",
@@ -20,7 +20,7 @@
   },
   {
     "clan_broj": 3,
-    "naslov": "Službeno ime Federacije",
+    "naslov": "I USPOSTAVLJANJE FEDERACIJE",
     "tekst": "Službeno ime Federacije je: Federacija Bosne i Hercegovine.",
     "segmenti": [
       "Službeno ime Federacije je: Federacija Bosne i Hercegovine."
@@ -28,7 +28,7 @@
   },
   {
     "clan_broj": 4,
-    "naslov": "Glavni grad Federacije",
+    "naslov": "I USPOSTAVLJANJE FEDERACIJE",
     "tekst": "Glavni grad Federacije je Sarajevo.",
     "segmenti": [
       "Glavni grad Federacije je Sarajevo."
@@ -36,26 +36,26 @@
   },
   {
     "clan_broj": 5,
-    "naslov": "Simboli Federacije",
+    "naslov": "I USPOSTAVLJANJE FEDERACIJE",
     "tekst": "(1) Federacija ima grb, zastavu, himnu i pečat, kao i druge simbole o kojima odluči Parlament Federacije u skladu sa paragrafom (2) ovog člana.\n(2) Za prihvatanje simbola potrebna je većina glasova u svakom domu Parlamenta Federacije, uključujući većinu glasova bošnjačkih delegata i većinu glasova hrvatskih delegata u Domu naroda.",
     "segmenti": [
-      "Federacija ima grb, zastavu, himnu i pečat, kao i druge simbole o kojima odluči Parlament Federacije u skladu sa paragrafom (2) ovog člana.",
-      "Za prihvatanje simbola potrebna je većina glasova u svakom domu Parlamenta Federacije, uključujući većinu glasova bošnjačkih delegata i većinu glasova hrvatskih delegata u Domu naroda."
+      "(1) Federacija ima grb, zastavu, himnu i pečat, kao i druge simbole o kojima odluči Parlament Federacije u skladu sa paragrafom (2) ovog člana.",
+      "(2) Za prihvatanje simbola potrebna je većina glasova u svakom domu Parlamenta Federacije, uključujući većinu glasova bošnjačkih delegata i većinu glasova hrvatskih delegata u Domu naroda."
     ]
   },
   {
     "clan_broj": 6,
-    "naslov": "Službeni jezici i pismo",
+    "naslov": "I USPOSTAVLJANJE FEDERACIJE",
     "tekst": "(1) Službeni jezici Federacije su bosanski jezik i hrvatski jezik. Službeno pismo je latinica.\n(2) Ostali jezici se mogu koristiti kao sredstva komunikacije i nastave.\n(3) Dodatni jezici mogu se odrediti kao službeni većinom glasova svakog doma Parlamenta Federacije, uključujući većinu glasova bošnjačkih delegata i većinu glasova hrvatskih delegata u Domu naroda.",
     "segmenti": [
-      "Službeni jezici Federacije su bosanski jezik i hrvatski jezik. Službeno pismo je latinica.",
-      "Ostali jezici se mogu koristiti kao sredstva komunikacije i nastave.",
-      "Dodatni jezici mogu se odrediti kao službeni većinom glasova svakog doma Parlamenta Federacije, uključujući većinu glasova bošnjačkih delegata i većinu glasova hrvatskih delegata u Domu naroda."
+      "(1) Službeni jezici Federacije su bosanski jezik i hrvatski jezik. Službeno pismo je latinica.",
+      "(2) Ostali jezici se mogu koristiti kao sredstva komunikacije i nastave.",
+      "(3) Dodatni jezici mogu se odrediti kao službeni većinom glasova svakog doma Parlamenta Federacije, uključujući većinu glasova bošnjačkih delegata i većinu glasova hrvatskih delegata u Domu naroda."
     ]
   },
   {
     "clan_broj": 1,
-    "naslov": "Primjena principa, prava i sloboda",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - A. OPĆE ODREDBE",
     "tekst": "Budući da se principi, prava i slobode utvrđeni instrumentima u Aneksu ovog ustava, primjenjuju na cijeloj teritoriji Republike Bosne i Hercegovine, slijedeće odredbe odnose se na federaciju.",
     "segmenti": [
       "Budući da se principi, prava i slobode utvrđeni instrumentima u Aneksu ovog ustava, primjenjuju na cijeloj teritoriji Republike Bosne i Hercegovine, slijedeće odredbe odnose se na federaciju."
@@ -63,36 +63,36 @@
   },
   {
     "clan_broj": 2,
-    "naslov": "Osiguranje primjene ljudskih prava i sloboda",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - A. OPĆE ODREDBE",
     "tekst": "Federacija će osigurati primjenu najvišeg nivoa međunarodno priznatih prava i sloboda utvrđenih u aktima navedenim u Aneksu. Posebno:\n(1) Sve osobe na teritoriji Federacije uživaju prava na:\na) život:\nb) slobodu, stim da su hapšenje i pritvaranje dopušteni samo u skladu sa zakonom;\nc) jednakost pred zakonom:\nd) zabranu svake diskriminacije zasnovane na rasi, boji kože, polu, jeziku, religiji ili vjerovanju, političkim ili drugim uvjerenjima, nacionalnom i socijalnom porijeklu;\ne) pravičan krivični postupak;\nf) zabranu mučenja, okrutnog ili nehumanog postupanja ili kažnjavanja;\ng) privatnost:\nh) slobodu kretanja;\ni) azil:\nj) zaštitu obitelji i djece;\nk) imovinu:\nl) osnovne slobode: slobodu govora i štampe; slobodu mišljenja, savjesti i uvjerenja; slobodu religije, uključujući privatno i javno vjeroispovjedanje; slobodu okupljanja; slobodu udruživanja, uključujući slobodu osnivanja i pripadanja sindikatima i slobodu neudruživanja; slobodu na rad;\nm) obrazovanje:\nn) socijalnu zaštitu:\no) zdravstvenu zaštitu;\np) prehranu:\nr) utočište: i\ns) zaštitu manjina i potencijalno ugroženih grupa;\n(2) Svi građani uživaju:\na) pravo na osnivanje i pripadanje političkim partijama; i\nb) politička prava: da učestvuju u javnim poslovima; da imaju jednak pristup javnim službama; da biraju i da budu birani.",
     "segmenti": [
-      "Sve osobe na teritoriji Federacije uživaju prava na:",
-      "život:",
-      "slobodu, stim da su hapšenje i pritvaranje dopušteni samo u skladu sa zakonom;",
-      "jednakost pred zakonom:",
-      "zabranu svake diskriminacije zasnovane na rasi, boji kože, polu, jeziku, religiji ili vjerovanju, političkim ili drugim uvjerenjima, nacionalnom i socijalnom porijeklu;",
-      "pravičan krivični postupak;",
-      "zabranu mučenja, okrutnog ili nehumanog postupanja ili kažnjavanja;",
-      "privatnost:",
-      "slobodu kretanja;",
-      "azil:",
-      "zaštitu obitelji i djece;",
-      "imovinu:",
-      "osnovne slobode: slobodu govora i štampe; slobodu mišljenja, savjesti i uvjerenja; slobodu religije, uključujući privatno i javno vjeroispovjedanje; slobodu okupljanja; slobodu udruživanja, uključujući slobodu osnivanja i pripadanja sindikatima i slobodu neudruživanja; slobodu na rad;",
-      "obrazovanje:",
-      "socijalnu zaštitu:",
-      "zdravstvenu zaštitu;",
-      "prehranu:",
-      "utočište: i",
-      "zaštitu manjina i potencijalno ugroženih grupa;",
-      "Svi građani uživaju:",
-      "pravo na osnivanje i pripadanje političkim partijama; i",
-      "politička prava: da učestvuju u javnim poslovima; da imaju jednak pristup javnim službama; da biraju i da budu birani."
+      "(1) Sve osobe na teritoriji Federacije uživaju prava na:",
+      "a) život:",
+      "b) slobodu, stim da su hapšenje i pritvaranje dopušteni samo u skladu sa zakonom;",
+      "c) jednakost pred zakonom:",
+      "d) zabranu svake diskriminacije zasnovane na rasi, boji kože, polu, jeziku, religiji ili vjerovanju, političkim ili drugim uvjerenjima, nacionalnom i socijalnom porijeklu;",
+      "e) pravičan krivični postupak;",
+      "f) zabranu mučenja, okrutnog ili nehumanog postupanja ili kažnjavanja;",
+      "g) privatnost:",
+      "h) slobodu kretanja;",
+      "i) azil:",
+      "j) zaštitu obitelji i djece;",
+      "k) imovinu:",
+      "l) osnovne slobode: slobodu govora i štampe; slobodu mišljenja, savjesti i uvjerenja; slobodu religije, uključujući privatno i javno vjeroispovjedanje; slobodu okupljanja; slobodu udruživanja, uključujući slobodu osnivanja i pripadanja sindikatima i slobodu neudruživanja; slobodu na rad;",
+      "m) obrazovanje:",
+      "n) socijalnu zaštitu:",
+      "o) zdravstvenu zaštitu;",
+      "p) prehranu:",
+      "r) utočište: i",
+      "s) zaštitu manjina i potencijalno ugroženih grupa;",
+      "(2) Svi građani uživaju:",
+      "a) pravo na osnivanje i pripadanje političkim partijama; i",
+      "b) politička prava: da učestvuju u javnim poslovima; da imaju jednak pristup javnim službama; da biraju i da budu birani."
     ]
   },
   {
     "clan_broj": 3,
-    "naslov": "Prava izbjeglica i raseljenih lica",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - A. OPĆE ODREDBE",
     "tekst": "Sve izbjeglice i raseljena lica imaju pravo slobodnog povratka u prebivališta iz kojih su prognani.",
     "segmenti": [
       "Sve izbjeglice i raseljena lica imaju pravo slobodnog povratka u prebivališta iz kojih su prognani."
@@ -100,7 +100,7 @@
   },
   {
     "clan_broj": 4,
-    "naslov": "Pravo na povrat imovine",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - A. OPĆE ODREDBE",
     "tekst": "Sve osobe imaju pravo, u skladu sa federalnim i kantonalnim zakonodavstvom, da im se vrati sva imovina oduzeta u toku etničkog progona, kao i na naknadu sve imovine koja im ne može biti vraćena. Sve izjave i obaveze date i preuzete pod prisilom, posebno one koje se tiču odricanja od prava na zemlju i drugu imovinu, smatraju se ništavnim.",
     "segmenti": [
       "Sve osobe imaju pravo, u skladu sa federalnim i kantonalnim zakonodavstvom, da im se vrati sva imovina oduzeta u toku etničkog progona, kao i na naknadu sve imovine koja im ne može biti vraćena.",
@@ -109,16 +109,16 @@
   },
   {
     "clan_broj": 5,
-    "naslov": "Državljanstvo Federacije",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - A. OPĆE ODREDBE",
     "tekst": "Sticanje i prestanak državljanstva Federacije Bosne i Hercegovine utvrđuju se federalnim zakonom, s tim da:\na) nijedna osoba ne može biti lišena državljanstva proizvoljno, ili na način koji bi je ostavio bez državljanstva; i\nb) svi građani imaju pravo zadržati i državljanstvo druge države.",
     "segmenti": [
-      "nijedna osoba ne može biti lišena državljanstva proizvoljno, ili na način koji bi je ostavio bez državljanstva; i",
-      "svi građani imaju pravo zadržati i državljanstvo druge države."
+      "a) nijedna osoba ne može biti lišena državljanstva proizvoljno, ili na način koji bi je ostavio bez državljanstva; i",
+      "b) svi građani imaju pravo zadržati i državljanstvo druge države."
     ]
   },
   {
     "clan_broj": 6,
-    "naslov": "Primjena prava i sloboda od strane sudova i organa",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - A. OPĆE ODREDBE",
     "tekst": "Svi sudovi, organi uprave, institucije koje vrše javna ovlašćenja i drugi organi federalne vlasti primjenjivat će i poštovati prava i slobode predviđene u aktima navedenim u Aneksu. Sud za ljudska prava osnovat će se u skladu sa članom IV.C. 18.",
     "segmenti": [
       "Svi sudovi, organi uprave, institucije koje vrše javna ovlašćenja i drugi organi federalne vlasti primjenjivat će i poštovati prava i slobode predviđene u aktima navedenim u Aneksu.",
@@ -127,7 +127,7 @@
   },
   {
     "clan_broj": 7,
-    "naslov": "Saradnja sa međunarodnim tijelima",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - A. OPĆE ODREDBE",
     "tekst": "Svi nadležni organi vlasti u Federaciji sarađivat će sa svim Međunarodnim posmatračkim tijelima za ljudska prava osnovanim za Bosnu i Hercegovinu kao i sa nadzornim tijelima osnovanim instrumentima navedenim u Aneksu.",
     "segmenti": [
       "Svi nadležni organi vlasti u Federaciji sarađivat će sa svim Međunarodnim posmatračkim tijelima za ljudska prava osnovanim za Bosnu i Hercegovinu kao i sa nadzornim tijelima osnovanim instrumentima navedenim u Aneksu."
@@ -135,27 +135,27 @@
   },
   {
     "clan_broj": 1,
-    "naslov": "Broj i imenovanje ombudsmena",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - B. PRVA IMENOVANJA I FUNKCIJE OMBUDSMENA - 1. Opće odredbe",
     "tekst": "(1) Postoje tri ombudsmena: jedan Bošnjak, jedan Hrvat i jedan koji predstavlja ostale, koje imenuje Parlament Federacije, u skladu sa zakonom koji će se donijeti tri godine nakon stupanja na snagu ovog Ustava.\n(2) Svaki ombudsmen, uz saglasnost Predsjednika Federacije, imenuje jednog ili više zamjenika. Oni će posebno nastojati da imenuju zamjenike u općinama u kojima nacionalna struktura stanovništva ne odražava nacionalnu strukturu kantona kao cjeline. Nadležni organi vlasti će omogućiti takva nastojanja.\n(3) Trajanje mandata ombudsmena i njihovih zamjenika jednako je trajanju mandata predsjednika i sudija Vrhovnog suda.\n(4) Svaki ombudsmen imenuje ostalo osoblje u okvirima budžeta odobrenog za tu namjenu od Vlade Federacije ili, u početku, od Premijera.",
     "segmenti": [
-      "Postoje tri ombudsmena: jedan Bošnjak, jedan Hrvat i jedan koji predstavlja ostale, koje imenuje Parlament Federacije, u skladu sa zakonom koji će se donijeti tri godine nakon stupanja na snagu ovog Ustava.",
-      "Svaki ombudsmen, uz saglasnost Predsjednika Federacije, imenuje jednog ili više zamjenika. Oni će posebno nastojati da imenuju zamjenike u općinama u kojima nacionalna struktura stanovništva ne odražava nacionalnu strukturu kantona kao cjeline. Nadležni organi vlasti će omogućiti takva nastojanja.",
-      "Trajanje mandata ombudsmena i njihovih zamjenika jednako je trajanju mandata predsjednika i sudija Vrhovnog suda.",
-      "Svaki ombudsmen imenuje ostalo osoblje u okvirima budžeta odobrenog za tu namjenu od Vlade Federacije ili, u početku, od Premijera."
+      "(1) Postoje tri ombudsmena: jedan Bošnjak, jedan Hrvat i jedan koji predstavlja ostale, koje imenuje Parlament Federacije, u skladu sa zakonom koji će se donijeti tri godine nakon stupanja na snagu ovog Ustava.",
+      "(2) Svaki ombudsmen, uz saglasnost Predsjednika Federacije, imenuje jednog ili više zamjenika. Oni će posebno nastojati da imenuju zamjenike u općinama u kojima nacionalna struktura stanovništva ne odražava nacionalnu strukturu kantona kao cjeline. Nadležni organi vlasti će omogućiti takva nastojanja.",
+      "(3) Trajanje mandata ombudsmena i njihovih zamjenika jednako je trajanju mandata predsjednika i sudija Vrhovnog suda.",
+      "(4) Svaki ombudsmen imenuje ostalo osoblje u okvirima budžeta odobrenog za tu namjenu od Vlade Federacije ili, u početku, od Premijera."
     ]
   },
   {
     "clan_broj": 2,
-    "naslov": "Dužnosti ombudsmena",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - B. PRVA IMENOVANJA I FUNKCIJE OMBUDSMENA - 1. Opće odredbe",
     "tekst": "(1) Ombudsmeni su dužni štititi ljudsko dostojanstvo, prava i slobode zajamčene ovim ustavom, instrumentima navedenim u Aneksu i ustavima kantona. Naročito će raditi na otklanjanju posljedica kršenja ljudskih prava i sloboda, a posebno posljedica etničkog progona.\n(2) U vršenju svojih funkcija, ombudsmeni će raditi u skladu sa zakonom i principima morala i pravde.",
     "segmenti": [
-      "Ombudsmeni su dužni štititi ljudsko dostojanstvo, prava i slobode zajamčene ovim ustavom, instrumentima navedenim u Aneksu i ustavima kantona. Naročito će raditi na otklanjanju posljedica kršenja ljudskih prava i sloboda, a posebno posljedica etničkog progona.",
-      "U vršenju svojih funkcija, ombudsmeni će raditi u skladu sa zakonom i principima morala i pravde."
+      "(1) Ombudsmeni su dužni štititi ljudsko dostojanstvo, prava i slobode zajamčene ovim ustavom, instrumentima navedenim u Aneksu i ustavima kantona. Naročito će raditi na otklanjanju posljedica kršenja ljudskih prava i sloboda, a posebno posljedica etničkog progona.",
+      "(2) U vršenju svojih funkcija, ombudsmeni će raditi u skladu sa zakonom i principima morala i pravde."
     ]
   },
   {
     "clan_broj": 3,
-    "naslov": "Samostalnost i saradnja ombudsmena",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - B. PRVA IMENOVANJA I FUNKCIJE OMBUDSMENA - 1. Opće odredbe",
     "tekst": "Svaki ombudsmen samostalno vrši svoje funkcije, osim ako ovim ustavom nije drugačije utvrđeno. Ombudsmeni mogu sarađivati u vršenju bilo koje od svojih funkcija.",
     "segmenti": [
       "Svaki ombudsmen samostalno vrši svoje funkcije, osim ako ovim ustavom nije drugačije utvrđeno.",
@@ -164,7 +164,7 @@
   },
   {
     "clan_broj": 4,
-    "naslov": "Nezavisnost ombudsmena",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - B. PRVA IMENOVANJA I FUNKCIJE OMBUDSMENA - 1. Opće odredbe",
     "tekst": "Ombudsmeni su nezavisni u vršenju svojih funkcija i nijedna osoba niti organ vlasti ne mogu se miješati u te funkcije.",
     "segmenti": [
       "Ombudsmeni su nezavisni u vršenju svojih funkcija i nijedna osoba niti organ vlasti ne mogu se miješati u te funkcije."
@@ -172,7 +172,7 @@
   },
   {
     "clan_broj": 5,
-    "naslov": "Ispitivanje djelatnosti institucija",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - B. PRVA IMENOVANJA I FUNKCIJE OMBUDSMENA - 2. Nadležnosti i ovlašćenja ombudsmena",
     "tekst": "Ombudsmeni mogu ispitivati djelatnosti bilo koje institucije Federacije, kantona ili općina, kao i bilo koje druge institucije ili osobe koje su negirale ljudsko dostojanstvo, prava ili slobode, uključujući provođenje etničkog progona ili održavanje njegovih posljedica.",
     "segmenti": [
       "Ombudsmeni mogu ispitivati djelatnosti bilo koje institucije Federacije, kantona ili općina, kao i bilo koje druge institucije ili osobe koje su negirale ljudsko dostojanstvo, prava ili slobode, uključujući provođenje etničkog progona ili održavanje njegovih posljedica."
@@ -180,15 +180,61 @@
   },
   {
     "clan_broj": 6,
-    "naslov": "Pravo pokretanja postupka",
+    "naslov": "II LJUDSKA PRAVA I OSNOVNE SLOBODE - B. PRVA IMENOVANJA I FUNKCIJE OMBUDSMENA - 2. Nadležnosti i ovlašćenja ombudsmena",
     "tekst": "(1) Ombudsmen ima pravo pokretati postupak pred nadležnim sudovima i intervenirati u postupcima koji su u toku.",
     "segmenti": [
-      "Ombudsmen ima pravo pokretati postupak pred nadležnim sudovima i intervenirati u postupcima koji su u toku."
+      "(1) Ombudsmen ima pravo pokretati postupak pred nadležnim sudovima i intervenirati u postupcima koji su u toku."
     ]
   },
   {
     "clan_broj": 1,
-    "naslov": "Sastav Predstavničkog doma",
+    "naslov": "III NADLEŽNOSTI FEDERACIJE I KANTONA",
+    "tekst": "U isključivoj su nadležnosti Federacije:\na) politika odbrane Federacije,\nb) utvrđivanje i provođenje politike vanjskih poslova,\nc) politika zaštite čovjekove okoline;\nd) komunikacijska i transportna infrastruktura;\ne) socijalna politika;\nf) provođenje zakona i drugih propisa o državljanstvu;\ng) imigracija i azil;\nh) turizam; i\ni) korišćenje prirodnih bogatstava.",
+    "segmenti": [
+      "a) politika odbrane Federacije,",
+      "b) utvrđivanje i provođenje politike vanjskih poslova,",
+      "c) politika zaštite čovjekove okoline;",
+      "d) komunikacijska i transportna infrastruktura;",
+      "e) socijalna politika;",
+      "f) provođenje zakona i drugih propisa o državljanstvu;",
+      "g) imigracija i azil;",
+      "h) turizam; i",
+      "i) korišćenje prirodnih bogatstava."
+    ]
+  },
+  {
+    "clan_broj": 2,
+    "naslov": "III NADLEŽNOSTI FEDERACIJE I KANTONA",
+    "tekst": "(1) U skladu sa potrebama, nadležnosti iz člana III. 2. mogu biti ostvarene zajednički ili odvojeno, ili od strane kantona koordinirano od federalne vlasti.\n(2) U pogledu ovih nadležnosti kantoni i federalna vlast dogovaraju se na trajnoj osnovi.\n(3) U vršenju ovih nadležnosti, kada se radi o zakonima i drugim propisima koji su obavezujući na području cijele Federacije, u skladu sa ovim ustavom i odlukama Parlamenta Federacije, federalna vlast će postupiti uzimajući u obzir kantonalne nadležnosti, različite situacije u pojedinim kantonima i potrebu za fleksibilnošću u provođenju. Federalna vlast, ima pravo utvrđivati politiku i donositi zakone koji se tiču svake od ovih nadležnosti.\n(4) U vršenju ovih nadležnosti, u skladu sa ovim ustavom i svojim kantonalnim ustavom, kantoni će se obraćati međukantonalnom savjetu za koordinaciju rješavanja međukantonalnih pitanja i za dosljedno rješavanje pitanja koja se tiču interesa van njihovih kantonalnih granica, te provodit će odluke, učestvovati u odlučivanju, i, kad je potrebno, predlagati odluke u zakonodavnim tijelima. Kantoni imaju pravo utvrđivati politiku i provoditi zakone koji se tiču svake od ovih nadležnosti.",
+    "segmenti": [
+      "(1) U skladu sa potrebama, nadležnosti iz člana III. 2. mogu biti ostvarene zajednički ili odvojeno, ili od strane kantona koordinirano od federalne vlasti.",
+      "(2) U pogledu ovih nadležnosti kantoni i federalna vlast dogovaraju se na trajnoj osnovi.",
+      "(3) U vršenju ovih nadležnosti, kada se radi o zakonima i drugim propisima koji su obavezujući na području cijele Federacije, u skladu sa ovim ustavom i odlukama Parlamenta Federacije, federalna vlast će postupiti uzimajući u obzir kantonalne nadležnosti, različite situacije u pojedinim kantonima i potrebu za fleksibilnošću u provođenju. Federalna vlast, ima pravo utvrđivati politiku i donositi zakone koji se tiču svake od ovih nadležnosti.",
+      "(4) U vršenju ovih nadležnosti, u skladu sa ovim ustavom i svojim kantonalnim ustavom, kantoni će se obraćati međukantonalnom savjetu za koordinaciju rješavanja međukantonalnih pitanja i za dosljedno rješavanje pitanja koja se tiču interesa van njihovih kantonalnih granica, te provodit će odluke, učestvovati u odlučivanju, i, kad je potrebno, predlagati odluke u zakonodavnim tijelima. Kantoni imaju pravo utvrđivati politiku i provoditi zakone koji se tiču svake od ovih nadležnosti."
+    ]
+  },
+  {
+    "clan_broj": 3,
+    "naslov": "III NADLEŽNOSTI FEDERACIJE I KANTONA",
+    "tekst": "Kantoni imaju sve nadležnosti koje nisu izričito povjerene federalnoj vlasti. Posebno su nadležni za:\na) uspostavljanje i nadziranje policijskih snaga koje će imati jedinstvene federalne uniforme sa kantonalnim oznakama,\nb) utvrđivanje obrazovne politike, uključujući donošenje propisa o obrazovanju i osiguranje obrazovanja;\nc) utvrđivanje i provođenje kulturne politike;\nd) utvrđivanje stambene politike, uključujući donošenje propisa koji se tiču uređivanja i izgradnje stambenih objekata;\ne) utvrđivanje politike koja se tiče reguliranja i osiguranja javnih službi;\nf) donošenje propisa o korišćenju lokalnog zemljišta, uključujući zoniranje;\ng) donošenje propisa o unapređenju lokalnog poslovanja i dobrotvornih aktivnosti;\nh) donošenje propisa o lokalnim postrojenjima za proizvodnju energije i osiguranje njihove dostupnosti;\ni) utvrđivanje politike u vezi sa osiguranjem radija i televizije, uključujući donošenje propisa o osiguranju njihovog rada i izgradnji;\nj) provođenje socijalne politike i uspostava službi socijalne zaštite;\nk) stvaranje i primjenu politike kantonalnog turizma, razvoj turističkih resursa;\nl) finansiranje djelatnosti kantonalne vlasti ili njenih agencija oporezivanjem, zaduživanjem ili drugim sredstvima.",
+    "segmenti": [
+      "a) uspostavljanje i nadziranje policijskih snaga koje će imati jedinstvene federalne uniforme sa kantonalnim oznakama,",
+      "b) utvrđivanje obrazovne politike, uključujući donošenje propisa o obrazovanju i osiguranje obrazovanja;",
+      "c) utvrđivanje i provođenje kulturne politike;",
+      "d) utvrđivanje stambene politike, uključujući donošenje propisa koji se tiču uređivanja i izgradnje stambenih objekata;",
+      "e) utvrđivanje politike koja se tiče reguliranja i osiguranja javnih službi;",
+      "f) donošenje propisa o korišćenju lokalnog zemljišta, uključujući zoniranje;",
+      "g) donošenje propisa o unapređenju lokalnog poslovanja i dobrotvornih aktivnosti;",
+      "h) donošenje propisa o lokalnim postrojenjima za proizvodnju energije i osiguranje njihove dostupnosti;",
+      "i) utvrđivanje politike u vezi sa osiguranjem radija i televizije, uključujući donošenje propisa o osiguranju njihovog rada i izgradnji;",
+      "j) provođenje socijalne politike i uspostava službi socijalne zaštite;",
+      "k) stvaranje i primjenu politike kantonalnog turizma, razvoj turističkih resursa;",
+      "l) finansiranje djelatnosti kantonalne vlasti ili njenih agencija oporezivanjem, zaduživanjem ili drugim sredstvima."
+    ]
+  },
+  {
+    "clan_broj": 1,
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 1. Predstavnički dom",
     "tekst": "Predstavnički dom sastoji se od 140 poslanika.",
     "segmenti": [
       "Predstavnički dom sastoji se od 140 poslanika."
@@ -196,7 +242,7 @@
   },
   {
     "clan_broj": 2,
-    "naslov": "Mandat poslanika",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 1. Predstavnički dom",
     "tekst": "Mandat poslanika u Predstavničkom domu je četiri godine, ukoliko se Dom ne raspusti u skladu sa ovim ustavom.",
     "segmenti": [
       "Mandat poslanika u Predstavničkom domu je četiri godine, ukoliko se Dom ne raspusti u skladu sa ovim ustavom."
@@ -204,16 +250,16 @@
   },
   {
     "clan_broj": 3,
-    "naslov": "Izbor poslanika",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 1. Predstavnički dom",
     "tekst": "(1) Poslanici u Predstavničkom domu biraju se demokratskim putem na neposrednim izborima, tajnim glasanjem, na teritoriji cijele Federacije. Svaki birač ima pravo glasati za bilo koju registriranu stranku.\n(2) Prije svakih izbora, svaka registrirana stranka objavljuje izbornu listu kandidata. Izabrani poslanici u Predstavničkom domu iz svake stranke osobe su sa vrha liste te stranke, prema broju dobijenih glasova. Zamjene za poslanike vrše se od osoba koje slijede na ostatku liste.",
     "segmenti": [
-      "Poslanici u Predstavničkom domu biraju se demokratskim putem na neposrednim izborima, tajnim glasanjem, na teritoriji cijele Federacije. Svaki birač ima pravo glasati za bilo koju registriranu stranku.",
-      "Prije svakih izbora, svaka registrirana stranka objavljuje izbornu listu kandidata. Izabrani poslanici u Predstavničkom domu iz svake stranke osobe su sa vrha liste te stranke, prema broju dobijenih glasova. Zamjene za poslanike vrše se od osoba koje slijede na ostatku liste."
+      "(1) Poslanici u Predstavničkom domu biraju se demokratskim putem na neposrednim izborima, tajnim glasanjem, na teritoriji cijele Federacije. Svaki birač ima pravo glasati za bilo koju registriranu stranku.",
+      "(2) Prije svakih izbora, svaka registrirana stranka objavljuje izbornu listu kandidata. Izabrani poslanici u Predstavničkom domu iz svake stranke osobe su sa vrha liste te stranke, prema broju dobijenih glasova. Zamjene za poslanike vrše se od osoba koje slijede na ostatku liste."
     ]
   },
   {
     "clan_broj": 4,
-    "naslov": "Uslovi za poslanika",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 1. Predstavnički dom",
     "tekst": "Svaki birač sa pravom glasa može biti poslanik u Predstavničkom domu.",
     "segmenti": [
       "Svaki birač sa pravom glasa može biti poslanik u Predstavničkom domu."
@@ -221,7 +267,7 @@
   },
   {
     "clan_broj": 5,
-    "naslov": "Prvo sazivanje Predstavničkog doma",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 1. Predstavnički dom",
     "tekst": "Predstavnički dom bit će prvi put sazvan najkasnije dvadeset dana nakon objavljivanja rezultata izbora.",
     "segmenti": [
       "Predstavnički dom bit će prvi put sazvan najkasnije dvadeset dana nakon objavljivanja rezultata izbora."
@@ -229,7 +275,7 @@
   },
   {
     "clan_broj": 6,
-    "naslov": "Sastav Doma naroda",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 2. Dom naroda",
     "tekst": "Dom naroda sastoji se od trideset delegata Bošnjaka i trideset delegata Hrvata kao i ostalih delegata čiji je broj u istom omjeru prema šezdeset kao što je i broj poslanika kantonalnih zakonodavnih tijela koji se ne izjašnjavaju kao Bošnjaci i Hrvati u odnosu na poslanike Bošnjake i Hrvate u kantonalnim zakonodavnim tijelima.",
     "segmenti": [
       "Dom naroda sastoji se od trideset delegata Bošnjaka i trideset delegata Hrvata kao i ostalih delegata čiji je broj u istom omjeru prema šezdeset kao što je i broj poslanika kantonalnih zakonodavnih tijela koji se ne izjašnjavaju kao Bošnjaci i Hrvati u odnosu na poslanike Bošnjake i Hrvate u kantonalnim zakonodavnim tijelima."
@@ -237,7 +283,7 @@
   },
   {
     "clan_broj": 7,
-    "naslov": "Mandat delegata",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 2. Dom naroda",
     "tekst": "Mandat delegata u Dom naroda je četiri godine, ukoliko Dom ne bude raspušten u skladu sa ovim ustavom.",
     "segmenti": [
       "Mandat delegata u Dom naroda je četiri godine, ukoliko Dom ne bude raspušten u skladu sa ovim ustavom."
@@ -245,7 +291,7 @@
   },
   {
     "clan_broj": 8,
-    "naslov": "Izbor delegata",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 2. Dom naroda",
     "tekst": "Broj delegata koji se bira za Dom naroda u svakom kantonu je proporcionalan nacionalnoj strukturi stanovništva kantona. U okviru tog broja, procenat delegata Bošnjaka, Hrvata i ostalih iz kantona bit će, što je moguće više, približan procentu Bošnjaka, Hrvata i ostalih poslanika u zakonodavnom tijelu tog kantona. U Domu naroda bit će najmanje jedan Bošnjak, jedan Hrvat i jedan delegat ostalih iz svakog kantona koji imaju najmanje jednog takvog poslanika u svom zakonodavnom tijelu, a ukupan broj delegata Bošnjaka, Hrvata i ostalih bit će u skladu sa članom IV. A. 6. Delegate Bošnjake, Hrvate i ostale iz svakog kantona biraju odgovarajući poslanici u zakonodavnom tijelu tog kantona.",
     "segmenti": [
       "Broj delegata koji se bira za Dom naroda u svakom kantonu je proporcionalan nacionalnoj strukturi stanovništva kantona.",
@@ -256,7 +302,7 @@
   },
   {
     "clan_broj": 9,
-    "naslov": "Biranje delegata iz reda poslanika",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 2. Dom naroda",
     "tekst": "Delegati se biraju iz reda poslanika u kantonalnom zakonodavnom tijelu.",
     "segmenti": [
       "Delegati se biraju iz reda poslanika u kantonalnom zakonodavnom tijelu."
@@ -264,7 +310,7 @@
   },
   {
     "clan_broj": 10,
-    "naslov": "Prvo sazivanje Doma naroda",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 2. Dom naroda",
     "tekst": "Dom naroda saziva se prvi put najkasnije dvadeset dana nakon izbora kantonalnih zakonodavnih tijela.",
     "segmenti": [
       "Dom naroda saziva se prvi put najkasnije dvadeset dana nakon izbora kantonalnih zakonodavnih tijela."
@@ -272,7 +318,7 @@
   },
   {
     "clan_broj": 11,
-    "naslov": "Izbor predsjedavajućeg i donošenje poslovnika",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 3. Opće odredbe",
     "tekst": "Svaki dom, iz reda svojih članova, bira predsjedavajućeg i zamjenika predsjedavajućeg Doma, koji ne mogu biti iz istog konstitutivnog naroda, i donosi svoje poslovnike kojima se mogu utvrditi i drugi funkcioneri.",
     "segmenti": [
       "Svaki dom, iz reda svojih članova, bira predsjedavajućeg i zamjenika predsjedavajućeg Doma, koji ne mogu biti iz istog konstitutivnog naroda, i donosi svoje poslovnike kojima se mogu utvrditi i drugi funkcioneri."
@@ -280,7 +326,7 @@
   },
   {
     "clan_broj": 12,
-    "naslov": "Javnost rada domova",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 3. Opće odredbe",
     "tekst": "Svaki dom radi javno, osim u izuzetnim slučajevima, predviđenim njihovim poslovnicima, i objavljuje zapisnik o svojim raspravama i odlukama.",
     "segmenti": [
       "Svaki dom radi javno, osim u izuzetnim slučajevima, predviđenim njihovim poslovnicima, i objavljuje zapisnik o svojim raspravama i odlukama."
@@ -288,16 +334,16 @@
   },
   {
     "clan_broj": 13,
-    "naslov": "Imunitet članova Parlamenta",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 3. Opće odredbe",
     "tekst": "(1) Članovi oba doma Parlamenta Federacije ne mogu biti krivično gonjeni niti odgovorni u građanskom postupku za bilo koju radnju učinjenu u vršenju svoje funkcije.\n(2) Nijedan član oba doma ne može biti pritvoren ili lišen slobode od bilo kojeg organa vlasti u Federaciji, bez odobrenja doma čiji je član.",
     "segmenti": [
-      "Članovi oba doma Parlamenta Federacije ne mogu biti krivično gonjeni niti odgovorni u građanskom postupku za bilo koju radnju učinjenu u vršenju svoje funkcije.",
-      "Nijedan član oba doma ne može biti pritvoren ili lišen slobode od bilo kojeg organa vlasti u Federaciji, bez odobrenja doma čiji je član."
+      "(1) Članovi oba doma Parlamenta Federacije ne mogu biti krivično gonjeni niti odgovorni u građanskom postupku za bilo koju radnju učinjenu u vršenju svoje funkcije.",
+      "(2) Nijedan član oba doma ne može biti pritvoren ili lišen slobode od bilo kojeg organa vlasti u Federaciji, bez odobrenja doma čiji je član."
     ]
   },
   {
     "clan_broj": 14,
-    "naslov": "Naknade članovima Parlamenta",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 3. Opće odredbe",
     "tekst": "Članovi oba doma bit će plaćeni kako je utvrđeno zakonom. Plaća se neće povećavati ili smanjivati tokom izvornog mandata, osim za prilagođavanje troškovima života.",
     "segmenti": [
       "Članovi oba doma bit će plaćeni kako je utvrđeno zakonom.",
@@ -306,7 +352,7 @@
   },
   {
     "clan_broj": 15,
-    "naslov": "Postupak usvajanja zakona",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 3. Opće odredbe",
     "tekst": "Svaki dom treba da odbije ili usvoji potrebne zakone u razumnom roku nakon njihovog usvajanja u drugom domu. Kada Premijer ocijeni da jedan dom neopravdano odugovlači sa usvajanjem zakona, on može sazvati zajedničku komisiju koju čini najviše deset članova iz svakog doma, i koja će, u roku od deset dana, utvrditi prijedlog zakona prihvatljiv za oba doma.",
     "segmenti": [
       "Svaki dom treba da odbije ili usvoji potrebne zakone u razumnom roku nakon njihovog usvajanja u drugom domu.",
@@ -315,16 +361,16 @@
   },
   {
     "clan_broj": 16,
-    "naslov": "Raspuštanje domova",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 3. Opće odredbe",
     "tekst": "(1) Kada Predsjednik Federacije utvrdi da domovi nisu u mogućnosti donijeti potrebne zakone, on može, uz saglasnost s Potpredsjednikom federacije, raspustiti jedan ili oba doma, s tim da nijedan dom ne može biti raspušten u periodu od godinu dana od njegovog prvog sazivanja.\n(2) Predsjednik Federacije raspušta oba doma kad oni ne uspiju donijeti budžet Federacije prije početka budžetske godine.",
     "segmenti": [
-      "Kada Predsjednik Federacije utvrdi da domovi nisu u mogućnosti donijeti potrebne zakone, on može, uz saglasnost s Potpredsjednikom federacije, raspustiti jedan ili oba doma, s tim da nijedan dom ne može biti raspušten u periodu od godinu dana od njegovog prvog sazivanja.",
-      "Predsjednik Federacije raspušta oba doma kad oni ne uspiju donijeti budžet Federacije prije početka budžetske godine."
+      "(1) Kada Predsjednik Federacije utvrdi da domovi nisu u mogućnosti donijeti potrebne zakone, on može, uz saglasnost s Potpredsjednikom federacije, raspustiti jedan ili oba doma, s tim da nijedan dom ne može biti raspušten u periodu od godinu dana od njegovog prvog sazivanja.",
+      "(2) Predsjednik Federacije raspušta oba doma kad oni ne uspiju donijeti budžet Federacije prije početka budžetske godine."
     ]
   },
   {
     "clan_broj": 17,
-    "naslov": "Potvrda odluka",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 4. Odlučivanje u domovima",
     "tekst": "Ukoliko Ustavom nije drugačije utvrđeno, odluke Parlamenta Federacije zahtijevaju potvrdu oba doma, osim za poslovnike i deklaracije koje domovi samostalno donose.",
     "segmenti": [
       "Ukoliko Ustavom nije drugačije utvrđeno, odluke Parlamenta Federacije zahtijevaju potvrdu oba doma, osim za poslovnike i deklaracije koje domovi samostalno donose."
@@ -332,7 +378,7 @@
   },
   {
     "clan_broj": 18,
-    "naslov": "Odluke o vitalnim interesima",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 4. Odlučivanje u domovima",
     "tekst": "Odluke koje se tiču vitalnih interesa bilo kog od konstitutivnih naroda zahtijevaju saglasnost većine delegata u Domu naroda, uključujući većinu bošnjačkih delegata i većinu hrvatskih delegata. Primjena ove odredbe može se zahtijevati većinom glasova bošnjačkih ili hrvatskih delegata. Ukoliko je većina preostalih delegata protiv primjene ove odredbe, osnovat će se Zajednička komisija bošnjačkih i hrvatskih delegata radi razrješenja tog pitanja. Ukoliko Komisija nije u mogućnosti riješiti to pitanje u roku od jedne sedmice od pozivanja na ovu odredbu, pitanje će riješiti Ustavni sud po hitnom postupku.",
     "segmenti": [
       "Odluke koje se tiču vitalnih interesa bilo kog od konstitutivnih naroda zahtijevaju saglasnost većine delegata u Domu naroda, uključujući većinu bošnjačkih delegata i većinu hrvatskih delegata.",
@@ -343,7 +389,7 @@
   },
   {
     "clan_broj": 19,
-    "naslov": "Način odlučivanja",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 4. Odlučivanje u domovima",
     "tekst": "Ostale odluke donose se prostom većinom u svakom domu, ukoliko nije drugačije utvrđeno ovim ustavom ili poslovnikom toga doma.",
     "segmenti": [
       "Ostale odluke donose se prostom većinom u svakom domu, ukoliko nije drugačije utvrđeno ovim ustavom ili poslovnikom toga doma."
@@ -351,25 +397,26 @@
   },
   {
     "clan_broj": 20,
-    "naslov": "Nadležnosti Parlamenta Federacije",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 5. Nadležnosti Parlamenta Federacije",
     "tekst": "(1) Pored ostalih nadležnosti utvrđenih u ovom ustavu, Parlament Federacije nadležan je i za:\na) izbor Predsjednika i Podpredsjednika Federacije, kako je utvrđeno u članu IV. B. 2;\nb) podnošenje zahtjeva, u skladu sa članom IV. B. 3 (1) Ustavnom sudu da odluči treba li smijeniti Predsjednika ili Potpredsjednika Federacije;\nc) potvrđivanje imenovanja Vlade Federacije većinom glasova;\nd) donošenje zakona o vršenju funkcija federalne vlasti. Zakoni stupaju na snagu kako je u njima utvrđeno, ali ne ranije nego što budu objavljeni u službenom glasilu Federacije;\ne) davanje saglasnosti za svaku upotrebu vojne sile od strane Federacije, koja mora biti u skladu sa međunarodnim pravom;\nf) davanje ovlašćenja kantonima da zaključuju sporazume sa državama i međunarodnim organizacijama;\ng) davanje smjernica Premijeru u vođenju vanjskih poslova;\nh) odobravanje međunarodnih sporazuma većinom glasova;\ni) finansiranje armije Federacije i odobravanje imenovanja oficira, kako je utvrđeno u članu IV. B. 8;\nj) donošenje budžeta Federacije i zakona o oporezivanju i osiguravanje potrebnog finansiranja na drugi način; i\nk) vršenje drugih nadležnosti koje su mu povjerene.",
     "segmenti": [
-      "izbor Predsjednika i Podpredsjednika Federacije, kako je utvrđeno u članu IV. B. 2;",
-      "podnošenje zahtjeva, u skladu sa članom IV. B. 3 (1) Ustavnom sudu da odluči treba li smijeniti Predsjednika ili Potpredsjednika Federacije;",
-      "potvrđivanje imenovanja Vlade Federacije većinom glasova;",
-      "donošenje zakona o vršenju funkcija federalne vlasti. Zakoni stupaju na snagu kako je u njima utvrđeno, ali ne ranije nego što budu objavljeni u službenom glasilu Federacije;",
-      "davanje saglasnosti za svaku upotrebu vojne sile od strane Federacije, koja mora biti u skladu sa međunarodnim pravom;",
-      "davanje ovlašćenja kantonima da zaključuju sporazume sa državama i međunarodnim organizacijama;",
-      "davanje smjernica Premijeru u vođenju vanjskih poslova;",
-      "odobravanje međunarodnih sporazuma većinom glasova;",
-      "finansiranje armije Federacije i odobravanje imenovanja oficira, kako je utvrđeno u članu IV. B. 8;",
-      "donošenje budžeta Federacije i zakona o oporezivanju i osiguravanje potrebnog finansiranja na drugi način; i",
-      "vršenje drugih nadležnosti koje su mu povjerene."
+      "(1) Pored ostalih nadležnosti utvrđenih u ovom ustavu, Parlament Federacije nadležan je i za:",
+      "a) izbor Predsjednika i Podpredsjednika Federacije, kako je utvrđeno u članu IV. B. 2;",
+      "b) podnošenje zahtjeva, u skladu sa članom IV. B. 3 (1) Ustavnom sudu da odluči treba li smijeniti Predsjednika ili Potpredsjednika Federacije;",
+      "c) potvrđivanje imenovanja Vlade Federacije većinom glasova;",
+      "d) donošenje zakona o vršenju funkcija federalne vlasti. Zakoni stupaju na snagu kako je u njima utvrđeno, ali ne ranije nego što budu objavljeni u službenom glasilu Federacije;",
+      "e) davanje saglasnosti za svaku upotrebu vojne sile od strane Federacije, koja mora biti u skladu sa međunarodnim pravom;",
+      "f) davanje ovlašćenja kantonima da zaključuju sporazume sa državama i međunarodnim organizacijama;",
+      "g) davanje smjernica Premijeru u vođenju vanjskih poslova;",
+      "h) odobravanje međunarodnih sporazuma većinom glasova;",
+      "i) finansiranje armije Federacije i odobravanje imenovanja oficira, kako je utvrđeno u članu IV. B. 8;",
+      "j) donošenje budžeta Federacije i zakona o oporezivanju i osiguravanje potrebnog finansiranja na drugi način; i",
+      "k) vršenje drugih nadležnosti koje su mu povjerene."
     ]
   },
   {
     "clan_broj": 21,
-    "naslov": "Istražna ovlašćenja domova",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - A. ZAKONODAVNA VLAST FEDERACIJE - PARLAMENT FEDERACIJE - 5. Nadležnosti Parlamenta Federacije",
     "tekst": "Svaki dom može provoditi istragu i u tu svrhu zahtijevati svjedočenje, dokaze i dokumente.",
     "segmenti": [
       "Svaki dom može provoditi istragu i u tu svrhu zahtijevati svjedočenje, dokaze i dokumente."
@@ -377,7 +424,7 @@
   },
   {
     "clan_broj": 1,
-    "naslov": "Šef države",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - B. IZVRŠNA VLAST FEDERACIJE - 1. Predsjednik i Potpredsjednik Federacije",
     "tekst": "Predsjednik Federacije je šef države.",
     "segmenti": [
       "Predsjednik Federacije je šef države."
@@ -385,7 +432,7 @@
   },
   {
     "clan_broj": 2,
-    "naslov": "Izbor Predsjednika i Potpredsjednika",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - B. IZVRŠNA VLAST FEDERACIJE - 1. Predsjednik i Potpredsjednik Federacije",
     "tekst": "U izboru Predsjednika i Potpredsjednika Federacije Klub bošnjačkih delegata i Klub hrvatskih delegata u Domu naroda odvojeno kandidiraju po jednu osobu. Izbor za Predsjednika i Potpredsjednika Federacije zahtijeva prihvatanje oba kandidata zajednički, većinom glasova u Predstavničkom domu, a zatim većinom glasova u Domu naroda, uključujući većinu glasova bošnjačkih delegata i većinu glasova hrvatskih delegata. Ukoliko jedan od domova odbije zajedničku kandidacionu listu, klubovi će ponovo razmotriti kandidaturu za Predsjednika i Potpredsjednika Federacije. Izabrane osobe će naizmjenično po jednu godinu biti Predsjednik Federacije, a zatim Potpredsjednik Federacije, u periodu od četiri godine. Predsjednici Federacije, jedan za drugim, ne mogu biti iz istog konstitutivnog naroda.",
     "segmenti": [
       "U izboru Predsjednika i Potpredsjednika Federacije Klub bošnjačkih delegata i Klub hrvatskih delegata u Domu naroda odvojeno kandidiraju po jednu osobu.",
@@ -397,18 +444,18 @@
   },
   {
     "clan_broj": 3,
-    "naslov": "Smjena Predsjednika ili Potpredsjednika",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - B. IZVRŠNA VLAST FEDERACIJE - 1. Predsjednik i Potpredsjednik Federacije",
     "tekst": "(1) Predsjednik ili Potpredsjednik Federacije, ukoliko je prekršio zakletvu ili je iz drugih razloga nedostojan vršenja te funkcije, može biti smijenjen odlukom Ustavnog suda koji postupa prema zahtjevu dvotrećinske većine glasova svakog doma Parlamenta Federacije.\n(2) Ukoliko Predsjednik ili Potpredsjednik Federacije umre, bude smijenjen ili prema mišljenju Vlade, usvojenom konsenzusom, trajno nije u mogućnosti izvršavati svoje ustavne dužnosti koje proizilaze iz njegovog položaja, postupak predviđen u članu IV. B. 2. provest će klubovi delegata u Domu naroda u roku od trideset dana, da bi se popunilo upražnjeno mjesto do kraja započetog mandata. Predsjednik ili Potpredsjednik Federacije obavljat će obje funkcije tokom perioda predviđenog u prethodnoj rečenici ako, prema mišljenju Vlade usvojenom konsenzusom, ovaj drugi određeno vrijeme nije u mogućnosti izvršavati svoje dužnosti; potrebna saglasnost tražit će se od onog predsjedavajućeg doma Parlamenta Federacije koji je pripadnik drugog konstitutivnog naroda. Ukoliko oba mjesta ostanu upražnjena, predsjedavajući Doma naroda obavljat će funkciju Predsjednika Federacije, a predsjedavajući Predstavničkog doma funkciju Potpredsjednika Federacije, za potrebni period.",
     "segmenti": [
-      "Predsjednik ili Potpredsjednik Federacije, ukoliko je prekršio zakletvu ili je iz drugih razloga nedostojan vršenja te funkcije, može biti smijenjen odlukom Ustavnog suda koji postupa prema zahtjevu dvotrećinske većine glasova svakog doma Parlamenta Federacije.",
-      "Ukoliko Predsjednik ili Potpredsjednik Federacije umre, bude smijenjen ili prema mišljenju Vlade, usvojenom konsenzusom, trajno nije u mogućnosti izvršavati svoje ustavne dužnosti koje proizilaze iz njegovog položaja, postupak predviđen u članu IV. B. 2. provest će klubovi delegata u Domu naroda u roku od trideset dana, da bi se popunilo upražnjeno mjesto do kraja započetog mandata.",
+      "(1) Predsjednik ili Potpredsjednik Federacije, ukoliko je prekršio zakletvu ili je iz drugih razloga nedostojan vršenja te funkcije, može biti smijenjen odlukom Ustavnog suda koji postupa prema zahtjevu dvotrećinske većine glasova svakog doma Parlamenta Federacije.",
+      "(2) Ukoliko Predsjednik ili Potpredsjednik Federacije umre, bude smijenjen ili prema mišljenju Vlade, usvojenom konsenzusom, trajno nije u mogućnosti izvršavati svoje ustavne dužnosti koje proizilaze iz njegovog položaja, postupak predviđen u članu IV. B. 2. provest će klubovi delegata u Domu naroda u roku od trideset dana, da bi se popunilo upražnjeno mjesto do kraja započetog mandata.",
       "Predsjednik ili Potpredsjednik Federacije obavljat će obje funkcije tokom perioda predviđenog u prethodnoj rečenici ako, prema mišljenju Vlade usvojenom konsenzusom, ovaj drugi određeno vrijeme nije u mogućnosti izvršavati svoje dužnosti; potrebna saglasnost tražit će se od onog predsjedavajućeg doma Parlamenta Federacije koji je pripadnik drugog konstitutivnog naroda.",
       "Ukoliko oba mjesta ostanu upražnjena, predsjedavajući Doma naroda obavljat će funkciju Predsjednika Federacije, a predsjedavajući Predstavničkog doma funkciju Potpredsjednika Federacije, za potrebni period."
     ]
   },
   {
     "clan_broj": 4,
-    "naslov": "Sastav Vlade Federacije",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - B. IZVRŠNA VLAST FEDERACIJE - 2. Vlada Federacije",
     "tekst": "Vladu Federacije čine Premijer, koji je predsjednik Vlade, zamjenik Premijera i ministri, od kojih svaki ima zamjenika. Nijedan zamjenik, uključujući zamjenika Premijera, ne može biti iz istog konstitutivnog naroda kao njegov ministar. Zamjenik Premijera će biti ministar odbrane ili ministar vanjskih poslova.",
     "segmenti": [
       "Vladu Federacije čine Premijer, koji je predsjednik Vlade, zamjenik Premijera i ministri, od kojih svaki ima zamjenika.",
@@ -418,41 +465,70 @@
   },
   {
     "clan_broj": 5,
-    "naslov": "Imenovanje i smjena Vlade",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - B. IZVRŠNA VLAST FEDERACIJE - 2. Vlada Federacije",
     "tekst": "(1) Predsjednik Federacije uz saglasnost Potpredsjednika Federacije imenuje Vladu Federacije nakon konsultacija sa Premijerom ili sa kandidatom za tu funkciju. Imenovanje zahtijeva potvrdu većinom glasova poslanika u Predstavničkom domu. Svako upražnjeno mjesto popunjava se istim postupkom. Najmanje jedna trećina ministarskih mjesta bit će popunjena Hrvatima.\n(2) Vlada se može smijeniti bilo odlukom Predsjednika Federacije, uz saglasnost Potpredsjednika Federacije, ili izglasavanjem nepovjerenja Vladi većinom glasova u svakom od domova. Predsjednik Federacije smjenjuje ministre i zamjenike ministara na prijedlog Premijera.",
     "segmenti": [
-      "Predsjednik Federacije uz saglasnost Potpredsjednika Federacije imenuje Vladu Federacije nakon konsultacija sa Premijerom ili sa kandidatom za tu funkciju. Imenovanje zahtijeva potvrdu većinom glasova poslanika u Predstavničkom domu. Svako upražnjeno mjesto popunjava se istim postupkom. Najmanje jedna trećina ministarskih mjesta bit će popunjena Hrvatima.",
-      "Vlada se može smijeniti bilo odlukom Predsjednika Federacije, uz saglasnost Potpredsjednika Federacije, ili izglasavanjem nepovjerenja Vladi većinom glasova u svakom od domova. Predsjednik Federacije smjenjuje ministre i zamjenike ministara na prijedlog Premijera."
+      "(1) Predsjednik Federacije uz saglasnost Potpredsjednika Federacije imenuje Vladu Federacije nakon konsultacija sa Premijerom ili sa kandidatom za tu funkciju. Imenovanje zahtijeva potvrdu većinom glasova poslanika u Predstavničkom domu. Svako upražnjeno mjesto popunjava se istim postupkom. Najmanje jedna trećina ministarskih mjesta bit će popunjena Hrvatima.",
+      "(2) Vlada se može smijeniti bilo odlukom Predsjednika Federacije, uz saglasnost Potpredsjednika Federacije, ili izglasavanjem nepovjerenja Vladi većinom glasova u svakom od domova. Predsjednik Federacije smjenjuje ministre i zamjenike ministara na prijedlog Premijera."
     ]
   },
   {
     "clan_broj": 6,
-    "naslov": "Odluke Vlade o vitalnim interesima",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - B. IZVRŠNA VLAST FEDERACIJE - 2. Vlada Federacije",
     "tekst": "(1) Odluke Vlade Federacije koje se tiču vitalnih interesa bilo kojeg konstitutivnog naroda, donose se konsenzusom. Na ovu odredbu može se pozvati jedna trećina ministara, osim Premijera i zamjenika Premijera, ukoliko drugačije ne odluči Ustavni sud u hitnoj proceduri koju zatraže Premijer ili zamjenik Premijera. U svrhu ispunjenja ove odredbe, odluke Vlade odnose se samo na odluke navedene u članovima IV. B. 3. (2), IV. B. 9. i VIII. 1. (2) Osim pod okolnostima navedenim u članu IV. B. 3. (2). kada Premijer zaključi da Vlada ne može postići konsenzus u uvjetima navedenim u paragrafu (1) ovog člana, on će prenijeti sporno pitanje na Predsjednika ili Potpredsjednika Federacije, na onoga koji nije iz istog konstitutivnog naroda kao Premijer, radi donošenja odluke.",
     "segmenti": [
-      "Odluke Vlade Federacije koje se tiču vitalnih interesa bilo kojeg konstitutivnog naroda, donose se konsenzusom.",
+      "(1) Odluke Vlade Federacije koje se tiču vitalnih interesa bilo kojeg konstitutivnog naroda, donose se konsenzusom.",
       "Na ovu odredbu može se pozvati jedna trećina ministara, osim Premijera i zamjenika Premijera, ukoliko drugačije ne odluči Ustavni sud u hitnoj proceduri koju zatraže Premijer ili zamjenik Premijera.",
       "U svrhu ispunjenja ove odredbe, odluke Vlade odnose se samo na odluke navedene u članovima IV. B. 3. (2), IV. B. 9. i VIII. 1.",
-      "Osim pod okolnostima navedenim u članu IV. B. 3. (2). kada Premijer zaključi da Vlada ne može postići konsenzus u uvjetima navedenim u paragrafu (1) ovog člana, on će prenijeti sporno pitanje na Predsjednika ili Potpredsjednika Federacije, na onoga koji nije iz istog konstitutivnog naroda kao Premijer, radi donošenja odluke."
+      "(2) Osim pod okolnostima navedenim u članu IV. B. 3. (2). kada Premijer zaključi da Vlada ne može postići konsenzus u uvjetima navedenim u paragrafu (1) ovog člana, on će prenijeti sporno pitanje na Predsjednika ili Potpredsjednika Federacije, na onoga koji nije iz istog konstitutivnog naroda kao Premijer, radi donošenja odluke."
     ]
   },
   {
     "clan_broj": 7,
-    "naslov": "Podjela izvršnih nadležnosti",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - B. IZVRŠNA VLAST FEDERACIJE - 3. Podjela izvršnih nadležnosti",
     "tekst": "Osim ako ovim ustavom nije drugačije utvrđeno:\na) Predsjednik Federacije nadležan je za:\n(I) imenovanje Vlade, šefova diplomatskih misija, oficira u armiji, sudija federalnih sudova, u skladu sa članovima IV. B. 5, IV. B. 8 i IV. C. 6;\n(II) vršenje funkcije vrhovnog komandanta oružanih snaga Federacije,\n(III) vođenje konsultacija u vezi sa imenovanjem ombudsmena i sudija u skladu sa članovima II. B. 1 (2) i IV. C. 6. b);\n(IV) potpisivanje odluka Parlamenta Federacije nakon njihovih donošenja u skladu sa članovima IV. A. 17 do 19;\n(V) potpisivanje i ratificiranje međunarodnih sporazuma u ime Federacije u skladu sa članom IV. B. 7 (d);\n(VI) primanje i akreditiranje ambasadora; i\n(VII) davanje pomilovanja za djela utvrđena federalnim zakonima, osim za ratne zločine, zločine protiv čovječnosti i genocida.\nb) Potpredsjednik Federacije nadležan je za:\n(I) zamjenjivanje Predsjednika Federacije u uvjetima navedenim u članu IV. B. 3.\n(II) saradnju sa Predsjednikom Federacije u onim situacijama u kojima je potrebno da Predsjednik zatraži njegovu saglasnost; i\n(III) izvršavanje onih dužnosti povjerenih od Predsjednika ili Parlamenta Federacije.\nc) Premijer je nadležan za:\n(I) provođenje politike i izvršavanje zakona federalne vlasti, uključujući osiguranje izvršavanja odluka sudova Federacije;\n(II) predlaganje smjenjivanja Predsjednika federacije kako je utvrđeno članom B. 3. (2);\n(III) predlaganje i davanje preporuka iz oblasti zakonodavstva; i\n(IV) pripremanje budžetskih prijedloga Parlamentu Federacije.\nd) Predsjednik Federacije i Premijer zajednički su nadležni za vođenje vanjskih poslova prema smjernicama Parlamenta Federacije prema članu IV.A.20.(1). (g).\ne) Zamjenik Premijera nadležan je za:\n(I) vršenje dužnosti ministra odbrane ili ministra vanjskih poslova;\n(II) pomaganje Premijeru u provođenju politike i izvršavanju zakona Federacije;\n(III) odlučivanje da li će se zatražiti mišljenje Ustavnog suda; i\n(IV) vršenje dužnosti Premijera kada ovaj nije u mogućnosti obavljati svoju funkciju ili kada je mjesto Premijera upražnjeno dok novi Premijer ne preuzme funkciju.\nf) Svaki ministar nadležan je za:\n(I) provođenje federalne politike i izvršavanje federalnih zakona iz okvira nadležnosti svoga ministarstva ili izvršavanja zadataka koje mu odredi Premijer;\n(II) predlaganje i davanje preporuka u vezi sa propisima iz okvira nadležnosti svoga ministarstva ili prema zadatku koji mu odredi Premijer;\n(III) rukovođenje, koordiniranje i nadziranje aktivnosti svoga ministarstva;\n(IV) izdavanje uputstava, instrukcija, naredaba i donošenje propisa u cilju omogućavanja izvršavanja zakona iz nadležnosti njegovog ministarstva i onih koje mu povjeri Premijer, u skladu sa ovim ustavom i zakonima Federacije;\n(V) pripremanje, objašnjavanje i analiziranje budžetskih prijedloga iz nadležnosti svog ministarstva ili vršenje drugih zadataka na zahtjev Premijera;\n(VI) odgovaranje na pitanja bilo kojeg doma Parlamenta Federacije iz nadležnosti svog ministarstva ili izvršavanje svakog drugog zadatka koji mu povjeri Premijer;\n(VII) pomaganje Premijeru u provođenju politike i izvršavanju zakona Federacije; i\n(VIII) odlučivanje o odobravanju pokretanja postupka utvrđenog u članu IV. B. 6. (1).\ng) Svaki zamjenik ministra nadležan je za:\n(I) pomaganje ministru u provođenju politike i izvršavanju zakona Federacije;\n(II) pomaganje ministru u provođenju ostalih funkcija utvrđenih u paragrafu (f) ovog člana; i\n(III) zamjenjivanje ministra ukoliko ovaj nije u mogućnosti obavljati svoju funkciju, ili ako je mjesto ministra upražnjeno, dok novi ministar ne preuzme dužnost.",
     "segmenti": [
-      "Predsjednik Federacije nadležan je za: imenovanje Vlade, šefova diplomatskih misija, oficira u armiji, sudija federalnih sudova, u skladu sa članovima IV. B. 5, IV. B. 8 i IV. C. 6; vršenje funkcije vrhovnog komandanta oružanih snaga Federacije; vođenje konsultacija u vezi sa imenovanjem ombudsmena i sudija u skladu sa članovima II. B. 1 (2) i IV. C. 6. b); potpisivanje odluka Parlamenta Federacije nakon njihovih donošenja u skladu sa članovima IV. A. 17 do 19; potpisivanje i ratificiranje međunarodnih sporazuma u ime Federacije u skladu sa članom IV. B. 7 (d); primanje i akreditiranje ambasadora; i davanje pomilovanja za djela utvrđena federalnim zakonima, osim za ratne zločine, zločine protiv čovječnosti i genocida.",
-      "Potpredsjednik Federacije nadležan je za: zamjenjivanje Predsjednika Federacije u uvjetima navedenim u članu IV. B. 3; saradnju sa Predsjednikom Federacije u onim situacijama u kojima je potrebno da Predsjednik zatraži njegovu saglasnost; i izvršavanje onih dužnosti povjerenih od Predsjednika ili Parlamenta Federacije.",
-      "Premijer je nadležan za: provođenje politike i izvršavanje zakona federalne vlasti, uključujući osiguranje izvršavanja odluka sudova Federacije; predlaganje smjenjivanja Predsjednika federacije kako je utvrđeno članom B. 3. (2); predlaganje i davanje preporuka iz oblasti zakonodavstva; i pripremanje budžetskih prijedloga Parlamentu Federacije.",
-      "Predsjednik Federacije i Premijer zajednički su nadležni za vođenje vanjskih poslova prema smjernicama Parlamenta Federacije prema članu IV.A.20.(1). (g).",
-      "Zamjenik Premijera nadležan je za: vršenje dužnosti ministra odbrane ili ministra vanjskih poslova; pomaganje Premijeru u provođenju politike i izvršavanju zakona Federacije; odlučivanje da li će se zatražiti mišljenje Ustavnog suda; i vršenje dužnosti Premijera kada ovaj nije u mogućnosti obavljati svoju funkciju ili kada je mjesto Premijera upražnjeno dok novi Premijer ne preuzme funkciju.",
-      "Svaki ministar nadležan je za: provođenje federalne politike i izvršavanje federalnih zakona iz okvira nadležnosti svoga ministarstva ili izvršavanja zadataka koje mu odredi Premijer; predlaganje i davanje preporuka u vezi sa propisima iz okvira nadležnosti svoga ministarstva ili prema zadatku koji mu odredi Premijer; rukovođenje, koordiniranje i nadziranje aktivnosti svoga ministarstva; izdavanje uputstava, instrukcija, naredaba i donošenje propisa u cilju omogućavanja izvršavanja zakona iz nadležnosti njegovog ministarstva i onih koje mu povjeri Premijer, u skladu sa ovim ustavom i zakonima Federacije; pripremanje, objašnjavanje i analiziranje budžetskih prijedloga iz nadležnosti svog ministarstva ili vršenje drugih zadataka na zahtjev Premijera; odgovaranje na pitanja bilo kojeg doma Parlamenta Federacije iz nadležnosti svog ministarstva ili izvršavanje svakog drugog zadatka koji mu povjeri Premijer; pomaganje Premijeru u provođenju politike i izvršavanju zakona Federacije; i odlučivanje o odobravanju pokretanja postupka utvrđenog u članu IV. B. 6. (1).",
-      "Svaki zamjenik ministra nadležan je za: pomaganje ministru u provođenju politike i izvršavanju zakona Federacije; pomaganje ministru u provođenju ostalih funkcija utvrđenih u paragrafu (f) ovog člana; i zamjenjivanje ministra ukoliko ovaj nije u mogućnosti obavljati svoju funkciju, ili ako je mjesto ministra upražnjeno, dok novi ministar ne preuzme dužnost."
+      "a) Predsjednik Federacije nadležan je za:",
+      "(I) imenovanje Vlade, šefova diplomatskih misija, oficira u armiji, sudija federalnih sudova, u skladu sa članovima IV. B. 5, IV. B. 8 i IV. C. 6;",
+      "(II) vršenje funkcije vrhovnog komandanta oružanih snaga Federacije,",
+      "(III) vođenje konsultacija u vezi sa imenovanjem ombudsmena i sudija u skladu sa članovima II. B. 1 (2) i IV. C. 6. b);",
+      "(IV) potpisivanje odluka Parlamenta Federacije nakon njihovih donošenja u skladu sa članovima IV. A. 17 do 19;",
+      "(V) potpisivanje i ratificiranje međunarodnih sporazuma u ime Federacije u skladu sa članom IV. B. 7 (d);",
+      "(VI) primanje i akreditiranje ambasadora; i",
+      "(VII) davanje pomilovanja za djela utvrđena federalnim zakonima, osim za ratne zločine, zločine protiv čovječnosti i genocida.",
+      "b) Potpredsjednik Federacije nadležan je za:",
+      "(I) zamjenjivanje Predsjednika Federacije u uvjetima navedenim u članu IV. B. 3.",
+      "(II) saradnju sa Predsjednikom Federacije u onim situacijama u kojima je potrebno da Predsjednik zatraži njegovu saglasnost; i",
+      "(III) izvršavanje onih dužnosti povjerenih od Predsjednika ili Parlamenta Federacije.",
+      "c) Premijer je nadležan za:",
+      "(I) provođenje politike i izvršavanje zakona federalne vlasti, uključujući osiguranje izvršavanja odluka sudova Federacije;",
+      "(II) predlaganje smjenjivanja Predsjednika federacije kako je utvrđeno članom B. 3. (2);",
+      "(III) predlaganje i davanje preporuka iz oblasti zakonodavstva; i",
+      "(IV) pripremanje budžetskih prijedloga Parlamentu Federacije.",
+      "d) Predsjednik Federacije i Premijer zajednički su nadležni za vođenje vanjskih poslova prema smjernicama Parlamenta Federacije prema članu IV.A.20.(1). (g).",
+      "e) Zamjenik Premijera nadležan je za:",
+      "(I) vršenje dužnosti ministra odbrane ili ministra vanjskih poslova;",
+      "(II) pomaganje Premijeru u provođenju politike i izvršavanju zakona Federacije;",
+      "(III) odlučivanje da li će se zatražiti mišljenje Ustavnog suda; i",
+      "(IV) vršenje dužnosti Premijera kada ovaj nije u mogućnosti obavljati svoju funkciju ili kada je mjesto Premijera upražnjeno dok novi Premijer ne preuzme funkciju.",
+      "f) Svaki ministar nadležan je za:",
+      "(I) provođenje federalne politike i izvršavanje federalnih zakona iz okvira nadležnosti svoga ministarstva ili izvršavanja zadataka koje mu odredi Premijer;",
+      "(II) predlaganje i davanje preporuka u vezi sa propisima iz okvira nadležnosti svoga ministarstva ili prema zadatku koji mu odredi Premijer;",
+      "(III) rukovođenje, koordiniranje i nadziranje aktivnosti svoga ministarstva;",
+      "(IV) izdavanje uputstava, instrukcija, naredaba i donošenje propisa u cilju omogućavanja izvršavanja zakona iz nadležnosti njegovog ministarstva i onih koje mu povjeri Premijer, u skladu sa ovim ustavom i zakonima Federacije;",
+      "(V) pripremanje, objašnjavanje i analiziranje budžetskih prijedloga iz nadležnosti svog ministarstva ili vršenje drugih zadataka na zahtjev Premijera;",
+      "(VI) odgovaranje na pitanja bilo kojeg doma Parlamenta Federacije iz nadležnosti svog ministarstva ili izvršavanje svakog drugog zadatka koji mu povjeri Premijer;",
+      "(VII) pomaganje Premijeru u provođenju politike i izvršavanju zakona Federacije; i",
+      "(VIII) odlučivanje o odobravanju pokretanja postupka utvrđenog u članu IV. B. 6. (1).",
+      "g) Svaki zamjenik ministra nadležan je za:",
+      "(I) pomaganje ministru u provođenju politike i izvršavanju zakona Federacije;",
+      "(II) pomaganje ministru u provođenju ostalih funkcija utvrđenih u paragrafu (f) ovog člana; i",
+      "(III) zamjenjivanje ministra ukoliko ovaj nije u mogućnosti obavljati svoju funkciju, ili ako je mjesto ministra upražnjeno, dok novi ministar ne preuzme dužnost."
     ]
   },
   {
     "clan_broj": 8,
-    "naslov": "Imenovanje šefova diplomatskih misija i oficira",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - B. IZVRŠNA VLAST FEDERACIJE - 3. Podjela izvršnih nadležnosti",
     "tekst": "Predsjednik Federacije u saglasnosti sa Potpredsjednikom Federacije, imenuje šefove diplomatskih misija uz konsultaciju sa Premijerom ili kandidatom za Premijera, i imenuje oficire u armiji. Imenovanje zahtijeva prihvatanje većinom glasova svakog doma Parlamenta Federacije pod uvjetom da prihvatanje imenovanja za članove zajedničke komande armije odobri Dom naroda većinom glasova delegata Bošnjaka i delegata Hrvata.",
     "segmenti": [
       "Predsjednik Federacije u saglasnosti sa Potpredsjednikom Federacije, imenuje šefove diplomatskih misija uz konsultaciju sa Premijerom ili kandidatom za Premijera, i imenuje oficire u armiji.",
@@ -461,7 +537,7 @@
   },
   {
     "clan_broj": 9,
-    "naslov": "Uredbe sa zakonskom snagom",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - B. IZVRŠNA VLAST FEDERACIJE - 3. Podjela izvršnih nadležnosti",
     "tekst": "Vlada Federacije je ovlašćena donositi uredbe sa zakonskom snagom u slučaju opasnosti po zemlju kada Parlament Federacije nije u mogućnosti to učiniti. Svaka uredba imat će snagu zakona i ne može derogirati prava i slobode utvrđene ovim ustavom. Svaka uredba prestat će važiti najkasnije istekom tridesetog dana od njenog objavljivanja, s tim da će prestati važiti odmah po ukidanju odlukom Parlamenta ili na kraju desetog dana od njenog objavljivanja, ukoliko je Parlament Federacije u zasjedanju kada je uredba objavljena. Uredba objavljena dok Federacija upotrebljava oružane snage u skladu sa ovim ustavom ostat će na snazi do petog dana slijedeće sjednice Parlamenta Federacije, kada prestaje važiti, osim ako ne bude potvrđena ali ni u kom slučaju neće važiti duže od šest mjeseci. Po isteku roka važenje uredbe se ne može produžavati, uredba se ne može ponovo donositi niti djelimično mijenjati bez odluke Parlamenta Federacije i njegove saglasnosti.",
     "segmenti": [
       "Vlada Federacije je ovlašćena donositi uredbe sa zakonskom snagom u slučaju opasnosti po zemlju kada Parlament Federacije nije u mogućnosti to učiniti.",
@@ -473,7 +549,7 @@
   },
   {
     "clan_broj": 10,
-    "naslov": "Imunitet članova Vlade",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - B. IZVRŠNA VLAST FEDERACIJE - 4. Imunitet",
     "tekst": "Predsjednik Federacije, Potpredsjednik Federacije, Premijer, zamjenik Premijera i ostali članovi Vlade ne mogu biti krivično gonjeni niti odgovarati u građanskom postupku za bilo koju radnju učinjenu u vršenju svoje funkcije.",
     "segmenti": [
       "Predsjednik Federacije, Potpredsjednik Federacije, Premijer, zamjenik Premijera i ostali članovi Vlade ne mogu biti krivično gonjeni niti odgovarati u građanskom postupku za bilo koju radnju učinjenu u vršenju svoje funkcije."
@@ -481,18 +557,19 @@
   },
   {
     "clan_broj": 1,
-    "naslov": "Sudovi u Federaciji",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 1. Opće odredbe o sudovima",
     "tekst": "(1) Sudsku funkciju u Federaciji vrše sudovi Federacije navedeni u paragrafu 2. ovog člana, kantonalni sudovi navedeni u članu V. 11. i općinski sudovi navedeni u članu VI. 7.\n(2) Sudovi Federacije su:\na) Ustavni sud.\nb) Vrhovni sud.\nc) Sud za ljudska prava.",
     "segmenti": [
-      "Sudsku funkciju u Federaciji vrše sudovi Federacije navedeni u paragrafu 2. ovog člana, kantonalni sudovi navedeni u članu V. 11. i općinski sudovi navedeni u članu VI. 7.",
-      "Ustavni sud.",
-      "Vrhovni sud.",
-      "Sud za ljudska prava."
+      "(1) Sudsku funkciju u Federaciji vrše sudovi Federacije navedeni u paragrafu 2. ovog člana, kantonalni sudovi navedeni u članu V. 11. i općinski sudovi navedeni u članu VI. 7.",
+      "(2) Sudovi Federacije su:",
+      "a) Ustavni sud.",
+      "b) Vrhovni sud.",
+      "c) Sud za ljudska prava."
     ]
   },
   {
     "clan_broj": 2,
-    "naslov": "Izvršavanje presuda",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 1. Opće odredbe o sudovima",
     "tekst": "Svi organi vlasti izvršavat će i pomagati u izvršavanju presuda i rješenja svih sudova navedenih u ovom ustavu.",
     "segmenti": [
       "Svi organi vlasti izvršavat će i pomagati u izvršavanju presuda i rješenja svih sudova navedenih u ovom ustavu."
@@ -500,7 +577,7 @@
   },
   {
     "clan_broj": 3,
-    "naslov": "Pravila postupka",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 1. Opće odredbe o sudovima",
     "tekst": "Ukoliko ovim ustavom nije drugačije utvrđeno, pravila postupka potrebna da bi se osigurala jednakost u postupanju kao i osnovni principi pravičnosti u postupcima pred sudovima bit će utvrđeni zakonima Federacije. Zakonodavno tijelo kantona može propisati dopunska pravila o organizaciji i upravljanju kantonalnim i općinskim sudovima. U skladu sa tim pravilima, svaki sud može utvrditi svoju unutrašnju organizaciju i u vezi sa tim donijeti dopunska pravila.",
     "segmenti": [
       "Ukoliko ovim ustavom nije drugačije utvrđeno, pravila postupka potrebna da bi se osigurala jednakost u postupanju kao i osnovni principi pravičnosti u postupcima pred sudovima bit će utvrđeni zakonima Federacije.",
@@ -510,56 +587,56 @@
   },
   {
     "clan_broj": 4,
-    "naslov": "Nezavisnost sudstva",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 1. Opće odredbe o sudovima",
     "tekst": "(1) Sudska vlast Federacije samostalna je i nezavisna.\n(2) Sudovi će osigurati jednak položaj svim stranama u sudskim postupcima.\n(3) Svi sudski postupci javni su, ukoliko, za određene izuzetne situacije, zakonom nije drugačije utvrđeno. Sve presude javno se objavljuju.",
     "segmenti": [
-      "Sudska vlast Federacije samostalna je i nezavisna.",
-      "Sudovi će osigurati jednak položaj svim stranama u sudskim postupcima.",
-      "Svi sudski postupci javni su, ukoliko, za određene izuzetne situacije, zakonom nije drugačije utvrđeno. Sve presude javno se objavljuju."
+      "(1) Sudska vlast Federacije samostalna je i nezavisna.",
+      "(2) Sudovi će osigurati jednak položaj svim stranama u sudskim postupcima.",
+      "(3) Svi sudski postupci javni su, ukoliko, za određene izuzetne situacije, zakonom nije drugačije utvrđeno. Sve presude javno se objavljuju."
     ]
   },
   {
     "clan_broj": 5,
-    "naslov": "Kvalifikacije sudija",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 2. Opće odredbe o sudovima Federacije",
     "tekst": "(1) Sudije sudova Federacije bit će ugledni pravnici najviših moralnih osobina.\n(2) Sudije sudova Federacije neće biti krivično gonjeni niti odgovorni u građanskom postupku za bilo koju radnju učinjenu u vršenju svoje funkcije.",
     "segmenti": [
-      "Sudije sudova Federacije bit će ugledni pravnici najviših moralnih osobina.",
-      "Sudije sudova Federacije neće biti krivično gonjeni niti odgovorni u građanskom postupku za bilo koju radnju učinjenu u vršenju svoje funkcije."
+      "(1) Sudije sudova Federacije bit će ugledni pravnici najviših moralnih osobina.",
+      "(2) Sudije sudova Federacije neće biti krivično gonjeni niti odgovorni u građanskom postupku za bilo koju radnju učinjenu u vršenju svoje funkcije."
     ]
   },
   {
     "clan_broj": 6,
-    "naslov": "Imenovanje i mandat sudija",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 2. Opće odredbe o sudovima Federacije",
     "tekst": "Ako izričito drugačije nije utvrđeno:\na) jednak je broj sudija Bošnjaka i sudija Hrvata u svakom sudu Federacije. Ostali će biti odgovarajuće zastupljeni u svakom takvom sudu.\nb) Sudije sudova Federacije imenuje Predsjednik Federacije uz saglasnost Potpredsjednika i uz potvrdu većine delegata u Domu naroda.\nc) Sudije sudova Federacije bit će u službi do dobi od 70 godina, ukoliko ne podnesu ostavku ili ne budu s razlogom smijenjeni konsenzusom ostalih sudija toga suda. Međutim, prve sudije imenovane u skladu sa ovim ustavom bit će u službi u toku mandata od pet godina, ukoliko ranije ne napune 70 godina, i mogu biti ponovo imenovani.",
     "segmenti": [
-      "jednak je broj sudija Bošnjaka i sudija Hrvata u svakom sudu Federacije. Ostali će biti odgovarajuće zastupljeni u svakom takvom sudu.",
-      "Sudije sudova Federacije imenuje Predsjednik Federacije uz saglasnost Potpredsjednika i uz potvrdu većine delegata u Domu naroda.",
-      "Sudije sudova Federacije bit će u službi do dobi od 70 godina, ukoliko ne podnesu ostavku ili ne budu s razlogom smijenjeni konsenzusom ostalih sudija toga suda. Međutim, prve sudije imenovane u skladu sa ovim ustavom bit će u službi u toku mandata od pet godina, ukoliko ranije ne napune 70 godina, i mogu biti ponovo imenovani."
+      "a) jednak je broj sudija Bošnjaka i sudija Hrvata u svakom sudu Federacije. Ostali će biti odgovarajuće zastupljeni u svakom takvom sudu.",
+      "b) Sudije sudova Federacije imenuje Predsjednik Federacije uz saglasnost Potpredsjednika i uz potvrdu većine delegata u Domu naroda.",
+      "c) Sudije sudova Federacije bit će u službi do dobi od 70 godina, ukoliko ne podnesu ostavku ili ne budu s razlogom smijenjeni konsenzusom ostalih sudija toga suda. Međutim, prve sudije imenovane u skladu sa ovim ustavom bit će u službi u toku mandata od pet godina, ukoliko ranije ne napune 70 godina, i mogu biti ponovo imenovani."
     ]
   },
   {
     "clan_broj": 7,
-    "naslov": "Plaće sudija",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 2. Opće odredbe o sudovima Federacije",
     "tekst": "(1) Parlament Federacije zakonom utvrđuje plaće i druge uvjete službe za sudije sudova Federacije, koji su jednaki, osim što se predsjednicima sudova mogu utvrditi dodatne naknade.\n(2) Plaće i druge naknade sudija ne mogu biti umanjene tokom trajanja službe ni u jednom od sudova Federacije.",
     "segmenti": [
-      "Parlament Federacije zakonom utvrđuje plaće i druge uvjete službe za sudije sudova Federacije, koji su jednaki, osim što se predsjednicima sudova mogu utvrditi dodatne naknade.",
-      "Plaće i druge naknade sudija ne mogu biti umanjene tokom trajanja službe ni u jednom od sudova Federacije."
+      "(1) Parlament Federacije zakonom utvrđuje plaće i druge uvjete službe za sudije sudova Federacije, koji su jednaki, osim što se predsjednicima sudova mogu utvrditi dodatne naknade.",
+      "(2) Plaće i druge naknade sudija ne mogu biti umanjene tokom trajanja službe ni u jednom od sudova Federacije."
     ]
   },
   {
     "clan_broj": 8,
-    "naslov": "Sudska policija",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 2. Opće odredbe o sudovima Federacije",
     "tekst": "(1) Osnovat će se sudska policija radi pomoći sudovima u Federaciji u: osiguranju informacija, osiguranju prisustva svjedoka, privođenju optuženih osoba, održavanju reda u sudnici i sigurnosti suda te izvršavanju sudskih naloga.\n(2) Ukupna nacionalna struktura sudske policije održavat će nacionalnu strukturu stanovništva Federacije, a za svaku od lokalnih jedinica održavat će nacionalnu strukturu stanovništva u tom kantonu ili općini.\n(3) Predsjednik Vrhovnog suda odgovoran je za upravljanje sudskom policijom.\n(4) Predsjednik Vrhovnog suda donosi pravila pod kojima sudska policija može pomagati ombudsmene, na njihov zahtjev u vršenju njihovih dužnosti.",
     "segmenti": [
-      "Osnovat će se sudska policija radi pomoći sudovima u Federaciji u: osiguranju informacija, osiguranju prisustva svjedoka, privođenju optuženih osoba, održavanju reda u sudnici i sigurnosti suda te izvršavanju sudskih naloga.",
-      "Ukupna nacionalna struktura sudske policije održavat će nacionalnu strukturu stanovništva Federacije, a za svaku od lokalnih jedinica održavat će nacionalnu strukturu stanovništva u tom kantonu ili općini.",
-      "Predsjednik Vrhovnog suda odgovoran je za upravljanje sudskom policijom.",
-      "Predsjednik Vrhovnog suda donosi pravila pod kojima sudska policija može pomagati ombudsmene, na njihov zahtjev u vršenju njihovih dužnosti."
+      "(1) Osnovat će se sudska policija radi pomoći sudovima u Federaciji u: osiguranju informacija, osiguranju prisustva svjedoka, privođenju optuženih osoba, održavanju reda u sudnici i sigurnosti suda te izvršavanju sudskih naloga.",
+      "(2) Ukupna nacionalna struktura sudske policije održavat će nacionalnu strukturu stanovništva Federacije, a za svaku od lokalnih jedinica održavat će nacionalnu strukturu stanovništva u tom kantonu ili općini.",
+      "(3) Predsjednik Vrhovnog suda odgovoran je za upravljanje sudskom policijom.",
+      "(4) Predsjednik Vrhovnog suda donosi pravila pod kojima sudska policija može pomagati ombudsmene, na njihov zahtjev u vršenju njihovih dužnosti."
     ]
   },
   {
     "clan_broj": 9,
-    "naslov": "Sastav Ustavnog suda",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 3. Ustavni sud",
     "tekst": "Ustavni sud sastoji se od devet sudija.",
     "segmenti": [
       "Ustavni sud sastoji se od devet sudija."
@@ -567,23 +644,25 @@
   },
   {
     "clan_broj": 10,
-    "naslov": "Nadležnosti Ustavnog suda",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 3. Ustavni sud",
     "tekst": "(1) Osnovna funkcija Ustavnog suda je rješavanje sporova:\na) između kantona;\nb) između kantona i federalne vlasti;\nc) između općina i njihovih kantona ili federalne vlasti; i\nd) između institucija federalne vlasti ili unutar pojedinih institucija federalne vlasti.\n(2) Ustavni sud:\na) na zahtjev Predsjednika Federacije, Potpredsjednika Federacije, Premijera, zamjenika Premijera ili na zahtjev jedne trećine članova bilo kog doma Parlamenta Federacije, utvrdit će da li je prijedlog zakona koji je usvojio jedan od domova, ili zakon koji su usvojila oba doma, u skladu sa ovim ustavom;\nb) na zahtjev Premijera, zamjenika Premijera, predsjednika kantona ili jedne trećine poslanika u zakonodavnom tijelu kantona, utvrdit će da li su ustav kantona i amandman na ustav, predloženi zakon ili zakon koga je usvojilo to zakonodavno tijelo, u skladu sa ovim ustavom;\nc) na zahtjev Predsjednika Federacije, Potpredsjednika Federacije, Premijera ili zamjenika Premijera, utvrdit će da li je predloženi ili usvojeni propis koji donosi organ federalne vlasti u skladu sa ovim ustavom;\nd) na zahtjev Premijera, zamjenika Premijera ili predsjednika kantona, utvrdit će da li je predloženi ili usvojeni propis koji donosi organ kantonalne ili općinske vlasti u skladu sa ovim ustavom.\n(3) Ustavni sud odlučuje i o ustavnim pitanjima koja mu predoči Vrhovni sud, Sud za ljudska prava ili kantonalni sud a koja se pojave u toku postupka pred tim sudom.",
     "segmenti": [
-      "rješavanje sporova između kantona;",
-      "rješavanje sporova između kantona i federalne vlasti;",
-      "rješavanje sporova između općina i njihovih kantona ili federalne vlasti; i",
-      "rješavanje sporova između institucija federalne vlasti ili unutar pojedinih institucija federalne vlasti.",
-      "na zahtjev Predsjednika Federacije, Potpredsjednika Federacije, Premijera, zamjenika Premijera ili na zahtjev jedne trećine članova bilo kog doma Parlamenta Federacije, utvrdit će da li je prijedlog zakona koji je usvojio jedan od domova, ili zakon koji su usvojila oba doma, u skladu sa ovim ustavom;",
-      "na zahtjev Premijera, zamjenika Premijera, predsjednika kantona ili jedne trećine poslanika u zakonodavnom tijelu kantona, utvrdit će da li su ustav kantona i amandman na ustav, predloženi zakon ili zakon koga je usvojilo to zakonodavno tijelo, u skladu sa ovim ustavom;",
-      "na zahtjev Predsjednika Federacije, Potpredsjednika Federacije, Premijera ili zamjenika Premijera, utvrdit će da li je predloženi ili usvojeni propis koji donosi organ federalne vlasti u skladu sa ovim ustavom;",
-      "na zahtjev Premijera, zamjenika Premijera ili predsjednika kantona, utvrdit će da li je predloženi ili usvojeni propis koji donosi organ kantonalne ili općinske vlasti u skladu sa ovim ustavom.",
-      "Ustavni sud odlučuje i o ustavnim pitanjima koja mu predoči Vrhovni sud, Sud za ljudska prava ili kantonalni sud a koja se pojave u toku postupka pred tim sudom."
+      "(1) Osnovna funkcija Ustavnog suda je rješavanje sporova:",
+      "a) između kantona;",
+      "b) između kantona i federalne vlasti;",
+      "c) između općina i njihovih kantona ili federalne vlasti; i",
+      "d) između institucija federalne vlasti ili unutar pojedinih institucija federalne vlasti.",
+      "(2) Ustavni sud:",
+      "a) na zahtjev Predsjednika Federacije, Potpredsjednika Federacije, Premijera, zamjenika Premijera ili na zahtjev jedne trećine članova bilo kog doma Parlamenta Federacije, utvrdit će da li je prijedlog zakona koji je usvojio jedan od domova, ili zakon koji su usvojila oba doma, u skladu sa ovim ustavom;",
+      "b) na zahtjev Premijera, zamjenika Premijera, predsjednika kantona ili jedne trećine poslanika u zakonodavnom tijelu kantona, utvrdit će da li su ustav kantona i amandman na ustav, predloženi zakon ili zakon koga je usvojilo to zakonodavno tijelo, u skladu sa ovim ustavom;",
+      "c) na zahtjev Predsjednika Federacije, Potpredsjednika Federacije, Premijera ili zamjenika Premijera, utvrdit će da li je predloženi ili usvojeni propis koji donosi organ federalne vlasti u skladu sa ovim ustavom;",
+      "d) na zahtjev Premijera, zamjenika Premijera ili predsjednika kantona, utvrdit će da li je predloženi ili usvojeni propis koji donosi organ kantonalne ili općinske vlasti u skladu sa ovim ustavom.",
+      "(3) Ustavni sud odlučuje i o ustavnim pitanjima koja mu predoči Vrhovni sud, Sud za ljudska prava ili kantonalni sud a koja se pojave u toku postupka pred tim sudom."
     ]
   },
   {
     "clan_broj": 11,
-    "naslov": "Obustava postupka i upućivanje Ustavnom sudu",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 3. Ustavni sud",
     "tekst": "Kad Vrhovni sud, Sud za ljudska prava ili kantonalni sud, u toku postupka koji se vodi pred sudom, smatraju da odgovarajući zakon nije u skladu sa ovim ustavom, obustavit će postupak i predočiti predmet Ustavnom sudu u skladu sa članom IV. C. 10.(3).",
     "segmenti": [
       "Kad Vrhovni sud, Sud za ljudska prava ili kantonalni sud, u toku postupka koji se vodi pred sudom, smatraju da odgovarajući zakon nije u skladu sa ovim ustavom, obustavit će postupak i predočiti predmet Ustavnom sudu u skladu sa članom IV. C. 10.(3)."
@@ -591,27 +670,27 @@
   },
   {
     "clan_broj": 12,
-    "naslov": "Odluke Ustavnog suda",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 3. Ustavni sud",
     "tekst": "Odluke Ustavnog suda konačne su i obavezujuće, posebno kada:\na) Sud rješava spor u skladu sa članom IV. C. 10. (1). Sve strane u sporu moraju poštovati tu odluku i pridržavati se naredbi Suda izdatih u toku ili na kraju postupka;\nb) Sud utvrdi da zakon, usvojeni ili predloženi zakon ili drugi propis Federacije ili bilo kojeg kantona ili općine nije u skladu sa ovim ustavom. Taj ili drugi propis neće se primjenjivati, odnosno stupiti na snagu, osim ukoliko se izmijeni na način koji propiše Sud ili ukoliko Sud ne utvrdi prijelazna rješenja, koja ne mogu biti na snazi duže od šest mjeseci.\nc) Sud odluči o ustavnom pitanju koje mu je predočeno u skladu sa članom IV. C. 10. (3). Odluka Ustavnog suda bit će obavezujuća za sud koji je predočio pitanje u odnosu na postupak tokom kojeg je pitanje pokrenuto i imat će dejstvo utvrđeno pod (b).",
     "segmenti": [
-      "Sud rješava spor u skladu sa članom IV. C. 10. (1). Sve strane u sporu moraju poštovati tu odluku i pridržavati se naredbi Suda izdatih u toku ili na kraju postupka;",
-      "Sud utvrdi da zakon, usvojeni ili predloženi zakon ili drugi propis Federacije ili bilo kojeg kantona ili općine nije u skladu sa ovim ustavom. Taj ili drugi propis neće se primjenjivati, odnosno stupiti na snagu, osim ukoliko se izmijeni na način koji propiše Sud ili ukoliko Sud ne utvrdi prijelazna rješenja, koja ne mogu biti na snazi duže od šest mjeseci.",
-      "Sud odluči o ustavnom pitanju koje mu je predočeno u skladu sa članom IV. C. 10. (3). Odluka Ustavnog suda bit će obavezujuća za sud koji je predočio pitanje u odnosu na postupak tokom kojeg je pitanje pokrenuto i imat će dejstvo utvrđeno pod (b)."
+      "a) Sud rješava spor u skladu sa članom IV. C. 10. (1). Sve strane u sporu moraju poštovati tu odluku i pridržavati se naredbi Suda izdatih u toku ili na kraju postupka;",
+      "b) Sud utvrdi da zakon, usvojeni ili predloženi zakon ili drugi propis Federacije ili bilo kojeg kantona ili općine nije u skladu sa ovim ustavom. Taj ili drugi propis neće se primjenjivati, odnosno stupiti na snagu, osim ukoliko se izmijeni na način koji propiše Sud ili ukoliko Sud ne utvrdi prijelazna rješenja, koja ne mogu biti na snazi duže od šest mjeseci.",
+      "c) Sud odluči o ustavnom pitanju koje mu je predočeno u skladu sa članom IV. C. 10. (3). Odluka Ustavnog suda bit će obavezujuća za sud koji je predočio pitanje u odnosu na postupak tokom kojeg je pitanje pokrenuto i imat će dejstvo utvrđeno pod (b)."
     ]
   },
   {
     "clan_broj": 13,
-    "naslov": "Zastupanje u postupku pred Ustavnim sudom",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 3. Ustavni sud",
     "tekst": "(1) U svakom postupku koji je u skladu sa članom IV. C. 10. (1), obje strane u sporu imaju pravo biti zastupljene. Sud može odobriti drugim državnim organima, koje smatra zainteresiranim stranama u sporu, da učestvuju u postupku.\n(2) U svakom postupku, koji je u skladu sa članom IV. C. 10. (2) osoba ili osobe koje su zatražile ocjenu ustavnosti imaju pravo biti zastupljene isto kao i predstavnik doma ili zakonodavnog tijela koje je usvojilo taj zakon.\n(3) U svakom postupku, koji je u skladu sa članom IV. C. 10. (3), sve strane u postupku, u kojem se pojavilo ustavno pitanje, imaju pravo biti zastupljene.",
     "segmenti": [
-      "U svakom postupku koji je u skladu sa članom IV. C. 10. (1), obje strane u sporu imaju pravo biti zastupljene. Sud može odobriti drugim državnim organima, koje smatra zainteresiranim stranama u sporu, da učestvuju u postupku.",
-      "U svakom postupku, koji je u skladu sa članom IV. C. 10. (2) osoba ili osobe koje su zatražile ocjenu ustavnosti imaju pravo biti zastupljene isto kao i predstavnik doma ili zakonodavnog tijela koje je usvojilo taj zakon.",
-      "U svakom postupku, koji je u skladu sa članom IV. C. 10. (3), sve strane u postupku, u kojem se pojavilo ustavno pitanje, imaju pravo biti zastupljene."
+      "(1) U svakom postupku koji je u skladu sa članom IV. C. 10. (1), obje strane u sporu imaju pravo biti zastupljene. Sud može odobriti drugim državnim organima, koje smatra zainteresiranim stranama u sporu, da učestvuju u postupku.",
+      "(2) U svakom postupku, koji je u skladu sa članom IV. C. 10. (2) osoba ili osobe koje su zatražile ocjenu ustavnosti imaju pravo biti zastupljene isto kao i predstavnik doma ili zakonodavnog tijela koje je usvojilo taj zakon.",
+      "(3) U svakom postupku, koji je u skladu sa članom IV. C. 10. (3), sve strane u postupku, u kojem se pojavilo ustavno pitanje, imaju pravo biti zastupljene."
     ]
   },
   {
     "clan_broj": 14,
-    "naslov": "Broj sudija Vrhovnog suda",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 4. Vrhovni sud",
     "tekst": "Broj sudija Vrhovnog suda utvrđuje se zakonom Federacije prema potrebi, s tim da ne može biti manji od devet sudija.",
     "segmenti": [
       "Broj sudija Vrhovnog suda utvrđuje se zakonom Federacije prema potrebi, s tim da ne može biti manji od devet sudija."
@@ -619,16 +698,16 @@
   },
   {
     "clan_broj": 15,
-    "naslov": "Nadležnosti Vrhovnog suda",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 4. Vrhovni sud",
     "tekst": "(1) Vrhovni sud najviši je žalbeni sud Federacije, uključujući i odlučivanje o žalbama na odluke kantonalnih sudova u vezi sa pitanjima koja se tiču Ustava, zakona i drugih propisa Federacije i drugim pitanjima utvrđenim zakonodavstvom Federacije, osim onih iz nadležnosti Ustavnog suda ili Suda za ljudska prava.\n(2) Vrhovni sud ima i izvorne nadležnosti utvrđene federalnim zakonima.",
     "segmenti": [
-      "Vrhovni sud najviši je žalbeni sud Federacije, uključujući i odlučivanje o žalbama na odluke kantonalnih sudova u vezi sa pitanjima koja se tiču Ustava, zakona i drugih propisa Federacije i drugim pitanjima utvrđenim zakonodavstvom Federacije, osim onih iz nadležnosti Ustavnog suda ili Suda za ljudska prava.",
-      "Vrhovni sud ima i izvorne nadležnosti utvrđene federalnim zakonima."
+      "(1) Vrhovni sud najviši je žalbeni sud Federacije, uključujući i odlučivanje o žalbama na odluke kantonalnih sudova u vezi sa pitanjima koja se tiču Ustava, zakona i drugih propisa Federacije i drugim pitanjima utvrđenim zakonodavstvom Federacije, osim onih iz nadležnosti Ustavnog suda ili Suda za ljudska prava.",
+      "(2) Vrhovni sud ima i izvorne nadležnosti utvrđene federalnim zakonima."
     ]
   },
   {
     "clan_broj": 16,
-    "naslov": "Presude Vrhovnog suda",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 4. Vrhovni sud",
     "tekst": "Presude Vrhovnog suda konačne su i obavezujuće. Presude, kao i rješenja Suda koja se odnose na žalbe podnijete u skladu sa članom IV. C. 15. (1), posebno su obavezujuće za strane u postupku kao i za sud na čije je odluke žalba izjavljena.",
     "segmenti": [
       "Presude Vrhovnog suda konačne su i obavezujuće.",
@@ -637,7 +716,7 @@
   },
   {
     "clan_broj": 17,
-    "naslov": "Ovlašćenja Vrhovnog suda",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 4. Vrhovni sud",
     "tekst": "U vršenju izvornih nadležnosti iz člana IV. C. 15. (2), Vrhovni sud ima, uz sva ovlašćenja utvrđena zakonom po kojem djeluje, ista ovlašćenja koja imaju i drugi prvostepeni sudovi i iste nadležnosti u skladu sa zakonima navedenim u članu IV. C. 3.",
     "segmenti": [
       "U vršenju izvornih nadležnosti iz člana IV. C. 15. (2), Vrhovni sud ima, uz sva ovlašćenja utvrđena zakonom po kojem djeluje, ista ovlašćenja koja imaju i drugi prvostepeni sudovi i iste nadležnosti u skladu sa zakonima navedenim u članu IV. C. 3."
@@ -645,16 +724,16 @@
   },
   {
     "clan_broj": 18,
-    "naslov": "Sastav Suda za ljudska prava",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 5. Sud za ljudska prava",
     "tekst": "(1) Sud za ljudska prava sastoji se od trojice sudija, jednog Bošnjaka, jednog Hrvata i jednog iz ostalih naroda.\n(2) Ukoliko Sud utvrdi da njegov rad zahtijeva učešće više sudija radi blagovremenog rješavanja predmeta, Parlament Federacije u skladu sa zakonom imenovat će dodatne sudije, a prema gore navedenom omjeru.",
     "segmenti": [
-      "Sud za ljudska prava sastoji se od trojice sudija, jednog Bošnjaka, jednog Hrvata i jednog iz ostalih naroda.",
-      "Ukoliko Sud utvrdi da njegov rad zahtijeva učešće više sudija radi blagovremenog rješavanja predmeta, Parlament Federacije u skladu sa zakonom imenovat će dodatne sudije, a prema gore navedenom omjeru."
+      "(1) Sud za ljudska prava sastoji se od trojice sudija, jednog Bošnjaka, jednog Hrvata i jednog iz ostalih naroda.",
+      "(2) Ukoliko Sud utvrdi da njegov rad zahtijeva učešće više sudija radi blagovremenog rješavanja predmeta, Parlament Federacije u skladu sa zakonom imenovat će dodatne sudije, a prema gore navedenom omjeru."
     ]
   },
   {
     "clan_broj": 19,
-    "naslov": "Nadležnost Suda za ljudska prava",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 5. Sud za ljudska prava",
     "tekst": "Nadležnost Suda za ljudska prava odnosi se na svako pitanje koje se tiče ustavne ili druge zakonske odredbe, vezano za ljudska prava ili osnovne slobode ili bilo koje instrumente navedene u Aneksu. Sud je nadležan za slučajeve započete nakon 1. januara 1991. godine.",
     "segmenti": [
       "Nadležnost Suda za ljudska prava odnosi se na svako pitanje koje se tiče ustavne ili druge zakonske odredbe, vezano za ljudska prava ili osnovne slobode ili bilo koje instrumente navedene u Aneksu.",
@@ -663,7 +742,7 @@
   },
   {
     "clan_broj": 20,
-    "naslov": "Žalba Sudu za ljudska prava",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 5. Sud za ljudska prava",
     "tekst": "Svaka strana u žalbenom postupku, u kome je neki drugi sud Federacije ili kantona izrekao presudu bez prava na žalbu može, iz bilo kojeg razloga osim zbog isteka roka za koji je odgovorna strana koja je pokrenula postupak, podnijeti žalbu na presudu Sudu za ljudska prava na osnovu bilo kojeg pitanja iz okvira njegove nadležnosti. Sud može izdavati naredbe ili poduzimati druge mjere koje smatra odgovarajućim. Odluke Suda su konačne i obavezujuće.",
     "segmenti": [
       "Svaka strana u žalbenom postupku, u kome je neki drugi sud Federacije ili kantona izrekao presudu bez prava na žalbu može, iz bilo kojeg razloga osim zbog isteka roka za koji je odgovorna strana koja je pokrenula postupak, podnijeti žalbu na presudu Sudu za ljudska prava na osnovu bilo kojeg pitanja iz okvira njegove nadležnosti.",
@@ -673,17 +752,17 @@
   },
   {
     "clan_broj": 21,
-    "naslov": "Žalba zbog neopravdanog odugovlačenja",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 5. Sud za ljudska prava",
     "tekst": "(1) Žalba se može podnijeti Sudu za ljudska prava i ukoliko postupak pred nekim drugim sudom Federacije ili kantona neopravdano dugo traje.\n(2) Sud će, nakon prethodnog razmatranja da li je postupak pred nekim drugim sudom Federacije ili kantona neopravdano dugo trajao, i da li predmet žalbe spada u njegovu nadležnost, odlučiti da li će prihvatiti takvu žalbu.\n(3) Sud može poduzeti i druge mjere za ubrzanje postupka.",
     "segmenti": [
-      "Žalba se može podnijeti Sudu za ljudska prava i ukoliko postupak pred nekim drugim sudom Federacije ili kantona neopravdano dugo traje.",
-      "Sud će, nakon prethodnog razmatranja da li je postupak pred nekim drugim sudom Federacije ili kantona neopravdano dugo trajao, i da li predmet žalbe spada u njegovu nadležnost, odlučiti da li će prihvatiti takvu žalbu.",
-      "Sud može poduzeti i druge mjere za ubrzanje postupka."
+      "(1) Žalba se može podnijeti Sudu za ljudska prava i ukoliko postupak pred nekim drugim sudom Federacije ili kantona neopravdano dugo traje.",
+      "(2) Sud će, nakon prethodnog razmatranja da li je postupak pred nekim drugim sudom Federacije ili kantona neopravdano dugo trajao, i da li predmet žalbe spada u njegovu nadležnost, odlučiti da li će prihvatiti takvu žalbu.",
+      "(3) Sud može poduzeti i druge mjere za ubrzanje postupka."
     ]
   },
   {
     "clan_broj": 22,
-    "naslov": "Upućivanje pitanja Sudu za ljudska prava",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 5. Sud za ljudska prava",
     "tekst": "Ustavni sud, Vrhovni sud ili kantonalni sud, na zahtjev bilo koje od strana u žalbenom postupku pred njim, ili na vlastitu inicijativu u odnosu na takvu žalbu, može se obratiti Sudu za ljudska prava s pitanjem koje je proizislo iz žalbe, ako je to pitanje u vezi sa bilo čime iz nadležnosti toga suda. Odgovor Suda za ljudska prava obavezujući je za sud koji je uputio takvo pitanje.",
     "segmenti": [
       "Ustavni sud, Vrhovni sud ili kantonalni sud, na zahtjev bilo koje od strana u žalbenom postupku pred njim, ili na vlastitu inicijativu u odnosu na takvu žalbu, može se obratiti Sudu za ljudska prava s pitanjem koje je proizislo iz žalbe, ako je to pitanje u vezi sa bilo čime iz nadležnosti toga suda.",
@@ -692,36 +771,36 @@
   },
   {
     "clan_broj": 23,
-    "naslov": "Postupak i organizacija Suda za ljudska prava",
+    "naslov": "IV STRUKTURA FEDERALNE VLASTI - C. SUDSKA VLAST FEDERACIJE - 5. Sud za ljudska prava",
     "tekst": "(1) Sud za ljudska prava propisuje svoj postupak i organizaciju.\n(2) Sudsko vijeće sastavljeno je na način utvrđen članom IV. C. 18. (1).\n(3) Sud će dozvoliti pismene i usmene iskaze u svakom postupku u skladu sa članovima IV. C. 20. do 22.",
     "segmenti": [
-      "Sud za ljudska prava propisuje svoj postupak i organizaciju.",
-      "Sudsko vijeće sastavljeno je na način utvrđen članom IV. C. 18. (1).",
-      "Sud će dozvoliti pismene i usmene iskaze u svakom postupku u skladu sa članovima IV. C. 20. do 22."
+      "(1) Sud za ljudska prava propisuje svoj postupak i organizaciju.",
+      "(2) Sudsko vijeće sastavljeno je na način utvrđen članom IV. C. 18. (1).",
+      "(3) Sud će dozvoliti pismene i usmene iskaze u svakom postupku u skladu sa članovima IV. C. 20. do 22."
     ]
   },
   {
     "clan_broj": 1,
-    "naslov": "Izvršavanje nadležnosti kantona",
+    "naslov": "V KANTONALNE VLASTI - V. Opće odredbe",
     "tekst": "U izvršavanju svojih nadležnosti utvrđenih u članovima III. 2. i 4. svaki kanton će:\na) poduzeti sve potrebne mjere zaštite ljudskih prava i sloboda utvrđenih u članovima II. A. 1. do 7. i predviđenih u instrumentima u Aneksu, i djelovat će u skladu sa ovim ustavom;\nb) izvršavati svoje nadležnosti vodeći računa o nacionalnoj strukturi stanovništva u svakoj općini.",
     "segmenti": [
-      "poduzeti sve potrebne mjere zaštite ljudskih prava i sloboda utvrđenih u članovima II. A. 1. do 7. i predviđenih u instrumentima u Aneksu, i djelovat će u skladu sa ovim ustavom;",
-      "izvršavati svoje nadležnosti vodeći računa o nacionalnoj strukturi stanovništva u svakoj općini."
+      "a) poduzeti sve potrebne mjere zaštite ljudskih prava i sloboda utvrđenih u članovima II. A. 1. do 7. i predviđenih u instrumentima u Aneksu, i djelovat će u skladu sa ovim ustavom;",
+      "b) izvršavati svoje nadležnosti vodeći računa o nacionalnoj strukturi stanovništva u svakoj općini."
     ]
   },
   {
     "clan_broj": 2,
-    "naslov": "Delegiranje nadležnosti kantona",
+    "naslov": "V KANTONALNE VLASTI - V. Opće odredbe",
     "tekst": "(1) Svaki kanton ovlašćen je da delegira ili prenese svoje nadležnosti na općine na svojoj teritoriji ili na federalnu vlast.\n(2) Svaki kanton može delegirati svoje nadležnosti vezane za obrazovanje, kulturu, turizam, lokalno poslovanje i dobrotvorne aktivnosti, radio i televiziju općinama na svojoj teritoriji, a dužan je to učiniti prema općinama čije većinsko stanovništvo, po nacionalnoj strukturi, nije stanovništvo koje čini nacionalnu većinu u kantonu kao cjelini.\n(3) Svaki kanton može zaključivati sporazume sa državama međunarodnim organizacijama samo uz saglasnost Parlamenta Federacije.",
     "segmenti": [
-      "Svaki kanton ovlašćen je da delegira ili prenese svoje nadležnosti na općine na svojoj teritoriji ili na federalnu vlast.",
-      "Svaki kanton može delegirati svoje nadležnosti vezane za obrazovanje, kulturu, turizam, lokalno poslovanje i dobrotvorne aktivnosti, radio i televiziju općinama na svojoj teritoriji, a dužan je to učiniti prema općinama čije većinsko stanovništvo, po nacionalnoj strukturi, nije stanovništvo koje čini nacionalnu većinu u kantonu kao cjelini.",
-      "Svaki kanton može zaključivati sporazume sa državama međunarodnim organizacijama samo uz saglasnost Parlamenta Federacije."
+      "(1) Svaki kanton ovlašćen je da delegira ili prenese svoje nadležnosti na općine na svojoj teritoriji ili na federalnu vlast.",
+      "(2) Svaki kanton može delegirati svoje nadležnosti vezane za obrazovanje, kulturu, turizam, lokalno poslovanje i dobrotvorne aktivnosti, radio i televiziju općinama na svojoj teritoriji, a dužan je to učiniti prema općinama čije većinsko stanovništvo, po nacionalnoj strukturi, nije stanovništvo koje čini nacionalnu većinu u kantonu kao cjelini.",
+      "(3) Svaki kanton može zaključivati sporazume sa državama međunarodnim organizacijama samo uz saglasnost Parlamenta Federacije."
     ]
   },
   {
     "clan_broj": 3,
-    "naslov": "Savjeti kantona",
+    "naslov": "V KANTONALNE VLASTI - V. Opće odredbe",
     "tekst": "Kantoni sa bošnjačkom ili hrvatskom većinom mogu osnivati savjete kantona u cilju koordiniranja politike i aktivnosti u vezi sa pitanjima od zajedničkog interesa za njihove zajednice radi obavještavanja svojih članova.",
     "segmenti": [
       "Kantoni sa bošnjačkom ili hrvatskom većinom mogu osnivati savjete kantona u cilju koordiniranja politike i aktivnosti u vezi sa pitanjima od zajedničkog interesa za njihove zajednice radi obavještavanja svojih članova."
@@ -729,43 +808,43 @@
   },
   {
     "clan_broj": 4,
-    "naslov": "Zakonodavna tijela kantona",
+    "naslov": "V KANTONALNE VLASTI - 2. Zakonodavna tijela kantona",
     "tekst": "(1) Svaki kanton ima zakonodavno tijelo koje se sastoji od jednog doma, čiji je broj poslanika utvrđen u odnosu na nacionalnu strukturu stanovništva, ali koji ne može biti manji od 30 niti veći od 50 poslanika.\n(2) Poslanici u zakonodavnom tijelu kantona imaju dvogodišnji mandat.\n(3) Poslanike u zakonodavnom tijelu kantona biraju birači na demokratskim i neposrednim izborima, tajnim glasanjem, na cijeloj teritoriji kantona. Svaki birač ima pravo glasati za bilo koju od registriranih stranki.\n(4) Prije svakih izbora, svaka registrirana stranka objavljuje izbornu listu kandidata. Kantonalni poslanici bit će birani sa vrha liste te stranke prema broju dobivenih glasova; zamjene za poslanike vrše se od osoba koje slijede na ostatku liste.\n(5) Svaki birač može biti biran za kantonalnog poslanika.\n(6) Zakonodavno tijelo kantona prvi put bit će sazvano najkasnije deset dana nakon objavljivanja rezultata izbora.",
     "segmenti": [
-      "Svaki kanton ima zakonodavno tijelo koje se sastoji od jednog doma, čiji je broj poslanika utvrđen u odnosu na nacionalnu strukturu stanovništva, ali koji ne može biti manji od 30 niti veći od 50 poslanika.",
-      "Poslanici u zakonodavnom tijelu kantona imaju dvogodišnji mandat.",
-      "Poslanike u zakonodavnom tijelu kantona biraju birači na demokratskim i neposrednim izborima, tajnim glasanjem, na cijeloj teritoriji kantona. Svaki birač ima pravo glasati za bilo koju od registriranih stranki.",
-      "Prije svakih izbora, svaka registrirana stranka objavljuje izbornu listu kandidata. Kantonalni poslanici bit će birani sa vrha liste te stranke prema broju dobivenih glasova; zamjene za poslanike vrše se od osoba koje slijede na ostatku liste.",
-      "Svaki birač može biti biran za kantonalnog poslanika.",
-      "Zakonodavno tijelo kantona prvi put bit će sazvano najkasnije deset dana nakon objavljivanja rezultata izbora."
+      "(1) Svaki kanton ima zakonodavno tijelo koje se sastoji od jednog doma, čiji je broj poslanika utvrđen u odnosu na nacionalnu strukturu stanovništva, ali koji ne može biti manji od 30 niti veći od 50 poslanika.",
+      "(2) Poslanici u zakonodavnom tijelu kantona imaju dvogodišnji mandat.",
+      "(3) Poslanike u zakonodavnom tijelu kantona biraju birači na demokratskim i neposrednim izborima, tajnim glasanjem, na cijeloj teritoriji kantona. Svaki birač ima pravo glasati za bilo koju od registriranih stranki.",
+      "(4) Prije svakih izbora, svaka registrirana stranka objavljuje izbornu listu kandidata. Kantonalni poslanici bit će birani sa vrha liste te stranke prema broju dobivenih glasova; zamjene za poslanike vrše se od osoba koje slijede na ostatku liste.",
+      "(5) Svaki birač može biti biran za kantonalnog poslanika.",
+      "(6) Zakonodavno tijelo kantona prvi put bit će sazvano najkasnije deset dana nakon objavljivanja rezultata izbora."
     ]
   },
   {
     "clan_broj": 5,
-    "naslov": "Poslovanje zakonodavnog tijela kantona",
+    "naslov": "V KANTONALNE VLASTI - 2. Zakonodavna tijela kantona",
     "tekst": "(1) Svako zakonodavno tijelo kantona bira predsjedavajućeg, između svojih poslanika i donosi poslovnik.\n(2) Zakonodavno tijelo kantona zasjeda javno, osim u izuzetnim okolnostima predviđenim njegovim poslovnikom, i objavljuje izvještaje o zasjedanjima i odlukama.\n(3) Kantonalni zakoni stupaju na snagu kao što je u njima utvrđeno, ali ne prije nego što budu objavljeni.\n(4) Krivični postupak ili građanska parnica ne mogu biti pokrenuti protiv kantonalnog poslanika, niti kantonalni poslanik može biti zadržan u pritvoru ili kažnjen na bilo koji drugi način zbog izraženog mišljenja i datog glasa u zakonodavnom tijelu.\n(5) Zakonodavno tijelo kantona može provoditi istrage i u tu svrhu zatražiti da mu se predoče dokumenti i svjedočenja.",
     "segmenti": [
-      "Svako zakonodavno tijelo kantona bira predsjedavajućeg, između svojih poslanika i donosi poslovnik.",
-      "Zakonodavno tijelo kantona zasjeda javno, osim u izuzetnim okolnostima predviđenim njegovim poslovnikom, i objavljuje izvještaje o zasjedanjima i odlukama.",
-      "Kantonalni zakoni stupaju na snagu kao što je u njima utvrđeno, ali ne prije nego što budu objavljeni.",
-      "Krivični postupak ili građanska parnica ne mogu biti pokrenuti protiv kantonalnog poslanika, niti kantonalni poslanik može biti zadržan u pritvoru ili kažnjen na bilo koji drugi način zbog izraženog mišljenja i datog glasa u zakonodavnom tijelu.",
-      "Zakonodavno tijelo kantona može provoditi istrage i u tu svrhu zatražiti da mu se predoče dokumenti i svjedočenja."
+      "(1) Svako zakonodavno tijelo kantona bira predsjedavajućeg, između svojih poslanika i donosi poslovnik.",
+      "(2) Zakonodavno tijelo kantona zasjeda javno, osim u izuzetnim okolnostima predviđenim njegovim poslovnikom, i objavljuje izvještaje o zasjedanjima i odlukama.",
+      "(3) Kantonalni zakoni stupaju na snagu kao što je u njima utvrđeno, ali ne prije nego što budu objavljeni.",
+      "(4) Krivični postupak ili građanska parnica ne mogu biti pokrenuti protiv kantonalnog poslanika, niti kantonalni poslanik može biti zadržan u pritvoru ili kažnjen na bilo koji drugi način zbog izraženog mišljenja i datog glasa u zakonodavnom tijelu.",
+      "(5) Zakonodavno tijelo kantona može provoditi istrage i u tu svrhu zatražiti da mu se predoče dokumenti i svjedočenja."
     ]
   },
   {
     "clan_broj": 6,
-    "naslov": "Izvršna vlast kantona",
+    "naslov": "V KANTONALNE VLASTI - 3. Izvršna vlast kantona",
     "tekst": "(1) Svaki kanton ima predsjednika koji se bira većinom glasova u zakonodavnom tijelu kantona između kandidata koje predlože poslanici.\n(2) Predsjednik kantona ima dvogodišnji mandat i ne može biti biran više od dva puta uzastopno.\n(3) Predsjednik kantona može biti smijenjen dvotrećinskom većinom u zakonodavnom tijelu kantona.\n(4) Ukoliko mjesto predsjednika kantona ostane upražnjeno, kantonalno zakonodavno tijelo izabrat će novog predsjednika u roku od 30 dana. U slučaju da predsjednik kantona bude privremeno u nemogućnosti da obavlja svoju dužnost, predsjedavajući kantonalnog zakonodavnog tijela vršit će funkciju predsjednika kantona.",
     "segmenti": [
-      "Svaki kanton ima predsjednika koji se bira većinom glasova u zakonodavnom tijelu kantona između kandidata koje predlože poslanici.",
-      "Predsjednik kantona ima dvogodišnji mandat i ne može biti biran više od dva puta uzastopno.",
-      "Predsjednik kantona može biti smijenjen dvotrećinskom većinom u zakonodavnom tijelu kantona.",
-      "Ukoliko mjesto predsjednika kantona ostane upražnjeno, kantonalno zakonodavno tijelo izabrat će novog predsjednika u roku od 30 dana. U slučaju da predsjednik kantona bude privremeno u nemogućnosti da obavlja svoju dužnost, predsjedavajući kantonalnog zakonodavnog tijela vršit će funkciju predsjednika kantona."
+      "(1) Svaki kanton ima predsjednika koji se bira većinom glasova u zakonodavnom tijelu kantona između kandidata koje predlože poslanici.",
+      "(2) Predsjednik kantona ima dvogodišnji mandat i ne može biti biran više od dva puta uzastopno.",
+      "(3) Predsjednik kantona može biti smijenjen dvotrećinskom većinom u zakonodavnom tijelu kantona.",
+      "(4) Ukoliko mjesto predsjednika kantona ostane upražnjeno, kantonalno zakonodavno tijelo izabrat će novog predsjednika u roku od 30 dana. U slučaju da predsjednik kantona bude privremeno u nemogućnosti da obavlja svoju dužnost, predsjedavajući kantonalnog zakonodavnog tijela vršit će funkciju predsjednika kantona."
     ]
   },
   {
     "clan_broj": 7,
-    "naslov": "Vlada kantona",
+    "naslov": "V KANTONALNE VLASTI - 3. Izvršna vlast kantona",
     "tekst": "Vladu kantona imenuje predsjednik kantona i potvrđuje je kantonalno zakonodavno tijelo većinom glasova. Organizacija kantonalne vlade uređuje se u skladu sa kantonalnim ustavom, tako da vlada održava nacionalni sastav stanovništva kao cjeline, s tim da u svakom slučaju osigurava zastupljenost konstitutivnih naroda.",
     "segmenti": [
       "Vladu kantona imenuje predsjednik kantona i potvrđuje je kantonalno zakonodavno tijelo većinom glasova.",
@@ -774,19 +853,19 @@
   },
   {
     "clan_broj": 8,
-    "naslov": "Nadležnosti Vlade kantona",
+    "naslov": "V KANTONALNE VLASTI - 3. Izvršna vlast kantona",
     "tekst": "Vlada kantona nadležna je za:\na) provođenje kantonalne politike i izvršavanje kantonalnih zakona, izvršavanje odluka svakog kantonalnog i federalnog suda i vršenje svake druge nadležnosti povjerene kantonu od federalne vlasti;\nb) pripremu prijedloga budžeta kojeg odobrava kantonalno zakonodavno tijelo;\nc) osiguranje saradnje kantonalne vlade i obdusmena;\nd) nadzor nad istragom i krivičnim gonjenjem u vezi sa kršenjem kantonalnih zakona, kao i nad kantonalnom policijom a, posebno, osiguranjem poštovanja odredbi člana V. 10; i\ne) izvršavanje drugih nadležnosti utvrđenih zakonom ili kantonalnim ustavom.",
     "segmenti": [
-      "provođenje kantonalne politike i izvršavanje kantonalnih zakona, izvršavanje odluka svakog kantonalnog i federalnog suda i vršenje svake druge nadležnosti povjerene kantonu od federalne vlasti;",
-      "pripremu prijedloga budžeta kojeg odobrava kantonalno zakonodavno tijelo;",
-      "osiguranje saradnje kantonalne vlade i obdusmena;",
-      "nadzor nad istragom i krivičnim gonjenjem u vezi sa kršenjem kantonalnih zakona, kao i nad kantonalnom policijom a, posebno, osiguranjem poštovanja odredbi člana V. 10; i",
-      "izvršavanje drugih nadležnosti utvrđenih zakonom ili kantonalnim ustavom."
+      "a) provođenje kantonalne politike i izvršavanje kantonalnih zakona, izvršavanje odluka svakog kantonalnog i federalnog suda i vršenje svake druge nadležnosti povjerene kantonu od federalne vlasti;",
+      "b) pripremu prijedloga budžeta kojeg odobrava kantonalno zakonodavno tijelo;",
+      "c) osiguranje saradnje kantonalne vlade i obdusmena;",
+      "d) nadzor nad istragom i krivičnim gonjenjem u vezi sa kršenjem kantonalnih zakona, kao i nad kantonalnom policijom a, posebno, osiguranjem poštovanja odredbi člana V. 10; i",
+      "e) izvršavanje drugih nadležnosti utvrđenih zakonom ili kantonalnim ustavom."
     ]
   },
   {
     "clan_broj": 9,
-    "naslov": "Nacionalna struktura policije",
+    "naslov": "V KANTONALNE VLASTI - 3. Izvršna vlast kantona",
     "tekst": "U izvršavanju svojih nadležnosti u odnosu na kantonalnu policiju, kantonalna vlada će osigurati da nacionalna struktura policije održava nacionalnu strukturu stanovništva tog kantona, s tim da nacionalna struktura policije svake općine mora održavati nacionalnu strukturu stanovništva te općine.",
     "segmenti": [
       "U izvršavanju svojih nadležnosti u odnosu na kantonalnu policiju, kantonalna vlada će osigurati da nacionalna struktura policije održava nacionalnu strukturu stanovništva tog kantona, s tim da nacionalna struktura policije svake općine mora održavati nacionalnu strukturu stanovništva te općine."
@@ -794,90 +873,90 @@
   },
   {
     "clan_broj": 10,
-    "naslov": "Kantonalno sudstvo",
+    "naslov": "V KANTONALNE VLASTI - 4. Kantonalno sudstvo",
     "tekst": "(1) Svaki kanton ima sudove koji imaju izvornu nadležnost u stvarima koje ne spadaju u nadležnost općinskih sudova i druge nadležnosti utvrđene zakonom i koji odlučuju po žalbama na presude općinskih sudova,\n(2) Kantonalne sudije predlaže kantonalni predsjednik, iz redova uglednih pravnika, a bira ih većinom glasova kantonalno zakonodavno tijelo, s tim da nacionalna struktura sudstva u cjelini odražava nacionalnu strukturu stanovništva tog kantona.\n(3) Kantonalne sudije bit će u službi do dobi od 70 godina, ukoliko ne podnesu ostavku ili ne budu smijenjeni konsenzusom sudija Vrhovnog suda. Uvjeti službe bit će određeni kantonalnim zakonima. Plaća i druge naknade sudija ne mogu biti umanjene tokom njihove službe na sudu kantona.\n(4) Svaki kantonalni sud bira svoga predsjednika.",
     "segmenti": [
-      "Svaki kanton ima sudove koji imaju izvornu nadležnost u stvarima koje ne spadaju u nadležnost općinskih sudova i druge nadležnosti utvrđene zakonom i koji odlučuju po žalbama na presude općinskih sudova,",
-      "Kantonalne sudije predlaže kantonalni predsjednik, iz redova uglednih pravnika, a bira ih većinom glasova kantonalno zakonodavno tijelo, s tim da nacionalna struktura sudstva u cjelini odražava nacionalnu strukturu stanovništva tog kantona.",
-      "Kantonalne sudije bit će u službi do dobi od 70 godina, ukoliko ne podnesu ostavku ili ne budu smijenjeni konsenzusom sudija Vrhovnog suda. Uvjeti službe bit će određeni kantonalnim zakonima. Plaća i druge naknade sudija ne mogu biti umanjene tokom njihove službe na sudu kantona.",
-      "Svaki kantonalni sud bira svoga predsjednika."
+      "(1) Svaki kanton ima sudove koji imaju izvornu nadležnost u stvarima koje ne spadaju u nadležnost općinskih sudova i druge nadležnosti utvrđene zakonom i koji odlučuju po žalbama na presude općinskih sudova,",
+      "(2) Kantonalne sudije predlaže kantonalni predsjednik, iz redova uglednih pravnika, a bira ih većinom glasova kantonalno zakonodavno tijelo, s tim da nacionalna struktura sudstva u cjelini odražava nacionalnu strukturu stanovništva tog kantona.",
+      "(3) Kantonalne sudije bit će u službi do dobi od 70 godina, ukoliko ne podnesu ostavku ili ne budu smijenjeni konsenzusom sudija Vrhovnog suda. Uvjeti službe bit će određeni kantonalnim zakonima. Plaća i druge naknade sudija ne mogu biti umanjene tokom njihove službe na sudu kantona.",
+      "(4) Svaki kantonalni sud bira svoga predsjednika."
     ]
   },
   {
     "clan_broj": 1,
-    "naslov": "Izvršavanje nadležnosti općina",
+    "naslov": "VI OPCINSKE VLASTI",
     "tekst": "U vršenju svojih nadležnosti svaka općina:\na) poduzima sve potrebne mjere u cilju osiguranja zaštite prava i sloboda utvrđenih u članovima II. A. 1. do 7. i u instrumentima navedenim u Aneksu;\nb) vodi računa o nacionalnoj strukturi stanovništva u općini.",
     "segmenti": [
-      "poduzima sve potrebne mjere u cilju osiguranja zaštite prava i sloboda utvrđenih u članovima II. A. 1. do 7. i u instrumentima navedenim u Aneksu;",
-      "vodi računa o nacionalnoj strukturi stanovništva u općini."
+      "a) poduzima sve potrebne mjere u cilju osiguranja zaštite prava i sloboda utvrđenih u članovima II. A. 1. do 7. i u instrumentima navedenim u Aneksu;",
+      "b) vodi računa o nacionalnoj strukturi stanovništva u općini."
     ]
   },
   {
     "clan_broj": 2,
-    "naslov": "Lokalna samouprava i statut općine",
+    "naslov": "VI OPCINSKE VLASTI",
     "tekst": "(1) U općini se ostvaruje lokalna samouprava.\n(2) Općina ima statut koji mora biti u skladu sa ovim ustavom, kantonalnim ustavom i kantonalnim zakonodavstvom.",
     "segmenti": [
-      "U općini se ostvaruje lokalna samouprava.",
-      "Općina ima statut koji mora biti u skladu sa ovim ustavom, kantonalnim ustavom i kantonalnim zakonodavstvom."
+      "(1) U općini se ostvaruje lokalna samouprava.",
+      "(2) Općina ima statut koji mora biti u skladu sa ovim ustavom, kantonalnim ustavom i kantonalnim zakonodavstvom."
     ]
   },
   {
     "clan_broj": 3,
-    "naslov": "Općinsko vijeće",
+    "naslov": "VI OPCINSKE VLASTI",
     "tekst": "(1) Svaka općina ima općinsko vijeće.\n(2) Mandat članova općinskog vijeća je dvije godine, s tim da mandat prvih članova općinskog vijeća traje jednu godinu.\n(3) Općinske vijećnike biraju, demokratskim putem, birači na neposrednim i tajnim izborima na cijelom području općine. Svaki birač ima pravo glasati za bilo koju registriranu stranku. Svaka stranka će dobiti broj vijećničkih mjesta srazmjerno procentu osvojenih od ukupnog broja važećih glasova.\n(4) Svaki birač može biti biran za općinskog vijećnika.",
     "segmenti": [
-      "Svaka općina ima općinsko vijeće.",
-      "Mandat članova općinskog vijeća je dvije godine, s tim da mandat prvih članova općinskog vijeća traje jednu godinu.",
-      "Općinske vijećnike biraju, demokratskim putem, birači na neposrednim i tajnim izborima na cijelom području općine. Svaki birač ima pravo glasati za bilo koju registriranu stranku. Svaka stranka će dobiti broj vijećničkih mjesta srazmjerno procentu osvojenih od ukupnog broja važećih glasova.",
-      "Svaki birač može biti biran za općinskog vijećnika."
+      "(1) Svaka općina ima općinsko vijeće.",
+      "(2) Mandat članova općinskog vijeća je dvije godine, s tim da mandat prvih članova općinskog vijeća traje jednu godinu.",
+      "(3) Općinske vijećnike biraju, demokratskim putem, birači na neposrednim i tajnim izborima na cijelom području općine. Svaki birač ima pravo glasati za bilo koju registriranu stranku. Svaka stranka će dobiti broj vijećničkih mjesta srazmjerno procentu osvojenih od ukupnog broja važećih glasova.",
+      "(4) Svaki birač može biti biran za općinskog vijećnika."
     ]
   },
   {
     "clan_broj": 4,
-    "naslov": "Nadležnosti općinskog vijeća",
+    "naslov": "VI OPCINSKE VLASTI",
     "tekst": "Općinsko vijeće:\na) priprema i dvotrećinskom većinom glasova usvaja statut općine;\nb) bira općinskog načelnika;\nc) usvaja općinski budžet i donosi propise o oporezivanju i na druge načine osigurava potrebno finansiranje koje nisu osigurali kantonalna ili federalna vlast; i\nd) donosi druge propise u izvršavanju općinskih nadležnosti.",
     "segmenti": [
-      "priprema i dvotrećinskom većinom glasova usvaja statut općine;",
-      "bira općinskog načelnika;",
-      "usvaja općinski budžet i donosi propise o oporezivanju i na druge načine osigurava potrebno finansiranje koje nisu osigurali kantonalna ili federalna vlast; i",
-      "donosi druge propise u izvršavanju općinskih nadležnosti."
+      "a) priprema i dvotrećinskom većinom glasova usvaja statut općine;",
+      "b) bira općinskog načelnika;",
+      "c) usvaja općinski budžet i donosi propise o oporezivanju i na druge načine osigurava potrebno finansiranje koje nisu osigurali kantonalna ili federalna vlast; i",
+      "d) donosi druge propise u izvršavanju općinskih nadležnosti."
     ]
   },
   {
     "clan_broj": 5,
-    "naslov": "Poslovanje općinskog vijeća",
+    "naslov": "VI OPCINSKE VLASTI",
     "tekst": "(1) Općinsko vijeće stvara uvjete za izbor općinskog načelnika i donosi svoj poslovnik koji mora biti u skladu sa federalnim i kantonalnim zakonodavstvom.\n(2) Općinsko vijeće zasjeda javno, osim u izuzetnim okolnostima predviđenim u svom poslovniku, i vodi zapisnike o donesenim odlukama.\n(3) Općinski propisi stupaju na snagu kao što je u njima propisano ali ne prije nego što budu objavljeni.",
     "segmenti": [
-      "Općinsko vijeće stvara uvjete za izbor općinskog načelnika i donosi svoj poslovnik koji mora biti u skladu sa federalnim i kantonalnim zakonodavstvom.",
-      "Općinsko vijeće zasjeda javno, osim u izuzetnim okolnostima predviđenim u svom poslovniku, i vodi zapisnike o donesenim odlukama.",
-      "Općinski propisi stupaju na snagu kao što je u njima propisano ali ne prije nego što budu objavljeni."
+      "(1) Općinsko vijeće stvara uvjete za izbor općinskog načelnika i donosi svoj poslovnik koji mora biti u skladu sa federalnim i kantonalnim zakonodavstvom.",
+      "(2) Općinsko vijeće zasjeda javno, osim u izuzetnim okolnostima predviđenim u svom poslovniku, i vodi zapisnike o donesenim odlukama.",
+      "(3) Općinski propisi stupaju na snagu kao što je u njima propisano ali ne prije nego što budu objavljeni."
     ]
   },
   {
     "clan_broj": 6,
-    "naslov": "Nadležnosti općinskog načelnika",
+    "naslov": "VI OPCINSKE VLASTI",
     "tekst": "Općinski načelnik nadležan je za:\na) imenovanje i smjenjivanje općinskih službenika;\nb) provođenje općinske politike, izvršavanje općinskih propisa, i delegiranih ili prenesenih nadležnosti općini od kantonalne i federalne vlasti;\nc) osiguranje saradnje općinskih službenika sa obdusmenima; i\nd) podnošenje izvještaja općinskom vijeću u javnosti o provođenju općinske politike i svojim aktivnostima.",
     "segmenti": [
-      "imenovanje i smjenjivanje općinskih službenika;",
-      "provođenje općinske politike, izvršavanje općinskih propisa, i delegiranih ili prenesenih nadležnosti općini od kantonalne i federalne vlasti;",
-      "osiguranje saradnje općinskih službenika sa obdusmenima; i",
-      "podnošenje izvještaja općinskom vijeću u javnosti o provođenju općinske politike i svojim aktivnostima."
+      "a) imenovanje i smjenjivanje općinskih službenika;",
+      "b) provođenje općinske politike, izvršavanje općinskih propisa, i delegiranih ili prenesenih nadležnosti općini od kantonalne i federalne vlasti;",
+      "c) osiguranje saradnje općinskih službenika sa obdusmenima; i",
+      "d) podnošenje izvještaja općinskom vijeću u javnosti o provođenju općinske politike i svojim aktivnostima."
     ]
   },
   {
     "clan_broj": 7,
-    "naslov": "Općinski sudovi",
+    "naslov": "VI OPCINSKE VLASTI",
     "tekst": "(1) Općina ima sudove, koji se mogu osnovati u saradnji sa drugim općinama. Općinski sudovi imaju izvornu nadležnost za sve građanske i krivične stvari, osim ako ustavom, kantonalnim ustavom, zakonom Federacije ili zakonom kantona, dio izvorne nadležnosti prenesen na neki drugi sud.\n(2) Općinske sudove osniva i finansira kantonalna vlast.\n(3) Sudije općinskih sudova imenuje predsjednik najvišeg kantonalnog suda nakon konsultacija sa općinskim načelnikom.\n(4) Općinske sudije bit će u službi do dobi od 70 godina, osim ako ne podnesu ostavku ili ne budu smijenjeni konsenzusom sudija najvišeg kantonalnog suda. Uvjeti službe bit će određeni kantonalnim zakonom. Plaće i ostale naknade sudija ne mogu biti umanjene tokom službe u općinskim sudovima u okviru kantona.",
     "segmenti": [
-      "Općina ima sudove, koji se mogu osnovati u saradnji sa drugim općinama. Općinski sudovi imaju izvornu nadležnost za sve građanske i krivične stvari, osim ako ustavom, kantonalnim ustavom, zakonom Federacije ili zakonom kantona, dio izvorne nadležnosti prenesen na neki drugi sud.",
-      "Općinske sudove osniva i finansira kantonalna vlast.",
-      "Sudije općinskih sudova imenuje predsjednik najvišeg kantonalnog suda nakon konsultacija sa općinskim načelnikom.",
-      "Općinske sudije bit će u službi do dobi od 70 godina, osim ako ne podnesu ostavku ili ne budu smijenjeni konsenzusom sudija najvišeg kantonalnog suda. Uvjeti službe bit će određeni kantonalnim zakonom. Plaće i ostale naknade sudija ne mogu biti umanjene tokom službe u općinskim sudovima u okviru kantona."
+      "(1) Općina ima sudove, koji se mogu osnovati u saradnji sa drugim općinama. Općinski sudovi imaju izvornu nadležnost za sve građanske i krivične stvari, osim ako ustavom, kantonalnim ustavom, zakonom Federacije ili zakonom kantona, dio izvorne nadležnosti prenesen na neki drugi sud.",
+      "(2) Općinske sudove osniva i finansira kantonalna vlast.",
+      "(3) Sudije općinskih sudova imenuje predsjednik najvišeg kantonalnog suda nakon konsultacija sa općinskim načelnikom.",
+      "(4) Općinske sudije bit će u službi do dobi od 70 godina, osim ako ne podnesu ostavku ili ne budu smijenjeni konsenzusom sudija najvišeg kantonalnog suda. Uvjeti službe bit će određeni kantonalnim zakonom. Plaće i ostale naknade sudija ne mogu biti umanjene tokom službe u općinskim sudovima u okviru kantona."
     ]
   },
   {
     "clan_broj": 1,
-    "naslov": "Osnova međunarodnih odnosa",
+    "naslov": "VII MEĐUNARODNI ODNOSI",
     "tekst": "Međunarodni odnosi Federacije zasnivaju se na međunarodnom subjektivitetu, teritorijalnom integritetu i kontinuitetu Republike Bosne i Hercegovine.",
     "segmenti": [
       "Međunarodni odnosi Federacije zasnivaju se na međunarodnom subjektivitetu, teritorijalnom integritetu i kontinuitetu Republike Bosne i Hercegovine."
@@ -885,7 +964,7 @@
   },
   {
     "clan_broj": 2,
-    "naslov": "Principi međunarodnih odnosa",
+    "naslov": "VII MEĐUNARODNI ODNOSI",
     "tekst": "Međunarodni odnosi Federacije zasnivaju se na poštivanju međunarodnog prava, obaveza iz međunarodnih ugovora i na načelu da se međunarodni sukobi moraju rješavati mirnim putem.",
     "segmenti": [
       "Međunarodni odnosi Federacije zasnivaju se na poštivanju međunarodnog prava, obaveza iz međunarodnih ugovora i na načelu da se međunarodni sukobi moraju rješavati mirnim putem."
@@ -893,7 +972,7 @@
   },
   {
     "clan_broj": 3,
-    "naslov": "Primjena međunarodnih ugovora",
+    "naslov": "VII MEĐUNARODNI ODNOSI",
     "tekst": "Međunarodni ugovori i drugi međunarodni sporazumi na snazi, u odnosu na Federaciju, i opća pravila međunarodnog prava, sastavni su dio zakonodavstva Federacije. U slučaju bilo koje nesaglasnosti između međunarodnih ugovora i zakonodavstva, prevagnut će međunarodni ugovori.",
     "segmenti": [
       "Međunarodni ugovori i drugi međunarodni sporazumi na snazi, u odnosu na Federaciju, i opća pravila međunarodnog prava, sastavni su dio zakonodavstva Federacije.",
@@ -902,27 +981,28 @@
   },
   {
     "clan_broj": 4,
-    "naslov": "Potpisivanje i ratifikacija međunarodnih ugovora",
+    "naslov": "VII MEĐUNARODNI ODNOSI",
     "tekst": "(1) Međunarodne ugovore i druge sporazume potpisuje i ratificira, u ime Federacije, Predsjednik Federacije. Oni stupaju na snagu u Federaciji samo ako ih odobri Parlament Federacije, osim kad je zakonom utvrđeno da pojedine vrste međunarodnih ugovora i sporazuma ne zahtijevaju takvo odobrenje.\n(2) Predsjednik Federacije može, po savjetu Premijera otkazati međunarodne ugovore ili sporazume ukoliko mu to dopušta međunarodno pravo, a dužan je tako postupiti kad to zahtijeva Parlament Federacije.",
     "segmenti": [
-      "Međunarodne ugovore i druge sporazume potpisuje i ratificira, u ime Federacije, Predsjednik Federacije. Oni stupaju na snagu u Federaciji samo ako ih odobri Parlament Federacije, osim kad je zakonom utvrđeno da pojedine vrste međunarodnih ugovora i sporazuma ne zahtijevaju takvo odobrenje.",
-      "Predsjednik Federacije može, po savjetu Premijera otkazati međunarodne ugovore ili sporazume ukoliko mu to dopušta međunarodno pravo, a dužan je tako postupiti kad to zahtijeva Parlament Federacije."
+      "(1) Međunarodne ugovore i druge sporazume potpisuje i ratificira, u ime Federacije, Predsjednik Federacije. Oni stupaju na snagu u Federaciji samo ako ih odobri Parlament Federacije, osim kad je zakonom utvrđeno da pojedine vrste međunarodnih ugovora i sporazuma ne zahtijevaju takvo odobrenje.",
+      "(2) Predsjednik Federacije može, po savjetu Premijera otkazati međunarodne ugovore ili sporazume ukoliko mu to dopušta međunarodno pravo, a dužan je tako postupiti kad to zahtijeva Parlament Federacije."
     ]
   },
   {
     "clan_broj": 1,
-    "naslov": "Predlaganje amandmana",
+    "naslov": "VIII AMANDMAN NA USTAV",
     "tekst": "(1) Amandmane na Ustav može predlagati Predsjednik Federacije u saglasnosti sa Potpredsjednikom, Vlada Federacije, većina poslanika u Predstavničkom domu ili većina bošnjačkih i hrvatskih delegata u Domu naroda.\n(2) Predloženi amandman na Ustav neće se konačno razmatrati ni u jednom od domova Parlamenta Federacije prije isteka roka od dvije sedmice nakon što su prvi put bili podneseni.\n(3) Predloženi amandman usvaja se:\na) u Domu naroda prostom većinom, uključujući većinu bošnjačkih i većinu hrvatskih delegata;\nb) u Predstavničkom domu dvotrećinskom većinom poslanika.",
     "segmenti": [
-      "Amandmane na Ustav može predlagati Predsjednik Federacije u saglasnosti sa Potpredsjednikom, Vlada Federacije, većina poslanika u Predstavničkom domu ili većina bošnjačkih i hrvatskih delegata u Domu naroda.",
-      "Predloženi amandman na Ustav neće se konačno razmatrati ni u jednom od domova Parlamenta Federacije prije isteka roka od dvije sedmice nakon što su prvi put bili podneseni.",
-      "u Domu naroda prostom većinom, uključujući većinu bošnjačkih i većinu hrvatskih delegata;",
-      "u Predstavničkom domu dvotrećinskom većinom poslanika."
+      "(1) Amandmane na Ustav može predlagati Predsjednik Federacije u saglasnosti sa Potpredsjednikom, Vlada Federacije, većina poslanika u Predstavničkom domu ili većina bošnjačkih i hrvatskih delegata u Domu naroda.",
+      "(2) Predloženi amandman na Ustav neće se konačno razmatrati ni u jednom od domova Parlamenta Federacije prije isteka roka od dvije sedmice nakon što su prvi put bili podneseni.",
+      "(3) Predloženi amandman usvaja se:",
+      "a) u Domu naroda prostom većinom, uključujući većinu bošnjačkih i većinu hrvatskih delegata;",
+      "b) u Predstavničkom domu dvotrećinskom većinom poslanika."
     ]
   },
   {
     "clan_broj": 2,
-    "naslov": "Zaštita ljudskih prava amandmanima",
+    "naslov": "VIII AMANDMAN NA USTAV",
     "tekst": "Nijednim amandmanom na Ustav ne mogu se ukinuti niti umanjiti nijedno od prava i sloboda utvrđenih u članu II. A. 1. do 7. ni promijeniti ovaj član Ustava.",
     "segmenti": [
       "Nijednim amandmanom na Ustav ne mogu se ukinuti niti umanjiti nijedno od prava i sloboda utvrđenih u članu II. A. 1. do 7. ni promijeniti ovaj član Ustava."
@@ -930,59 +1010,60 @@
   },
   {
     "clan_broj": 1,
-    "naslov": "Usvajanje i proglašenje Ustava",
+    "naslov": "IX USVAJANJE I STUPANJE NA SNAGU USTAVA I PRIJELAZNA RJEŠENJA",
     "tekst": "(1) Ustav Federacije usvojit će i proglasiti Ustavotvorna skupština, koja se sastoji od onih poslanika koji su izabrani na izborima 1990. godine u Skupštinu Republike Bosne i Hercegovine, a čiji je mandat još uvijek važeći.\n(2) Usvajanje Ustava zahtijeva dvotrećinsku većinu Ustavotvorne skupštine, uključujući konsenzus između većine članova delegacije hrvatskog naroda, koji se sastoji od svih poslanika hrvatske nacionalnosti i većine članova delegacije bošnjačkog naroda, koja se sastoji od svih poslanika bošnjačke nacionalnosti.\n(3) Ovaj ustav stupa na snagu u ponoć onog dana kada ga usvoji Ustavotvorna skupština.",
     "segmenti": [
-      "Ustav Federacije usvojit će i proglasiti Ustavotvorna skupština, koja se sastoji od onih poslanika koji su izabrani na izborima 1990. godine u Skupštinu Republike Bosne i Hercegovine, a čiji je mandat još uvijek važeći.",
-      "Usvajanje Ustava zahtijeva dvotrećinsku većinu Ustavotvorne skupštine, uključujući konsenzus između većine članova delegacije hrvatskog naroda, koji se sastoji od svih poslanika hrvatske nacionalnosti i većine članova delegacije bošnjačkog naroda, koja se sastoji od svih poslanika bošnjačke nacionalnosti.",
-      "Ovaj ustav stupa na snagu u ponoć onog dana kada ga usvoji Ustavotvorna skupština."
+      "(1) Ustav Federacije usvojit će i proglasiti Ustavotvorna skupština, koja se sastoji od onih poslanika koji su izabrani na izborima 1990. godine u Skupštinu Republike Bosne i Hercegovine, a čiji je mandat još uvijek važeći.",
+      "(2) Usvajanje Ustava zahtijeva dvotrećinsku većinu Ustavotvorne skupštine, uključujući konsenzus između većine članova delegacije hrvatskog naroda, koji se sastoji od svih poslanika hrvatske nacionalnosti i većine članova delegacije bošnjačkog naroda, koja se sastoji od svih poslanika bošnjačke nacionalnosti.",
+      "(3) Ovaj ustav stupa na snagu u ponoć onog dana kada ga usvoji Ustavotvorna skupština."
     ]
   },
   {
     "clan_broj": 2,
-    "naslov": "Nadležnosti Ustavotvorne skupštine",
+    "naslov": "IX USVAJANJE I STUPANJE NA SNAGU USTAVA I PRIJELAZNA RJEŠENJA",
     "tekst": "(1) Ustavotvorna skupština:\na) usvaja Ustav Federacije u skladu sa članom IX. 1.;\nb) bira Predsjednika Federacije u prijelaznom periodu, Potpredsjednika Federacije u prijelaznom periodu, Vladu Federacije u prijelaznom periodu, kako je utvrđeno u članu IX. 3. (3); i\nc) usvaja izborni zakon u prijelaznom periodu, u skladu sa članom IX. 3. (4) i članom IX. 4. (1).\n(2) Svi zakoni koje usvoji Ustavotvorna skupština ostaju na snazi pet mjeseci nakon što se Parlament Federacije prvi put sastane, osim ako ih Parlament ne potvrdi.",
     "segmenti": [
-      "usvaja Ustav Federacije u skladu sa članom IX. 1.;",
-      "bira Predsjednika Federacije u prijelaznom periodu, Potpredsjednika Federacije u prijelaznom periodu, Vladu Federacije u prijelaznom periodu, kako je utvrđeno u članu IX. 3. (3); i",
-      "usvaja izborni zakon u prijelaznom periodu, u skladu sa članom IX. 3. (4) i članom IX. 4. (1).",
-      "Svi zakoni koje usvoji Ustavotvorna skupština ostaju na snazi pet mjeseci nakon što se Parlament Federacije prvi put sastane, osim ako ih Parlament ne potvrdi."
+      "(1) Ustavotvorna skupština:",
+      "a) usvaja Ustav Federacije u skladu sa članom IX. 1.;",
+      "b) bira Predsjednika Federacije u prijelaznom periodu, Potpredsjednika Federacije u prijelaznom periodu, Vladu Federacije u prijelaznom periodu, kako je utvrđeno u članu IX. 3. (3); i",
+      "c) usvaja izborni zakon u prijelaznom periodu, u skladu sa članom IX. 3. (4) i članom IX. 4. (1).",
+      "(2) Svi zakoni koje usvoji Ustavotvorna skupština ostaju na snazi pet mjeseci nakon što se Parlament Federacije prvi put sastane, osim ako ih Parlament ne potvrdi."
     ]
   },
   {
     "clan_broj": 3,
-    "naslov": "Prijelazni period",
+    "naslov": "IX USVAJANJE I STUPANJE NA SNAGU USTAVA I PRIJELAZNA RJEŠENJA",
     "tekst": "(1) Do prvog saziva Doma naroda, njegove funkcije prema ovom ustavu, vrši Ustavotvorna skupština iz člana 9.1.(1).\n(2) Do prvog saziva Predstavničkog doma, njegove funkcije prema ovom ustavu, vrši Ustavotvorna skupština. Za odluke koje zahtijevaju odvojeno glasanje bošnjačkih i hrvatskih delegacija u Domu naroda, glasovi hrvatske i bošnjačke delegacije u Ustavotvornoj skupštini zadovoljavat će ovaj zahtjev.\n(3) Čim ovaj ustav stupi na snagu, Ustavotvorna skupština bira Predsjednika i Potpredsjednika Federacije u prijelaznom periodu, primjenjujući na odgovarajući način odredbe člana IV. B. 2. i gore navedene paragrafe (1) i (2). Ovi državni funkcioneri zatim predlažu Vladu Federacije u prijelaznom periodu, primjenjujući na odgovarajući način odredbe člana IV. B. 5. i gore navedeni paragraf (1), i imenuju sudije federalnih sudova u prijelaznom periodu, primjenjujući na odgovarajući način odredbe člana IV. C. 6. (b). Predsjednik, Potpredsjednik Federacije i članovi Vlade Federacije u prijelaznom periodu vrše dužnosti odgovarajućih stalnih funkcionera u skladu sa ovim ustavom, dok ne budu zamijenjeni funkcionerima izabranim ili imenovanim u skladu sa članom IX. 4. (2).\n(4) Kantonalna zakonodavna tijela u prijelaznom periodu bit će izabrana u roku od 30 dana od dana stupanja na snagu ovog ustava, a sastojat će se od pet odbornika u svakoj skupštini općine, koji će biti izabrani od strane i između odbornika skupštine općine izabranih 1990. godine, čiji su mandati još uvijek važeći. Ova zakonodavna tijela u prijelaznom periodu u roku od deset dana izabrat će sve druge organe u prijelaznom periodu u skladu sa ovim ustavom.\n(5) Čim ovaj ustav stupi na snagu odbornici u svakoj skupštini općine izabrani 1990. godine, čiji su mandati još uvijek važeći, u najkraćem roku će izabrati općinske organe u prijelaznom periodu u skladu sa ovim ustavom.",
     "segmenti": [
-      "Do prvog saziva Doma naroda, njegove funkcije prema ovom ustavu, vrši Ustavotvorna skupština iz člana 9.1.(1).",
-      "Do prvog saziva Predstavničkog doma, njegove funkcije prema ovom ustavu, vrši Ustavotvorna skupština. Za odluke koje zahtijevaju odvojeno glasanje bošnjačkih i hrvatskih delegacija u Domu naroda, glasovi hrvatske i bošnjačke delegacije u Ustavotvornoj skupštini zadovoljavat će ovaj zahtjev.",
-      "Čim ovaj ustav stupi na snagu, Ustavotvorna skupština bira Predsjednika i Potpredsjednika Federacije u prijelaznom periodu, primjenjujući na odgovarajući način odredbe člana IV. B. 2. i gore navedene paragrafe (1) i (2). Ovi državni funkcioneri zatim predlažu Vladu Federacije u prijelaznom periodu, primjenjujući na odgovarajući način odredbe člana IV. B. 5. i gore navedeni paragraf (1), i imenuju sudije federalnih sudova u prijelaznom periodu, primjenjujući na odgovarajući način odredbe člana IV. C. 6. (b). Predsjednik, Potpredsjednik Federacije i članovi Vlade Federacije u prijelaznom periodu vrše dužnosti odgovarajućih stalnih funkcionera u skladu sa ovim ustavom, dok ne budu zamijenjeni funkcionerima izabranim ili imenovanim u skladu sa članom IX. 4. (2).",
-      "Kantonalna zakonodavna tijela u prijelaznom periodu bit će izabrana u roku od 30 dana od dana stupanja na snagu ovog ustava, a sastojat će se od pet odbornika u svakoj skupštini općine, koji će biti izabrani od strane i između odbornika skupštine općine izabranih 1990. godine, čiji su mandati još uvijek važeći. Ova zakonodavna tijela u prijelaznom periodu u roku od deset dana izabrat će sve druge organe u prijelaznom periodu u skladu sa ovim ustavom.",
-      "Čim ovaj ustav stupi na snagu odbornici u svakoj skupštini općine izabrani 1990. godine, čiji su mandati još uvijek važeći, u najkraćem roku će izabrati općinske organe u prijelaznom periodu u skladu sa ovim ustavom."
+      "(1) Do prvog saziva Doma naroda, njegove funkcije prema ovom ustavu, vrši Ustavotvorna skupština iz člana 9.1.(1).",
+      "(2) Do prvog saziva Predstavničkog doma, njegove funkcije prema ovom ustavu, vrši Ustavotvorna skupština. Za odluke koje zahtijevaju odvojeno glasanje bošnjačkih i hrvatskih delegacija u Domu naroda, glasovi hrvatske i bošnjačke delegacije u Ustavotvornoj skupštini zadovoljavat će ovaj zahtjev.",
+      "(3) Čim ovaj ustav stupi na snagu, Ustavotvorna skupština bira Predsjednika i Potpredsjednika Federacije u prijelaznom periodu, primjenjujući na odgovarajući način odredbe člana IV. B. 2. i gore navedene paragrafe (1) i (2). Ovi državni funkcioneri zatim predlažu Vladu Federacije u prijelaznom periodu, primjenjujući na odgovarajući način odredbe člana IV. B. 5. i gore navedeni paragraf (1), i imenuju sudije federalnih sudova u prijelaznom periodu, primjenjujući na odgovarajući način odredbe člana IV. C. 6. (b). Predsjednik, Potpredsjednik Federacije i članovi Vlade Federacije u prijelaznom periodu vrše dužnosti odgovarajućih stalnih funkcionera u skladu sa ovim ustavom, dok ne budu zamijenjeni funkcionerima izabranim ili imenovanim u skladu sa članom IX. 4. (2).",
+      "(4) Kantonalna zakonodavna tijela u prijelaznom periodu bit će izabrana u roku od 30 dana od dana stupanja na snagu ovog ustava, a sastojat će se od pet odbornika u svakoj skupštini općine, koji će biti izabrani od strane i između odbornika skupštine općine izabranih 1990. godine, čiji su mandati još uvijek važeći. Ova zakonodavna tijela u prijelaznom periodu u roku od deset dana izabrat će sve druge organe u prijelaznom periodu u skladu sa ovim ustavom.",
+      "(5) Čim ovaj ustav stupi na snagu odbornici u svakoj skupštini općine izabrani 1990. godine, čiji su mandati još uvijek važeći, u najkraćem roku će izabrati općinske organe u prijelaznom periodu u skladu sa ovim ustavom."
     ]
   },
   {
     "clan_broj": 4,
-    "naslov": "Izbori i zabrana kandidovanja",
+    "naslov": "IX USVAJANJE I STUPANJE NA SNAGU USTAVA I PRIJELAZNA RJEŠENJA",
     "tekst": "(1) Izbori za Predstavnički dom i Dom naroda održat će se u roku od šest mjeseci od dana stupanja na snagu ovog ustava, a za kantonalna zakonodavna tijela i općinska vijeća u roku od pet mjeseci od dana stupanja na snagu ovog ustava. Ovi izbori bit će uređeni zakonom koji će usvojiti Ustavotvorna skupština većinom glasova, uključujući većinu glasova bošnjačkih poslanika i većinu glasova hrvatskih poslanika, a nadgledat će ih Ujedinjeni narodi i Konferencija o evropskoj sigurnosti i saradnji.\n(2) U roku od dvije sedmice nakon prvog saziva oba doma Parlamenta Federacije, domovi će izabrati Predsjednika i Potpredsjednika Federacije. U roku od dvije sedmice nakon izbora, Predsjednik, uz saglasnost Potpredsjednika Federacije, imenovat će Vladu Federacije, a Predstavnički dom će razmotriti imenovanja Vlade po hitnom postupku.\n(3) Nijedna osoba, osuđena za ratne zločine ili protiv koje je pokrenut sudski postupak zbog počinjenih ratnih zločina, ne može biti izabrana ni na jednu javnu funkciju u Federaciji.",
     "segmenti": [
-      "Izbori za Predstavnički dom i Dom naroda održat će se u roku od šest mjeseci od dana stupanja na snagu ovog ustava, a za kantonalna zakonodavna tijela i općinska vijeća u roku od pet mjeseci od dana stupanja na snagu ovog ustava. Ovi izbori bit će uređeni zakonom koji će usvojiti Ustavotvorna skupština većinom glasova, uključujući većinu glasova bošnjačkih poslanika i većinu glasova hrvatskih poslanika, a nadgledat će ih Ujedinjeni narodi i Konferencija o evropskoj sigurnosti i saradnji.",
-      "U roku od dvije sedmice nakon prvog saziva oba doma Parlamenta Federacije, domovi će izabrati Predsjednika i Potpredsjednika Federacije. U roku od dvije sedmice nakon izbora, Predsjednik, uz saglasnost Potpredsjednika Federacije, imenovat će Vladu Federacije, a Predstavnički dom će razmotriti imenovanja Vlade po hitnom postupku.",
-      "Nijedna osoba, osuđena za ratne zločine ili protiv koje je pokrenut sudski postupak zbog počinjenih ratnih zločina, ne može biti izabrana ni na jednu javnu funkciju u Federaciji."
+      "(1) Izbori za Predstavnički dom i Dom naroda održat će se u roku od šest mjeseci od dana stupanja na snagu ovog ustava, a za kantonalna zakonodavna tijela i općinska vijeća u roku od pet mjeseci od dana stupanja na snagu ovog ustava. Ovi izbori bit će uređeni zakonom koji će usvojiti Ustavotvorna skupština većinom glasova, uključujući većinu glasova bošnjačkih poslanika i većinu glasova hrvatskih poslanika, a nadgledat će ih Ujedinjeni narodi i Konferencija o evropskoj sigurnosti i saradnji.",
+      "(2) U roku od dvije sedmice nakon prvog saziva oba doma Parlamenta Federacije, domovi će izabrati Predsjednika i Potpredsjednika Federacije. U roku od dvije sedmice nakon izbora, Predsjednik, uz saglasnost Potpredsjednika Federacije, imenovat će Vladu Federacije, a Predstavnički dom će razmotriti imenovanja Vlade po hitnom postupku.",
+      "(3) Nijedna osoba, osuđena za ratne zločine ili protiv koje je pokrenut sudski postupak zbog počinjenih ratnih zločina, ne može biti izabrana ni na jednu javnu funkciju u Federaciji."
     ]
   },
   {
     "clan_broj": 5,
-    "naslov": "Nastavak važenja zakona i međunarodnih ugovora",
+    "naslov": "IX USVAJANJE I STUPANJE NA SNAGU USTAVA I PRIJELAZNA RJEŠENJA",
     "tekst": "(1) Svi zakoni, drugi propisi i sudska pravila koja su na snazi u Federaciji na dan stupanja na snagu ovog ustava ostat će na snazi u mjeri u kojoj nisu u suprotnosti sa ovim ustavom, dok nadležni organi vlasti ne odluče drugačije.\n(2) Svi međunarodni ugovori i sporazumi koji su na snazi u Federaciji, na dan stupanja na snagu ovog ustava, ostat će na snazi ukoliko ih ne otkaže Predsjednik Federacije u skladu sa članom VII. 4. (2).",
     "segmenti": [
-      "Svi zakoni, drugi propisi i sudska pravila koja su na snazi u Federaciji na dan stupanja na snagu ovog ustava ostat će na snazi u mjeri u kojoj nisu u suprotnosti sa ovim ustavom, dok nadležni organi vlasti ne odluče drugačije.",
-      "Svi međunarodni ugovori i sporazumi koji su na snazi u Federaciji, na dan stupanja na snagu ovog ustava, ostat će na snazi ukoliko ih ne otkaže Predsjednik Federacije u skladu sa članom VII. 4. (2)."
+      "(1) Svi zakoni, drugi propisi i sudska pravila koja su na snazi u Federaciji na dan stupanja na snagu ovog ustava ostat će na snazi u mjeri u kojoj nisu u suprotnosti sa ovim ustavom, dok nadležni organi vlasti ne odluče drugačije.",
+      "(2) Svi međunarodni ugovori i sporazumi koji su na snazi u Federaciji, na dan stupanja na snagu ovog ustava, ostat će na snazi ukoliko ih ne otkaže Predsjednik Federacije u skladu sa članom VII. 4. (2)."
     ]
   },
   {
     "clan_broj": 6,
-    "naslov": "Nastavak vršenja državne funkcije",
+    "naslov": "IX USVAJANJE I STUPANJE NA SNAGU USTAVA I PRIJELAZNA RJEŠENJA",
     "tekst": "Sve osobe na državnoj funkciji u Federaciji na dan stupanja na snagu ovog ustava, ostat će na toj funkciji dok ne budu razriješeni u skladu sa odgovarajućim zakonom ili dok se ta funkcija ne ukine.",
     "segmenti": [
       "Sve osobe na državnoj funkciji u Federaciji na dan stupanja na snagu ovog ustava, ostat će na toj funkciji dok ne budu razriješeni u skladu sa odgovarajućim zakonom ili dok se ta funkcija ne ukine."
@@ -990,7 +1071,7 @@
   },
   {
     "clan_broj": 7,
-    "naslov": "Korištenje popisa stanovništva",
+    "naslov": "IX USVAJANJE I STUPANJE NA SNAGU USTAVA I PRIJELAZNA RJEŠENJA",
     "tekst": "Objavljeni rezultati popisa stanovništva iz 1991. godine koristit će se u proračunima koji zahtijevaju podatke o stanovništvu.",
     "segmenti": [
       "Objavljeni rezultati popisa stanovništva iz 1991. godine koristit će se u proračunima koji zahtijevaju podatke o stanovništvu."
@@ -998,7 +1079,7 @@
   },
   {
     "clan_broj": 8,
-    "naslov": "Nastavak sudskih postupaka",
+    "naslov": "IX USVAJANJE I STUPANJE NA SNAGU USTAVA I PRIJELAZNA RJEŠENJA",
     "tekst": "Svi postupci u sudovima, organima i tijelima koja vrše javna ovlašćenja na teritoriji Federacije, na dan stupanja na snagu ovog ustava, nastavit će se ili će se prenijeti na druge sudove, organe i tijela koja će biti osnovana prema ovom ustavu, a u skladu sa zakonodavstvom kojim su utvrđene nadležnosti tih sudova, organa i tijela.",
     "segmenti": [
       "Svi postupci u sudovima, organima i tijelima koja vrše javna ovlašćenja na teritoriji Federacije, na dan stupanja na snagu ovog ustava, nastavit će se ili će se prenijeti na druge sudove, organe i tijela koja će biti osnovana prema ovom ustavu, a u skladu sa zakonodavstvom kojim su utvrđene nadležnosti tih sudova, organa i tijela."
@@ -1006,21 +1087,21 @@
   },
   {
     "clan_broj": 9,
-    "naslov": "Prijelazni međunarodni aranžmani",
+    "naslov": "IX USVAJANJE I STUPANJE NA SNAGU USTAVA I PRIJELAZNA RJEŠENJA",
     "tekst": "Slijedeće odredbe koje se odnose na određene prijelazne međunarodne aranžmane primjenjuju se na prirode kako slijedi:\na) dok Federacija ne usvoji zakone o sudskim postupcima iz člana IV. C. 3, sudovi u Federaciji mogu primjenjivati važeće zakone o sudskim postupcima koji nisu u suprotnosti sa ovim ustavom.\nb) u prijelaznom periodu predsjednik Vrhovnog suda može sklapati aranžmane sa odgovarajućim međunarodnim tijelima, radi obavljanja funkcija koje se povjeravaju sudskoj policiji.\nc) prvih pet godina nakon stupanja na snagu ovog ustava, trojicu sudija Ustavnog suda, koji će biti stranci i koji nisu državljani nijedne susjedne države, imenovat će predsjednik Međunarodnog suda pravde nakon konsultacija sa Predsjednikom i Potpredsjednikom Federacije;\nd) (I) Sud za ljudska prava djelovat će u okviru mehanizma kojeg je ustanovio Savjet Evrope Rezolucijom 93 (6) svojeg Ministraskog savjeta, s tim da se ta rezolucija može mijenjati sve dok bude primjenjivana na Federaciju;\n(II) Sud za ljudska prava, u početku, sastojat će se od sedam sudija, od kojih će trojica biti imenovana i obavljati funkciju u skladu sa uvjetima iz člana IV.C.6. Ministarski Savjet Savjeta Evrope imenovat će četvoricu sudija ovog suda u skladu sa Rezolucijom 93 (6). Te sudije će biti stranci, koji ne mogu biti državljani nijedne od susjednih država;\n(III) Ako Sud za ljudska prava zaključi da njegov rad zahtijeva učešće više sudija da bi se izbjegli nepotrebni zastoji u rješavanju sporova, Predsjednik Federacije će dogovoriti sa Savjetom Evrope da se imenuju dodatne sudije u skladu sa omjerom domaćih i stranih sudija utvrđenim u članu IX. 9. d) (II).\ne) za period koji ne može biti manji od tri godine i u slučaju dok Parlament Federacije ne donese zakon koji regulira imenovanje obdusmena, njih će imenovati i razrješavati Konferencija o evropskoj sigurnosti i saradnji nakon konsultacija sa Predsjednikom i Potpredsjednikom Federacije.",
     "segmenti": [
-      "dok Federacija ne usvoji zakone o sudskim postupcima iz člana IV. C. 3, sudovi u Federaciji mogu primjenjivati važeće zakone o sudskim postupcima koji nisu u suprotnosti sa ovim ustavom.",
-      "u prijelaznom periodu predsjednik Vrhovnog suda može sklapati aranžmane sa odgovarajućim međunarodnim tijelima, radi obavljanja funkcija koje se povjeravaju sudskoj policiji.",
-      "prvih pet godina nakon stupanja na snagu ovog ustava, trojicu sudija Ustavnog suda, koji će biti stranci i koji nisu državljani nijedne susjedne države, imenovat će predsjednik Međunarodnog suda pravde nakon konsultacija sa Predsjednikom i Potpredsjednikom Federacije;",
-      "Sud za ljudska prava djelovat će u okviru mehanizma kojeg je ustanovio Savjet Evrope Rezolucijom 93 (6) svojeg Ministraskog savjeta, s tim da se ta rezolucija može mijenjati sve dok bude primjenjivana na Federaciju;",
-      "Sud za ljudska prava, u početku, sastojat će se od sedam sudija, od kojih će trojica biti imenovana i obavljati funkciju u skladu sa uvjetima iz člana IV.C.6. Ministarski Savjet Savjeta Evrope imenovat će četvoricu sudija ovog suda u skladu sa Rezolucijom 93 (6). Te sudije će biti stranci, koji ne mogu biti državljani nijedne od susjednih država;",
-      "Ako Sud za ljudska prava zaključi da njegov rad zahtijeva učešće više sudija da bi se izbjegli nepotrebni zastoji u rješavanju sporova, Predsjednik Federacije će dogovoriti sa Savjetom Evrope da se imenuju dodatne sudije u skladu sa omjerom domaćih i stranih sudija utvrđenim u članu IX. 9. d) (II).",
-      "za period koji ne može biti manji od tri godine i u slučaju dok Parlament Federacije ne donese zakon koji regulira imenovanje obdusmena, njih će imenovati i razrješavati Konferencija o evropskoj sigurnosti i saradnji nakon konsultacija sa Predsjednikom i Potpredsjednikom Federacije."
+      "a) dok Federacija ne usvoji zakone o sudskim postupcima iz člana IV. C. 3, sudovi u Federaciji mogu primjenjivati važeće zakone o sudskim postupcima koji nisu u suprotnosti sa ovim ustavom.",
+      "b) u prijelaznom periodu predsjednik Vrhovnog suda može sklapati aranžmane sa odgovarajućim međunarodnim tijelima, radi obavljanja funkcija koje se povjeravaju sudskoj policiji.",
+      "c) prvih pet godina nakon stupanja na snagu ovog ustava, trojicu sudija Ustavnog suda, koji će biti stranci i koji nisu državljani nijedne susjedne države, imenovat će predsjednik Međunarodnog suda pravde nakon konsultacija sa Predsjednikom i Potpredsjednikom Federacije;",
+      "d) (I) Sud za ljudska prava djelovat će u okviru mehanizma kojeg je ustanovio Savjet Evrope Rezolucijom 93 (6) svojeg Ministraskog savjeta, s tim da se ta rezolucija može mijenjati sve dok bude primjenjivana na Federaciju;",
+      "(II) Sud za ljudska prava, u početku, sastojat će se od sedam sudija, od kojih će trojica biti imenovana i obavljati funkciju u skladu sa uvjetima iz člana IV.C.6. Ministarski Savjet Savjeta Evrope imenovat će četvoricu sudija ovog suda u skladu sa Rezolucijom 93 (6). Te sudije će biti stranci, koji ne mogu biti državljani nijedne od susjednih država;",
+      "(III) Ako Sud za ljudska prava zaključi da njegov rad zahtijeva učešće više sudija da bi se izbjegli nepotrebni zastoji u rješavanju sporova, Predsjednik Federacije će dogovoriti sa Savjetom Evrope da se imenuju dodatne sudije u skladu sa omjerom domaćih i stranih sudija utvrđenim u članu IX. 9. d) (II).",
+      "e) za period koji ne može biti manji od tri godine i u slučaju dok Parlament Federacije ne donese zakon koji regulira imenovanje obdusmena, njih će imenovati i razrješavati Konferencija o evropskoj sigurnosti i saradnji nakon konsultacija sa Predsjednikom i Potpredsjednikom Federacije."
     ]
   },
   {
     "clan_broj": 10,
-    "naslov": "Primjena Ustava u distriktu Sarajevo i općini Mostar",
+    "naslov": "IX USVAJANJE I STUPANJE NA SNAGU USTAVA I PRIJELAZNA RJEŠENJA",
     "tekst": "Ovaj ustav će se primjenjivati u distriktu Sarajevo i općini grada Mostara dok su pod međunarodnom upravom, ako drugačije ne odluči međunarodni upravitelj koji ne smije odstupati od poglavlja II. o ljudskim pravima i osnovnim slobodama. Predsjednik Federacije za vrijeme međunarodne uprave konsultirat će se sa međunarodnim upraviteljima kako bi se olakšala potpuna primjena ovog ustava u tim općinama, kao i neposredno nakon isteka tog perioda.",
     "segmenti": [
       "Ovaj ustav će se primjenjivati u distriktu Sarajevo i općini grada Mostara dok su pod međunarodnom upravom, ako drugačije ne odluči međunarodni upravitelj koji ne smije odstupati od poglavlja II. o ljudskim pravima i osnovnim slobodama.",
@@ -1029,12 +1110,319 @@
   },
   {
     "clan_broj": 11,
-    "naslov": "Nastavak rada Skupštine Republike BiH",
+    "naslov": "IX USVAJANJE I STUPANJE NA SNAGU USTAVA I PRIJELAZNA RJEŠENJA",
     "tekst": "(1) Skupština Republike Bosne i Hercegovine, izabrana 1990. godine nastavlja sa svojim radom prema nadležnostima utvrđenim u Ustavu Republike Bosne i Hercegovine, dok ne bude postignut i proveden konačan mirovni sporazum za Bosnu i Hercegovinu.\n(2) Predsjedništvo Republike Bosne i Hercegovine i Vlada Republike Bosne i Hercegovine zadržat će svoje nadležnosti u skladu sa Ustavom Republike Bosne i Hercegovine dok ne bude postignut i proveden konačni mirovni sporazum za Bosnu i Hercegovinu, s tim što njihove nadležnosti ne smiju zadirati u ovlašćenja državnih organa uspostavljena u skladu sa ovim ustavom.\n(3) Dok funkcioneri federacije, kantona i općina u prijelaznom periodu ne budu izabrani u skladu sa članom IX. 3. postojeći administrativni aranžmani ostat će na snazi unutar Federacije, osim u općini grada Mostara, kojim će upravljati upravitelj unije u periodu od dvije godine.",
     "segmenti": [
-      "Skupština Republike Bosne i Hercegovine, izabrana 1990. godine nastavlja sa svojim radom prema nadležnostima utvrđenim u Ustavu Republike Bosne i Hercegovine, dok ne bude postignut i proveden konačan mirovni sporazum za Bosnu i Hercegovinu.",
-      "Predsjedništvo Republike Bosne i Hercegovine i Vlada Republike Bosne i Hercegovine zadržat će svoje nadležnosti u skladu sa Ustavom Republike Bosne i Hercegovine dok ne bude postignut i proveden konačni mirovni sporazum za Bosnu i Hercegovinu, s tim što njihove nadležnosti ne smiju zadirati u ovlašćenja državnih organa uspostavljena u skladu sa ovim ustavom.",
-      "Dok funkcioneri federacije, kantona i općina u prijelaznom periodu ne budu izabrani u skladu sa članom IX. 3. postojeći administrativni aranžmani ostat će na snazi unutar Federacije, osim u općini grada Mostara, kojim će upravljati upravitelj unije u periodu od dvije godine."
+      "(1) Skupština Republike Bosne i Hercegovine, izabrana 1990. godine nastavlja sa svojim radom prema nadležnostima utvrđenim u Ustavu Republike Bosne i Hercegovine, dok ne bude postignut i proveden konačan mirovni sporazum za Bosnu i Hercegovinu.",
+      "(2) Predsjedništvo Republike Bosne i Hercegovine i Vlada Republike Bosne i Hercegovine zadržat će svoje nadležnosti u skladu sa Ustavom Republike Bosne i Hercegovine dok ne bude postignut i proveden konačni mirovni sporazum za Bosnu i Hercegovinu, s tim što njihove nadležnosti ne smiju zadirati u ovlašćenja državnih organa uspostavljena u skladu sa ovim ustavom.",
+      "(3) Dok funkcioneri federacije, kantona i općina u prijelaznom periodu ne budu izabrani u skladu sa članom IX. 3. postojeći administrativni aranžmani ostat će na snazi unutar Federacije, osim u općini grada Mostara, kojim će upravljati upravitelj unije u periodu od dvije godine."
+    ]
+  },
+  {
+    "clan_broj": 1,
+    "naslov": "AMANDMAN I",
+    "tekst": "U Ustavu Federacije Bosne i Hercegovine, iza člana V 11. dodaje se novi član V 12., koji glasi: 5. Kantoni sa posebnim režimom - Srednjobosanski i Neretvanski, čiji će se konačni nazivi utvrditi federalnim zakonom, u skladu sa članom I 2. Ustava Federacije Bosne i Hercegovine. Član 12. U kantonima sa posebnim režimom primjenjuju se članovi V.1. do 11., Ustava Federacije, ukoliko nisu u suprotnosti sa odredbama ovog amandmana: (1) Kantoni će delegirati svoje nadležnosti iz člana V. 2. (2) ako to općina zahtijeva. Svaka općina će ostvarivati lokalnu samoupravu u skladu sa članom VI. 2. (2) Odluke koje se tiču vitalnih interesa bilo kog od konstitutivnih naroda u kantonu zahtijevaju saglasnost većine poslanika u zakonodavnom tijelu kantona uključujući većinu bošnjačkih poslanika i većinu hrvatskih poslanika. Primjena ove odredbe može se zahtijevati većinom glasova bošnjačkih ili hrvatskih poslanika. Ukoliko je većina preostalih poslanika protiv primjene ove odredbe, osnovat će se zajednička komisija bošnjačkih i hrvatskih poslanika radi razrješenja tog pitanja. Ukoliko komisija nije u mogućnosti da to pitanje razriješi u roku od sedam dana od pozivanja na ovu odredbu, pitanje će po hitnom postupku riješiti najviši sud kantona, ukoliko je to pitanje u isključivoj nadležnosti kantona. Ukoliko to pitanje nije u isključivoj nadležnosti kantona, odluku donosi najviši sud kantona, uz mogućnost žalbe Ustavnom Sudu Federacije (3) Kanton sa posebnim režimom ima predsjednika i zamjenika predsjednika kantona. a) Zamjenik predsjednika kantona bit će biran u skladu sa članom V. 8. U izboru predsjednika i zamjenika predsjednika kantona, klub hrvatskih i klub bošnjačkih poslanika u zakonodavnom tijelu kantona odvojeno kandidiraju po jednu osobu. Izbor za predsjednika i zamjenika predsjednika kantona zahtijeva prihvaćanje oba kandidata zajednički većinom glasova bošnjačkih i većinom glasova hrvatskih poslanika. Ukoliko zajednička kandidatura ne dobije potrebnu većinu, klubovi će ponovo razmotriti kandidaturu za predsjednika i zamjenika predsjednika kantona; b) Izabrane osobe će naizmjenično po jednu godinu biti predsjednik, a zatim zamjenik predsjednika kantona, u periodu od dvije godine. Predsjednici kantona sa posebnim režimom ne mogu biti istovremeno iz istog konstitutivnog naroda; (c) Predsjednik ili zamjenik predsjednika kantona ne može vršiti tu funkciju više od dva uzastopna dvogodišnja mandata; (d) Predsjednik i zamjenik predsjednika kantona mogu biti smijenjeni dvotrećinskom većinom glasova zakonodavnog tijela kantona, uključujući većinu glasova bošnjačkih poslanika i većinu glasova hrvatskih poslanika u zakonodavnom tijelu kantona; (e) Ukoliko predsjednik ili zamjenik predsjednika umre, bude smijenjen ili, prema mišljenju vlade kantona usvojenom konsenzusom, trajno nije u mogućnosti izvršavati svoje ustavne dužnosti koje proizilaze iz njegovog položaja, postupak predviđen gornjim paragrafom (3) a) provest će u roku od trideset dana Klub poslanika koji je kandidirao osobu koja se zamjenjuje da bi se popunilo upražnjeno mjesto do kraja započetog mandata. Predsjednik ili zamjenik predsjednika kantona obavljat će obje funkcije tokom perioda predviđenog u prethodnoj rečenici ako prema mišljenju vlade kantona usvojenom konsenzusom, ovaj drugi određeno vrijeme nije u mogućnosti izvršavati svoje dužnosti. Ukoliko oba mjesta ostanu upražnjena predsjedavajući kantonalnog zakonodavnog tijela obavljat će obje funkcije za potrebni period. (4) Vladu kantona sa posebnim režimom: (a) Imenuje predsjednik kantona, uz saglasnost zamjenika, predsjednika kantona. Imenovanje zahtijeva potvrdu dvotrećinskom većinom glasova u zakonodavnom tijelu kantona; (b) Čine jednak broj članova iz reda bošnjačkog i hrvatskog naroda, kao i određen broj članova koje čine ostali, imenovanih i prihvaćenih kako je predviđeno u ovom paragrafu pod a). (5) U ustavu kantona sa posebnim režimom bit će sadržane odredbe kojima će se otkloniti blokada u odlučivanju zakonodavnog tijela kantona prilikom donošenja prijeko potrebnih zakona.",
+    "segmenti": [
+      "U Ustavu Federacije Bosne i Hercegovine, iza člana V 11. dodaje se novi član V 12., koji glasi: 5. Kantoni sa posebnim režimom - Srednjobosanski i Neretvanski, čiji će se konačni nazivi utvrditi federalnim zakonom, u skladu sa članom I 2. Ustava Federacije Bosne i Hercegovine.",
+      "Član 12. U kantonima sa posebnim režimom primjenjuju se članovi V.1. do 11., Ustava Federacije, ukoliko nisu u suprotnosti sa odredbama ovog amandmana:",
+      "(1) Kantoni će delegirati svoje nadležnosti iz člana V. 2. (2) ako to općina zahtijeva. Svaka općina će ostvarivati lokalnu samoupravu u skladu sa članom VI. 2.",
+      "(2) Odluke koje se tiču vitalnih interesa bilo kog od konstitutivnih naroda u kantonu zahtijevaju saglasnost većine poslanika u zakonodavnom tijelu kantona uključujući većinu bošnjačkih poslanika i većinu hrvatskih poslanika. Primjena ove odredbe može se zahtijevati većinom glasova bošnjačkih ili hrvatskih poslanika. Ukoliko je većina preostalih poslanika protiv primjene ove odredbe, osnovat će se zajednička komisija bošnjačkih i hrvatskih poslanika radi razrješenja tog pitanja. Ukoliko komisija nije u mogućnosti da to pitanje razriješi u roku od sedam dana od pozivanja na ovu odredbu, pitanje će po hitnom postupku riješiti najviši sud kantona, ukoliko je to pitanje u isključivoj nadležnosti kantona. Ukoliko to pitanje nije u isključivoj nadležnosti kantona, odluku donosi najviši sud kantona, uz mogućnost žalbe Ustavnom Sudu Federacije",
+      "(3) Kanton sa posebnim režimom ima predsjednika i zamjenika predsjednika kantona.",
+      "a) Zamjenik predsjednika kantona bit će biran u skladu sa članom V. 8. U izboru predsjednika i zamjenika predsjednika kantona, klub hrvatskih i klub bošnjačkih poslanika u zakonodavnom tijelu kantona odvojeno kandidiraju po jednu osobu. Izbor za predsjednika i zamjenika predsjednika kantona zahtijeva prihvaćanje oba kandidata zajednički većinom glasova bošnjačkih i većinom glasova hrvatskih poslanika. Ukoliko zajednička kandidatura ne dobije potrebnu većinu, klubovi će ponovo razmotriti kandidaturu za predsjednika i zamjenika predsjednika kantona;",
+      "b) Izabrane osobe će naizmjenično po jednu godinu biti predsjednik, a zatim zamjenik predsjednika kantona, u periodu od dvije godine. Predsjednici kantona sa posebnim režimom ne mogu biti istovremeno iz istog konstitutivnog naroda;",
+      "(c) Predsjednik ili zamjenik predsjednika kantona ne može vršiti tu funkciju više od dva uzastopna dvogodišnja mandata;",
+      "(d) Predsjednik i zamjenik predsjednika kantona mogu biti smijenjeni dvotrećinskom većinom glasova zakonodavnog tijela kantona, uključujući većinu glasova bošnjačkih poslanika i većinu glasova hrvatskih poslanika u zakonodavnom tijelu kantona;",
+      "(e) Ukoliko predsjednik ili zamjenik predsjednika umre, bude smijenjen ili, prema mišljenju vlade kantona usvojenom konsenzusom, trajno nije u mogućnosti izvršavati svoje ustavne dužnosti koje proizilaze iz njegovog položaja, postupak predviđen gornjim paragrafom (3) a) provest će u roku od trideset dana Klub poslanika koji je kandidirao osobu koja se zamjenjuje da bi se popunilo upražnjeno mjesto do kraja započetog mandata. Predsjednik ili zamjenik predsjednika kantona obavljat će obje funkcije tokom perioda predviđenog u prethodnoj rečenici ako prema mišljenju vlade kantona usvojenom konsenzusom, ovaj drugi određeno vrijeme nije u mogućnosti izvršavati svoje dužnosti. Ukoliko oba mjesta ostanu upražnjena predsjedavajući kantonalnog zakonodavnog tijela obavljat će obje funkcije za potrebni period.",
+      "(4) Vladu kantona sa posebnim režimom:",
+      "(a) Imenuje predsjednik kantona, uz saglasnost zamjenika, predsjednika kantona. Imenovanje zahtijeva potvrdu dvotrećinskom većinom glasova u zakonodavnom tijelu kantona;",
+      "(b) Čine jednak broj članova iz reda bošnjačkog i hrvatskog naroda, kao i određen broj članova koje čine ostali, imenovanih i prihvaćenih kako je predviđeno u ovom paragrafu pod a).",
+      "(5) U ustavu kantona sa posebnim režimom bit će sadržane odredbe kojima će se otkloniti blokada u odlučivanju zakonodavnog tijela kantona prilikom donošenja prijeko potrebnih zakona."
+    ]
+  },
+  {
+    "clan_broj": 2,
+    "naslov": "AMANDMAN II",
+    "tekst": "U Ustavu Federacije Bosne i Hercegovine mijenja se preambula, koja glasi: \"Uvjereni da demokratske institucije temeljene na poštovanju ljudskih prava i sloboda najbolje stvaraju sklad između sebe i svojih zajednica, Odbijajući nasilje rata, U želji da pridonesu unapređenju mira, U želji da unaprijede slobodu pojedinaca i razvijaju slobodno tržište, Vođeni načelima Povelje Ujedinjenih naroda, Univerzalne deklaracije o ljudskim pravima, i Općim okvirnim sporazumom o miru u Bosni i Hercegovini, kao i njegovim aneksima (Opći okvirni sporazum), Narodi i građani Federacije Bosne i Hercegovine, koja je sastavni dio suverene države Bosne i Hercegovine, odlučni da osiguraju punu nacionalnu ravnopravnost, demokratske odnose i najviše standarde ljudskih prava i sloboda, ovim donose Ustav Federacije Bosne i Hercegovine\".",
+    "segmenti": [
+      "U Ustavu Federacije Bosne i Hercegovine mijenja se preambula, koja glasi: \"Uvjereni da demokratske institucije temeljene na poštovanju ljudskih prava i sloboda najbolje stvaraju sklad između sebe i svojih zajednica, Odbijajući nasilje rata, U želji da pridonesu unapređenju mira, U želji da unaprijede slobodu pojedinaca i razvijaju slobodno tržište, Vođeni načelima Povelje Ujedinjenih naroda, Univerzalne deklaracije o ljudskim pravima, i Općim okvirnim sporazumom o miru u Bosni i Hercegovini, kao i njegovim aneksima (Opći okvirni sporazum), Narodi i građani Federacije Bosne i Hercegovine, koja je sastavni dio suverene države Bosne i Hercegovine, odlučni da osiguraju punu nacionalnu ravnopravnost, demokratske odnose i najviše standarde ljudskih prava i sloboda, ovim donose Ustav Federacije Bosne i Hercegovine\"."
+    ]
+  },
+  {
+    "clan_broj": 3,
+    "naslov": "AMANDMAN III",
+    "tekst": "Član I.1. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"(1) Bošnjaci i Hrvati kao konstitutivni narodi zajedno s ostalima, i građani Bosne i Hercegovine sa teritorije Federacije Bosne i Hercegovine, ostvarujući svoja suverena prava, preoblikuju unutrašnju strukturu teritorije Federacije Bosne i Hercegovine definiranu Aneksom II Općeg okvirnog sporazuma, tako da se Federacija Bosne i Hercegovine sastoji od federalnih jedinica sa jednakim pravima i odgovornostima. (2) Federacija Bosne i Hercegovine jedan je od dva entiteta od kojih se sastoji država Bosna i Hercegovina, i ima svu vlast, ovlaštenje i odgovornost koje je Ustavom Bosne i Hercegovine nisu izričito u nadležnosti institucija Bosne i Hercegovine.\"",
+    "segmenti": [
+      "Član I.1. Ustava Federacije Bosne i Hercegovine mijenja se i glasi:",
+      "(1) Bošnjaci i Hrvati kao konstitutivni narodi zajedno s ostalima, i građani Bosne i Hercegovine sa teritorije Federacije Bosne i Hercegovine, ostvarujući svoja suverena prava, preoblikuju unutrašnju strukturu teritorije Federacije Bosne i Hercegovine definiranu Aneksom II Općeg okvirnog sporazuma, tako da se Federacija Bosne i Hercegovine sastoji od federalnih jedinica sa jednakim pravima i odgovornostima.",
+      "(2) Federacija Bosne i Hercegovine jedan je od dva entiteta od kojih se sastoji država Bosna i Hercegovina, i ima svu vlast, ovlaštenje i odgovornost koje je Ustavom Bosne i Hercegovine nisu izričito u nadležnosti institucija Bosne i Hercegovine."
+    ]
+  },
+  {
+    "clan_broj": 4,
+    "naslov": "AMANDMAN IV",
+    "tekst": "Član II.A.1. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"Budući da se načela, prava i slobode utvrđeni u članu II Ustava Bosne i Hercegovine primjenjuju na cijeloj teritoriji Bosne i Hercegovine, slijedeće odredbe odnose se na Federaciju.\"",
+    "segmenti": [
+      "Član II.A.1. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"Budući da se načela, prava i slobode utvrđeni u članu II Ustava Bosne i Hercegovine primjenjuju na cijeloj teritoriji Bosne i Hercegovine, slijedeće odredbe odnose se na Federaciju.\""
+    ]
+  },
+  {
+    "clan_broj": 5,
+    "naslov": "AMANDMAN V",
+    "tekst": "Stav 1. člana II.A.2., Ustava Federacije Bosne i Hercegovine u prvoj rečenici mijenja se i glasi: \"Federacija će osigurati primjenu najvišeg nivoa međunarodno priznatih prava i sloboda utvrđenih u dokumentima navedenim u Aneksu ovog Ustava.\"",
+    "segmenti": [
+      "Stav 1. člana II.A.2., Ustava Federacije Bosne i Hercegovine u prvoj rečenici mijenja se i glasi: \"Federacija će osigurati primjenu najvišeg nivoa međunarodno priznatih prava i sloboda utvrđenih u dokumentima navedenim u Aneksu ovog Ustava.\""
+    ]
+  },
+  {
+    "clan_broj": 6,
+    "naslov": "AMANDMAN VI",
+    "tekst": "Član II.A.4. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"Sve osobe imaju pravo, u skladu s Aneksom VII Općeg okvirnog sporazuma na povrat ukupne imovine koje su lišene tokom etničkog progona i neprijateljstva od 1991. godine, te na naknadu ukupne imovine koja im se ne može povratiti. Svi iskazi i obaveze date i preuzete pod prisilom, posebno one što se odnose na odricanje od prava na zemlju i drugu imovinu, ništavne su. Ostvarivanje prava iz stava 1. ovog člana uredit će se federalnim zakonodavstvom.\"",
+    "segmenti": [
+      "Član II.A.4. Ustava Federacije Bosne i Hercegovine mijenja se i glasi:",
+      "Sve osobe imaju pravo, u skladu s Aneksom VII Općeg okvirnog sporazuma na povrat ukupne imovine koje su lišene tokom etničkog progona i neprijateljstva od 1991. godine, te na naknadu ukupne imovine koja im se ne može povratiti.",
+      "Svi iskazi i obaveze date i preuzete pod prisilom, posebno one što se odnose na odricanje od prava na zemlju i drugu imovinu, ništavne su.",
+      "Ostvarivanje prava iz stava 1. ovog člana uredit će se federalnim zakonodavstvom."
+    ]
+  },
+  {
+    "clan_broj": 7,
+    "naslov": "AMANDMAN VII",
+    "tekst": "Član II.A.5. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"Sticanje i prestanak državljanstva Federacije Bosne i Hercegovine propisuje federalni zakon, uz slijedeće uvjete: a) nijedna se osoba ne može lišiti državljanstva proizvoljno, ili na način koji bi je ostavio bez državljanstva; b) nijedna se osoba ne može lišiti državljanstva Federacije po osnovu pola, rase, boje kože, jezika, vjere, političkog ili drugog uvjerenja, nacionalnog i društvenog porijekla, pripadnosti nekoj nacionalnoj manjini, imovine, rođenja ili bilo kojeg drugog statusa; c) svi državljani Federacije su, u skladu sa Ustavom Bosne i Hercegovine, i državljani Bosne i Hercegovine, a ovisno o uvjetima o državljanstvu utvrđenim Ustavom Bosne i Hercegovine imaju pravo i na državljanstvo druge države.\"",
+    "segmenti": [
+      "Član II.A.5. Ustava Federacije Bosne i Hercegovine mijenja se i glasi:",
+      "Sticanje i prestanak državljanstva Federacije Bosne i Hercegovine propisuje federalni zakon, uz slijedeće uvjete:",
+      "a) nijedna se osoba ne može lišiti državljanstva proizvoljno, ili na način koji bi je ostavio bez državljanstva;",
+      "b) nijedna se osoba ne može lišiti državljanstva Federacije po osnovu pola, rase, boje kože, jezika, vjere, političkog ili drugog uvjerenja, nacionalnog i društvenog porijekla, pripadnosti nekoj nacionalnoj manjini, imovine, rođenja ili bilo kojeg drugog statusa;",
+      "c) svi državljani Federacije su, u skladu sa Ustavom Bosne i Hercegovine, i državljani Bosne i Hercegovine, a ovisno o uvjetima o državljanstvu utvrđenim Ustavom Bosne i Hercegovine imaju pravo i na državljanstvo druge države."
+    ]
+  },
+  {
+    "clan_broj": 8,
+    "naslov": "AMANDMAN VIII",
+    "tekst": "Član III.1. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"U isključivoj su nadležnosti Federacije: a) organiziranje i vođenje odbrane Federacije, zaštita njene teritorije, uključujući osnivanje zajedničkog zapovjedništva svih vojnih snaga u Federaciji, nadzor nad vojnom proizvodnjom, zaključivanje vojnih sporazuma u skladu sa Ustavom Bosne i Hercegovine, te saradnja sa stalnim komitetom za vojna pitanja i sa Vijećem ministara u odbrani Bosne i Hercegovine, b) državljanstvo Federacije, c) utvrđivanje ekonomske politike, uključujući planiranje i obnovu, te politiku korišćenja zemljišta na federalnom nivou, d) donošenje propisa o finansijama i finansijskim institucijama Federacije i fiskalna politika Federacije, e) suzbijanje terorizma, međukantonalnog kriminala, neovlašćene trgovine drogom i organiziranog kriminala, f) dodjela elektronskih frekvencija za radio, TV i druge svrhe, u skladu sa Ustavom Bosne i Hercegovine, g) utvrđivanje energetske politike, uključujući raspodjelu između kantona, te osiguranje i održavanje potrebne infrastrukture, h) finansiranje djelatnosti federalnih vlasti, ustanova i institucija koje federalne vlasti osnivaju oporezivanjem, zaduživanjem ili drugim sredstvima.\"",
+    "segmenti": [
+      "Član III.1. Ustava Federacije Bosne i Hercegovine mijenja se i glasi:",
+      "U isključivoj su nadležnosti Federacije:",
+      "a) organiziranje i vođenje odbrane Federacije, zaštita njene teritorije, uključujući osnivanje zajedničkog zapovjedništva svih vojnih snaga u Federaciji, nadzor nad vojnom proizvodnjom, zaključivanje vojnih sporazuma u skladu sa Ustavom Bosne i Hercegovine, te saradnja sa stalnim komitetom za vojna pitanja i sa Vijećem ministara u odbrani Bosne i Hercegovine,",
+      "b) državljanstvo Federacije,",
+      "c) utvrđivanje ekonomske politike, uključujući planiranje i obnovu, te politiku korišćenja zemljišta na federalnom nivou,",
+      "d) donošenje propisa o finansijama i finansijskim institucijama Federacije i fiskalna politika Federacije,",
+      "e) suzbijanje terorizma, međukantonalnog kriminala, neovlašćene trgovine drogom i organiziranog kriminala,",
+      "f) dodjela elektronskih frekvencija za radio, TV i druge svrhe, u skladu sa Ustavom Bosne i Hercegovine,",
+      "g) utvrđivanje energetske politike, uključujući raspodjelu između kantona, te osiguranje i održavanje potrebne infrastrukture,",
+      "h) finansiranje djelatnosti federalnih vlasti, ustanova i institucija koje federalne vlasti osnivaju oporezivanjem, zaduživanjem ili drugim sredstvima."
+    ]
+  },
+  {
+    "clan_broj": 9,
+    "naslov": "AMANDMAN IX",
+    "tekst": "U članu III.2. Ustava Federacije Bosne i Hercegovine tekst pod d) i f) mijenja se i glasi: d) komunikacijska i transportna infrastruktura, u skladu sa Ustavom Bosne i Hercegovine, \"f) provođenje zakona i drugih propisa o državljanstvu i putnim ispravama državljana Bosne i Hercegovine sa teritorije Federacije, i o boravku i kretanju stranaca.\" Tekst pod g) briše se.",
+    "segmenti": [
+      "U članu III.2. Ustava Federacije Bosne i Hercegovine tekst pod d) i f) mijenja se i glasi:",
+      "d) komunikacijska i transportna infrastruktura, u skladu sa Ustavom Bosne i Hercegovine,",
+      "f) provođenje zakona i drugih propisa o državljanstvu i putnim ispravama državljana Bosne i Hercegovine sa teritorije Federacije, i o boravku i kretanju stranaca.",
+      "Tekst pod g) briše se."
+    ]
+  },
+  {
+    "clan_broj": 10,
+    "naslov": "AMANDMAN X",
+    "tekst": "U članu IV.A.20. Ustava Federacije Bosne i Hercegovine tekst pod f) mijenja se i glasi: \"f) davanja ovlašćenja kantonima da zaključuju sporazume sa državama i međunarodnim organizacijama, uz saglasnost Parlamentarne skupštine Bosne i Hercegovine, osim za sporazume one vrste za koje Parlamentarna skupština zakonom odluči da im nije potrebna takva saglasnost.\" Tekst pod g) briše se. Tekst pod h) mijenja se i glasi: \"h) odobravanje, većinom glasova, sporazuma sa državama i međunarodnim organizacijama, uz prethodnu saglasnost Parlamentarne skupštine Bosne i Hercegovine osim sporazuma one vrste za koje Parlamentarna skupština Bosne i Hercegovine zakonom odluči da im nije potrebna takva saglasnost.\"",
+    "segmenti": [
+      "U članu IV.A.20. Ustava Federacije Bosne i Hercegovine tekst pod f) mijenja se i glasi:",
+      "f) davanja ovlašćenja kantonima da zaključuju sporazume sa državama i međunarodnim organizacijama, uz saglasnost Parlamentarne skupštine Bosne i Hercegovine, osim za sporazume one vrste za koje Parlamentarna skupština zakonom odluči da im nije potrebna takva saglasnost.",
+      "Tekst pod g) briše se.",
+      "Tekst pod h) mijenja se i glasi:",
+      "h) odobravanje, većinom glasova, sporazuma sa državama i međunarodnim organizacijama, uz prethodnu saglasnost Parlamentarne skupštine Bosne i Hercegovine osim sporazuma one vrste za koje Parlamentarna skupština Bosne i Hercegovine zakonom odluči da im nije potrebna takva saglasnost."
+    ]
+  },
+  {
+    "clan_broj": 11,
+    "naslov": "AMANDMAN XI",
+    "tekst": "Član IV.B1. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"Predsjednik Federacije predstavlja i zastupa Federaciju i šef je federalne izvršne vlasti.\"",
+    "segmenti": [
+      "Član IV.B1. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"Predsjednik Federacije predstavlja i zastupa Federaciju i šef je federalne izvršne vlasti.\""
+    ]
+  },
+  {
+    "clan_broj": 12,
+    "naslov": "AMANDMAN XII",
+    "tekst": "Član IV.B.4. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"Vlada Federacije sastoji se od premijera, koji je predsjednik Vlade, zamjenika premijera i ministara, od kojih svaki ima zamjenika. Nijedan zamjenik, uključujući zamjenika premijera, ne može biti iz istog konstitutivnog naroda kao njegov ministar.\"",
+    "segmenti": [
+      "Član IV.B.4. Ustava Federacije Bosne i Hercegovine mijenja se i glasi:",
+      "Vlada Federacije sastoji se od premijera, koji je predsjednik Vlade, zamjenika premijera i ministara, od kojih svaki ima zamjenika.",
+      "Nijedan zamjenik, uključujući zamjenika premijera, ne može biti iz istog konstitutivnog naroda kao njegov ministar."
+    ]
+  },
+  {
+    "clan_broj": 13,
+    "naslov": "AMANDMAN XIII",
+    "tekst": "U članu IV.B.7. Ustava Federacije Bosne i Hercegovine tekst pod a), d) i e) mijenja se i glasi: Tekst pod a)(V) mijenja se i glasi: \"a)(V) potpisivanje i ratificiranje međunarodnih sporazuma u ime Federacije.\" Tekst pod a)(VI) briše se. Tekst pod d) briše se. Tekst pod e) (I) mijenja se i glasi: \"e)(I) vrši dužnosti ministra.\"",
+    "segmenti": [
+      "U članu IV.B.7. Ustava Federacije Bosne i Hercegovine tekst pod a), d) i e) mijenja se i glasi:",
+      "Tekst pod a)(V) mijenja se i glasi:",
+      "a)(V) potpisivanje i ratificiranje međunarodnih sporazuma u ime Federacije.",
+      "Tekst pod a)(VI) briše se.",
+      "Tekst pod d) briše se.",
+      "Tekst pod e) (I) mijenja se i glasi:",
+      "e)(I) vrši dužnosti ministra."
+    ]
+  },
+  {
+    "clan_broj": 14,
+    "naslov": "AMANDMAN XIV",
+    "tekst": "U članu IV.C.3.10(1) Ustava Federacije Bosne i Hercegovine, iza tačke b) dodaju se nove tačke c) i d), čime dosadašnje tačke c) i d) postaju tačke e) i f): \"c) između grada i njegovog kantona ili federalne vlasti; d)između općine i grada;\" Tekst pod 10(2)d), mijenja se i glasi: \"d) na zahtjev premijera zamjenika premijera ili pak dotičnog kantonalnog predsjednika, utvrđuje da li neki predloženi ili usvojeni propis koje je donijelo neko tijelo kantonalne, gradske ili općinske vlasti u skladu sa ovim ustavom:\"",
+    "segmenti": [
+      "U članu IV.C.3.10(1) Ustava Federacije Bosne i Hercegovine, iza tačke b) dodaju se nove tačke c) i d), čime dosadašnje tačke c) i d) postaju tačke e) i f):",
+      "c) između grada i njegovog kantona ili federalne vlasti;",
+      "d)između općine i grada;",
+      "Tekst pod 10(2)d), mijenja se i glasi:",
+      "d) na zahtjev premijera zamjenika premijera ili pak dotičnog kantonalnog predsjednika, utvrđuje da li neki predloženi ili usvojeni propis koje je donijelo neko tijelo kantonalne, gradske ili općinske vlasti u skladu sa ovim ustavom:"
+    ]
+  },
+  {
+    "clan_broj": 15,
+    "naslov": "AMANDMAN XV",
+    "tekst": "Član V.1.2. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"(1) Svaki kanton može prenijeti svoje ovlaštenje na općinu i grad na svojoj teritoriji ili na federalnu vlast. (2) Svaki kanton može na općinu i grad na svojoj teritoriji prenijeti ovlaštenja u vezi sa obrazovanjem, kulturom, turizmom, lokalnim poslovanjem i humanitarnom djelatnošću te radiom i televizijom, a dužan je to učiniti ako u pogledu nacionalnog sastava većinsko stanovništvo te općine, odnosno grada nije većinsko stanovništvo u kantonu kao cjelini. (3) Svaki kanton može zaključivati međunarodne sporazume uz prethodnu saglasnost Parlamenta Federacije i Parlamentarne skupštine Bosne i Hercegovine, osim sporazuma one vrste za koje po zakonu Parlamentarne skupštine Bosne i Hercegovine njena saglasnost nije potrebna.\"",
+    "segmenti": [
+      "Član V.1.2. Ustava Federacije Bosne i Hercegovine mijenja se i glasi:",
+      "(1) Svaki kanton može prenijeti svoje ovlaštenje na općinu i grad na svojoj teritoriji ili na federalnu vlast.",
+      "(2) Svaki kanton može na općinu i grad na svojoj teritoriji prenijeti ovlaštenja u vezi sa obrazovanjem, kulturom, turizmom, lokalnim poslovanjem i humanitarnom djelatnošću te radiom i televizijom, a dužan je to učiniti ako u pogledu nacionalnog sastava većinsko stanovništvo te općine, odnosno grada nije većinsko stanovništvo u kantonu kao cjelini.",
+      "(3) Svaki kanton može zaključivati međunarodne sporazume uz prethodnu saglasnost Parlamenta Federacije i Parlamentarne skupštine Bosne i Hercegovine, osim sporazuma one vrste za koje po zakonu Parlamentarne skupštine Bosne i Hercegovine njena saglasnost nije potrebna."
+    ]
+  },
+  {
+    "clan_broj": 16,
+    "naslov": "AMANDMAN XVI",
+    "tekst": "U Ustavu Federacije Bosne i Hercegovine, iza glave: \"VI - OPCINSKE VLASTI\", dodaje se novo poglavlje, koja glasi: \" VI.A. GRADSKE VLASTI (1) Za područje dvije ili više općina koje su urbano i teritorijalno povezane svakodnevnim potrebama građana, formira se grad kao jedinica lokalne uprave i samouprave, u skladu sa federalnim zakonom. Odgovornosti grada obuhvataju: a) finansije i poreznu politiku, u skladu sa federalnim i kantonalnim zakonima, b) zajedničku infrastrukturu, c) urbanističko planiranje, d) javni promet, e) druge nadležnosti koje gradu povjeri kanton, odnosno koje prenesu općine. (2) Grad ima statut koji mora biti u skladu sa ovim ustavom, kantonalnim ustavom i kantonalnim zakonodavstvom. (3) Grad ima gradsko vijeće, čiji sastav čini jednak broj vijećnika iz svake općine, a broj vijećnika, postupak izbora i trajanje mandata utvrđuje se statutom. Gradsko vijeće ne može imati manje od 15, a niti više od 30 vijećnika. (4) Gradsko vijeće: a) priprema i dvotrećinskom većinom usvaja statut grada, b) bira gradonačelnika, c) donosi budžet grada, d) donosi propise u izvršavanju prenesenih ovlaštenja i vrši druga ovlaštenja utvrđena statutom. (5) Odgovornost gradonačelnika je: a) imenovanje i smjenjivanje gradskih funkcionera, b) provođenje gradske politike i izvršavanja gradskih propisa, c) osiguranje saradnje gradskih funkcionera sa obudsmenima, d) podnošenje izvještaja gradskom vijeću i javnosti o provođenju gradske politike. (6) Grad ostvaruje prihode oporezivanjem, zaduživanjem i na drugi način, u skladu sa zakonom.\"",
+    "segmenti": [
+      "U Ustavu Federacije Bosne i Hercegovine, iza glave: \"VI - OPCINSKE VLASTI\", dodaje se novo poglavlje, koja glasi:",
+      "VI.A. GRADSKE VLASTI",
+      "(1) Za područje dvije ili više općina koje su urbano i teritorijalno povezane svakodnevnim potrebama građana, formira se grad kao jedinica lokalne uprave i samouprave, u skladu sa federalnim zakonom.",
+      "Odgovornosti grada obuhvataju:",
+      "a) finansije i poreznu politiku, u skladu sa federalnim i kantonalnim zakonima,",
+      "b) zajedničku infrastrukturu,",
+      "c) urbanističko planiranje,",
+      "d) javni promet,",
+      "e) druge nadležnosti koje gradu povjeri kanton, odnosno koje prenesu općine.",
+      "(2) Grad ima statut koji mora biti u skladu sa ovim ustavom, kantonalnim ustavom i kantonalnim zakonodavstvom.",
+      "(3) Grad ima gradsko vijeće, čiji sastav čini jednak broj vijećnika iz svake općine, a broj vijećnika, postupak izbora i trajanje mandata utvrđuje se statutom.",
+      "Gradsko vijeće ne može imati manje od 15, a niti više od 30 vijećnika.",
+      "(4) Gradsko vijeće:",
+      "a) priprema i dvotrećinskom većinom usvaja statut grada,",
+      "b) bira gradonačelnika,",
+      "c) donosi budžet grada,",
+      "d) donosi propise u izvršavanju prenesenih ovlaštenja i vrši druga ovlaštenja utvrđena statutom.",
+      "(5) Odgovornost gradonačelnika je:",
+      "a) imenovanje i smjenjivanje gradskih funkcionera,",
+      "b) provođenje gradske politike i izvršavanja gradskih propisa,",
+      "c) osiguranje saradnje gradskih funkcionera sa obudsmenima,",
+      "d) podnošenje izvještaja gradskom vijeću i javnosti o provođenju gradske politike.",
+      "(6) Grad ostvaruje prihode oporezivanjem, zaduživanjem i na drugi način, u skladu sa zakonom."
+    ]
+  },
+  {
+    "clan_broj": 17,
+    "naslov": "AMANDMAN XVII",
+    "tekst": "Član VII.1. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"Međunarodni odnosi Federacije moraju biti u skladu sa međunarodnim subjektivitetom, teritorijalnim integritetom i kontinuitetom Bosne i Hercegovine.\"",
+    "segmenti": [
+      "Član VII.1. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"Međunarodni odnosi Federacije moraju biti u skladu sa međunarodnim subjektivitetom, teritorijalnim integritetom i kontinuitetom Bosne i Hercegovine.\""
+    ]
+  },
+  {
+    "clan_broj": 18,
+    "naslov": "AMANDMAN XVIII",
+    "tekst": "Član VII.3. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"Međunarodni ugovori i drugi sporazumi koji su na snazi u Bosni i Hercegovini i Federaciji, te opća pravila međunarodnog prava čine dio zakonodavstva Federacije. U slučaju nesaglasnosti međunarodnog ugovora, odnosno sporazuma i zakonodavstva, preovladava međunarodni ugovor, odnosno sporazum.\"",
+    "segmenti": [
+      "Član VII.3. Ustava Federacije Bosne i Hercegovine mijenja se i glasi:",
+      "Međunarodni ugovori i drugi sporazumi koji su na snazi u Bosni i Hercegovini i Federaciji, te opća pravila međunarodnog prava čine dio zakonodavstva Federacije.",
+      "U slučaju nesaglasnosti međunarodnog ugovora, odnosno sporazuma i zakonodavstva, preovladava međunarodni ugovor, odnosno sporazum."
+    ]
+  },
+  {
+    "clan_broj": 19,
+    "naslov": "AMANDMAN XIX",
+    "tekst": "Član VII.4. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"(1) Sporazume sa državama i međunarodnim organizacijama potpisuje i ratifikuje u ime Federacije predsjednik Federacije. Oni stupaju na snagu u Federaciji samo ako ih odobri Parlament Federacije uz prethodnu saglasnost Parlamentarne skupštine Bosne i Hercegovine, osim ako Parlament Federacije, odnosno Parlamentarna skupština Bosne i Hercegovine nisu svojim zakonom predvidjeli da za takve vrste međunarodnih sporazuma nije potrebna takva saglasnost. (2) Predsjednik Federacije, na prijedlog premijera, može otkazati međunarodne sporazume ukoliko mu to dopusti Parlamentarna skupština Bosne i Hercegovine, a dužan je tako postupiti kad to zahtijeva Parlament Federacije uz saglasnost ili po zahtjevu Parlamentarne skupštine Bosne i Hercegovine. \"",
+    "segmenti": [
+      "Član VII.4. Ustava Federacije Bosne i Hercegovine mijenja se i glasi:",
+      "(1) Sporazume sa državama i međunarodnim organizacijama potpisuje i ratifikuje u ime Federacije predsjednik Federacije. Oni stupaju na snagu u Federaciji samo ako ih odobri Parlament Federacije uz prethodnu saglasnost Parlamentarne skupštine Bosne i Hercegovine, osim ako Parlament Federacije, odnosno Parlamentarna skupština Bosne i Hercegovine nisu svojim zakonom predvidjeli da za takve vrste međunarodnih sporazuma nije potrebna takva saglasnost.",
+      "(2) Predsjednik Federacije, na prijedlog premijera, može otkazati međunarodne sporazume ukoliko mu to dopusti Parlamentarna skupština Bosne i Hercegovine, a dužan je tako postupiti kad to zahtijeva Parlament Federacije uz saglasnost ili po zahtjevu Parlamentarne skupštine Bosne i Hercegovine."
+    ]
+  },
+  {
+    "clan_broj": 20,
+    "naslov": "AMANDMAN XX",
+    "tekst": "Član IX.2.(1)c) Ustava Federacije Bosne i Hercegovine briše se.",
+    "segmenti": [
+      "Član IX.2.(1)c) Ustava Federacije Bosne i Hercegovine briše se."
+    ]
+  },
+  {
+    "clan_broj": 21,
+    "naslov": "AMANDMAN XXI",
+    "tekst": "Član IX.4.(1) Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"(1) Prvi izbori za Predstavnički dom, Dom naroda, kantonalna i zakonodavna tijela i općinska vijeća održat će se u skladu sa Aneksom III Općeg okvirnog sporazuma. Kasniji izbori odvijat će se po izbornim zakonima koje donese Parlament Federacije.\" Tekst pod (3) mijenja se i glasi: \"(3) Nijedna osoba koja izdržava kaznu izrečenu od strane Međunarodnog suda za bivšu Jugoslaviju i nijedna osoba koja je optužena od strane Međunarodnog suda za bivšu Jugoslaviju, a koja se ne pojavi pred Sudom po njegovom pozivu, ne može se kandidovati ili vršiti imenovanu, izbornu ili neku drugu javnu funkciju na teritoriji Federacije.\"",
+    "segmenti": [
+      "Član IX.4.(1) Ustava Federacije Bosne i Hercegovine mijenja se i glasi:",
+      "(1) Prvi izbori za Predstavnički dom, Dom naroda, kantonalna i zakonodavna tijela i općinska vijeća održat će se u skladu sa Aneksom III Općeg okvirnog sporazuma.",
+      "Kasniji izbori odvijat će se po izbornim zakonima koje donese Parlament Federacije.",
+      "Tekst pod (3) mijenja se i glasi:",
+      "(3) Nijedna osoba koja izdržava kaznu izrečenu od strane Međunarodnog suda za bivšu Jugoslaviju i nijedna osoba koja je optužena od strane Međunarodnog suda za bivšu Jugoslaviju, a koja se ne pojavi pred Sudom po njegovom pozivu, ne može se kandidovati ili vršiti imenovanu, izbornu ili neku drugu javnu funkciju na teritoriji Federacije."
+    ]
+  },
+  {
+    "clan_broj": 22,
+    "naslov": "AMANDMAN XXII",
+    "tekst": "Član IX.10. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"Ovaj ustav primjenjuje se u općinama grada Mostara i gradu Mostaru dok je pod upravom Evropske unije, ako drugačije ne odluči upravitelj Evropske unije, koji ne smije odstupiti od poglavlja II o ljudskim pravima i temeljnim slobodama. Predsjednik Federacije za vrijeme uprave Evropske unije konsultuje se sa upraviteljem u pogledu olakšavanja pune primjene ovog ustava u gradu Mostaru čim se to vrijeme okonča.\"",
+    "segmenti": [
+      "Član IX.10. Ustava Federacije Bosne i Hercegovine mijenja se i glasi:",
+      "Ovaj ustav primjenjuje se u općinama grada Mostara i gradu Mostaru dok je pod upravom Evropske unije, ako drugačije ne odluči upravitelj Evropske unije, koji ne smije odstupiti od poglavlja II o ljudskim pravima i temeljnim slobodama.",
+      "Predsjednik Federacije za vrijeme uprave Evropske unije konsultuje se sa upraviteljem u pogledu olakšavanja pune primjene ovog ustava u gradu Mostaru čim se to vrijeme okonča."
+    ]
+  },
+  {
+    "clan_broj": 23,
+    "naslov": "AMANDMAN XXIII",
+    "tekst": "Član IX.11. Ustava Federacije Bosne i Hercegovine mijenja se i glasi: \"(1) Ustavotvorna skupština Federacije koju čine poslanici Skupštine Republike Bosne i Hercegovine izabrani na izborima 1990. godine nastavlja sa radom do konstituisanja Parlamenta Federacije u skladu sa Aneksom III i IV Općeg okvirnog sporazuma. (2) U periodu do konstituisanja Predsjedništva Bosne i Hercegovine u skladu sa Aneksom III i IV Općeg okvirnog sporazuma, civilno komandovanje Armijom Bosne i Hercegovine, uključujući i imenovanje vojnih oficira, vršit će Predsjednik Predsjedništva Bosne i Hercegovine, a civilno zapovjedanje Hrvatskim vijećem obrane, uključujući i imenovanje vojnih časnika vršit će Predsjednik ili Potpredsjednik Federacije koji je iz reda hrvatskog naroda. (3) Dok se ne izaberu federalni, kantonalni i općinski funkcioneri u prijelaznom periodu u skladu sa članom IX.3. sadašnji administrativni aranžmani ostat će na snazi u okviru Federacije, osim u općinama grada Mostara i gradu Mostaru kojim će upravljati upravitelj Evropske unije u periodu o kojem se dogovore Evropska unija i Predsjednik i Dopredsjednik Federacije.\"",
+    "segmenti": [
+      "Član IX.11. Ustava Federacije Bosne i Hercegovine mijenja se i glasi:",
+      "(1) Ustavotvorna skupština Federacije koju čine poslanici Skupštine Republike Bosne i Hercegovine izabrani na izborima 1990. godine nastavlja sa radom do konstituisanja Parlamenta Federacije u skladu sa Aneksom III i IV Općeg okvirnog sporazuma.",
+      "(2) U periodu do konstituisanja Predsjedništva Bosne i Hercegovine u skladu sa Aneksom III i IV Općeg okvirnog sporazuma, civilno komandovanje Armijom Bosne i Hercegovine, uključujući i imenovanje vojnih oficira, vršit će Predsjednik Predsjedništva Bosne i Hercegovine, a civilno zapovjedanje Hrvatskim vijećem obrane, uključujući i imenovanje vojnih časnika vršit će Predsjednik ili Potpredsjednik Federacije koji je iz reda hrvatskog naroda.",
+      "(3) Dok se ne izaberu federalni, kantonalni i općinski funkcioneri u prijelaznom periodu u skladu sa članom IX.3. sadašnji administrativni aranžmani ostat će na snazi u okviru Federacije, osim u općinama grada Mostara i gradu Mostaru kojim će upravljati upravitelj Evropske unije u periodu o kojem se dogovore Evropska unija i Predsjednik i Dopredsjednik Federacije."
+    ]
+  },
+  {
+    "clan_broj": 24,
+    "naslov": "AMANDMAN XXIV",
+    "tekst": "U Aneksu Ustava Federacije Bosne i Hercegovine, iza tačke 21. dodaje se nova tačka 22. koja glasi: \"22. Okvirna konvencija za zaštitu nacionalnih manjina iz 1994.\"",
+    "segmenti": [
+      "U Aneksu Ustava Federacije Bosne i Hercegovine, iza tačke 21. dodaje se nova tačka 22. koja glasi:",
+      "22. Okvirna konvencija za zaštitu nacionalnih manjina iz 1994."
+    ]
+  },
+  {
+    "clan_broj": 25,
+    "naslov": "AMANDMAN XXV",
+    "tekst": "U Ustavu Federacije Bosne i Hercegovine, iza poglavlja \"VI.A. Gradske vlasti\" iza tačke (1) dodaje se nova tačka (2) koja glasi: \"Sjedište kantona s posebnim režimom organizovat će se na osnovu istih principa\". Tač. 2. i 3. postaju tač. 3. i 4., a iza nove tačke 4. iza stava 2. dodaje se novi stav koji glasi: \"U slučaju Grada Mostara Gradsko vijeće nastavit će raditi sa postojećim brojem vijećnika, s tim da će se broj vijećnika uskladiti sa odredbama prethodnog stava najkasnije do slijedećih lokalnih izbora. Ostale specifičnosti Grada Mostara uzet će se u obzir prilikom određivanja broja vijećnika i postupka za njihov izbor\". Dosadašnje tač. 4, 5. i 6. postaju tač. 5, 6. i 7.",
+    "segmenti": [
+      "U Ustavu Federacije Bosne i Hercegovine, iza poglavlja \"VI.A. Gradske vlasti\" iza tačke (1) dodaje se nova tačka (2) koja glasi:",
+      "Sjedište kantona s posebnim režimom organizovat će se na osnovu istih principa.",
+      "Tač. 2. i 3. postaju tač. 3. i 4., a iza nove tačke 4. iza stava 2. dodaje se novi stav koji glasi:",
+      "U slučaju Grada Mostara Gradsko vijeće nastavit će raditi sa postojećim brojem vijećnika, s tim da će se broj vijećnika uskladiti sa odredbama prethodnog stava najkasnije do slijedećih lokalnih izbora.",
+      "Ostale specifičnosti Grada Mostara uzet će se u obzir prilikom određivanja broja vijećnika i postupka za njihov izbor.",
+      "Dosadašnje tač. 4, 5. i 6. postaju tač. 5, 6. i 7."
+    ]
+  },
+  {
+    "clan_broj": 26,
+    "naslov": "AMANDMAN XXVI",
+    "tekst": "U Ustavu Federacije Bosne i Hercegovine, iza poglavlja VI.A. \"Gradske vlasti\" dodaje se novo poglavlje, koje glasi: \"VI.B. Organizacija Sarajevo 1. U Kantonu Sarajevo osniva se Grad Sarajevo kao jedinica lokalne samouprave. Ustavom Kantona Sarajevo bit će uređeno koje općine ulaze u sastav Grada Sarajeva. 2. Sastav i način odlučivanja organa Grada Sarajeva održava multietničnost i posebnost Grada Sarajeva kao glavnog grada. 3. Nadležnost, organizaciona struktura i način odlučivanja organa Grada Sarajeva utvrđuju se Ustavom Kantona, kantonalnim zakonima i Statutom Grada, u skladu sa ovim ustavom.\"",
+    "segmenti": [
+      "U Ustavu Federacije Bosne i Hercegovine, iza poglavlja VI.A. \"Gradske vlasti\" dodaje se novo poglavlje, koje glasi:",
+      "VI.B. Organizacija Sarajevo",
+      "1. U Kantonu Sarajevo osniva se Grad Sarajevo kao jedinica lokalne samouprave.",
+      "Ustavom Kantona Sarajevo bit će uređeno koje općine ulaze u sastav Grada Sarajeva.",
+      "2. Sastav i način odlučivanja organa Grada Sarajeva održava multietničnost i posebnost Grada Sarajeva kao glavnog grada.",
+      "3. Nadležnost, organizaciona struktura i način odlučivanja organa Grada Sarajeva utvrđuju se Ustavom Kantona, kantonalnim zakonima i Statutom Grada, u skladu sa ovim ustavom."
     ]
   }
 ]
