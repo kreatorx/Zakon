@@ -188,22 +188,35 @@
         </main>
     </div>
 
-    <div id="member-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[85vh] flex flex-col border border-gray-300">
-            <div class="p-3 border-b flex justify-between items-center bg-gray-50">
-                <div id="modal-header-info">
-                    <span id="modal-badge" class="text-[10px] font-bold uppercase bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded"></span>
-                    <h2 id="modal-title" class="text-sm font-bold text-gray-900 mt-1"></h2>
-                </div>
-                <button onclick="zatvoriModal()" class="text-gray-400 hover:text-gray-600 p-1 text-base"><i class="fa-solid fa-xmark"></i></button>
+    <div id="member-modal" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden" onclick="zatvoriModal()">
+    
+    <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden border border-gray-100 transition-all duration-200" onclick="event.stopPropagation()">
+        
+        <div class="px-5 py-3.5 border-b border-gray-100 flex items-center justify-between bg-gray-50/80">
+            <div class="flex items-center gap-2.5 min-w-0">
+                <span id="modal-badge" class="px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-100 text-[10px] font-bold rounded uppercase tracking-wider shrink-0">
+                    </span>
+                <h3 id="modal-title" class="text-xs font-bold text-gray-900 truncate">
+                    </h3>
             </div>
-            <div id="modal-body-content" class="p-4 overflow-y-auto text-sm text-gray-700 space-y-2 leading-relaxed"></div>
-            <div class="p-2.5 border-t bg-gray-50 flex justify-between items-center text-[11px] text-gray-400">
-                <span id="modal-footer-law"></span>
-                <button id="modal-print-btn" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded font-medium flex items-center gap-1 text-xs"></button>
-            </div>
+            
+            <button onclick="zatvoriModal()" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-200/60 transition-colors shrink-0">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
         </div>
+
+        <div id="modal-body-content" class="px-6 py-5 overflow-y-auto flex-grow text-gray-800 text-[11.5px] leading-relaxed">
+            </div>
+
+        <div class="px-5 py-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between gap-2 shrink-0">
+            <div id="modal-footer-law" class="text-[10px] text-gray-400 font-medium truncate max-w-[60%]">
+                </div>
+            <button id="modal-print-btn" class="transition-colors">
+                </button>
+        </div>
+
     </div>
+</div>
 
     <script>
         // Korigovani nazivi fajlova koji odgovaraju tvom Git serveru (bez razmaka)
@@ -447,60 +460,57 @@ function otvoriModal(idSistema) {
     const clan = sviZakonPodaci.find(c => c.id_sistema === idSistema);
     if (!clan) return;
 
-    document.getElementById('modal-badge').innerText = clan.broj_clana;
-    document.getElementById('modal-title').innerText = clan.naziv_clana;
+    document.getElementById('modal-badge').innerText = `Član ${clan.broj_clana}`;
+    document.getElementById('modal-title').innerText = clan.naziv_clana || `Član ${clan.broj_clana}`;
     document.getElementById('modal-footer-law').innerText = clan.naziv_zakona;
 
     const bodyContainer = document.getElementById('modal-body-content');
     
-    // --- STRUKTURIRANO RENDEROVANJE SEGMENATA ---
+    // --- GENERISANJE STRUKTURIRANOG TEKSTA ---
     let htmlSadrzaj = '';
 
     if (clan.segmenti && clan.segmenti.length > 0) {
         clan.segmenti.forEach(segment => {
-            // Čistimo višestruke razmake i skrivene prelaze ako su igdje preostali
             const tekst = segment.replace(/\s+/g, ' ').trim();
             if (!tekst) return;
 
-            // 1. Provjera za slovne podtačke: a), b), c)... ili a., b., c....
+            // Provjera da li segment počinje slovnom podtačkom (npr. a), b), c)...)
             const jeSlovnaPodtacka = /^[a-zžšđčć][\)|.]/i.test(tekst);
 
             if (jeSlovnaPodtacka) {
-                // Razdvajamo oznaku stavke (npr. "a)") od samog teksta radi ljepšeg naglaska i poravnanja
+                // Izvlačimo podtačku (npr. "a)") i čistimo je od teksta radi ljepšeg poravnanja u koloni
                 const ugradjenaOznaka = tekst.match(/^([a-zžšđčć][\)|.])(.*)/i);
                 if (ugradjenaOznaka) {
                     htmlSadrzaj += `
-                        <div class="pl-6 text-gray-700 text-[13px] leading-relaxed mb-2.5 flex items-start gap-1.5">
-                            <span class="font-bold text-blue-700 shrink-0 min-w-[20px] text-right">${ugradjenaOznaka[1]}</span>
-                            <span class="font-normal text-gray-800">${ugradjenaOznaka[2].trim()}</span>
+                        <div class="pl-5 mb-2 flex items-start gap-2">
+                            <span class="font-bold text-blue-700 shrink-0 min-w-[20px]">${ugradjenaOznaka[1]}</span>
+                            <span class="text-gray-700">${ugradjenaOznaka[2].trim()}</span>
                         </div>`;
                 } else {
-                    htmlSadrzaj += `<p class="pl-6 text-gray-800 text-[13px] leading-relaxed mb-2.5 font-normal">${tekst}</p>`;
+                    htmlSadrzaj += `<p class="pl-5 mb-2 text-gray-700">${tekst}</p>`;
                 }
             } else {
-                // 2. Glavni stavovi (npr. (1), (2), naslovi poglavlja ili obični pasusi)
-                // Dajemo im blago tamniji i izraženiji font kako bi se razlikovali od nabrajanja
-                htmlSadrzaj += `<p class="font-medium text-gray-950 text-[13.5px] leading-relaxed mb-4">${tekst}</p>`;
+                // Glavni stavovi poput (1), (2) ili uvodnog teksta člana
+                htmlSadrzaj += `<p class="font-medium text-gray-950 mb-3.5">${tekst}</p>`;
             }
         });
     } else {
-        // Fallback u slučaju da neki član u bazi uopšte nema niz segmenti
+        // Fallback ako u bazi ne postoji segmenti niz
         const fallbackTekst = clan.sadrzaj_html || clan.tekst || "";
-        htmlSadrzaj = `<p class="text-gray-800 text-[13.5px] leading-relaxed whitespace-pre-line">${fallbackTekst}</p>`;
+        htmlSadrzaj = `<p class="whitespace-pre-line text-gray-800">${fallbackTekst}</p>`;
     }
 
-    // Upisivanje našeg novog, formatiranog HTML-a
     bodyContainer.innerHTML = htmlSadrzaj;
 
     // --- LOGIKA ZA DUGME ZA ŠTAMPU (Tvoj originalni kod) ---
     const printBtn = document.getElementById('modal-print-btn');
     
     if (listaZaPrint.some(c => c.id_sistema === idSistema)) {
-        printBtn.className = "bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded font-medium flex items-center gap-1 text-xs";
+        printBtn.className = "bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded font-medium flex items-center gap-1 text-[11px]";
         printBtn.innerHTML = `<i class="fa-solid fa-trash"></i> Ukloni iz štampe`;
         printBtn.setAttribute('onclick', `ukloniIzPrinta('${clan.id_sistema}'); otvoriModal('${clan.id_sistema}');`);
     } else {
-        printBtn.className = "bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded font-medium flex items-center gap-1 text-xs";
+        printBtn.className = "bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded font-medium flex items-center gap-1 text-[11px]";
         printBtn.innerHTML = `<i class="fa-solid fa-print"></i> Dodaj za štampu`;
         printBtn.setAttribute('onclick', `dodajUPrint('${clan.id_sistema}'); otvoriModal('${clan.id_sistema}'); event.stopPropagation();`);
     }
