@@ -578,47 +578,65 @@
     document.getElementById('ai-response-box').classList.add('hidden');
     document.getElementById('laws-container').innerHTML = '';
 
-const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
-         const listaClanovaZaAnalizu = aktivniZakoniPodaci.map(clan => {
+    // --- PAMETNI LOKALNI RAG FILTER ZA PROMPT ---
+    // Rastavljamo problem na ključne riječi duže od 3 slova (npr. "psihičko", "nasilje")
+    const kljucneRijeci = problemText.toLowerCase()
+                                      .replace(/[,./?!(;)]/g, '')
+                                      .split(' ')
+                                      .filter(rijec => rijec.length > 3);
+
+    // Filtriramo lokalnu bazu samo za selektovane zakone
+    const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
+    
+    // Izdvajamo samo članove koji stvarno sadrže neku od ključnih riječi u tekstu ili naslovu
+    let filtriranaListaZaPrompt = aktivniZakoniPodaci.filter(clan => {
+        const tekstClana = (clan.tekst || "").toLowerCase();
+        const naslovClana = (clan.naslov || "").toLowerCase();
+        
+        // Član prolazi ako se bilo koja ključna riječ nalazi u njemu
+        return kljucneRijeci.some(rijec => tekstClana.includes(rijec) || naslovClana.includes(rijec));
+    });
+
+    // Rezervna opcija: Ako nijedan član ne sadrži te riječi, uzmi prvih 30 da prompt ne bude prazan
+    if (filtriranaListaZaPrompt.length === 0) {
+        filtriranaListaZaPrompt = aktivniZakoniPodaci.slice(0, 30);
+    }
+
+    // Mapiramo u čist i kompaktan niz koji šaljemo AI-ju
+    const listaClanovaZaAnalizu = filtriranaListaZaPrompt.map(clan => {
         return {
             zakon: clan.naziv_zakona,
-            clan: String(clan.broj_clana).trim()
+            clan: String(clan.broj_clana).trim(),
+            naslov: clan.naslov || ""
         };
     });
-         
-    // Agresivan sistemski prompt koji prisiljava model na websearch i čist JSON bez naracije
+
+    // Moćan sistemski prompt sa strogo filtriranim članovima
     const sistemskiPrompt = `
     Ti si napredni pravni asistent za zakonodavstvo Federacije Bosne i Hercegovine.
     Prije analize problema obavezno zaboravi prethodnu memoriju.
-
-[STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
-    U nastavku ti dostavljam tačan niz svih dostupnih članova i zakona koji se nalaze u našoj lokalnoj bazi podataka. 
-    Tvoj glavni zadatak je da analiziraš pravni problem korisnika i uporediš ga sa ovim nizom. Članovi koje predložiš u polju "clan" MORAJU postojati u ovom nizu i biti napisani u identičnom formatu (npr. "Član 2", "1" ili "1a" - zavisno kako je navedeno niže):
+    
+    [STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
+    U nastavku ti dostavljam filtriranu listu članova iz naše lokalne baze podataka koji su relevantni za korisnikov problem.
+    Tvoj izlazni JSON u polju "clan" MORA pratiti identičan naziv i format (uključujući i slova poput 181b, 1a ako postoje) iz ove liste:
     
     ${JSON.stringify(listaClanovaZaAnalizu)}
     
     ZADATAK:
-    1. OBAVEZNO koristi alat za pretragu veba (web_search) da istražiš članove za sljedeće zakone: ${selektovaniZakoni.join(', ')}.
-    2. Analiziraj pravni problem korisnika i pronađi tačne članove koji ga rješavaju.
-    3. Numeraciju članova potraži na ovim linkovima: 
-        https://raw.githubusercontent.com/kreatorx/Zakon/main/krivicni_zakon_fbih.json
-        https://raw.githubusercontent.com/kreatorx/Zakon/main/ustav_fbih.json
-        https://raw.githubusercontent.com/kreatorx/Zakon/main/kleveta_fbih.json
-        https://raw.githubusercontent.com/kreatorx/Zakon/main/diskriminacija_fbih.json
+    1. OBAVEZNO koristi alat za pretragu veba (web_search) da dodatno istražiš i potvrdiš članove za selektovane zakone: ${selektovaniZakoni.join(', ')}.
+    2. Analiziraj pravni problem korisnika i pronađi tačne članove koji ga rješavaju, držeći se liste iznad kao apsolutnog prioriteta.
     
     STROGO PRAVILO ZA FORMAT:
     Vrati ODGOVOR ISKLJUČIVO KAO VALIDAN JSON OBJEKAT. Nemoj pisati uvod, objašnjenja van JSON-a, niti markdown oznake poput \`\`\`json.
     
     STRUKTURA ODGOVORA:
     {
-        "objasnjenje": "Detaljno pravno obrazloženje i savjet na bosanskom jeziku...",
+        "objasnjenje": "Detaljno pravno obrazloženje i savjet klijentu na bosanskom jeziku...",
         "predlozeni_clanovi": [
-            {"zakon": "Zakon o zabrani diskriminacije", "clan": "Član 2"},
-            {"zakon": "Krivični Zakon FBiH", "clan": "Član 286"}
+            {"zakon": "Krivični Zakon FBiH", "clan": "181b"}
         ]
     }
     `;
-
     try {
         // Vraćamo standardnu strukturu tijela koju tvoj API proxy na Vercelu očekuje
         const response = await fetch(AI_API_URL, {
