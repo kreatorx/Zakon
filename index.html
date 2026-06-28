@@ -578,66 +578,73 @@
     document.getElementById('ai-response-box').classList.add('hidden');
     document.getElementById('laws-container').innerHTML = '';
 
-    // --- PAMETNI LOKALNI RAG FILTER ZA CIJELU BAZU ---
-    // Rastavljamo problem na ključne riječi duže od 3 slova (npr. "psihičko", "nasilje")
-    // Takođe dodajemo i korijene riječi radi fleksibilnosti (npr. "nasilj", "psihi")
-    const kljucneRijeci = problemText.toLowerCase()
-                                      .replace(/[,./?!(;)]/g, '')
-                                      .split(' ')
-                                      .filter(rijec => rijec.length > 3)
-                                      .map(rijec => rijec.substring(0, 5)); // Uzimamo korijen riječi od 5 slova
-
-    // Filtriramo lokalnu bazu samo za zakone koje je korisnik označio kvačicom
+    // --- INTEGRACIJA KLASIČNE PRETRAGE U RAG PROMPT ---
+    const pojamPretrage = problemText.toLowerCase().trim();
     const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
-    
-    // Pretražujemo CIJELI tekst i naslov svakog člana u bazi
+
+    // Simuliramo tvoju klasičnu pretragu nad cijelom bazom u pozadini
     let filtriranaListaZaPrompt = aktivniZakoniPodaci.filter(clan => {
-        const tekstClana = (clan.tekst || "").toLowerCase();
+        const stvarniBrojClana = String(clan.broj_clana || clan.clan_broj || "").toLowerCase();
         const naslovClana = (clan.naslov || "").toLowerCase();
+        const tekstClana = (clan.tekst || "").toLowerCase();
+
+        // 1. Provjera da li je korisnik direktno upisao broj člana (npr. "181b")
+        const poklapaSeBroj = stvarniBrojClana.includes(pojamPretrage);
         
-        // Član prolazi ako se korijen bilo koje ključne riječi nalazi u njegovom tekstu ili naslovu
-        return kljucneRijeci.some(rijec => tekstClana.includes(rijec) || naslovClana.includes(rijec));
+        // 2. Provjera da li se pojam nalazi u naslovu ili tekstu člana
+        const poklapaSeTekst = naslovClana.includes(pojamPretrage) || tekstClana.includes(pojamPretrage);
+
+        return poklapaSeBroj || poklapaSeTekst;
     });
 
-    // Ako je pretraga uspješno pronašla specifične članove (npr. 181b), uzimamo ih.
-    // Ako nije našla ništa, TEK ONDA uzimamo prvih 20 članova kao rezervu da prompt ne bude prazan.
+    // Fallback: Ako klasična pretraga ne pronađe ništa (kompleksan opis problema),
+    // rastavljamo tekst na pojedinačne riječi i tražimo djelomične pogotke
     if (filtriranaListaZaPrompt.length === 0) {
-        filtriranaListaZaPrompt = aktivniZakoniPodaci.slice(0, 20);
-    } else {
-        // Ako je našlo previše članova, ograničavamo na top 40 najrelevantnijih da ne preopteretimo prompt
-        filtriranaListaZaPrompt = filtriranaListaZaPrompt.slice(0, 40);
+        const rijeci = pojamPretrage.split(' ').filter(r => r.length > 3).map(r => r.substring(0, 5));
+        if (rijeci.length > 0) {
+            filtriranaListaZaPrompt = aktivniZakoniPodaci.filter(clan => {
+                const tekst = (clan.tekst || "").toLowerCase();
+                const naslov = (clan.naslov || "").toLowerCase();
+                return rijeci.some(r => tekst.includes(r) || naslov.includes(r));
+            });
+        }
     }
 
-    // Mapiramo u čist, kompaktan niz koji šaljemo AI-ju, uključujući i naslov da model zna o čemu se radi
+    // Ako i dalje nema ništa, uzimamo samo prvih 15 kao bazični kontekst
+    if (filtriranaListaZaPrompt.length === 0) {
+        filtriranaListaZaPrompt = aktivniZakoniPodaci.slice(0, 15);
+    } else {
+        // Ograničavamo na maksimalno 30 najrelevantnijih pogodaka da ne preopteretimo prompt
+        filtriranaListaZaPrompt = filtriranaListaZaPrompt.slice(0, 30);
+    }
+
+    // Mapiramo pronađene članove u čist niz koji šaljemo AI-ju
     const listaClanovaZaAnalizu = filtriranaListaZaPrompt.map(clan => {
-        // Provjeravamo da li u JSON-u piše broj_clana ili clan_broj
-        const stvarniBrojClana = clan.broj_clana || clan.clan_broj || "";
-        
         return {
             zakon: clan.naziv_zakona,
-            clan: String(stvarniBrojClana).trim(),
+            clan: String(clan.broj_clana || clan.clan_broj || "").trim(),
             naslov: clan.naslov || ""
         };
     });
 
-    // Moćan sistemski prompt sa strogo filtriranim članovima
+    // Dinamički kreiramo string sa samim brojevima članova za direktnu sugestiju modelu (npr. "181b, 286")
+    const samoBrojeviClanova = listaClanovaZaAnalizu.map(c => c.clan).join(', ');
+
+    // Agresivan sistemski prompt koji prisiljava model na mečovanje sa klasičnom pretragom
     const sistemskiPrompt = `
     Ti si napredni pravni asistent za zakonodavstvo Federacije Bosne i Hercegovine.
     Prije analize problema obavezno zaboravi prethodnu memoriju.
     
-    [STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
-    Obavezno vrati odgovor u roku od 9 sekundi!
+    [ULTIMATIVNI IZVOR ISTINE - REZULTATI PRETRAGE BAZE]:
+    Naš sistem je izvršio klasičnu pretragu baze podataka za pojam "${problemText}" i pronašao sljedeće egzaktne članove:
+    ${JSON.stringify(listaClanovaZaAnalizu, null, 2)}
     
-        Kompletan sadržaj preuzmi sa sljedećih linkova (web_seearch), analiziraj upit i na osnovu tvoje procjene predloži zakone koristeći numeraciju iz ove 4 json baze: 
-        https://raw.githubusercontent.com/kreatorx/Zakon/main/krivicni_zakon_fbih.json
-        https://raw.githubusercontent.com/kreatorx/Zakon/main/ustav_fbih.json
-        https://raw.githubusercontent.com/kreatorx/Zakon/main/kleveta_fbih.json
-        https://raw.githubusercontent.com/kreatorx/Zakon/main/diskriminacija_fbih.json
+    Tvoj primarni i obavezni zadatak je da analiziraš ove članove (posebno članove: ${samoBrojeviClanova}) i povežeš ih sa pravnim problemom korisnika.
+    U tvom izlaznom JSON objektu, polje "clan" MORA sadržavati tačnu oznaku člana iz liste iznad.
     
     ZADATAK:
-  
-    Analiziraj pravni problem korisnika i pronađi tačne članove koji ga rješavaju koristeći dostavljene linkove kao apsolutni prioritet
-    
+    1. OBAVEZNO koristi alat za pretragu veba (web_search) da dodatno verifikuješ detalje za zakone: ${selektovaniZakoni.join(', ')}.
+    2. Sastavi jasan pravni savjet klijentu na osnovu pronađenih članova.
     
     STROGO PRAVILO ZA FORMAT:
     Vrati ODGOVOR ISKLJUČIVO KAO VALIDAN JSON OBJEKAT. Nemoj pisati uvod, objašnjenja van JSON-a, niti markdown oznake poput \`\`\`json.
