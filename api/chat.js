@@ -1,6 +1,5 @@
 export default async function handler(req, res) {
 
-export default async function handler(req, res) {
   console.log('=== CHAT HANDLER POZVAN ===');
   console.log('Metoda:', req.method);
   console.log('URL:', req.url);
