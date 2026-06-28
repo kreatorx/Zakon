@@ -25,68 +25,108 @@ export default async function handler(req, res) {
     if (izabraniModel.includes('gemini')) {
       const geminiKey = process.env.GEMINI_API_KEY;
       if (!geminiKey) {
-        return res.status(500).json({ error: 'GEMINI_API_KEY nije podešen u Vercel Environment Variables.' });
+        return res.status(500).json({ 
+          error: 'GEMINI_API_KEY nije podešen u Vercel Environment Variables.' 
+        });
       }
 
-      // SIGURNO IZVLAČENJE ZADNJE PORUKE (izbjegavamo pucanje ako je niz čudan)
-      let zadnjaPoruka = "Zdravo";
-      if (Array.isArray(messages) && messages.length > 0) {
-        const lastMsg = messages[messages.length - 1];
-        zadnjaPoruka = typeof lastMsg === 'string' ? lastMsg : (lastMsg.content || lastMsg.text || "");
+      // Konverzija OpenAI formata u Gemini format
+      const geminiContents = [];
+      let systemInstruction = "";
+
+      for (const msg of messages) {
+        if (msg.role === 'system') {
+          systemInstruction = msg.content;
+        } else {
+          // Gemini koristi 'model' umjesto 'assistant'
+          const role = msg.role === 'assistant' ? 'model' : 'user';
+          geminiContents.push({
+            role: role,
+            parts: [{ text: msg.content }]
+          });
+        }
       }
 
-      // Sigurno izvlačenje sistemske poruke
-      let sistemPoruka = "Ti si pravni AI asistent. Odgovori na pitanje isključivo na osnovu priloženog konteksta zakona FBiH kroz jasne pasuse.";
-      if (Array.isArray(messages)) {
-        const foundSystem = messages.find(m => m && m.role === 'system');
-        if (foundSystem && foundSystem.content) sistemPoruka = foundSystem.content;
+      // Default system instruction ako nije definisana
+      if (!systemInstruction) {
+        systemInstruction = "Ti si pravni AI asistent. Odgovori na pitanje isključivo na osnovu priloženog konteksta zakona FBiH kroz jasne pasuse.";
       }
 
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`;
-      
+      // Priprema payload-a
+      const payload = {
+        contents: geminiContents,
+        generationConfig: {
+          temperature: temperature || 0.7,
+          maxOutputTokens: 4096,
+          topP: 0.95,
+          topK: 40
+        }
+      };
+
+      // Dodaj system_instruction (Gemini 1.5+ feature)
+      if (systemInstruction) {
+        let systemText = systemInstruction;
+        // Ako je tražen JSON response, dodaj instrukciju u system prompt
+        if (response_format?.type === 'json_object') {
+          systemText += "\n\nVAŽNO: Odgovor mora biti u validnom JSON formatu. Nemoj dodavati nikakav dodatni tekst van JSON objekta.";
+        }
+        payload.system_instruction = {
+          parts: [{ text: systemText }]
+        };
+      }
+
+      // Gemini API endpoint sa dinamičkim modelom
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${izabraniModel}:generateContent?key=${geminiKey}`;
+
       const geminiResponse = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [
-            {
-              role: 'user',
-              parts: [{ text: `${sistemPoruka}\n\nKorisničko pitanje/kontekst:\n${zadnjaPoruka}` }]
-            }
-          ],
-          generationConfig: {
-            temperature: temperature || 0.2,
-            maxOutputTokens: 1200
-          }
-        })
+        body: JSON.stringify(payload)
       });
 
-      // Ako Google vrati grešku (npr. loš API ključ), pročitaj tačno šta kaže
-      if (!geminiResponse.ok) {
-        const errDetails = await geminiResponse.text();
-        return res.status(geminiResponse.status).json({ error: 'Gemini API odbio zahtjev', details: errDetails });
-      }
-
       const geminiData = await geminiResponse.json();
-      
-      // Provjera da li struktura odgovora ima očekivane podatke prije čitanja
-      if (geminiData.candidates && geminiData.candidates[0]?.content?.parts[0]?.text) {
-        const tekstOdgovora = geminiData.candidates[0].content.parts[0].text;
 
-        // Vraćamo mapirano u OpenAI stilu
-        return res.status(200).json({
-          choices: [
-            {
-              message: {
-                role: 'assistant',
-                content: tekstOdgovora
-              }
-            }
-          ]
+      // Error handling kao OpenAI
+      if (!geminiResponse.ok) {
+        console.error('Gemini API greška:', geminiData);
+        return res.status(geminiResponse.status).json({
+          error: {
+            message: geminiData.error?.message || 'Gemini API greška',
+            type: 'gemini_error',
+            code: geminiResponse.status
+          }
         });
-      } else {
-        return res.status(500).json({ error: 'Gemini vratio neočekivan format', details: geminiData });
       }
+
+      // Ekstrakcija odgovora iz Gemini formata
+      const tekstOdgovora = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || '';
+
+      // Ako je tražen JSON, pokušaj parsirati da provjeriš validnost
+      if (response_format?.type === 'json_object') {
+        try {
+          JSON.parse(tekstOdgovora);
+        } catch (e) {
+          console.warn('Gemini nije vratio validan JSON:', tekstOdgovora);
+        }
+      }
+
+      // Response u OpenAI kompatibilnom formatu
+      return res.status(200).json({
+        choices: [{
+          message: {
+            role: 'assistant',
+            content: tekstOdgovora
+          },
+          finish_reason: 'stop',
+          index: 0
+        }],
+        usage: {
+          prompt_tokens: 0,
+          completion_tokens: 0,
+          total_tokens: 0
+        },
+        model: izabraniModel
+      });
     }
 
     // ==========================================
@@ -104,7 +144,7 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${openAiKey}`
       },
       body: JSON.stringify({
-        model: model || 'gpt-5.4',
+        model: model || 'gpt-4o-mini',
         messages,
         response_format,
         temperature
@@ -115,7 +155,11 @@ export default async function handler(req, res) {
     return res.status(openAiResponse.status).json(data);
 
   } catch (error) {
-    // Vraćamo tačan opis greške u JSON-u kako bi na klijentu odmah vidio šta je puklo
-    return res.status(500).json({ error: 'Internal Server Error', message: error.message, stack: error.stack });
+    console.error('Server greška:', error);
+    return res.status(500).json({ 
+      error: 'Internal Server Error', 
+      message: error.message, 
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined 
+    });
   }
 }
