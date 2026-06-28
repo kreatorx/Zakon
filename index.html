@@ -666,36 +666,48 @@ async function traziAI() {
 
         const data = await response.json();
         
+        // Iskačući debug ispis u konzoli - Ovdje ćemo vidjeti šta tačno server šalje!
+        console.log("Sirovi odgovor sa API servera:", data);
+        
         let cistiContent = "";
         if (data.choices && data.choices[0].message && data.choices[0].message.content) {
             cistiContent = data.choices[0].message.content.trim();
         } else if (data.output) {
             cistiContent = data.output.trim();
+        } else if (typeof data === 'string') {
+            cistiContent = data.trim();
         } else {
+            // Ako server vrati grešku zapakovanu u JSON (npr. { error: "..." })
+            if (data.error || data.message) {
+                throw new Error(`Server je vratio poruku: ${data.error || data.message}`);
+            }
             throw new Error("Format odgovora nije prepoznat.");
         }
 
-        // --- ULTRA-SIGURNI REGEX ČISTAČ SKRIVENIH KARAKTERA ---
-        const jsonMatch = cistiContent.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) {
-            throw new Error("Model uopšte nije vratio JSON strukturu.");
+        // --- SVETI GRAL ZA REGEX: Čisti markdown oznake i izoluje isključivo objekat ---
+        // Prvo uklanjamo ```json i ``` ako ih je model dodao unutar teksta
+        cistiContent = cistiContent.replace(/```json/g, '').replace(/```/g, '').trim();
+
+        // Tražimo najširi mogući opseg vitičastih zagrada
+        const prviBrace = cistiContent.indexOf('{');
+        const zadnjiBrace = cistiContent.lastIndexOf('}');
+
+        if (prviBrace === -1 || zadnjiBrace === -1 || zadnjiBrace < prviBrace) {
+            console.error("Sadržaj koji je izazvao problem:", cistiContent);
+            throw new Error("Server nije vratio validnu pravnu strukturu, nego običan tekst.");
         }
 
-        // Izvlačimo sirovi JSON i čistimo nevidljive kontrolne karaktere (bjeline, BOM, \u200b, itd.)
-        let ultraCistiJson = jsonMatch[0].trim();
-        
-        // Dodatna sanitizacija: Uklanjamo potencijalne skrivene nefunkcionalne karaktere prije prve { i poslije zadnje }
-        ultraCistiJson = ultraCistiJson.replace(/^[^{\x20-\x7E]+/g, "").replace(/[^}\x20-\x7E]+$/g, "");
+        // Izrezujemo tačan raspon od prve { do zadnje } čime eliminišemo sve kontrolne karaktere
+        let ultraCistiJson = cistiContent.substring(prviBrace, zadnjiBrace + 1).trim();
 
         let aiContent;
         try {
             aiContent = JSON.parse(ultraCistiJson);
         } catch (parseError) {
-            console.warn("Prvi pokušaj parsiranja nije uspio, pokušavam dubinsko čišćenje...", parseError);
+            console.warn("Agresivni pokušaj parsiranja nije uspio, radim hirurško čišćenje karaktera...", parseError);
             
-            // Fallback: Ako standardno čišćenje zakaže, uklanjamo sve kontrolne karaktere iz cijelog stringa
-            // osim regularnih razmaka i novih redova
-            ultraCistiJson = ultraCistiJson.replace(/[\x00-\x1F\x7F-\x9F]/g, "");
+            // Hirurški uklanjamo skrivene kontrolne karaktere i nefunkcionalne bjelina karaktere
+            ultraCistiJson = ultraCistiJson.replace(/[\u0000-\u001F\u7F-\u9F\u200B-\u200D\uFEFF]/g, "");
             aiContent = JSON.parse(ultraCistiJson);
         }
         
