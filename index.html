@@ -408,8 +408,8 @@ function prikaziClanove(clanovi, istaknutiKljucevi = []) {
         card.setAttribute('onclick', `otvoriModal('${clan.id_sistema}')`);
 
         // --- AUTOMATSKO PRELAMANJE I FORMATIRANJE SEGMENTA (a), b), 1., 2. ...) ---
-        let siroviTekst = clan.sadrzaj_html || "";
-        
+        let siroviTekst = clan.sadrzaj_html || clan.cisti_tekst || clan.tekst || "";  
+     
         // 1. Prelom za slovne oznake tipa: a) b) c) ili a. b. c. sa blagim uvlačenjem (pl-2)
         let formatiranTekst = siroviTekst.replace(/(?<=\s)([a-zžšđčć])[\)|.]\s/gi, '<br><span class="pl-2 font-semibold text-blue-800">$1) </span>');
         
