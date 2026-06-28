@@ -624,20 +624,16 @@
     
     [STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
     Obavezno vrati odgovor u roku od 9 sekundi!
-    U nastavku ti dostavljam filtriranu listu članova iz naše lokalne baze podataka koji su direktno povezani sa korisnikovim problemom.
-    Tvoj izlazni JSON u polju "clan" MORA pratiti identičan naziv i format (uključujući i slova poput 181b, 1a ako postoje) iz ove liste:
     
-    ${JSON.stringify(listaClanovaZaAnalizu, null, 2)}
-
-    Numeraciju i kompletan tekst takođe možeš verifikovati na ovim raw linkovima: 
+        Kompletan sadržaj preuzmi sa sljedećih linkova (web_seearch), analiziraj upit i na osnovu tvoje procjene predloži zakone koristeći numeraciju iz ove 4 json baze: 
         https://raw.githubusercontent.com/kreatorx/Zakon/main/krivicni_zakon_fbih.json
         https://raw.githubusercontent.com/kreatorx/Zakon/main/ustav_fbih.json
         https://raw.githubusercontent.com/kreatorx/Zakon/main/kleveta_fbih.json
         https://raw.githubusercontent.com/kreatorx/Zakon/main/diskriminacija_fbih.json
     
     ZADATAK:
-    1. OBAVEZNO koristi alat za pretragu veba (web_search) da dodatno istražiš i potvrdiš članove za selektovane zakone: ${selektovaniZakoni.join(', ')}.
-    2. Analiziraj pravni problem korisnika i pronađi tačne članove koji ga rješavaju, držeći se liste iznad kao apsolutnog prioriteta.
+  
+    Analiziraj pravni problem korisnika i pronađi tačne članove koji ga rješavaju koristeći dostavljene linkove kao apsolutni prioritet
     
     
     STROGO PRAVILO ZA FORMAT:
