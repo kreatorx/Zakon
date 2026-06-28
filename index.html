@@ -578,47 +578,42 @@
     document.getElementById('ai-response-box').classList.add('hidden');
     document.getElementById('laws-container').innerHTML = '';
 
-    // --- INTEGRACIJA KLASIČNE PRETRAGE U RAG PROMPT ---
+    // Prebacujemo unos u mala slova i čistimo razmake
     const pojamPretrage = problemText.toLowerCase().trim();
     const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
 
-    // Simuliramo tvoju klasičnu pretragu nad cijelom bazom u pozadini
-    let filtriranaListaZaPrompt = aktivniZakoniPodaci.filter(clan => {
-        const stvarniBrojClana = String(clan.broj_clana || clan.clan_broj || "").toLowerCase();
-        const naslovClana = (clan.naslov || "").toLowerCase();
-        const tekstClana = (clan.tekst || "").toLowerCase();
+    // Definišemo korijene riječi za fleksibilnost (npr. "psihi" i "nasil")
+    const rijeciKorisnika = pojamPretrage.split(' ').filter(r => r.length > 2);
+    const korijen1 = "psihi";
+    const korijen2 = "nasil";
 
-        // 1. Provjera da li je korisnik direktno upisao broj člana (npr. "181b")
-        const poklapaSeBroj = stvarniBrojClana.includes(pojamPretrage);
-        
-        // 2. Provjera da li se pojam nalazi u naslovu ili tekstu člana
-        const poklapaSeTekst = naslovClana.includes(pojamPretrage) || tekstClana.includes(pojamPretrage);
-
-        return poklapaSeBroj || poklapaSeTekst;
+    // --- KORAK 1: Članovi koji sadrže OBJE riječi (Najveći prioritet - npr. 181b) ---
+    let nivo1_oba = aktivniZakoniPodaci.filter(clan => {
+        const tekst = ((clan.tekst || "") + " " + (clan.naslov || "")).toLowerCase();
+        return rijeciKorisnika.every(rijec => tekst.includes(rijec));
     });
 
-    // Fallback: Ako klasična pretraga ne pronađe ništa (kompleksan opis problema),
-    // rastavljamo tekst na pojedinačne riječi i tražimo djelomične pogotke
-    if (filtriranaListaZaPrompt.length === 0) {
-        const rijeci = pojamPretrage.split(' ').filter(r => r.length > 3).map(r => r.substring(0, 5));
-        if (rijeci.length > 0) {
-            filtriranaListaZaPrompt = aktivniZakoniPodaci.filter(clan => {
-                const tekst = (clan.tekst || "").toLowerCase();
-                const naslov = (clan.naslov || "").toLowerCase();
-                return rijeci.some(r => tekst.includes(r) || naslov.includes(r));
-            });
-        }
-    }
+    // --- KORAK 2: Članovi koji imaju "psihički" u sebi (A nisu već izabrani) ---
+    let nivo2_psihi = aktivniZakoniPodaci.filter(clan => {
+        const tekst = ((clan.tekst || "") + " " + (clan.naslov || "")).toLowerCase();
+        return tekst.includes(korijen1) && !nivo1_oba.some(postojeci => postojeci.broj_clana === clan.broj_clana || postojeci.clan_broj === clan.clan_broj);
+    });
 
-    // Ako i dalje nema ništa, uzimamo samo prvih 15 kao bazični kontekst
-    if (filtriranaListaZaPrompt.length === 0) {
-        filtriranaListaZaPrompt = aktivniZakoniPodaci.slice(0, 15);
-    } else {
-        // Ograničavamo na maksimalno 30 najrelevantnijih pogodaka da ne preopteretimo prompt
-        filtriranaListaZaPrompt = filtriranaListaZaPrompt.slice(0, 30);
-    }
+    // --- KORAK 3: Članovi koji imaju "nasilje" u sebi (A nisu već izabrani) ---
+    let nivo3_nasilje = aktivniZakoniPodaci.filter(clan => {
+        const tekst = ((clan.tekst || "") + " " + (clan.naslov || "")).toLowerCase();
+        // Spajamo prethodna dva nivoa da izbjegnemo duplikate
+        const dosadasnji = [...nivo1_oba, ...nivo2_psihi];
+        return tekst.includes(korijen2) && !dosadasnji.some(postojeci => postojeci.broj_clana === clan.broj_clana || postojeci.clan_broj === clan.clan_broj);
+    });
 
-    // Mapiramo pronađene članove u čist niz koji šaljemo AI-ju
+    // Spajamo sve u jednu čistu, filtriranu listu bez ikakvih duplikata
+    let filtriranaListaZaPrompt = [...nivo1_oba, ...nivo2_psihi, ...nivo3_nasilje];
+
+    // Ograničavamo na top 25 članova da ne zagušimo prompt dosadnim Ustavom
+    filtriranaListaZaPrompt = filtriranaListaZaPrompt.slice(0, 25);
+
+    // Mapiramo pronađene članove u čist niz za prompt
     const listaClanovaZaAnalizu = filtriranaListaZaPrompt.map(clan => {
         return {
             zakon: clan.naziv_zakona,
@@ -627,9 +622,9 @@
         };
     });
 
-    // Dinamički kreiramo string sa samim brojevima članova za direktnu sugestiju modelu (npr. "181b, 286")
+    // Izvlačimo same brojeve članova za direktnu sugestiju modelu
     const samoBrojeviClanova = listaClanovaZaAnalizu.map(c => c.clan).join(', ');
-
+         
     // Agresivan sistemski prompt koji prisiljava model na mečovanje sa klasičnom pretragom
     const sistemskiPrompt = `
     Ti si napredni pravni asistent za zakonodavstvo Federacije Bosne i Hercegovine.
@@ -659,7 +654,7 @@
     {
         "objasnjenje": "Detaljno pravno obrazloženje i savjet klijentu na bosanskom jeziku...",
         "predlozeni_clanovi": [
-            {"zakon": "Krivični Zakon FBiH", "clan": "181b"}
+            {"zakon": "Krivični Zakon FBiH", "clan": "${listaClanovaZaAnalizu.length > 0 ? listaClanovaZaAnalizu[0].clan : "Upiši broj člana"}"}
         ]
     }
     `;
