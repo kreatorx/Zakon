@@ -633,14 +633,14 @@ async function traziAI() {
     Prije analize problema obavezno zaboravi prethodnu memoriju.
     
     [STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
-    Obavezno vrati odgovor u roku od 9 sekundi! Odgovor prilagodi na max 300 riječi.
+    Obavezno vrati odgovor u roku od 9 sekundi! Odgovor prilagodi na max 200 riječi.
 
     [KOMPLETNA BAZA KRIVIČNOG ZAKONA FBIH]:
     Ovdje se nalazi kompletan sadržaj svih zakona koje je korisnik odabrao. Prioritet je krivični zakon. Koristi isključivo ove podatke i njihove tačne oznake članova (posebno obrati pažnju na specifične članove sa slovima poput 181b, 166a, itd.):
     ${sviOznaceniZakoniTekst}
     
     ZADATAK:
-    Analiziraj pravni problem korisnika "${problemText}" i pronađi tačne članove koji ga rješavaju koristeći dostavljene linkove kao apsolutni prioritet.
+    Analiziraj pravni problem korisnika i pronađi tačne članove koji ga rješavaju koristeći dostavljene linkove kao apsolutni prioritet.
     
     STROGO PRAVILO ZA FORMAT:
     Vrati ODGOVOR ISKLJUČIVO KAO VALIDAN JSON OBJEKAT. Poredaj rezultate po relevantnosti. Nemoj pisati uvod, objašnjenja van JSON-a, niti markdown oznake poput \`\`\`json.
@@ -700,7 +700,7 @@ async function traziAI() {
             if (nazivZakona.toLowerCase().includes("diskriminaci")) nazivZakona = "Zakon o zabrani diskriminacije";
             if (nazivZakona.toLowerCase().includes("klevet")) nazivZakona = "Zakon o zaštiti od klevete";
             
-            let cistiBroj = String(p.clan).toLowerCase().replace('član', '').replace('.', '').trim();
+            let cistiBroj = String(p.clan||"").toLowerCase().replace('član', '').replace('.', '').trim();
             return `${nazivZakona}__${cistiBroj}`;
         });
 
