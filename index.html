@@ -100,6 +100,16 @@
                     <button id="btn-ai-search" onclick="traziAI()" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-medium py-1.5 px-3 rounded text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
                         <i class="fa-solid fa-wand-magic-sparkles"></i> Analiziraj pomoću AI
                     </button>
+                 <div class="flex items-center gap-2">
+  <span class="text-xs font-bold text-purple-700 flex items-center gap-1">
+    <i class="fa-solid fa-robot"></i> AI Model:
+  </span>
+  
+  <select id="ai-model-select" class="bg-white border border-gray-300 text-gray-700 text-xs font-medium rounded-lg px-2.5 py-1 focus:ring-purple-500 focus:border-purple-500 outline-none cursor-pointer shadow-sm transition">
+    <option value="gemini-1.5-flash" selected> Gemini 1.5 Flash (Free)</option>
+    <option value="gpt-4o-mini"> GPT-5.4 (Paid)</option>
+  </select>
+</div>
                 </div>
 
                 <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
@@ -667,6 +677,9 @@ function otvoriModal(idSistema) {
 
         // AI PRETRAGA
 async function traziAI() {
+
+const izabraniModel = document.getElementById('ai-model-select').value;
+ 
     const problemText = document.getElementById('ai-problem').value.trim();
     const selektovaniZakoni = getSelektovaniZakoni();
 
@@ -732,7 +745,7 @@ async function traziAI() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                model: "gpt-5.4", // Zadržan tvoj model iz koda
+                model: izabraniModel,
                 messages: [
                     { "role": "system", "content": sistemskiPrompt },
                     { "role": "user", "content": `Problem: "${problemText}"` }
