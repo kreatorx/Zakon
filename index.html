@@ -605,160 +605,51 @@ async function traziAI() {
     document.getElementById('ai-response-box').classList.add('hidden');
     document.getElementById('laws-container').innerHTML = '';
 
-    // Pomoćna funkcija koja sigurno pretvara bilo šta i miče kvačice radi lakšeg poređenja
-    const siguranTekst = (vrijednost) => {
-        if (vrijednost === null || vrijednost === undefined) return "";
-        return String(vrijednost).toLowerCase()
-                                 .replace(/[čć]/g, 'c')
-                                 .replace(/ž/g, 'z')
-                                 .replace(/š/g, 's')
-                                 .replace(/đ/g, 'd')
-                                 .trim();
-    };
-
-    // --- 1. PAMETNO FILTRIRANJE ZAKONA (Micanje osjetljivosti na nazive) ---
-    const selektovaniZakoniNormalizovani = selektovaniZakoni.map(z => siguranTekst(z));
-    let aktivniZakoniPodaci = sviZakonPodaci.filter(clan => {
-        const nazivIzBaze = siguranTekst(clan.naziv_zakona);
-        return selektovaniZakoniNormalizovani.some(selZakon => nazivIzBaze.includes(selZakon) || selZakon.includes(nazivIzBaze));
-    });
-
-    // POZADINSKI OSIGURAČ: Ako je filter ispao prazan (0) zbog neusaglašenih naziva, pretraži sve zakone!
-    if (aktivniZakoniPodaci.length === 0) {
-        console.warn("Upozorenje: Aktivni zakoni su prazni. Pretražujem kompletnu bazu podataka!");
-        aktivniZakoniPodaci = sviZakonPodaci;
-    }
-
-    // --- 2. PRIPREMA KORIJENA RIJEČI ZA PRETRAGU ---
-    const puniUnos = siguranTekst(problemText);
-    const rijeciKorisnika = puniUnos.split(' ')
-                                    .filter(r => r.length > 2)
-                                    .map(r => r.substring(0, 5));
-
-    // --- 3. ALGORITAM ZA TEŽINSKO RANGIRANJE (BODOVANJE) ---
-    let rangiraniClanovi = aktivniZakoniPodaci.map(clan => {
-        const siroviBrojTekst = clan.broj_clana || clan.clan_broj || "";
-        const brojClana = siguranTekst(siroviBrojTekst);
-        const naslovClana = siguranTekst(clan.naziv_clana || clan.naslov || "");
-        const tekstClana = siguranTekst(clan.cisti_tekst || clan.tekst || "");
-
-        let skor = 0;
-
-        // Pretvaramo broj člana u čisti cijeli broj radi provjere granice (npr. "181b" -> 181)
-        const numerickiBroj = parseInt(brojClana.replace(/^\D+/g, ''), 10) || 0;
-
-        // PRIORITET 1: Korisnik je ukucao tačan broj ili oznaku člana (npr. "181b")
-        if (brojClana !== "" && (brojClana === puniUnos || brojClana.includes(puniUnos))) {
-            skor += 1000;
-        }
-
-        // Prolazimo kroz sve skraćene korijene riječi
-        rijeciKorisnika.forEach(rijec => {
-            if (brojClana.includes(rijec)) {
-                skor += 100;
-            }
-            // Ako je riječ u naslovu (npr. "Psihičko nasilje" ili "Nasilje u porodici"), ogroman napredak
-            if (naslovClana.includes(rijec)) {
-                skor += 150; // Povećano sa 50 na 150 radi eliminacije općeg teksta
-            }
-            if (tekstClana.includes(rijec)) {
-                skor += 20;
-            }
+    // Filtriramo bazu tako da uzmemo samo članove zakona koji su stvarno označeni na ekranu
+    const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => {
+        const nazivIzBaze = (clan.naziv_zakona || "").toLowerCase().trim();
+        return selektovaniZakoni.some(selZakon => {
+            const selMalo = selZakon.toLowerCase().trim();
+            return nazivIzBaze.includes(selMalo) || selMalo.includes(nazivIzBaze);
         });
-
-        // BONUS: Ako član sadrži SVE riječi iz pretrage u isto vrijeme (sklop riječi)
-        const sadrziSveRijeci = rijeciKorisnika.every(rijec => naslovClana.includes(rijec) || tekstClana.includes(rijec));
-        if (rijeciKorisnika.length > 1 && sadrziSveRijeci) {
-            skor += 400; // Dupliran bonus za sklop riječi
-        }
-
-        // --- FILTER ZA POSEBNI DIO ZAKONA (ČLANOVI POSLIJE 149) ---
-        if (numerickiBroj >= 150) {
-            skor += 300; // Ogroman bonus za stvarna krivična djela (150+)
-        } else if (numerickiBroj > 0 && numerickiBroj < 150) {
-            skor -= 200; // Kazneni bodovi za opći dio (psihijatrijska liječenja, uračunljivost, zastare)
-        }
-
-        return { clan, skor };
     });
 
-    // Strožiji filter: Propuštamo samo članove sa jakim pogocima (skor > 30)
-    // Na ovaj način eliminišemo članove koji su slučajno zakačili samo jednu riječ u tekstu
-    let filtriranaListaZaPrompt = rangiraniClanovi.filter(item => item.skor > 30)
-                                                 .sort((a, b) => b.skor - a.skor)
-                                                 .map(item => item.clan)
-                                                 .slice(0, 12); // Smanjeno na 12 da AI ne bi dobijao previše nevažnih opcija
-
-    // --- 4. PAKOVANJE U ČIST NIZ ZA PROMPT ---
-    const listaClanovaZaAnalizu = filtriranaListaZaPrompt.map(clan => {
-        const siroviBroj = clan.broj_clana || clan.clan_broj || "";
-        return {
+    // Pakujemo kompletan tekst svih označenih zakona u čist JSON format bez HTML smeća
+    const sviOznaceniZakoniTekst = JSON.stringify(
+        aktivniZakoniPodaci.map(clan => ({
             zakon: clan.naziv_zakona,
-            clan: String(siroviBroj).trim(), 
-            naslov: clan.naziv_clana || clan.naslov || ""
-        };
-    });
-
-
-// 1. Filtriramo kompletan Krivični zakon iz tvoje učitane baze
-    const cijeliKrivicniZakon = sviZakonPodaci.filter(clan => {
-        const naziv = (clan.naziv_zakona || "").toLowerCase();
-        return naziv.includes("krivični") || naziv.includes("krivicni");
-    }).map(clan => {
-        // Uzimamo samo najvažnija polja kako bismo uštedjeli tokene u promptu
-        return {
             clan: clan.broj_clana || clan.clan_broj || "",
             naslov: clan.naziv_clana || clan.naslov || "",
             tekst: clan.cisti_tekst || clan.tekst || ""
-        };
-    });
-
-    // 2. Pretvaramo cijeli niz u tekstualni JSON format spreman za prompt
-    const krivicniZakonTekst = JSON.stringify(cijeliKrivicniZakon, null, 2);
+        })), 
+        null, 
+        2
+    );
 
  
-
-    const samoBrojeviClanova = listaClanovaZaAnalizu.map(c => c.clan).join(', ');
-         
-    // === ISPIS REZULTATA PRETRAGE U KONZOLU PRIJE SISTEMSKOG PROMPTA ===
-    console.log("--- REZULTATI POZADINSKE PRETRAGE ZA PROMPT ---");
-    console.log("Broj pronađenih članova nakon filtriranja 150+:", listaClanovaZaAnalizu.length);
-    console.log("Sadržaj liste koji se šalje u prompt:", JSON.stringify(listaClanovaZaAnalizu, null, 2));
-    console.log("-----------------------------------------------");
-
-    // Agresivan sistemski prompt koji prisiljava model na mečovanje sa klasičnom pretragom
+    // Sistemski prompt
     const sistemskiPrompt = `
     Ti si napredni pravni asistent za zakonodavstvo Federacije Bosne i Hercegovine.
     Prije analize problema obavezno zaboravi prethodnu memoriju.
-
-    Koristi ove članove kao osnovu i prvo napiši sadržaj ove liste u objašnjenju
-    ${JSON.stringify(listaClanovaZaAnalizu, null, 2)}
     
     [STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
     Obavezno vrati odgovor u roku od 9 sekundi!
 
     [KOMPLETNA BAZA KRIVIČNOG ZAKONA FBIH]:
-    Ovdje se nalazi kompletan sadržaj Krivičnog zakona FBiH sa svim članovima. Koristi isključivo ove podatke i tačne oznake članova (posebno obrati pažnju na specifične članove sa slovima poput 181b, 183, itd.):
-    ${krivicniZakonTekst}
-    
-    Kompletan sadržaj preuzmi sa sljedećih linkova (web_search), analiziraj upit i na osnovu tvoje procjene predloži zakone koristeći numeraciju iz ove 4 json baze: 
-    https://raw.githubusercontent.com/kreatorx/Zakon/main/krivicni_zakon_fbih.json
-    https://raw.githubusercontent.com/kreatorx/Zakon/main/ustav_fbih.json
-    https://raw.githubusercontent.com/kreatorx/Zakon/main/kleveta_fbih.json
-    https://raw.githubusercontent.com/kreatorx/Zakon/main/diskriminacija_fbih.json
+    Ovdje se nalazi kompletan sadržaj svih zakona koje je korisnik odabrao. Prioritet je krivični zakon. Koristi isključivo ove podatke i njihove tačne oznake članova (posebno obrati pažnju na specifične članove sa slovima poput 181b, 166a, itd.):
+    ${sviOznaceniZakoniTekst}
     
     ZADATAK:
-    Analiziraj pravni problem korisnika i pronađi tačne članove koji ga rješavaju koristeći dostavljene linkove kao apsolutni prioritet.
-    Članovi na vrhu ovog niza imaju najveći prioritet i predstavljaju jedini izvor istine za rješavanje problema (Fokusiraj se na članove: ${samoBrojeviClanova || "181b"}).
+    Analiziraj pravni problem korisnika "${problemText}" i pronađi tačne članove koji ga rješavaju koristeći dostavljene linkove kao apsolutni prioritet.
     
     STROGO PRAVILO ZA FORMAT:
-    Vrati ODGOVOR ISKLJUČIVO KAO VALIDAN JSON OBJEKAT. Nemoj pisati uvod, objašnjenja van JSON-a, niti markdown oznake poput \`\`\`json.
+    Vrati ODGOVOR ISKLJUČIVO KAO VALIDAN JSON OBJEKAT. Poredaj rezultate po relevantnosti. Nemoj pisati uvod, objašnjenja van JSON-a, niti markdown oznake poput \`\`\`json.
     
     STRUKTURA ODGOVORA:
     {
-        "objasnjenje": "Detaljno pravno obrazloženje i savjet klijentu na bosanskom jeziku...",
+        "objasnjenje": "Detaljno pravno obrazloženje i savjet klijentu na bosanskom jeziku na osnovu članova iz baze...",
         "predlozeni_clanovi": [
-            {"zakon": "${listaClanovaZaAnalizu.length > 0 ? listaClanovaZaAnalizu[0].zakon : "Krivični Zakon FBiH"}", "clan": "${listaClanovaZaAnalizu.length > 0 ? listaClanovaZaAnalizu[0].clan : "181b"}"}
+            {"zakon": "Upiši tačan naziv zakona kako je naveden u bazi", "clan": "Upiši tačan broj člana (npr. 181b)"}
         ]
     }
     `;
