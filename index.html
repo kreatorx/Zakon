@@ -657,6 +657,10 @@ const selektovaniZakoni = getSelektovaniZakoni();
         };
     });
 
+         console.log("Broj pronađenih članova:", listaClanovaZaAnalizu.length);
+    console.log("Sadržaj liste koji se šalje u prompt:", JSON.stringify(listaClanovaZaAnalizu, null, 2));
+    console.log("Sirovi niz brojeva čitljiv za instrukciju:", samoBrojeviClanova);
+
     const samoBrojeviClanova = listaClanovaZaAnalizu.map(c => c.clan).join(', ');
          
     // Agresivan sistemski prompt koji prisiljava model na mečovanje sa klasičnom pretragom
