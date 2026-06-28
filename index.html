@@ -610,9 +610,12 @@
 
     // Mapiramo u čist, kompaktan niz koji šaljemo AI-ju, uključujući i naslov da model zna o čemu se radi
     const listaClanovaZaAnalizu = filtriranaListaZaPrompt.map(clan => {
+        // Provjeravamo da li u JSON-u piše broj_clana ili clan_broj
+        const stvarniBrojClana = clan.broj_clana || clan.clan_broj || "";
+        
         return {
             zakon: clan.naziv_zakona,
-            clan: String(clan.broj_clana).trim(),
+            clan: String(stvarniBrojClana).trim(),
             naslov: clan.naslov || ""
         };
     });
@@ -710,15 +713,17 @@
         // Filtriranje lokalne baze (sviZakonPodaci) koja je već učitana u pretraživaču
         const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
         
-        // Razdvajanje: Članovi koje je AI izabrao idu u prvu grupu, ostali u drugu
+        // Razdvajanje članova na osnovu onoga što je AI vratio
         const filtriraniZakon = aktivniZakoniPodaci.filter(clan => {
-            let lokalniCistiBroj = String(clan.broj_clana).toLowerCase().replace('član', '').replace('.', '').trim();
+            const stvarniBroj = clan.broj_clana || clan.clan_broj || "";
+            let lokalniCistiBroj = String(stvarniBroj).toLowerCase().replace('član', '').replace('.', '').trim();
             const kljuc = `${clan.naziv_zakona}__${lokalniCistiBroj}`;
             return preporuceniKljucevi.includes(kljuc);
         });
 
         const OstatakZakona = aktivniZakoniPodaci.filter(clan => {
-            let lokalniCistiBroj = String(clan.broj_clana).toLowerCase().replace('član', '').replace('.', '').trim();
+            const stvarniBroj = clan.broj_clana || clan.clan_broj || "";
+            let lokalniCistiBroj = String(stvarniBroj).toLowerCase().replace('član', '').replace('.', '').trim();
             const kljuc = `${clan.naziv_zakona}__${lokalniCistiBroj}`;
             return !preporuceniKljucevi.includes(kljuc);
         });
