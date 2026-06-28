@@ -637,11 +637,15 @@ async function traziAI() {
 
     // --- 3. ALGORITAM ZA TEŽINSKO RANGIRANJE (BODOVANJE) ---
     let rangiraniClanovi = aktivniZakoniPodaci.map(clan => {
-        const brojClana = siguranTekst(clan.broj_clana || clan.clan_broj || "");
+        const siroviBrojTekst = clan.broj_clana || clan.clan_broj || "";
+        const brojClana = siguranTekst(siroviBrojTekst);
         const naslovClana = siguranTekst(clan.naziv_clana || clan.naslov || "");
         const tekstClana = siguranTekst(clan.cisti_tekst || clan.tekst || "");
 
         let skor = 0;
+
+        // Pretvaramo broj člana u čisti cijeli broj radi provjere granice (npr. "181b" -> 181)
+        const numerickiBroj = parseInt(brojClana.replace(/^\D+/g, ''), 10) || 0;
 
         // PRIORITET 1: Korisnik je ukucao tačan broj ili oznaku člana (npr. "181b")
         if (brojClana !== "" && (brojClana === puniUnos || brojClana.includes(puniUnos))) {
@@ -653,28 +657,37 @@ async function traziAI() {
             if (brojClana.includes(rijec)) {
                 skor += 100;
             }
+            // Ako je riječ u naslovu (npr. "Psihičko nasilje" ili "Nasilje u porodici"), ogroman napredak
             if (naslovClana.includes(rijec)) {
-                skor += 50;
+                skor += 150; // Povećano sa 50 na 150 radi eliminacije općeg teksta
             }
             if (tekstClana.includes(rijec)) {
-                skor += 10;
+                skor += 20;
             }
         });
 
-        // BONUS: Ako član sadrži SVE riječi iz pretrage u isto vrijeme
+        // BONUS: Ako član sadrži SVE riječi iz pretrage u isto vrijeme (sklop riječi)
         const sadrziSveRijeci = rijeciKorisnika.every(rijec => naslovClana.includes(rijec) || tekstClana.includes(rijec));
         if (rijeciKorisnika.length > 1 && sadrziSveRijeci) {
-            skor += 200;
+            skor += 400; // Dupliran bonus za sklop riječi
+        }
+
+        // --- FILTER ZA POSEBNI DIO ZAKONA (ČLANOVI POSLIJE 149) ---
+        if (numerickiBroj >= 150) {
+            skor += 300; // Ogroman bonus za stvarna krivična djela (150+)
+        } else if (numerickiBroj > 0 && numerickiBroj < 150) {
+            skor -= 200; // Kazneni bodovi za opći dio (psihijatrijska liječenja, uračunljivost, zastare)
         }
 
         return { clan, skor };
     });
 
-    // Sortiramo članove od najvećeg skora prema najmanjem i uzimamo samo one sa pogocima (skor > 0)
-    let filtriranaListaZaPrompt = rangiraniClanovi.filter(item => item.skor > 0)
+    // Strožiji filter: Propuštamo samo članove sa jakim pogocima (skor > 30)
+    // Na ovaj način eliminišemo članove koji su slučajno zakačili samo jednu riječ u tekstu
+    let filtriranaListaZaPrompt = rangiraniClanovi.filter(item => item.skor > 30)
                                                  .sort((a, b) => b.skor - a.skor)
                                                  .map(item => item.clan)
-                                                 .slice(0, 20);
+                                                 .slice(0, 12); // Smanjeno na 12 da AI ne bi dobijao previše nevažnih opcija
 
     // --- 4. PAKOVANJE U ČIST NIZ ZA PROMPT ---
     const listaClanovaZaAnalizu = filtriranaListaZaPrompt.map(clan => {
@@ -686,15 +699,12 @@ async function traziAI() {
         };
     });
 
-    // DEFINIŠEMO varijablu PRIJE ispisa u konzolu (popravlja ReferenceError)
     const samoBrojeviClanova = listaClanovaZaAnalizu.map(c => c.clan).join(', ');
          
     // === ISPIS REZULTATA PRETRAGE U KONZOLU PRIJE SISTEMSKOG PROMPTA ===
     console.log("--- REZULTATI POZADINSKE PRETRAGE ZA PROMPT ---");
-    console.log("Pojam koji je korisnik unio:", problemText);
-    console.log("Broj pronađenih članova:", listaClanovaZaAnalizu.length);
+    console.log("Broj pronađenih članova nakon filtriranja 150+:", listaClanovaZaAnalizu.length);
     console.log("Sadržaj liste koji se šalje u prompt:", JSON.stringify(listaClanovaZaAnalizu, null, 2));
-    console.log("Sirovi niz brojeva čitljiv za instrukciju:", samoBrojeviClanova);
     console.log("-----------------------------------------------");
 
     // Agresivan sistemski prompt koji prisiljava model na mečovanje sa klasičnom pretragom
