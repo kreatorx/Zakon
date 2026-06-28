@@ -578,31 +578,37 @@
     document.getElementById('ai-response-box').classList.add('hidden');
     document.getElementById('laws-container').innerHTML = '';
 
-    // --- PAMETNI LOKALNI RAG FILTER ZA PROMPT ---
+    // --- PAMETNI LOKALNI RAG FILTER ZA CIJELU BAZU ---
     // Rastavljamo problem na ključne riječi duže od 3 slova (npr. "psihičko", "nasilje")
+    // Takođe dodajemo i korijene riječi radi fleksibilnosti (npr. "nasilj", "psihi")
     const kljucneRijeci = problemText.toLowerCase()
                                       .replace(/[,./?!(;)]/g, '')
                                       .split(' ')
-                                      .filter(rijec => rijec.length > 3);
+                                      .filter(rijec => rijec.length > 3)
+                                      .map(rijec => rijec.substring(0, 5)); // Uzimamo korijen riječi od 5 slova
 
-    // Filtriramo lokalnu bazu samo za selektovane zakone
+    // Filtriramo lokalnu bazu samo za zakone koje je korisnik označio kvačicom
     const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
     
-    // Izdvajamo samo članove koji stvarno sadrže neku od ključnih riječi u tekstu ili naslovu
+    // Pretražujemo CIJELI tekst i naslov svakog člana u bazi
     let filtriranaListaZaPrompt = aktivniZakoniPodaci.filter(clan => {
         const tekstClana = (clan.tekst || "").toLowerCase();
         const naslovClana = (clan.naslov || "").toLowerCase();
         
-        // Član prolazi ako se bilo koja ključna riječ nalazi u njemu
+        // Član prolazi ako se korijen bilo koje ključne riječi nalazi u njegovom tekstu ili naslovu
         return kljucneRijeci.some(rijec => tekstClana.includes(rijec) || naslovClana.includes(rijec));
     });
 
-    // Rezervna opcija: Ako nijedan član ne sadrži te riječi, uzmi prvih 30 da prompt ne bude prazan
+    // Ako je pretraga uspješno pronašla specifične članove (npr. 181b), uzimamo ih.
+    // Ako nije našla ništa, TEK ONDA uzimamo prvih 20 članova kao rezervu da prompt ne bude prazan.
     if (filtriranaListaZaPrompt.length === 0) {
-        filtriranaListaZaPrompt = aktivniZakoniPodaci.slice(0, 30);
+        filtriranaListaZaPrompt = aktivniZakoniPodaci.slice(0, 20);
+    } else {
+        // Ako je našlo previše članova, ograničavamo na top 40 najrelevantnijih da ne preopteretimo prompt
+        filtriranaListaZaPrompt = filtriranaListaZaPrompt.slice(0, 40);
     }
 
-    // Mapiramo u čist i kompaktan niz koji šaljemo AI-ju
+    // Mapiramo u čist, kompaktan niz koji šaljemo AI-ju, uključujući i naslov da model zna o čemu se radi
     const listaClanovaZaAnalizu = filtriranaListaZaPrompt.map(clan => {
         return {
             zakon: clan.naziv_zakona,
@@ -617,10 +623,10 @@
     Prije analize problema obavezno zaboravi prethodnu memoriju.
     
     [STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
-    U nastavku ti dostavljam filtriranu listu članova iz naše lokalne baze podataka koji su relevantni za korisnikov problem.
+    U nastavku ti dostavljam filtriranu listu članova iz naše lokalne baze podataka koji su direktno povezani sa korisnikovim problemom.
     Tvoj izlazni JSON u polju "clan" MORA pratiti identičan naziv i format (uključujući i slova poput 181b, 1a ako postoje) iz ove liste:
     
-    ${JSON.stringify(listaClanovaZaAnalizu)}
+    ${JSON.stringify(listaClanovaZaAnalizu, null, 2)}
     
     ZADATAK:
     1. OBAVEZNO koristi alat za pretragu veba (web_search) da dodatno istražiš i potvrdiš članove za selektovane zakone: ${selektovaniZakoni.join(', ')}.
@@ -637,6 +643,8 @@
         ]
     }
     `;
+
+         
     try {
         // Vraćamo standardnu strukturu tijela koju tvoj API proxy na Vercelu očekuje
         const response = await fetch(AI_API_URL, {
