@@ -589,22 +589,22 @@ const selektovaniZakoni = getSelektovaniZakoni();
                                  .trim();
     };
 
-    // --- 1. PAMETNO I FLEKSIBILNO FILTRIRANJE SELEKTOVANIH ZAKONA ---
+    // --- 1. PAMETNO FILTRIRANJE ZAKONA (Imuno na razlike u nazivima) ---
     const selektovaniZakoniNormalizovani = selektovaniZakoni.map(z => siguranTekst(z));
     const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => {
         const nazivIzBaze = siguranTekst(clan.naziv_zakona);
+        // Dozvoljavamo mečovanje ako baza sadrži riječ iz selekcije ili obrnuto
         return selektovaniZakoniNormalizovani.some(selZakon => nazivIzBaze.includes(selZakon) || selZakon.includes(nazivIzBaze));
     });
 
-    // --- 2. PRIPREMA RIJEČI ZA UNIVERZALNU PRETRAGU ---
+    // --- 2. PRIPREMA KORIJENA RIJEČI ZA UNIVERZALNU PRETRAGU ---
     const puniUnos = siguranTekst(problemText);
-    // Rastavljamo unos na pojedinačne riječi i uzimamo njihove korijene (minimalno 3 slova)
-    // Npr. "psihičko" -> "psih", "nasilje" -> "nasil"
+    // Rastavljamo unos na riječi i uzimamo prvih 5 slova (npr. "psihičko" -> "psih", "nasilje" -> "nasil")
     const rijeciKorisnika = puniUnos.split(' ')
                                     .filter(r => r.length > 2)
-                                    .map(r => r.substring(0, 5)); 
+                                    .map(r => r.substring(0, 5));
 
-    // --- 3. ALGORITAM ZA RANGIRANJE I BODOVANJE ČLANOVA (SKOROVANJE) ---
+    // --- 3. ALGORITAM ZA TEŽINSKO RANGIRANJE (BODOVANJE) ---
     let rangiraniClanovi = aktivniZakoniPodaci.map(clan => {
         const brojClana = siguranTekst(clan.broj_clana || clan.clan_broj || "");
         const naslovClana = siguranTekst(clan.naslov || "");
@@ -612,53 +612,47 @@ const selektovaniZakoni = getSelektovaniZakoni();
 
         let skor = 0;
 
-        // EKSTREMNI PRIORITET: Korisnik je direktno ukucao tačan broj člana (npr. "181b")
+        // PRIORITET 1: Korisnik je ukucao tačan broj ili oznaku člana (npr. "181b")
         if (brojClana !== "" && (brojClana === puniUnos || brojClana.includes(puniUnos))) {
-            skor += 1000; 
+            skor += 1000;
         }
 
-        // Prolazimo kroz sve korijene riječi koje je korisnik unio
+        // Prolazimo kroz sve skraćene korijene riječi koje je korisnik zadao
         rijeciKorisnika.forEach(rijec => {
-            // Ako se korijen riječi nalazi u BROJU člana (npr. traži "181" a član je "181b")
             if (brojClana.includes(rijec)) {
                 skor += 100;
             }
-            // Ako se korijen riječi nalazi u NASLOVU člana (Najveća blizina naslovu - npr. "Psihičko nasilje")
+            // Ako je riječ u naslovu (npr. "Psihičko nasilje"), član dobija ogroman bonus (+50)
             if (naslovClana.includes(rijec)) {
-                skor += 50; 
+                skor += 50;
             }
-            // Ako se korijen riječi nalazi u TEKSTU člana
+            // Ako je riječ u tekstu člana (+10)
             if (tekstClana.includes(rijec)) {
                 skor += 10;
             }
         });
 
-        // Dodatni bonus ako član sadrži SVE tražene riječi u isto vrijeme
+        // BONUS: Ako član sadrži SVE riječi iz pretrage u isto vrijeme
         const sadrziSveRijeci = rijeciKorisnika.every(rijec => naslovClana.includes(rijec) || tekstClana.includes(rijec));
         if (rijeciKorisnika.length > 1 && sadrziSveRijeci) {
-            skor += 200; // Ogroman bonus za poklapanje kompletnog sklopa riječi
+            skor += 200;
         }
 
         return { clan, skor };
     });
 
-    // --- 4. SELEKCIJA I REZANJE REZULTATA ---
-    // Filtriramo samo one članove koji imaju bar neki pogodak (skor veći od 0)
-    // i sortiramo ih od najvećeg prema najmanjem skoru
+    // Sortiramo članove od najvećeg skora prema najmanjem i uzimamo samo one sa pogocima (skor > 0)
     let filtriranaListaZaPrompt = rangiraniClanovi.filter(item => item.skor > 0)
                                                  .sort((a, b) => b.skor - a.skor)
-                                                 .map(item => item.clan);
+                                                 .map(item => item.clan)
+                                                 .slice(0, 20);
 
-    // Ako univerzalna pretraga nije našla baš ništa u cijeloj bazi, tek tada ostavljamo prazno (AI će raditi web_search)
-    // Režemo listu na maksimalno 20 najrelevantnijih da ne pretrpamo prompt
-    filtriranaListaZaPrompt = filtriranaListaZaPrompt.slice(0, 20);
-
-    // --- 5. PAKOVANJE U ZA AI ANALIZU (Čuvanje stringova i oznaka sa slovima) ---
+    // --- 4. PAKOVANJE U ČIST NIZ ZA PROMPT (Garantovan String za oznake tipa "181b") ---
     const listaClanovaZaAnalizu = filtriranaListaZaPrompt.map(clan => {
         const siroviBroj = clan.broj_clana || clan.clan_broj || "";
         return {
             zakon: clan.naziv_zakona,
-            clan: String(siroviBroj).trim(), // Garantuje format stringa ("181b") bez obzira na JSON strukturu
+            clan: String(siroviBroj).trim(), // Pretvara i brojeve i slova ("181b") u čist string
             naslov: clan.naslov || ""
         };
     });
@@ -672,6 +666,7 @@ const selektovaniZakoni = getSelektovaniZakoni();
 
     Koristi ove članove kao osnovu i prvo napiši sadržaj ove liste u objašnjenju
     ${JSON.stringify(listaClanovaZaAnalizu, null, 2)}
+
     
     [STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
     Obavezno vrati odgovor u roku od 9 sekundi!
