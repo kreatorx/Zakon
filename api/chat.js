@@ -1,4 +1,11 @@
 export default async function handler(req, res) {
+
+export default async function handler(req, res) {
+  console.log('=== CHAT HANDLER POZVAN ===');
+  console.log('Metoda:', req.method);
+  console.log('URL:', req.url);
+  console.log('Headers:', req.headers);
+  
   // Eksplicitno rukovanje CORS-om
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
