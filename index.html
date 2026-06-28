@@ -675,17 +675,31 @@ async function traziAI() {
             throw new Error("Format odgovora nije prepoznat.");
         }
 
-        // --- SPASILAC PROMPTA: RegEx koji čisti sve tekstualne viškove prije i poslije JSON-a ---
+        // --- ULTRA-SIGURNI REGEX ČISTAČ SKRIVENIH KARAKTERA ---
         const jsonMatch = cistiContent.match(/\{[\s\S]*\}/);
         if (!jsonMatch) {
             throw new Error("Model uopšte nije vratio JSON strukturu.");
         }
-        // Uzimamo striktno izolovani tekst unutar vitičastih zagrada
-        const ultraCistiJson = jsonMatch[0];
 
-        // Sada parsiramo bez ikakvog rizika od "Unexpected character after JSON"
-        const aiContent = JSON.parse(ultraCistiJson);
+        // Izvlačimo sirovi JSON i čistimo nevidljive kontrolne karaktere (bjeline, BOM, \u200b, itd.)
+        let ultraCistiJson = jsonMatch[0].trim();
         
+        // Dodatna sanitizacija: Uklanjamo potencijalne skrivene nefunkcionalne karaktere prije prve { i poslije zadnje }
+        ultraCistiJson = ultraCistiJson.replace(/^[^{\x20-\x7E]+/g, "").replace(/[^}\x20-\x7E]+$/g, "");
+
+        let aiContent;
+        try {
+            aiContent = JSON.parse(ultraCistiJson);
+        } catch (parseError) {
+            console.warn("Prvi pokušaj parsiranja nije uspio, pokušavam dubinsko čišćenje...", parseError);
+            
+            // Fallback: Ako standardno čišćenje zakaže, uklanjamo sve kontrolne karaktere iz cijelog stringa
+            // osim regularnih razmaka i novih redova
+            ultraCistiJson = ultraCistiJson.replace(/[\x00-\x1F\x7F-\x9F]/g, "");
+            aiContent = JSON.parse(ultraCistiJson);
+        }
+        
+        // Prikaz pravnog mišljenja u ljubičastom boxu
         document.getElementById('ai-response-text').innerText = aiContent.objasnjenje;
         document.getElementById('ai-response-box').classList.remove('hidden');
 
