@@ -633,7 +633,7 @@ async function traziAI() {
     Prije analize problema obavezno zaboravi prethodnu memoriju.
     
     [STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
-    Obavezno vrati odgovor u roku od 9 sekundi!
+    Obavezno vrati odgovor u roku od 9 sekundi! Odgovor prilagodi na max 300 riječi.
 
     [KOMPLETNA BAZA KRIVIČNOG ZAKONA FBIH]:
     Ovdje se nalazi kompletan sadržaj svih zakona koje je korisnik odabrao. Prioritet je krivični zakon. Koristi isključivo ove podatke i njihove tačne oznake članova (posebno obrati pažnju na specifične članove sa slovima poput 181b, 166a, itd.):
@@ -659,13 +659,10 @@ async function traziAI() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                model: "gpt-5.4",
+                model: "gpt-5.4", // Zadržan tvoj model iz koda
                 messages: [
                     { "role": "system", "content": sistemskiPrompt },
                     { "role": "user", "content": `Problem: "${problemText}"` }
-                ],
-                tools: [
-                    { "type": "web_search", "return_token_budget": "unlimited" }
                 ],
                 response_format: { type: "json_object" },
                 temperature: 0.1
@@ -687,22 +684,27 @@ async function traziAI() {
 
         const aiContent = JSON.parse(cistiContent);
         
+        // Prikazujemo tekstualno objašnjenje na ekranu
         document.getElementById('ai-response-text').innerText = aiContent.objasnjenje;
         document.getElementById('ai-response-box').classList.remove('hidden');
 
+        // Izvlačimo članove koje je AI predložio
         const preporuke = aiContent.predlozeni_clanovi || [];
         
+        // Kreiramo jedinstvene ključeve za upoređivanje (npr. "Krivični Zakon FBiH__181b")
         const preporuceniKljucevi = preporuke.map(p => {
             let nazivZakona = p.zakon;
+            // Normalizacija naziva zakona radi sigurnog spajanja sa lokalnom bazom
             if (nazivZakona.toLowerCase().includes("ustav")) nazivZakona = "Ustav FBiH";
-            if (nazivZakona.toLowerCase().includes("krivični")) nazivZakona = "Krivični Zakon FBiH";
+            if (nazivZakona.toLowerCase().includes("krivični") || nazivZakona.toLowerCase().includes("krivicni")) nazivZakona = "Krivični Zakon FBiH";
             if (nazivZakona.toLowerCase().includes("diskriminaci")) nazivZakona = "Zakon o zabrani diskriminacije";
             if (nazivZakona.toLowerCase().includes("klevet")) nazivZakona = "Zakon o zaštiti od klevete";
             
-            let cistiBroj = p.clan.toLowerCase().replace('član', '').replace('.', '').trim();
+            let cistiBroj = String(p.clan).toLowerCase().replace('član', '').replace('.', '').trim();
             return `${nazivZakona}__${cistiBroj}`;
         });
 
+        // Filtriramo i razdvajamo bazu na predložene i ostale kako bi UI iscrtao kartice ispravnim redoslijedom
         const aktivniZakoniZaPrikaz = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
         
         const filtriraniZakon = aktivniZakoniZaPrikaz.filter(clan => {
@@ -719,6 +721,7 @@ async function traziAI() {
             return !preporuceniKljucevi.includes(kljuc);
         });
         
+        // Renderovanje rezultata na korisnički interfejs
         document.getElementById('results-title').innerText = `AI Preporuke (${filtriraniZakon.length})`;
         prikaziClanove([...filtriraniZakon, ...OstatakZakona], preporuceniKljucevi);
         document.getElementById('laws-container').scrollTop = 0;
