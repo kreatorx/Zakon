@@ -793,18 +793,22 @@ const izabraniModel = document.getElementById('ai-model-select').value;
  
 // === POPRAVLJENI KONTEKST (zamijeni stari kod) ===
 const kontekstZaAI = aktivniZakoniPodaci
-    .slice(0, 30)                    // ograničavamo na 30 članova max
+    .slice(0, 30)                    // Ograničavamo na maksimalno 30 članova
     .map(clan => {
+        // Uzimamo sirovi tekst i čistimo eventualne prazne prostore
         const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
+        
+        // Ako je tekst duži od 700 karaktera, siječemo ga i dodajemo "..."
         const skraceniTekst = tekst.length > 700 
             ? tekst.substring(0, 700) + "..." 
             : tekst;
 
-        return `${clan.naziv_zakona || 'Zakon'} - ${clan.broj_clana || clan.clan_broj || ''}: ${clan.naziv_clana || ''}\n${skraceniTekst}`;
+        // Spajamo sve u format koji tebi treba: Zakon - Član 1b - EU usklađenost - Tekst
+        return `${clan.naziv_zakona || 'Zakon'} - ${clan.broj_clana || ''} - ${clan.naziv_clana || ''} - ${skraceniTekst}`;
     })
     .join('\n\n---\n\n');
 
-console.log("Šaljem kontekst od", kontekstZaAI.length, "karaktera");
+console.log("Šaljem kontekst od", kontekstZaAI.length, "karaktera AI-ju.");
 
  
     // Sistemski prompt
