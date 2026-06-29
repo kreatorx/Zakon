@@ -125,7 +125,7 @@
   </span>
   
   <select id="ai-model-select" class="bg-white border border-gray-300 text-gray-700 text-xs font-medium rounded-lg px-2.5 py-1 focus:ring-purple-500 focus:border-purple-500 outline-none cursor-pointer shadow-sm transition">
-    <option value="gemini-2.5-flash" selected> Gemini 3.5 Flash (Free)</option>
+    <option value="gemini-3.5-flash" selected> Gemini 3.5 Flash (Free)</option>
     <option value="gpt-5.4"> GPT-5.4 (Paid)</option>
    <option value="llama-3.3-70b-versatile">Meta Llama 3.1 70B (Free)</option>
   </select>
@@ -858,7 +858,7 @@ console.log("Šaljem kontekst od", kontekst.length, "karaktera");
             })
         });
 
-        if (!response.ok) throw new Error(`API greška: ${response.status}`);
+        if (!response.ok) throw new Error(response.status); // Bacamo samo broj statusa radi lakšeg mapiranja
 
         const data = await response.json();
         
@@ -882,7 +882,7 @@ console.log("Šaljem kontekst od", kontekst.length, "karaktera");
         
         // Kreiramo jedinstvene ključeve za upoređivanje (npr. "Krivični Zakon FBiH__181b")
         const preporuceniKljucevi = preporuke.map(p => {
-            let nazivZakona = p.zakon;
+            let nazivZakona = p.zakon || "";
             // Normalizacija naziva zakona radi sigurnog spajanja sa lokalnom bazom
             if (nazivZakona.toLowerCase().includes("ustav")) nazivZakona = "Ustav FBiH";
             if (nazivZakona.toLowerCase().includes("krivični") || nazivZakona.toLowerCase().includes("krivicni")) nazivZakona = "Krivični Zakon FBiH";
@@ -928,9 +928,9 @@ console.log("Šaljem kontekst od", kontekst.length, "karaktera");
             "403": "🚫 Pristup odbijen! Nemate dozvolu za pozivanje ovog modela."
         };
 
-        --
-        // Izvlačimo čisti tekst greške (npr. "429")
-        const kodGreske = error.message.trim();
+        // Izvlačimo samo brojeve iz poruke (npr. ako piše "API greška: 429" uzeće samo "429")
+        const match = error.message.match(/\d+/);
+        const kodGreske = match ? match[0] : error.message.trim();
 
         // Ako imamo definisanu poruku za taj kod, iskoristi je. U suprotnom daj generičku poruku.
         const konacnaPoruka = porukeGreski[kodGreske] 
@@ -950,18 +950,18 @@ console.log("Šaljem kontekst od", kontekst.length, "karaktera");
     }
 }
      
-        function zatvoriAiBox() {
-            document.getElementById('ai-response-box').classList.add('hidden');
-            document.getElementById('results-title').innerText = "Svi aktivni članovi zakona";
-            filtrirajPrikaz();
-        }
+function zatvoriAiBox() {
+    document.getElementById('ai-response-box').classList.add('hidden');
+    document.getElementById('results-title').innerText = "Svi aktivni članovi zakona";
+    filtrirajPrikaz();
+}
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('member-modal');
-            if (event.target == modal) zatvoriModal();
-        }
+window.onclick = function(event) {
+    const modal = document.getElementById('member-modal');
+    if (event.target == modal) zatvoriModal();
+}
 
-        window.onload = ucitajSveZakone;
-    </script>
+window.onload = ucitajSveZakone;
+</script>
 </body>
 </html>
