@@ -92,7 +92,11 @@
                         </label>
                     </div>
                 </div>
-             
+ <div class="space-y-1" id="law-selectors">
+ <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
+                            <input type="checkbox" value="skraceno" checked onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                            <span class="text-xs text-gray-700">Skraceni upit</span>
+                            </label>            
 <div class="mt-2 pt-2 border-t border-gray-100 flex justify-between items-center text-[10px]">
     <span class="text-gray-500 font-medium">Ukupno slova za AI:</span>
     <span id="ai-character-count" class="font-bold text-gray-700 bg-gray-100 px-1.5 py-0.5 rounded">0</span>
@@ -100,6 +104,7 @@
 <div class="mt-2 pt-2 border-t border-gray-100 flex justify-between items-center text-[10px]">
     <span class="text-gray-500 font-medium">Ukupno riječi za AI:</span>
     <span id="ai-word-count" class="font-bold text-gray-700 bg-gray-100 px-1.5 py-0.5 rounded">0</span>
+</div>
 </div>
              
              
@@ -810,6 +815,7 @@ const kontekstZaAI = aktivniZakoniPodaci
 
 console.log("Šaljem kontekst od", kontekstZaAI.length, "karaktera AI-ju.");
 
+const kontekst = skraceno ? kontekstZaAI : sviOznaceniZakoniTekst;
  
     // Sistemski prompt
     const sistemskiPrompt = `
@@ -822,7 +828,7 @@ console.log("Šaljem kontekst od", kontekstZaAI.length, "karaktera AI-ju.");
 
     [KOMPLETNA BAZA KRIVIČNOG ZAKONA FBIH]:
     Ovdje se nalazi kompletan sadržaj svih zakona koje je korisnik odabrao. Prioritet je krivični zakon. Koristi isključivo ove podatke i njihove tačne oznake članova (posebno obrati pažnju na specifične članove sa slovima poput 181b, 166a, itd.):
-    ${sviOznaceniZakoniTekst}
+    ${kontekst}
     
     ZADATAK:
     Analiziraj pravni problem korisnika i pronađi tačne članove koji ga rješavaju koristeći dostavljene linkove kao apsolutni prioritet.
