@@ -28,14 +28,14 @@ export default async function handler(req, res) {
     // ==========================================
     // 1. OPCIJA: GOOGLE GEMINI
     // ==========================================
-    if (izabraniModel.includes('gemini')) {
-      const geminiKey = process.env.GEMINI_API_KEY;
-      if (!geminiKey) {
-        return res.status(500).json({ 
-          error: 'GEMINI_API_KEY nije podešen u Vercel Environment Variables.' 
-        });
-      }
-
+    if (req.url === '/api/test-gemini') {
+  const geminiKey = process.env.GEMINI_API_KEY;
+  return res.status(200).json({
+    hasKey: !!geminiKey,
+    keyLength: geminiKey ? geminiKey.length : 0,
+    model: 'gemini-1.5-flash'
+  });
+}
       // Konverzija OpenAI formata u Gemini format
       const geminiContents = [];
       let systemInstruction = "";
