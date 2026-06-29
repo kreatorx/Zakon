@@ -798,30 +798,20 @@ const izabraniModel = document.getElementById('ai-model-select').value;
     );
 
  
-// === POPRAVLJENI KONTEKST ZA INTELIGENTNO SKRAĆIVANJE ===
-    const kontekstZaAI = aktivniZakoniPodaci
-        .slice(0, 25) // <-- 1. OVDJE OGRANIČAVAMO: Uzmi samo prvih 25 članova iz baze da ne zagušiš AI!
-        .map(clan => {
-            // Uzimamo sirovi tekst i čistimo eventualne prazne prostore
-            const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
-            
-            // Ako je tekst duži od 200 karaktera, siječemo ga i dodajemo "..."
-            const skraceniTekst = tekst.length > 200 
-                ? tekst.substring(0, 200) + "..." 
-                : tekst;
+// === POPRAVLJENI KONTEKST (zamijeni stari kod) ===
+const kontekst = aktivniZakoniPodaci
+    .slice(0, 30)                    // ograničavamo na 30 članova max
+    .map(clan => {
+        const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
+        const skraceniTekst = tekst.length > 700 
+            ? tekst.substring(0, 700) + "..." 
+            : tekst;
 
-            // Spajamo sve u format: Zakon - Član 1b - Naslov - Tekst
-            return `${clan.naziv_zakona || 'Zakon'} - ${clan.broj_clana || ''} - ${clan.naziv_clana || ''} - ${skraceniTekst}`;
-        })
-        .join('\n\n---\n\n');
+        return `${clan.naziv_zakona || 'Zakon'} - ${clan.broj_clana || clan.clan_broj || ''}: ${clan.naziv_clana || ''}\n${skraceniTekst}`;
+    })
+    .join('\n\n---\n\n');
 
-    // Uzimamo boolean vrijednost (true/false) iz checkboxa
-    const skraceno = document.querySelector('input[value="skraceno"]').checked;
-    
-    // <-- 2. POPRAVLJENO: Ako nije skraćeno, šaljemo "sviOznaceniZakoniTekst" (JSON string), a ne sirovi niz objekata!
-    const kontekst = skraceno ? kontekstZaAI : sviOznaceniZakoniTekst;
-    
-    console.log("Šaljem kontekst dužine:", kontekst.length, "karaktera AI-ju. Modus skraćeno:", skraceno);
+console.log("Šaljem kontekst od", kontekst.length, "karaktera");
  
  
     // Sistemski prompt
