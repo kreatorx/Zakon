@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Messages su obavezni i moraju biti niz.' });
     }
 
-    const izabraniModel = (model || 'gemini-1.5-flash').toLowerCase().trim();
+    const izabraniModel = (model || 'gemini-2.5-flash').toLowerCase().trim();
     console.log('Izabrani model:', izabraniModel);
 
     // ====================== GEMINI ======================
