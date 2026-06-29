@@ -92,7 +92,7 @@
                         </label>
                     </div>
                 </div>
- <div class="space-y-1" id="law-selectors">
+ <div class="space-y-2" id="law-selectors">
  <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
                             <input type="checkbox" value="skraceno" checked onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                             <span class="text-xs text-gray-700">Skraceni upit</span>
@@ -512,12 +512,14 @@ function prikaziClanove(clanovi, istaknutiKljucevi = []) {
 
         // --- AUTOMATSKO PRELAMANJE I FORMATIRANJE SEGMENTA (a), b), 1., 2. ...) ---
         let siroviTekst = clan.sadrzaj_html || clan.cisti_tekst || clan.tekst || "";  
-     
-        // 1. Prelom za slovne oznake tipa: a) b) c) ili a. b. c. sa blagim uvlačenjem (pl-2)
-        let formatiranTekst = siroviTekst.replace(/(?<=\s)([a-zžšđčć])[\)|.]\s/gi, '<br><span class="pl-2 font-semibold text-blue-800">$1) </span>');
-        
-        // 2. Prelom za brojevne oznake tipa: 1) 2) ili 1. 2. sa blagim uvlačenjem (pl-1)
-        formatiranTekst = formatiranTekst.replace(/(?<=\s)(\d{1,2})[\)|.]\s/g, '<br><span class="pl-1 font-semibold">$1. </span>');
+
+// 1. Prelom za slovne oznake tipa: a) b) c) ili a. b. c. sa blagim uvlačenjem (pl-2)
+// Plava i podebljana oznaka, span se zatvara odmah nakon zagrade/tačke
+let formatiranTekst = siroviTekst.replace(/(?<=\s)([a-zžšđčć])[\)|.]\s/gi, '<br><span class="pl-2 font-semibold text-blue-800">$1) </span>');
+
+// 2. Prelom za brojevne oznake tipa: 1) 2) ili 1. 2. sa blagim uvlačenjem (pl-1)
+// Plava i podebljana oznaka, span se zatvara odmah nakon zagrade/tačke
+formatiranTekst = formatiranTekst.replace(/(?<=\s)(\d{1,2})[\)|.]\s/g, '<br><span class="pl-1 font-semibold text-blue-800">$1) </span>');
 
         card.innerHTML = `
             <div class="flex-grow">
@@ -797,15 +799,14 @@ const izabraniModel = document.getElementById('ai-model-select').value;
 
  
 // === POPRAVLJENI KONTEKST ZA INTELIGENTNO SKRAĆIVANJE ===
-    const kontekstZaAI = aktivniZakoniPodaci
-        .slice(0, 30)                    // Ograničavamo na maksimalno 30 članova
+    const kontekstZaAI = sviOznaceniZakoniTekst
         .map(clan => {
             // Uzimamo sirovi tekst i čistimo eventualne prazne prostore
             const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
             
-            // Ako je tekst duži od 700 karaktera, siječemo ga i dodajemo "..."
-            const skraceniTekst = tekst.length > 700 
-                ? tekst.substring(0, 700) + "..." 
+            // Ako je tekst duži od 200 karaktera, siječemo ga i dodajemo "..."
+            const skraceniTekst = tekst.length > 200 
+                ? tekst.substring(0, 200) + "..." 
                 : tekst;
 
             // Spajamo sve u format: Zakon - Član 1b - EU usklađenost - Tekst
