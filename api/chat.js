@@ -111,8 +111,8 @@ export default async function handler(req, res) {
       });
     }
 
-    // ====================== GROQ (NEW) ======================
-    if (izabraniModel.includes('deepseek') || izabraniModel.includes('mixtral')) {
+   // ====================== GROQ (DeepSeek R1 & Llama) ======================
+    if (izabraniModel.includes('llama') || izabraniModel.includes('mixtral') || izabraniModel.includes('deepseek')) {
       const groqKey = process.env.GROQ_API_KEY;
 
       if (!groqKey) {
@@ -120,19 +120,21 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'GROQ_API_KEY nije podešen u Vercel Environment Variables.' });
       }
 
-      // Ako frontend traži JSON, ubacujemo i strukturu za Groq
       const groqBody = {
-        model: izabraniModel, // npr. llama-3.3-70b-versatile
+        model: izabraniModel, // Ovdje će sada ući "deepseek-r1-distill-llama-70b"
         messages: messages,
         temperature: temperature ?? 0.1
       };
 
-      if (response_format?.type === 'json_object') {
+      // NAPOMENA: DeepSeek R1 na Groq-u NE podržava "response_format: { type: 'json_object' }" 
+      // jer to ometa njegov proces razmišljanja. Zato JSON forsiramo isključivo kroz tvoj sistemski prompt!
+      if (response_format?.type === 'json_object' && !izabraniModel.includes('deepseek')) {
         groqBody.response_format = { type: "json_object" };
       }
 
       console.log('Šaljem zahtjev prema Groq API-ju za model:', izabraniModel);
 
+      // Koristimo new URL da izbjegnemo grešku 500 (Failed to parse URL) koja se dešavala ranije
       const groqResponse = await fetch(new URL('https://api.groq.com/openai/v1/chat/completions'), {
         method: 'POST',
         headers: {
@@ -152,17 +154,15 @@ export default async function handler(req, res) {
         });
       }
 
-      // Izvlačimo tekst odgovora
       const tekstOdgovoraGroq = groqData.choices?.[0]?.message?.content || '';
 
       return res.status(200).json({
         choices: groqData.choices,
-        text: tekstOdgovoraGroq, // Prosljeđujemo tekst direktno radi lakšeg čitanja na frontendu
+        text: tekstOdgovoraGroq,
         usage: groqData.usage || { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
         model: izabraniModel
       });
     }
-
     // ====================== OPENAI ======================
     const openAiKey = process.env.OPEN_API_KEY;
 
