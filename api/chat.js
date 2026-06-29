@@ -120,19 +120,22 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'GROQ_API_KEY nije podešen u Vercel Environment Variables.' });
       }
 
-      // Detektujemo da li je u pitanju Qwen reasoning model
-      const isReasoning = izabraniModel.includes('qwen');
+      const isQwen = izabraniModel.includes('qwen');
 
+      // Sklapamo tijelo zahtjeva striktno prema novoj dokumentaciji sa slike
       const groqBody = {
-        model: izabraniModel, // Ovdje ulazi "qwen-3-32b"
+        model: izabraniModel, // "qwen/qwen3-32b"
         messages: messages,
-        // Za reasoning modele držimo temperaturu malo višom (0.7 do 1.0), za običnu Llamu držimo 0.1
-        temperature: isReasoning ? 0.7 : (temperature ?? 0.1)
+        // Ako je Qwen, obavezno ide 0.6 za thinking mode, inače 0.1 za standardne modele
+        temperature: isQwen ? 0.6 : (temperature ?? 0.1)
       };
 
-      // Ako je standardni model (Llama) i frontend traži JSON objekat, aktiviraj response_format
-      // Za Qwen Reasoning isključujemo response_format jer on JSON prati direktno kroz sistemski prompt
-      if (response_format?.type === 'json_object' && !isReasoning) {
+      // DODATAK PREMA DOKUMENTACIJI SA SLIKE:
+      if (isQwen) {
+        // Sakrivamo proces razmišljanja da nam ne bi srušio JSON parsiranje na frontendu
+        groqBody.reasoning_format = "hidden"; 
+      } else if (response_format?.type === 'json_object') {
+        // Standardni JSON mod aktiviramo samo za modele koji nisu Qwen
         groqBody.response_format = { type: "json_object" };
       }
 
