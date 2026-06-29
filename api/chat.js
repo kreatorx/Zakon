@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Messages su obavezni i moraju biti niz.' });
     }
 
-    const izabraniModel = (model || 'gemini-2.5-flash').toLowerCase().trim();
+    const izabraniModel = (model || 'gemini-3.5-flash').toLowerCase().trim();
     console.log('Izabrani model:', izabraniModel);
 
     // ====================== GEMINI ======================
@@ -133,7 +133,7 @@ export default async function handler(req, res) {
 
       console.log('Šaljem zahtjev prema Groq API-ju za model:', izabraniModel);
 
-      const groqResponse = await fetch('[https://api.groq.com/openai/v1/chat/completions](https://api.groq.com/openai/v1/chat/completions)', {
+      const groqResponse = await fetch(new URL('https://api.groq.com/openai/v1/chat/completions'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
