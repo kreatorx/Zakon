@@ -112,7 +112,7 @@ export default async function handler(req, res) {
     }
 
     // ====================== GROQ (NEW) ======================
-    if (izabraniModel.includes('llama') || izabraniModel.includes('mixtral')) {
+    if (izabraniModel.includes('deepseek') || izabraniModel.includes('mixtral')) {
       const groqKey = process.env.GROQ_API_KEY;
 
       if (!groqKey) {
