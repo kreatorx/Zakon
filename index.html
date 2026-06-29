@@ -713,6 +713,14 @@ const izabraniModel = document.getElementById('ai-model-select').value;
     );
 
  
+// Umjesto JSON.stringify cijele baze
+const kontekst = aktivniZakoniPodaci
+  .slice(0, 25) // ograniči broj članova
+  .map(clan => `${clan.zakon} - ${clan.clan}: ${clan.naslov}\n${clan.tekst.substring(0, 800)}...`)
+  .join('\n\n---\n\n');
+ console.log("Šaljem kontekst dužine:", kontekst.length)
+
+ 
     // Sistemski prompt
     const sistemskiPrompt = `
     Ti si napredni pravni asistent za zakonodavstvo Federacije Bosne i Hercegovine.
