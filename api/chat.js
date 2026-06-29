@@ -111,8 +111,8 @@ export default async function handler(req, res) {
       });
     }
 
-   // ====================== GROQ (DeepSeek R1 & Llama) ======================
-    if (izabraniModel.includes('llama') || izabraniModel.includes('mixtral') || izabraniModel.includes('deepseek')) {
+   // ====================== GROQ (Qwen Reasoning & Llama) ======================
+    if (izabraniModel.includes('llama') || izabraniModel.includes('mixtral') || izabraniModel.includes('qwen')) {
       const groqKey = process.env.GROQ_API_KEY;
 
       if (!groqKey) {
@@ -120,21 +120,24 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'GROQ_API_KEY nije podešen u Vercel Environment Variables.' });
       }
 
+      // Detektujemo da li je u pitanju Qwen reasoning model
+      const isReasoning = izabraniModel.includes('qwen');
+
       const groqBody = {
-        model: izabraniModel, // Ovdje će sada ući "deepseek-r1-distill-llama-70b"
+        model: izabraniModel, // Ovdje ulazi "qwen-3-32b"
         messages: messages,
-        temperature: temperature ?? 0.1
+        // Za reasoning modele držimo temperaturu malo višom (0.7 do 1.0), za običnu Llamu držimo 0.1
+        temperature: isReasoning ? 0.7 : (temperature ?? 0.1)
       };
 
-      // NAPOMENA: DeepSeek R1 na Groq-u NE podržava "response_format: { type: 'json_object' }" 
-      // jer to ometa njegov proces razmišljanja. Zato JSON forsiramo isključivo kroz tvoj sistemski prompt!
-      if (response_format?.type === 'json_object' && !izabraniModel.includes('deepseek')) {
+      // Ako je standardni model (Llama) i frontend traži JSON objekat, aktiviraj response_format
+      // Za Qwen Reasoning isključujemo response_format jer on JSON prati direktno kroz sistemski prompt
+      if (response_format?.type === 'json_object' && !isReasoning) {
         groqBody.response_format = { type: "json_object" };
       }
 
-      console.log('Šaljem zahtjev prema Groq API-ju za model:', izabraniModel);
+      console.log(`Šaljem zahtjev prema Groq API-ju. Model: ${izabraniModel}, Temp: ${groqBody.temperature}`);
 
-      // Koristimo new URL da izbjegnemo grešku 500 (Failed to parse URL) koja se dešavala ranije
       const groqResponse = await fetch(new URL('https://api.groq.com/openai/v1/chat/completions'), {
         method: 'POST',
         headers: {
@@ -163,6 +166,8 @@ export default async function handler(req, res) {
         model: izabraniModel
       });
     }
+
+    
     // ====================== OPENAI ======================
     const openAiKey = process.env.OPEN_API_KEY;
 
