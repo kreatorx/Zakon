@@ -815,6 +815,8 @@ const kontekstZaAI = aktivniZakoniPodaci
 
 console.log("Šaljem kontekst od", kontekstZaAI.length, "karaktera AI-ju.");
 
+ const skraceno = document.querySelector('input[value="skraceno"]').checked;
+ 
 const kontekst = skraceno ? kontekstZaAI : sviOznaceniZakoniTekst;
  
     // Sistemski prompt
