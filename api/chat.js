@@ -62,8 +62,6 @@ export default async function handler(req, res) {
         systemText += "\n\nVAŽNO: Odgovor mora biti ISKLJUČIVO validan JSON objekat. Bez ikakvog teksta van JSON-a, bez markdown oznaka poput ```json.";
       }
 
-      // Koristi tačan model string — ukloni sve razmake
-      // Primjer: "gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-pro"
       const geminiModelString = izabraniModel.replace(/\s+/g, '-');
 
       const payload = {
@@ -100,14 +98,68 @@ export default async function handler(req, res) {
 
       const tekstOdgovora = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || '';
 
+      // Vraćamo standardni OpenAI-kompatibilan format koji tvoj frontend očekuje
       return res.status(200).json({
         choices: [{
           message: { role: 'assistant', content: tekstOdgovora },
           finish_reason: 'stop',
           index: 0
         }],
+        text: tekstOdgovora, // Dodato radi direktnog čitanja ako zatreba
         usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
         model: geminiModelString
+      });
+    }
+
+    // ====================== GROQ (NEW) ======================
+    if (izabraniModel.includes('llama') || izabraniModel.includes('mixtral')) {
+      const groqKey = process.env.GROQ_API_KEY;
+
+      if (!groqKey) {
+        console.error('GREŠKA: GROQ_API_KEY nije postavljen!');
+        return res.status(500).json({ error: 'GROQ_API_KEY nije podešen u Vercel Environment Variables.' });
+      }
+
+      // Ako frontend traži JSON, ubacujemo i strukturu za Groq
+      const groqBody = {
+        model: izabraniModel, // npr. llama-3.3-70b-versatile
+        messages: messages,
+        temperature: temperature ?? 0.1
+      };
+
+      if (response_format?.type === 'json_object') {
+        groqBody.response_format = { type: "json_object" };
+      }
+
+      console.log('Šaljem zahtjev prema Groq API-ju za model:', izabraniModel);
+
+      const groqResponse = await fetch('[https://api.groq.com/openai/v1/chat/completions](https://api.groq.com/openai/v1/chat/completions)', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${groqKey}`
+        },
+        body: JSON.stringify(groqBody)
+      });
+
+      const groqData = await groqResponse.json();
+
+      if (!groqResponse.ok) {
+        console.error('Groq API greška:', JSON.stringify(groqData));
+        return res.status(groqResponse.status).json({
+          error: groqData.error?.message || 'Groq API greška',
+          details: groqData
+        });
+      }
+
+      // Izvlačimo tekst odgovora
+      const tekstOdgovoraGroq = groqData.choices?.[0]?.message?.content || '';
+
+      return res.status(200).json({
+        choices: groqData.choices,
+        text: tekstOdgovoraGroq, // Prosljeđujemo tekst direktno radi lakšeg čitanja na frontendu
+        usage: groqData.usage || { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
+        model: izabraniModel
       });
     }
 
@@ -118,7 +170,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'OPEN_API_KEY nije podešen u Vercel Environment Variables.' });
     }
 
-    const openAiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+    const openAiResponse = await fetch('[https://api.openai.com/v1/chat/completions](https://api.openai.com/v1/chat/completions)', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -133,6 +185,12 @@ export default async function handler(req, res) {
     });
 
     const data = await openAiResponse.json();
+    
+    // Dodajemo i ovdje polje .text ako ga tvoj frontend direktno mapira
+    if (openAiResponse.ok && data.choices?.[0]?.message?.content) {
+      data.text = data.choices[0].message.content;
+    }
+
     return res.status(openAiResponse.status).json(data);
 
   } catch (error) {
