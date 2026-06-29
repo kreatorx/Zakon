@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Messages su obavezni i moraju biti niz.' });
     }
 
-    const izabraniModel = (model || 'gemini-3.5-flash').toLowerCase().trim();
+    const izabraniModel = (model || 'gemini-1.5-flash').toLowerCase().trim();
     console.log('Izabrani model:', izabraniModel);
 
     // ====================== GEMINI ======================
@@ -125,7 +125,7 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${openAiKey}`
       },
       body: JSON.stringify({
-        model: model || 'gpt-5.4',
+        model: model || 'gpt-4o-mini',
         messages,
         response_format,
         temperature: temperature ?? 0.1
