@@ -799,7 +799,7 @@ const izabraniModel = document.getElementById('ai-model-select').value;
 
  
 // === POPRAVLJENI KONTEKST ZA INTELIGENTNO SKRAĆIVANJE ===
-    const kontekstZaAI = sviOznaceniZakoniTekst
+    const kontekstZaAI = aktivniZakoniPodaci
         .map(clan => {
             // Uzimamo sirovi tekst i čistimo eventualne prazne prostore
             const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
