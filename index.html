@@ -796,28 +796,31 @@ const izabraniModel = document.getElementById('ai-model-select').value;
     );
 
  
-// === POPRAVLJENI KONTEKST (zamijeni stari kod) ===
-const kontekstZaAI = aktivniZakoniPodaci
-    .slice(0, 30)                    // Ograničavamo na maksimalno 30 članova
-    .map(clan => {
-        // Uzimamo sirovi tekst i čistimo eventualne prazne prostore
-        const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
-        
-        // Ako je tekst duži od 700 karaktera, siječemo ga i dodajemo "..."
-        const skraceniTekst = tekst.length > 700 
-            ? tekst.substring(0, 700) + "..." 
-            : tekst;
+// === POPRAVLJENI KONTEKST ZA INTELIGENTNO SKRAĆIVANJE ===
+    const kontekstZaAI = aktivniZakoniPodaci
+        .slice(0, 30)                    // Ograničavamo na maksimalno 30 članova
+        .map(clan => {
+            // Uzimamo sirovi tekst i čistimo eventualne prazne prostore
+            const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
+            
+            // Ako je tekst duži od 700 karaktera, siječemo ga i dodajemo "..."
+            const skraceniTekst = tekst.length > 700 
+                ? tekst.substring(0, 700) + "..." 
+                : tekst;
 
-        // Spajamo sve u format koji tebi treba: Zakon - Član 1b - EU usklađenost - Tekst
-        return `${clan.naziv_zakona || 'Zakon'} - ${clan.broj_clana || ''} - ${clan.naziv_clana || ''} - ${skraceniTekst}`;
-    })
-    .join('\n\n---\n\n');
+            // Spajamo sve u format: Zakon - Član 1b - EU usklađenost - Tekst
+            return `${clan.naziv_zakona || 'Zakon'} - ${clan.broj_clana || ''} - ${clan.naziv_clana || ''} - ${skraceniTekst}`;
+        })
+        .join('\n\n---\n\n');
 
-console.log("Šaljem kontekst od", kontekstZaAI.length, "karaktera AI-ju.");
-
- const skraceno = document.querySelector('input[value="skraceno"]').checked;
+    // Uzimamo boolean vrijednost (true/false) iz checkboxa
+    const skraceno = document.querySelector('input[value="skraceno"]').checked;
+    
+    // Ako je označeno skraćeno, šaljemo formatirani tekst (30 članova do 700 znakova), u suprotnom šaljemo sve u JSON-u
+    const kontekst = skraceno ? kontekstZaAI : sviOznaceniZakoniTekst;
+    
+    console.log("Šaljem kontekst dužine:", kontekst.length, "karaktera AI-ju. Modus skraćeno:", skraceno);
  
-const kontekst = skraceno ? kontekstZaAI : sviOznaceniZakoniTekst;
  
     // Sistemski prompt
     const sistemskiPrompt = `
