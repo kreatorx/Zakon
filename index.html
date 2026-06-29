@@ -678,6 +678,11 @@ function otvoriModal(idSistema) {
         // AI PRETRAGA
 async function traziAI() {
 
+if (aktivniZakoniPodaci.length === 0) {
+    alert("Nema dostupnih članova za odabrane zakone.");
+    return;
+}
+ 
 const izabraniModel = document.getElementById('ai-model-select').value;
  
     const problemText = document.getElementById('ai-problem').value.trim();
@@ -713,12 +718,20 @@ const izabraniModel = document.getElementById('ai-model-select').value;
     );
 
  
-// Umjesto JSON.stringify cijele baze
-const kontekst = aktivniZakoniPodaci
-  .slice(0, 25) // ograniči broj članova
-  .map(clan => `${clan.zakon} - ${clan.clan}: ${clan.naslov}\n${clan.tekst.substring(0, 800)}...`)
-  .join('\n\n---\n\n');
- console.log("Šaljem kontekst dužine:", kontekst.length)
+// === POPRAVLJENI KONTEKST (zamijeni stari kod) ===
+const kontekstZaAI = aktivniZakoniPodaci
+    .slice(0, 30)                    // ograničavamo na 30 članova max
+    .map(clan => {
+        const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
+        const skraceniTekst = tekst.length > 700 
+            ? tekst.substring(0, 700) + "..." 
+            : tekst;
+
+        return `${clan.naziv_zakona || 'Zakon'} - ${clan.broj_clana || clan.clan_broj || ''}: ${clan.naziv_clana || ''}\n${skraceniTekst}`;
+    })
+    .join('\n\n---\n\n');
+
+console.log("Šaljem kontekst od", kontekstZaAI.length, "karaktera");
 
  
     // Sistemski prompt
@@ -728,6 +741,7 @@ const kontekst = aktivniZakoniPodaci
     
     [STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
     Obavezno vrati odgovor u roku od 9 sekundi! Odgovor prilagodi na max 200 riječi.
+${kontekstZaAI}
 
     [KOMPLETNA BAZA KRIVIČNOG ZAKONA FBIH]:
     Ovdje se nalazi kompletan sadržaj svih zakona koje je korisnik odabrao. Prioritet je krivični zakon. Koristi isključivo ove podatke i njihove tačne oznake članova (posebno obrati pažnju na specifične članove sa slovima poput 181b, 166a, itd.):
