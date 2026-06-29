@@ -86,6 +86,10 @@
                             <input type="checkbox" value="Zakon o zaštiti od klevete" checked onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                             <span class="text-xs text-gray-700">Zakon o zaštiti od klevete</span>
                         </label>
+                     <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
+                            <input type="checkbox" value="Zakon o radu" onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                            <span class="text-xs text-gray-700">Zakon o radu</span>
+                        </label>
                     </div>
                 </div>
 
@@ -234,6 +238,7 @@
             { id: 'uz', naziv: 'Ustav FBiH', url: './ustav_fbih.json' },
             { id: 'zd', naziv: 'Zakon o zabrani diskriminacije', url: './diskriminacija_fbih.json' }, 
             { id: 'zk', naziv: 'Zakon o zaštiti od klevete', url: './kleveta_fbih.json' }
+            { id: 'zr', naziv: 'Zakon o radu', url: './o_radu_fbih.json' }
         ];
 
         const AI_API_URL = 'https://zakon-nine.vercel.app/api/chat';
@@ -396,7 +401,8 @@ function prikaziClanove(clanovi, istaknutiKljucevi = []) {
         'krivični': { pozadina: 'bg-red-50/40', okvir: 'border-red-200/60' },
         'ustav': { pozadina: 'bg-blue-50/40', okvir: 'border-blue-200/60' },
         'diskriminacij': { pozadina: 'bg-emerald-50/40', okvir: 'border-emerald-200/60' },
-        'klevet': { pozadina: 'bg-amber-50/40', okvir: 'border-amber-200/60' }
+        'klevet': { pozadina: 'bg-amber-50/40', okvir: 'border-amber-200/60' },
+     'o radu': { pozadina: 'bg-lime-50/40', okvir: 'border-lime-200/60' }
     };
 
     const podrazumijevanaBoja = { pozadina: 'bg-white', okvir: 'border-gray-200' };
@@ -519,15 +525,15 @@ function otvoriModal(idSistema) {
                 if (matchOznaka) {
                     htmlSadrzaj += `
                         <div class="mb-3 flex items-start gap-2">
-                            <span class="font-bold text-gray-900 shrink-0 min-w-[22px] text-[13.5px]">${matchOznaka[1]}</span>
-                            <span class="font-bold text-gray-900 text-[13.5px] leading-relaxed">${matchOznaka[2].trim()}</span>
+                            <span class="text-sky-600 shrink-0 min-w-[22px] text-[11px]">${matchOznaka[1]}</span>
+                            <span class=" text-sky-600 text-[11px] leading-relaxed">${matchOznaka[2].trim()}</span>
                         </div>`;
                 } else {
-                    htmlSadrzaj += `<p class="font-bold text-gray-900 text-[13.5px] leading-relaxed mb-3">${tekstStavke}</p>`;
+                    htmlSadrzaj += `<p class="text-gray-600 text-[11px] leading-relaxed mb-3">${tekstStavke}</p>`;
                 }
             } else {
                 // Običan uvodni tekst tona "Sve osobe na teritoriji..." koji nije podtačka
-                htmlSadrzaj += `<p class="font-bold text-gray-900 text-[13.5px] leading-relaxed mb-3">${tekstStavke}</p>`;
+                htmlSadrzaj += `<p class="text-gray-700 text-[11px] leading-relaxed mb-3">${tekstStavke}</p>`;
             }
         });
     } else {
@@ -804,6 +810,7 @@ console.log("Šaljem kontekst od", kontekstZaAI.length, "karaktera");
             if (nazivZakona.toLowerCase().includes("krivični") || nazivZakona.toLowerCase().includes("krivicni")) nazivZakona = "Krivični Zakon FBiH";
             if (nazivZakona.toLowerCase().includes("diskriminaci")) nazivZakona = "Zakon o zabrani diskriminacije";
             if (nazivZakona.toLowerCase().includes("klevet")) nazivZakona = "Zakon o zaštiti od klevete";
+            if (nazivZakona.toLowerCase().includes("o radu")) nazivZakona = "Zakon o radu";
             
             let cistiBroj = String(p.clan||"").toLowerCase().replace('član', '').replace('.', '').trim();
             return `${nazivZakona}__${cistiBroj}`;
