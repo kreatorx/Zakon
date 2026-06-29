@@ -111,8 +111,8 @@ export default async function handler(req, res) {
       });
     }
 
-   // ====================== GROQ (Qwen Reasoning & Llama) ======================
-    if (izabraniModel.includes('llama') || izabraniModel.includes('mixtral') || izabraniModel.includes('qwen')) {
+   // ====================== GROQ (Qwen, GPT-OSS & Llama) ======================
+    if (izabraniModel.includes('llama') || izabraniModel.includes('mixtral') || izabraniModel.includes('qwen') || izabraniModel.includes('openai')) {
       const groqKey = process.env.GROQ_API_KEY;
 
       if (!groqKey) {
@@ -120,22 +120,21 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'GROQ_API_KEY nije podešen u Vercel Environment Variables.' });
       }
 
-      const isQwen = izabraniModel.includes('qwen');
+      // Provjeravamo radi li se o nekom od reasoning modela (Qwen ili GPT-OSS)
+      const isReasoning = izabraniModel.includes('qwen') || izabraniModel.includes('openai');
 
-      // Sklapamo tijelo zahtjeva striktno prema novoj dokumentaciji sa slike
       const groqBody = {
-        model: izabraniModel, // "qwen/qwen3-32b"
+        model: izabraniModel, // Ovdje ulazi "qwen/qwen3-32b" ili "openai/gpt-oss-20b"
         messages: messages,
-        // Ako je Qwen, obavezno ide 0.6 za thinking mode, inače 0.1 za standardne modele
-        temperature: isQwen ? 0.6 : (temperature ?? 0.1)
+        // Za reasoning modele postavljamo temperaturu 0.6 prema best practices sa slika, inače 0.1
+        temperature: isReasoning ? 0.6 : (temperature ?? 0.1)
       };
 
-      // DODATAK PREMA DOKUMENTACIJI SA SLIKE:
-      if (isQwen) {
-        // Sakrivamo proces razmišljanja da nam ne bi srušio JSON parsiranje na frontendu
+      if (isReasoning) {
+        // Sakrivamo proces razmišljanja za oba modela kako ne bi pokvario JSON strukturu na frontendu
         groqBody.reasoning_format = "hidden"; 
       } else if (response_format?.type === 'json_object') {
-        // Standardni JSON mod aktiviramo samo za modele koji nisu Qwen
+        // Standardni JSON mod za običnu Llamu
         groqBody.response_format = { type: "json_object" };
       }
 
