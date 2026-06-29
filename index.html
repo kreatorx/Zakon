@@ -917,13 +917,38 @@ console.log("Šaljem kontekst od", kontekst.length, "karaktera");
 
     } catch (error) {
         console.error("Greška prilikom AI analize:", error);
-        alert("Došlo je do greške prilikom mrežne pretrage modela. Vraćam standardni prikaz.");
+
+        // Mapiranje grešaka na tvoje prilagođene, jasne poruke
+        const porukeGreski = {
+            "429": "⏳ Besplatni model se odmara! (Previše zahtjeva u kratkom vremenu, sačekajte minutu).",
+            "500": "💥 Server je preopterećen ili je došlo do unutrašnje greške na Vercelu.",
+            "504": "⏱️ Vercel Timeout! AI modelu je trebalo više od 10 sekundi da odgovori.",
+            "401": "🔑 Problem sa API ključem. Provjerite backend konfiguraciju.",
+            "403": "🚫 Pristup odbijen! Nemate dozvolu za pozivanje ovog modela."
+        };
+
+        --
+        // Izvlačimo čisti tekst greške (npr. "429")
+        const kodGreske = error.message.trim();
+
+        // Ako imamo definisanu poruku za taj kod, iskoristi je. U suprotnom daj generičku poruku.
+        const konacnaPoruka = porukeGreski[kodGreske] 
+            ? porukeGreski[kodGreske] 
+            : `Došlo je do mrežne greške (${kodGreske || "Nepoznato"}). Vraćam standardni prikaz.`;
+
+        // Prikazujemo prilagođenu poruku korisniku
+        alert(konacnaPoruka);
+        
+        // Vraćamo stabilan prikaz kartica na desnoj strani ekrana da interfejs ne ostane blokiran
         filtrirajPrikaz();
+
     } finally {
+        // Vraćanje dugmeta u aktivno stanje i skrivanje loadera bez obzira na ishod
         document.getElementById('btn-ai-search').disabled = false;
         document.getElementById('loader').classList.add('hidden');
     }
 }
+     
         function zatvoriAiBox() {
             document.getElementById('ai-response-box').classList.add('hidden');
             document.getElementById('results-title').innerText = "Svi aktivni članovi zakona";
