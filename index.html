@@ -818,7 +818,7 @@ const izabraniModel = document.getElementById('ai-model-select').value;
     const skraceno = document.querySelector('input[value="skraceno"]').checked;
     
     // Ako je označeno skraćeno, šaljemo formatirani tekst (30 članova do 700 znakova), u suprotnom šaljemo sve u JSON-u
-    const kontekst = skraceno ? kontekstZaAI : sviOznaceniZakoniTekst;
+    const kontekst = skraceno ? kontekstZaAI : aktivniZakoniPodaci;
     
     console.log("Šaljem kontekst dužine:", kontekst.length, "karaktera AI-ju. Modus skraćeno:", skraceno);
  
