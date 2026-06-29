@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${openAiKey}`
       },
       body: JSON.stringify({
-        model: model || 'gpt-4o-mini',
+        model: model || 'gpt-5.4',
         messages,
         response_format,
         temperature: temperature || 0.1
