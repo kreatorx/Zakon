@@ -1,10 +1,9 @@
 export default async function handler(req, res) {
   console.log('=== CHAT HANDLER POZVAN ===');
   console.log('Method:', req.method);
-  console.log('URL:', req.url);
   console.log('Model:', req.body?.model);
 
-  // Eksplicitno rukovanje CORS-om
+  // CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -22,24 +21,22 @@ export default async function handler(req, res) {
     const { messages, response_format, temperature, model } = req.body || {};
 
     if (!messages || !Array.isArray(messages)) {
-      return res.status(400).json({ error: 'Messages are required and must be an array' });
+      return res.status(400).json({ error: 'Messages su obavezni i moraju biti niz.' });
     }
 
-    const izabraniModel = (model || 'gemini-1.5-flash').toLowerCase();
+    const izabraniModel = (model || 'gemini-1.5-flash').toLowerCase().trim();
     console.log('Izabrani model:', izabraniModel);
 
     // ====================== GEMINI ======================
     if (izabraniModel.includes('gemini')) {
       const geminiKey = process.env.GEMINI_API_KEY;
-      
+
       if (!geminiKey) {
         console.error('GREŠKA: GEMINI_API_KEY nije postavljen!');
-        return res.status(500).json({ 
-          error: 'GEMINI_API_KEY nije podešen u Vercel Environment Variables.' 
-        });
+        return res.status(500).json({ error: 'GEMINI_API_KEY nije podešen u Vercel Environment Variables.' });
       }
 
-      // Konverzija OpenAI formata u Gemini format
+      // Konverzija OpenAI → Gemini format
       const geminiContents = [];
       let systemInstruction = "Ti si pravni AI asistent. Odgovori na pitanje isključivo na osnovu priloženog konteksta zakona FBiH.";
 
@@ -49,35 +46,41 @@ export default async function handler(req, res) {
         } else {
           const role = msg.role === 'assistant' ? 'model' : 'user';
           geminiContents.push({
-            role: role,
+            role,
             parts: [{ text: msg.content }]
           });
         }
       }
 
-      // Priprema payload-a
+      // Mora postojati barem jedan user message
+      if (geminiContents.length === 0) {
+        return res.status(400).json({ error: 'Nema korisničkih poruka za Gemini.' });
+      }
+
+      let systemText = systemInstruction;
+      if (response_format?.type === 'json_object') {
+        systemText += "\n\nVAŽNO: Odgovor mora biti ISKLJUČIVO validan JSON objekat. Bez ikakvog teksta van JSON-a, bez markdown oznaka poput ```json.";
+      }
+
+      // Koristi tačan model string — ukloni sve razmake
+      // Primjer: "gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-pro"
+      const geminiModelString = izabraniModel.replace(/\s+/g, '-');
+
       const payload = {
+        system_instruction: {
+          parts: [{ text: systemText }]
+        },
         contents: geminiContents,
         generationConfig: {
-          temperature: temperature || 0.1,
+          temperature: temperature ?? 0.1,
           maxOutputTokens: 4096,
           topP: 0.95,
           topK: 40
         }
       };
 
-      // Dodaj system_instruction
-      if (systemInstruction) {
-        let systemText = systemInstruction;
-        if (response_format?.type === 'json_object') {
-          systemText += "\n\nVAŽNO: Odgovor mora biti u validnom JSON formatu. Nemoj dodavati nikakav dodatni tekst van JSON objekta.";
-        }
-        payload.system_instruction = {
-          parts: [{ text: systemText }]
-        };
-      }
-
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${izabraniModel}:generateContent?key=${geminiKey}`;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${geminiModelString}:generateContent?key=${geminiKey}`;
+      console.log('Gemini URL (bez key-a):', url.replace(geminiKey, 'HIDDEN'));
 
       const geminiResponse = await fetch(url, {
         method: 'POST',
@@ -88,7 +91,7 @@ export default async function handler(req, res) {
       const geminiData = await geminiResponse.json();
 
       if (!geminiResponse.ok) {
-        console.error('Gemini API greška:', geminiData);
+        console.error('Gemini API greška:', JSON.stringify(geminiData));
         return res.status(geminiResponse.status).json({
           error: geminiData.error?.message || 'Gemini API greška',
           details: geminiData
@@ -99,26 +102,20 @@ export default async function handler(req, res) {
 
       return res.status(200).json({
         choices: [{
-          message: {
-            role: 'assistant',
-            content: tekstOdgovora
-          },
+          message: { role: 'assistant', content: tekstOdgovora },
           finish_reason: 'stop',
           index: 0
         }],
-        usage: {
-          prompt_tokens: 0,
-          completion_tokens: 0,
-          total_tokens: 0
-        },
-        model: izabraniModel
+        usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
+        model: geminiModelString
       });
     }
 
-    // ====================== OPENAI (za kasnije) ======================
+    // ====================== OPENAI ======================
     const openAiKey = process.env.OPEN_API_KEY;
+
     if (!openAiKey) {
-      return res.status(500).json({ error: 'OPEN_API_KEY nije podešen.' });
+      return res.status(500).json({ error: 'OPEN_API_KEY nije podešen u Vercel Environment Variables.' });
     }
 
     const openAiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -131,7 +128,7 @@ export default async function handler(req, res) {
         model: model || 'gpt-4o-mini',
         messages,
         response_format,
-        temperature: temperature || 0.1
+        temperature: temperature ?? 0.1
       })
     });
 
