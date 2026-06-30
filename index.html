@@ -24,123 +24,125 @@
 <body class="bg-gray-50 font-sans text-gray-800 antialiased text-xs">
 
     <div class="min-h-screen flex flex-col">
-    <header class="bg-blue-900 text-white shadow-sm px-4 py-3">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            
-            <div>
-                <h1 class="text-lg font-bold tracking-tight">Sveobuhvatna Pravna Baza FBiH</h1>
-                <p class="text-blue-200 text-xs">Pametni sistem za pretragu i AI analizu više zakona i akata</p>
-            </div>
-            
-            <div class="flex flex-row items-center gap-4 ml-auto sm:ml-0">
+        <!-- HEADER -->
+        <header class="bg-blue-900 text-white shadow-sm px-4 py-3">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                
                 <div>
-                    <span class="text-[10px] bg-blue-800 text-blue-200 px-2 py-0.5 rounded-full border border-blue-700 font-medium whitespace-nowrap">
-                        Almedin's GitHub Pages
-                    </span>
+                    <h1 class="text-lg font-bold tracking-tight">Sveobuhvatna Pravna Baza FBiH</h1>
+                    <p class="text-blue-200 text-xs">Pametni sistem za pretragu i AI analizu više zakona i akata</p>
                 </div>
                 
-                <div class="text-right flex flex-col text-[10px] text-blue-200 border-l border-blue-800 pl-4">
-                    <p class="tracking-wide">husalmedin@gmail.com</p>
-                    <p>
-                        <a href="https://kreatorx.github.io/almedin" target="_blank" class="hover:text-white underline transition-colors decoration-blue-700/50">
-                            Građevinski dnevnik
-                        </a>
-                    </p>
+                <div class="flex flex-row items-center gap-4 ml-auto sm:ml-0">
+                    <div>
+                        <span class="text-[10px] bg-blue-800 text-blue-200 px-2 py-0.5 rounded-full border border-blue-700 font-medium whitespace-nowrap">
+                            Almedin's GitHub Pages
+                        </span>
+                    </div>
+                    
+                    <div class="text-right flex flex-col text-[10px] text-blue-200 border-l border-blue-800 pl-4">
+                        <p class="tracking-wide">husalmedin@gmail.com</p>
+                        <p>
+                            <a href="https://kreatorx.github.io/almedin" target="_blank" class="hover:text-white underline transition-colors decoration-blue-700/50">
+                                Građevinski dnevnik
+                            </a>
+                        </p>
+                    </div>
                 </div>
+
             </div>
+        </header>
 
-        </div>
-    </header>
-
+        <!-- MAIN SADRŽAJ -->
         <main class="flex-grow max-w-7xl w-full mx-auto p-3 grid grid-cols-1 lg:grid-cols-3 gap-4">
             
+            <!-- LIJEVA KOLONA (SIDEBAR) -->
             <div class="lg:col-span-1 flex flex-col gap-3">
                 
+                <!-- ODABIR ZAKONA -->
                 <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
                     <div class="flex items-center gap-1.5 mb-2 text-gray-700 font-semibold text-sm border-b pb-1">
                         <i class="fa-solid fa-gavel text-xs text-blue-900"></i>
                         <h2>Odaberite zakone za pretragu</h2>
                     </div>
-                    <div class="space-y-1" id="law-selectors">
+                    
+                    <div class="space-y-2" id="law-selectors">
                         <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
                             <input type="checkbox" id="chk-all" onchange="toggleSve(this)" checked class="w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                             <span class="text-xs font-bold text-gray-950">Prikaži / Pretraži SVE</span>
                         </label>
                         
-                        <div class="border border-gray-200 rounded-lg p-3 bg-gray-50">
-    <details class="group border border-gray-200 rounded-xl bg-gray-50 overflow-hidden transition-all duration-300">
-    
-    <summary class="flex items-center justify-between p-3 bg-white cursor-pointer select-none list-none">
-        <div class="flex items-center" onclick="event.stopPropagation(); flex">
-            <input type="checkbox" id="chk-kz" value="Krivični Zakon FBiH" 
-                   onchange="toggleSveUnutarZakona(this)" 
-                   class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-            <label for="chk-kz" class="ml-2 text-xs font-bold text-gray-900 cursor-pointer">
-                Krivični Zakon FBiH (Kompletan)
-            </label>
-        </div>
-        
-        <span class="text-xs text-gray-400 transition-transform duration-200 group-open:rotate-180 mr-1">
-            ▼
-        </span>
-    </summary>
+                        <!-- KRIVIČNI ZAKON ACCORDION -->
+                        <div class="border border-gray-200 rounded-lg p-1.5 bg-gray-50">
+                            <details class="group border border-gray-200 rounded-xl bg-gray-50 overflow-hidden transition-all duration-300">
+                                <summary class="flex items-center justify-between p-3 bg-white cursor-pointer select-none list-none">
+                                    <div class="flex items-center" onclick="event.stopPropagation();">
+                                        <input type="checkbox" id="chk-kz" value="Krivični Zakon FBiH" onchange="toggleSveUnutarZakona(this)" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                        <label for="chk-kz" class="ml-2 text-xs font-bold text-gray-900 cursor-pointer">
+                                            Krivični Zakon FBiH (Kompletan)
+                                        </label>
+                                    </div>
+                                    <span class="text-xs text-gray-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+                                </summary>
 
-    <div class="p-3 border-t border-gray-200 ml-2 space-y-3 max-h-60 overflow-y-auto text-[11px] text-gray-700">
-        
-        <div class="border-l-2 border-amber-400 pl-2">
-            <div class="flex items-center mb-1 bg-amber-50 p-1 rounded font-bold text-gray-700">
-                <input type="checkbox" id="chk-kz-opci" onchange="toggleGrupuCheckboxa(this, '.kz-opci-chk')" class="mr-1.5">
-                <label for="chk-kz-opci" class="cursor-pointer text-[10px] tracking-wider uppercase">--- OPĆI DIO ---</label>
-            </div>
-            <div class="space-y-1 mt-1 pl-1">
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="1-2" data-glava="I"> I - Predmet zakona i značaj izraza (1-2)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="3-8" data-glava="II"> II - Osnovne odredbe (3-8)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="9-14" data-glava="III"> III - Primjena krivičnog zakonodavstva (9-14)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="15-20" data-glava="IV"> IV - Zastara (15-20)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="21-34" data-glava="V"> V - Krivično djelo (21-34)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="35-40" data-glava="VI"> VI - Krivica (35-40)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="41-58" data-glava="VII"> VII - Kazne (41-58)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="59-70" data-glava="VIII"> VIII - Mjere upozorenja (59-70)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="71-78b" data-glava="IX"> IX - Sigurnosne mjere (71-78b)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="110-113" data-glava="XI"> XI - Izvršenje sankcija (110-113)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="114-120" data-glava="XII"> XII - Lišenje imovinske koristi (114-120)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="121-125a" data-glava="XIII"> XIII - Rehabilitacija i amnestija (121-125a)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="126-148" data-glava="XIV"> XIV - Odgovornost pravnih osoba (126-148)</label>
-            </div>
-        </div>
+                                <div class="p-3 border-t border-gray-200 ml-2 space-y-3 max-h-60 overflow-y-auto text-[11px] text-gray-700">
+                                    <!-- OPĆI DIO -->
+                                    <div class="border-l-2 border-amber-400 pl-2">
+                                        <div class="flex items-center mb-1 bg-amber-50 p-1 rounded font-bold text-gray-700">
+                                            <input type="checkbox" id="chk-kz-opci" onchange="toggleGrupuCheckboxa(this, '.kz-opci-chk')" class="mr-1.5">
+                                            <label for="chk-kz-opci" class="cursor-pointer text-[10px] tracking-wider uppercase">--- OPĆI DIO ---</label>
+                                        </div>
+                                        <div class="space-y-1 mt-1 pl-1">
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="1-2" data-glava="I"> I - Predmet zakona i značaj izraza (1-2)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="3-8" data-glava="II"> II - Osnovne odredbe (3-8)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="9-14" data-glava="III"> III - Primjena krivičnog zakonodavstva (9-14)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="15-20" data-glava="IV"> IV - Zastara (15-20)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="21-34" data-glava="V"> V - Krivično djelo (21-34)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="35-40" data-glava="VI"> VI - Krivica (35-40)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="41-58" data-glava="VII"> VII - Kazne (41-58)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="59-70" data-glava="VIII"> VIII - Mjere upozorenja (59-70)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="71-78b" data-glava="IX"> IX - Sigurnosne mjere (71-78b)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="110-113" data-glava="XI"> XI - Izvršenje sankcija (110-113)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="114-120" data-glava="XII"> XII - Lišenje imovinske koristi (114-120)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="121-125a" data-glava="XIII"> XIII - Rehabilitacija i amnestija (121-125a)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="126-148" data-glava="XIV"> XIV - Odgovornost pravnih osoba (126-148)</label>
+                                        </div>
+                                    </div>
 
-        <div class="border-l-2 border-blue-500 pl-2">
-            <div class="flex items-center mb-1 bg-blue-50 p-1 rounded font-bold text-gray-700">
-                <input type="checkbox" id="chk-kz-posebni" onchange="toggleGrupuCheckboxa(this, '.kz-posebni-chk')" class="mr-1.5" checked>
-                <label for="chk-kz-posebni" class="cursor-pointer text-[10px] tracking-wider uppercase">--- POSEBNI DIO ---</label>
-            </div>
-            <div class="space-y-1 mt-1 pl-1">
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="149-165" data-glava="XV" checked> XV - Protiv ustavnog poretka (149-165)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="166-176" data-glava="XVI" checked> XVI - Protiv života i tijela (166-176)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="177-199a" data-glava="XVII" checked> XVII - Protiv slobode i prava čovjeka (177-199a)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="200-202" data-glava="XVIII" checked> XVIII - Terorizam (200-202)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="203-210b" data-glava="XIX" checked> XIX - Protiv spolne slobode i morala (203-210b)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="210c-210j" data-glava="XIXa" checked> XIXa - Spolno zlostavljanje djeteta (210c-210j)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="214-224" data-glava="XX" checked> XX - Protiv braka i porodice (214-224)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="225-240" data-glava="XXI" checked> XXI - Protiv zdravlja ljudi (225-240)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="241-272" data-glava="XXII" checked> XXII - Privreda i platni promet (241-272)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="273-278" data-glava="XXIII" checked> XXIII - Porezi (273-278)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="279-285" data-glava="XXIV" checked> XXIV - Protiv radnih odnosa (279-285)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="286-302" data-glava="XXV" checked> XXV - Protiv imovine (286-302)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="303-322" data-glava="XXVI" checked> XXVI - Protiv okoliša i prirode (303-322)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="323-331" data-glava="XXVII" checked> XXVII - Protiv opće sigurnosti (323-331)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="332-337" data-glava="XXVIII" checked> Sigurnost javnog prometa (332-337)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="338-357" data-glava="XXIX" checked> XXIX - Protiv pravosuđa (338-357)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="358-379" data-glava="XXX" checked> XXX - Javni red i pravni promet (358-379)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="380-392" data-glava="XXXI" checked> XXXI - Podmićivanje i službena dužnost (380-392)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="393-398" data-glava="XXXII" checked> XXXII - Elektronska obrada podataka (393-398)</label>
-                <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="419-421" data-glava="XXXIV" checked> XXXIV - Prijelazne i završne odredbe (419-421)</label>
-            </div>
-        </div>
-
-    </div>
-</details>
+                                    <!-- POSEBNI DIO -->
+                                    <div class="border-l-2 border-blue-500 pl-2">
+                                        <div class="flex items-center mb-1 bg-blue-50 p-1 rounded font-bold text-gray-700">
+                                            <input type="checkbox" id="chk-kz-posebni" onchange="toggleGrupuCheckboxa(this, '.kz-posebni-chk')" class="mr-1.5" checked>
+                                            <label for="chk-kz-posebni" class="cursor-pointer text-[10px] tracking-wider uppercase">--- POSEBNI DIO ---</label>
+                                        </div>
+                                        <div class="space-y-1 mt-1 pl-1">
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="149-165" data-glava="XV" checked> XV - Protiv ustavnog poretka (149-165)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="166-176" data-glava="XVI" checked> XVI - Protiv života i tijela (166-176)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="177-199a" data-glava="XVII" checked> XVII - Protiv slobode i prava čovjeka (177-199a)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="200-202" data-glava="XVIII" checked> XVIII - Terorizam (200-202)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="203-210b" data-glava="XIX" checked> XIX - Protiv spolne slobode i morala (203-210b)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="210c-210j" data-glava="XIXa" checked> XIXa - Spolno zlostavljanje djeteta (210c-210j)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="214-224" data-glava="XX" checked> XX - Protiv braka i porodice (214-224)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="225-240" data-glava="XXI" checked> XXI - Protiv zdravlja ljudi (225-240)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="241-272" data-glava="XXII" checked> XXII - Privreda i platni promet (241-272)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="273-278" data-glava="XXIII" checked> XXIII - Porezi (273-278)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="279-285" data-glava="XXIV" checked> XXIV - Protiv radnih odnosa (279-285)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="286-302" data-glava="XXV" checked> XXV - Protiv imovine (286-302)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="303-322" data-glava="XXVI" checked> XXVI - Protiv okoliša i prirode (303-322)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="323-331" data-glava="XXVII" checked> XXVII - Protiv opće sigurnosti (323-331)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="332-337" data-glava="XXVIII" checked> Sigurnost javnog prometa (332-337)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="338-357" data-glava="XXIX" checked> XXIX - Protiv pravosuđa (338-357)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="358-379" data-glava="XXX" checked> XXX - Javni red i pravni promet (358-379)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="380-392" data-glava="XXXI" checked> XXXI - Podmićivanje i službena dužnost (380-392)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="393-398" data-glava="XXXII" checked> XXXII - Elektronska obrada podataka (393-398)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="419-421" data-glava="XXX4" checked> XXXIV - Prijelazne i završne odredbe (419-421)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
                         
+                        <!-- SVI OSTALI ZAKONI -->
                         <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
                             <input type="checkbox" value="Ustav FBiH" onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                             <span class="text-xs text-gray-700">Ustav FBiH</span>
@@ -155,28 +157,31 @@
                             <input type="checkbox" value="Zakon o zaštiti od klevete" checked onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                             <span class="text-xs text-gray-700">Zakon o zaštiti od klevete</span>
                         </label>
-                     <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
+
+                        <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
                             <input type="checkbox" value="Zakon o radu" onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                             <span class="text-xs text-gray-700">Zakon o radu</span>
                         </label>
                     </div>
-                </div>
- <div class="space-y-2" id="law-selectors">
- <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
+
+                    <!-- METRIKA I OPCIJE UPITA -->
+                    <div class="mt-3 pt-2 border-t border-gray-100 space-y-1.5">
+                        <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
                             <input type="checkbox" value="skraceno" checked onchange="filtrirajPrikaz()" class="w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                            <span class="text-xs text-gray-700">Skraceni upit</span>
-                            </label>            
-<div class="mt-2 pt-2 border-t border-gray-100 flex justify-between items-center text-[10px]">
-    <span class="text-gray-500 font-medium">Ukupno slova za AI:</span>
-    <span id="ai-character-count" class="font-bold text-gray-700 bg-gray-100 px-1.5 py-0.5 rounded">0</span>
-</div>
-<div class="mt-2 pt-2 border-t border-gray-100 flex justify-between items-center text-[10px]">
-    <span class="text-gray-500 font-medium">Ukupno riječi za AI:</span>
-    <span id="ai-word-count" class="font-bold text-gray-700 bg-gray-100 px-1.5 py-0.5 rounded">0</span>
-</div>
-</div>
+                            <span class="text-xs text-gray-700">Skraćeni upit</span>
+                        </label>            
+                        <div class="flex justify-between items-center text-[10px]">
+                            <span class="text-gray-500 font-medium">Ukupno slova za AI:</span>
+                            <span id="ai-character-count" class="font-bold text-gray-700 bg-gray-100 px-1.5 py-0.5 rounded">0</span>
+                        </div>
+                        <div class="flex justify-between items-center text-[10px]">
+                            <span class="text-gray-500 font-medium">Ukupno riječi za AI:</span>
+                            <span id="ai-word-count" class="font-bold text-gray-700 bg-gray-100 px-1.5 py-0.5 rounded">0</span>
+                        </div>
+                    </div>
+                </div>
              
-             
+                <!-- AI PRAVNI ASISTENT -->
                 <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
                     <div class="flex items-center gap-1.5 mb-1.5 text-purple-700 font-semibold text-sm border-b pb-1">
                         <i class="fa-solid fa-brain text-xs"></i>
@@ -185,23 +190,23 @@
                     <div class="mb-2">
                         <textarea id="ai-problem" rows="3" class="w-full p-2 border border-gray-300 rounded text-xs focus:ring-1 focus:ring-purple-500 focus:outline-none placeholder-gray-400" placeholder="Opišite životni problem prirodnim jezikom...&#10;Obrada ne može trajati duže od 10 sekundi."></textarea>
                     </div>
-                    <button id="btn-ai-search" onclick="traziAI()" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-medium py-1.5 px-3 rounded text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
+                    <button id="btn-ai-search" onclick="traziAI()" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-medium py-1.5 px-3 rounded text-xs transition flex items-center justify-center gap-1.5 shadow-sm mb-2">
                         <i class="fa-solid fa-wand-magic-sparkles"></i> Analiziraj pomoću AI
                     </button>
-                 <div class="flex items-center gap-2">
-  <span class="text-xs font-bold text-purple-700 flex items-center gap-1">
-    <i class="fa-solid fa-robot"></i> AI Model:
-  </span>
-  
-  <select id="ai-model-select" class="bg-white border border-gray-300 text-gray-700 text-xs font-medium rounded-lg px-2.5 py-1 focus:ring-purple-500 focus:border-purple-500 outline-none cursor-pointer shadow-sm transition">
-    <option value="gemini-3.5-flash" selected> Gemini 3.5 Flash (Free)</option>
-    <option value="gpt-5.4"> GPT-5.4 (Paid)</option>
-   <option value="qwen/qwen3-32b">Qwen 3 32B Reasoning (Free)</option>
-   <option value="openai/gpt-oss-20b">GPT-OSS 20B Reasoning (Free)</option>
-  </select>
-</div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold text-purple-700 flex items-center gap-1">
+                            <i class="fa-solid fa-robot"></i> AI Model:
+                        </span>
+                        <select id="ai-model-select" class="bg-white border border-gray-300 text-gray-700 text-xs font-medium rounded-lg px-2.5 py-1 focus:ring-purple-500 focus:border-purple-500 outline-none cursor-pointer shadow-sm transition flex-grow">
+                            <option value="gemini-3.5-flash" selected> Gemini 3.5 Flash (Free)</option>
+                            <option value="gpt-5.4"> GPT-5.4 (Paid)</option>
+                            <option value="qwen/qwen3-32b">Qwen 3 32B Reasoning (Free)</option>
+                            <option value="openai/gpt-oss-20b">GPT-OSS 20B Reasoning (Free)</option>
+                        </select>
+                    </div>
                 </div>
 
+                <!-- KLASIČNA PRETRAGA -->
                 <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
                     <div class="flex items-center gap-1.5 mb-1.5 text-blue-700 font-semibold text-sm border-b pb-1">
                         <i class="fa-solid fa-magnifying-glass text-xs"></i>
@@ -213,14 +218,14 @@
                     <div id="search-stats" class="text-[11px] text-gray-500 font-medium">Učitavanje zakona...</div>
                 </div>
 
-                <div>
-    <div class="flex flex-col items-center justify-center px-4 gap-1.5 mb-1.5 text-gray-500 text-[10px] border-b pb-2 text-center leading-normal">
-        <p>AI asistent služi kao alat za informisanje i pretragu, a ne kao zamjena za stručnu pravnu pomoć.
-           Generisani odgovori su isključivo informativnog karaktera i ne garantuju apsolutnu
-           tačnost niti pravnu sigurnost. -2026-</p>
-    </div>
-</div>
+                <!-- DISKLAJMER -->
+                <div class="flex flex-col items-center justify-center px-4 gap-1.5 mb-1.5 text-gray-500 text-[10px] border-b pb-2 text-center leading-normal">
+                    <p>AI asistent služi kao alat za informisanje i pretragu, a ne kao zamjena za stručnu pravnu pomoć.
+                       Generisani odgovori su isključivo informativnog karaktera i ne garantuju apsolutnu
+                       tačnost niti pravnu sigurnost. -2026-</p>
+                </div>
 
+                <!-- PRINT PANEL -->
                 <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mt-auto">
                     <div class="flex items-center justify-between mb-1.5 text-green-700 font-semibold text-sm border-b pb-1">
                         <div class="flex items-center gap-1.5">
@@ -238,8 +243,10 @@
                 </div>
             </div>
 
+            <!-- DESNA KOLONA (GLAVNI PANEL ZA REZULTATE ČLANOVA) -->
             <div class="lg:col-span-2 flex flex-col gap-3">
                 
+                <!-- AI ODGOVOR BOX -->
                 <div id="ai-response-box" class="hidden bg-purple-50 p-3 rounded-lg border border-purple-200 shadow-sm">
                     <div class="flex justify-between items-start mb-1">
                         <div class="flex items-center gap-1.5 text-purple-800 font-semibold text-xs">
@@ -251,6 +258,7 @@
                     <div id="ai-response-text" class="text-xs text-purple-900 leading-relaxed whitespace-pre-wrap"></div>
                 </div>
 
+                <!-- KONTROLE PRIKAZA (LIST/GRID) -->
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-100 px-3 py-1.5 rounded-lg gap-2">
                     <div class="flex items-center gap-2">
                         <span id="results-title" class="font-bold text-gray-700 text-xs">Svi aktivni članovi zakona</span>
@@ -278,44 +286,41 @@
                     </div>
                 </div>
 
+                <!-- LOADER -->
                 <div id="loader" class="hidden flex flex-col items-center justify-center py-10 gap-2">
                     <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-700"></div>
                     <p class="text-xs text-gray-500">AI analizira zakonsku bazu podataka...</p>
                 </div>
 
+                <!-- GLAVNI KONTEJNER ZA ČLANOVE -->
                 <div id="laws-container" class="overflow-y-auto max-h-[75vh] pr-1"></div>
             </div>
         </main>
     </div>
 
+    <!-- MODAL ZA ČLANOVE (DETALJNI PREGLED) -->
     <div id="member-modal" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden" onclick="zatvoriModal()">
-    
-<div class="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[85vh] flex flex-col overflow-hidden border border-gray-100">        
-        <div class="px-5 py-3.5 border-b border-gray-100 flex items-center justify-between bg-gray-50/80">
-            <div class="flex items-center gap-2.5 min-w-0">
-                <span id="modal-badge" class="px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-100 text-[10px] font-bold rounded uppercase tracking-wider shrink-0">
-                    </span>
-                <h3 id="modal-title" class="text-xs font-bold text-gray-900 truncate">
-                    </h3>
-            </div>
-            
-            <button onclick="zatvoriModal()" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-200/60 transition-colors shrink-0">
-                <i class="fa-solid fa-xmark text-sm"></i>
-            </button>
-        </div>
-
-        <div id="modal-body-content" class="px-6 py-5 overflow-y-auto flex-grow text-gray-800 text-[11.5px] leading-relaxed">
-            </div>
-
-        <div class="px-5 py-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between gap-2 shrink-0">
-            <div id="modal-footer-law" class="text-[10px] text-gray-400 font-medium truncate max-w-[60%]">
+        
+        <div class="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[85vh] flex flex-col overflow-hidden border border-gray-100" onclick="event.stopPropagation()">    
+            <div class="px-5 py-3.5 border-b border-gray-100 flex items-center justify-between bg-gray-50/80">
+                <div class="flex items-center gap-2.5 min-w-0">
+                    <span id="modal-badge" class="px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-100 text-[10px] font-bold rounded uppercase tracking-wider shrink-0"></span>
+                    <h3 id="modal-title" class="text-xs font-bold text-gray-900 truncate"></h3>
                 </div>
-            <button id="modal-print-btn" class="transition-colors">
+                
+                <button onclick="zatvoriModal()" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-200/60 transition-colors shrink-0">
+                    <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
-        </div>
+            </div>
 
+            <div id="modal-body-content" class="px-6 py-5 overflow-y-auto flex-grow text-gray-800 text-[11.5px] leading-relaxed"></div>
+
+            <div class="px-5 py-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between gap-2 shrink-0">
+                <div id="modal-footer-law" class="text-[10px] text-gray-400 font-medium truncate max-w-[60%]"></div>
+                <button id="modal-print-btn" class="transition-colors"></button>
+            </div>
+        </div>
     </div>
-</div>
 
     <script>
         // Korigovani nazivi fajlova koji odgovaraju tvom Git serveru (bez razmaka)
