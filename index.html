@@ -693,17 +693,19 @@ function toggleSve(master) {
 }
 
 function getSelektovaniZakoni() {
-    // Ako već imamo filtrirane članove, izvuci jedinstvene nazive zakona
+    // Ako imamo filtrirane članove, uzmi nazive zakona iz njih
     if (trenutniPrikazaniClanovi && trenutniPrikazaniClanovi.length > 0) {
         const jedinstveniZakoni = [...new Set(trenutniPrikazaniClanovi.map(clan => clan.naziv_zakona))];
         return jedinstveniZakoni;
     }
     
-    // Fallback - ako nema filtriranih, uzmi iz checkboxova
+    // Fallback: uzmi iz krovnih checkboxova
     const checkboxes = document.querySelectorAll('.law-checkbox');
     const selektovani = [];
     checkboxes.forEach(cb => { 
-        if (cb.checked && cb.value !== 'skraceno') selektovani.push(cb.value); 
+        if (cb.checked && cb.value !== 'skraceno') {
+            selektovani.push(cb.value);
+        }
     });
     return selektovani;
 }
