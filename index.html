@@ -396,6 +396,14 @@ async function formirajBazuAktivnihZakona() {
     ucitaniPodaci = ucitaniPodaci.concat(filtriraniPodaci);
     sviZakonPodaci = ucitaniPodaci;
 }
+
+     // Kada korisnik klikne na "Kompletan Krivični Zakon", automatski pali/gasi sve pod-glave
+function toggleSveGlaveKZ(glavniMasterChk) {
+    const sveGlaveChks = document.querySelectorAll('.kz-glava-chk');
+    sveGlaveChks.forEach(chk => {
+        chk.checked = glavniMasterChk.checked;
+    });
+}
      
      function osvjeziBrojacSlovaAI() {
     const selektovani = getSelektovaniZakoni();
