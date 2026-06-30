@@ -452,24 +452,56 @@ function toggleGrupuCheckboxa(podMaster, klasaGrupe) {
     document.getElementById('chk-kz').checked = (opciChecked && posebniChecked);
 }
      
-     function osvjeziBrojacSlovaAI() {
-    const selektovani = getSelektovaniZakoni();
+// =========================================================================
+// 1. GLAVNA FUNKCIJA ZA FILTRIRANJE (Reaguje na raspone i krovne checkboxove)
+// =========================================================================
+function filtrirajPrikaz() {
+    // Prolazimo kroz sve učitane članove iz baze i filtriramo ih prema stanju checkboxova
+    const filtriraniPodaci = sviZakonPodaci.filter(clan => {
+        const nazivZakona = (clan.naziv_zakona || "").toLowerCase().trim();
+        
+        // Tražimo klasu pod-checkboxa iz konfiguracione mape (npr. '.kz-glava-chk')
+        const klasaCheckboxa = konfiguracijaMrezeZakon[nazivZakona];
+
+        if (klasaCheckboxa) {
+            // Ako zakon ima definisane podglave (Krivični, Rad, Diskriminacija), provjeri opseg
+            return daLiClanPripadaOznacenimOpsezima(String(clan.broj_clana), klasaCheckboxa);
+        }
+
+        // Za zakone bez podglava (npr. Ustav FBiH, Kleveta), provjeravamo krovni checkbox
+        return Array.from(document.querySelectorAll('.law-checkbox:checked'))
+            .some(chk => chk.value.toLowerCase().trim() === nazivZakona);
+    });
+
+    // Ažuriramo globalni niz trenutno vidljivih članova
+    trenutniPrikazaniClanovi = filtriraniPodaci;
+
+    // Prosjeđujemo filtrirane članove tvojoj originalnoj funkciji za ispis na ekran
+    prikaziClanove(trenutniPrikazaniClanovi, globalniIstaknutiKljucevi);
+
+    // Pokrećemo korigovane AI brojače
+    osvjeziBrojacSlovaAI();
+    osvjeziBrojacRijeciAI();
+}
+
+// =========================================================================
+// 2. KORIGOVANI AI BROJAČI (Sada tačno broje slova iz aktivnih/prikazanih članova)
+// =========================================================================
+function osvjeziBrojacSlovaAI() {
     let ukupanBrojSlova = 0;
 
-    // Filtriramo bazu i zbrajamo karaktere samo za selektovane zakone
-    const aktivniZakoni = sviZakonPodaci.filter(clan => selektovani.includes(clan.naziv_zakona));
-    
-    aktivniZakoni.forEach(clan => {
+    // Brojimo samo iz članova koji su trenutno prošli selekciju i prikazani su
+    trenutniPrikazaniClanovi.forEach(clan => {
         const tekst = clan.cisti_tekst || clan.tekst || "";
         ukupanBrojSlova += tekst.length;
     });
 
     const brojacElement = document.getElementById('ai-character-count');
+    if (!brojacElement) return;
+
     brojacElement.innerText = ukupanBrojSlova.toLocaleString('bs');
 
-    // NORMATIV: Ako prelazi 65,000 karaktera, postaje crven i upozorava te
     const MAKS_NORMATIV = 65000; 
-
     if (ukupanBrojSlova > MAKS_NORMATIV) {
         brojacElement.className = "font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded border border-red-200 animate-pulse";
         brojacElement.title = "Previše teksta! AI bi mogao usporiti ili prekinuti vezu (Timeout).";
@@ -479,22 +511,76 @@ function toggleGrupuCheckboxa(podMaster, klasaGrupe) {
     }
 }
 
-     function osvjeziBrojacRijeciAI() {
-    const selektovani = getSelektovaniZakoni();
+function osvjeziBrojacRijeciAI() {
     let ukupanBrojRijeci = 0;
 
-    // Filtriramo aktivne zakone
-    const aktivniZakoni = sviZakonPodaci.filter(clan => selektovani.includes(clan.naziv_zakona));
-    
-    aktivniZakoni.forEach(clan => {
+    trenutniPrikazaniClanovi.forEach(clan => {
         const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
         if (tekst.length > 0) {
-            // Cijepamo tekst po razmacima kako bismo dobili niz riječi i brojimo ih
             const brojRijeciUClanu = tekst.split(/\s+/).length;
             ukupanBrojRijeci += brojRijeciUClanu;
         }
     });
 
+    const brojacElement = document.getElementById('ai-word-count');
+    if (!brojacElement) return;
+
+    brojacElement.innerText = ukupanBrojRijeci.toLocaleString('bs');
+
+    const MAKS_NORMATIV = 10000; 
+    if (ukupanBrojRijeci > MAKS_NORMATIV) {
+        brojacElement.className = "font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded border border-red-200 animate-pulse";
+        brojacElement.title = "Previše riječi! Selektovana baza je prevelika za obradu u 9 sekundi.";
+    } else {
+        brojacElement.className = "font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded border border-green-100";
+        brojacElement.title = "Optimalan broj riječi za brzu AI analizu.";
+    }
+}
+
+// =========================================================================
+// 3. EVENT LISTENERI (Osiguravaju instant reakciju na klik bilo kojeg checkboxa)
+// =========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Slušaj klikove na krovne zakone (.law-checkbox)
+    document.querySelectorAll('.law-checkbox').forEach(chk => {
+        chk.addEventListener('change', filtrirajPrikaz);
+    });
+
+    // 2. Slušaj klikove na sve podglave u harmonici (Krivični, Rad, Diskriminacija)
+    // Ovdje su obuhvaćene sve klase iz tvoje konfiguracijske mape
+    document.querySelectorAll('.kz-glava-chk, .zr-glava-chk, .zd-glava-chk, .kz-opci-chk, .kz-posebni-chk').forEach(chk => {
+        chk.addEventListener('change', filtrirajPrikaz);
+    });
+
+    // 3. Slušaj krovni toggle "Prikaži Sve" ako postoji
+    const chkAll = document.getElementById('chk-all');
+    if (chkAll) chkAll.addEventListener('change', filtrirajPrikaz);
+
+    // 4. Sinhronizacija i filtriranje za Krivični Zakon (Master i pod-masteri)
+    const chkKz = document.getElementById('chk-kz');
+    if (chkKz) {
+        chkKz.addEventListener('change', (e) => {
+            toggleSveUnutarZakona(e.target);
+            filtrirajPrikaz();
+        });
+    }
+
+    const chkOpci = document.getElementById('chk-kz-opci');
+    if (chkOpci) {
+        chkOpci.addEventListener('change', (e) => {
+            toggleGrupuCheckboxa(e.target, '.kz-opci-chk');
+            filtrirajPrikaz();
+        });
+    }
+
+    const chkPosebni = document.getElementById('chk-kz-posebni');
+    if (chkPosebni) {
+        chkPosebni.addEventListener('change', (e) => {
+            toggleGrupuCheckboxa(e.target, '.kz-posebni-chk');
+            filtrirajPrikaz();
+        });
+    }
+});
     const brojacElement = document.getElementById('ai-word-count');
     brojacElement.innerText = ukupanBrojRijeci.toLocaleString('bs');
 
@@ -581,48 +667,6 @@ function prikaziClanoveUKontejneru(clanovi) {
     });
     kontejner.innerHTML = html;
 }
-     // ==========================================
-// 4. EVENT LISTENERI ZA AUTOMATSKO RAGOVANJE NA SVAKI KLIK
-// ==========================================
-document.addEventListener("DOMContentLoaded", () => {
-    // Slušaj promjene na krovnim checkboxovima (.law-checkbox)
-    document.querySelectorAll('.law-checkbox').forEach(chk => {
-        chk.addEventListener('change', filtrirajPrikaz);
-    });
-
-    // Slušaj promjene na svim podglavama (Krivični zakon i sl.)
-    document.querySelectorAll('.kz-glava-chk, .zr-glava-chk, .zd-glava-chk').forEach(chk => {
-        chk.addEventListener('change', filtrirajPrikaz);
-    });
-
-    // Ako imaš dugmad "Prikaži Sve", "Opći", "Posebni" - osiguraj da i oni pozovu filtriranje nakon klika
-    const chkAll = document.getElementById('chk-all');
-    if (chkAll) chkAll.addEventListener('change', filtrirajPrikaz);
-
-    const chkKz = document.getElementById('chk-kz');
-    if (chkKz) {
-        chkKz.addEventListener('change', (e) => {
-            toggleSveUnutarZakona(e.target);
-            filtrirajPrikaz();
-        });
-    }
-
-    const chkOpci = document.getElementById('chk-kz-opci');
-    if (chkOpci) {
-        chkOpci.addEventListener('change', (e) => {
-            toggleGrupuCheckboxa(e.target, '.kz-opci-chk');
-            filtrirajPrikaz();
-        });
-    }
-
-    const chkPosebni = document.getElementById('chk-kz-posebni');
-    if (chkPosebni) {
-        chkPosebni.addEventListener('change', (e) => {
-            toggleGrupuCheckboxa(e.target, '.kz-posebni-chk');
-            filtrirajPrikaz();
-        });
-    }
-});
 
         function promijeniLayout(tip) {
             trenutniLayout = tip;
@@ -673,48 +717,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return selektovani;
         }
 
-        // ==========================================
-// 1. GLAVNA FUNKCIJA ZA FILTRIRANJE (Zove se na svaki klik/promjenu)
-// ==========================================
-function filtrirajPrikaz() {
-    let ucitaniPodaci = [];
 
-    // Mapiramo trenutno stanje checkboxova po tvojoj konfiguracionoj mapi
-    // Prolazimo kroz SVAKI član koji je ikada učitan u memoriju (sviZakonPodaci)
-    const filtriraniPodaci = sviZakonPodaci.filter(clan => {
-        const nazivZakona = (clan.naziv_zakona || "").toLowerCase().trim();
-        
-        // Tražimo klasu pod-checkboxa iz tvoje konfiguracije (npr. '.kz-glava-chk')
-        const klasaCheckboxa = konfiguracijaMrezeZakon[nazivZakona];
-
-        if (klasaCheckboxa) {
-            // Ako zakon ima podglave, koristi tvoju funkciju za provjeru raspona
-            // Prosjeđujemo broj_clana (npr. "Član 166a.") i klasu checkboxa
-            return daLiClanPripadaOznacenimOpsezima(String(clan.broj_clana), klasaCheckboxa);
-        }
-
-        // Za zakone koji nemaju podglave (npr. Ustav FBiH, Zakon o zaštiti od klevete):
-        // Provjeravamo da li je njihov krovni checkbox na interfejsu označen.
-        // Tvoj HTML za njih koristi value="Ustav FBiH", value="Zakon o zaštiti od klevete"...
-        const krovniMuster = Array.from(document.querySelectorAll('.law-checkbox:checked'))
-            .some(chk => chk.value.toLowerCase().trim() === nazivZakona);
-
-        return krovniMuster;
-    });
-
-    // Sačuvaj u niz koji ide na renderovanje na ekranu
-    trenutniPrikazaniClanovi = filtriraniPodaci;
-
-    // Prikaži broj aktivnih članova na interfejsu
-    document.getElementById('results-count').innerText = trenutniPrikazaniClanovi.length;
-
-    // Renderovanje elemenata u HTML kontejner
-    prikaziClanoveUKontejneru(trenutniPrikazaniClanovi);
-
-    // Osvježi AI brojače koristeći tvoje funkcije
-    osvjeziBrojacSlovaAI();
-    osvjeziBrojacRijeciAI();
-}
      // Pomoćna funkcija za automatsko prelamanje segmenata (a, b, c, 1, 2, 3...)
 function formatirajSegmenteTeksta(tekst) {
     if (!tekst) return "";
