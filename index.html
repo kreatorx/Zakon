@@ -1024,13 +1024,27 @@ const izabraniModel = document.getElementById('ai-model-select').value;
     document.getElementById('ai-response-box').classList.add('hidden');
     document.getElementById('laws-container').innerHTML = '';
 
-    // Filtriramo bazu tako da uzmemo samo članove zakona koji su stvarno označeni na ekranu
+// Pomoćna funkcija koja provjerava da li se odabrani zakon poklapa sa nazivom iz baze
+    function daLiSePoklapa(nazivIzBaze, selektovaniZakon) {
+        const bazeMalo = nazivIzBaze.toLowerCase().trim();
+        const selMalo = selektovaniZakon.toLowerCase().trim();
+
+        // Ako se poklapaju direktno ili podstringom
+        if (bazeMalo.includes(selMalo) || selMalo.includes(bazeMalo)) return true;
+
+        // Mapiranje skraćenica ako getSelektovaniZakoni() vraća "kz", "uz", itd.
+        if (selMalo === 'kz' && (bazeMalo.includes('krivični') || bazeMalo.includes('krivicni'))) return true;
+        if (selMalo === 'uz' && bazeMalo.includes('ustav')) return true;
+        if (selMalo === 'zd' && bazeMalo.includes('diskriminaci')) return true;
+        if (selMalo === 'zk' && bazeMalo.includes('klevet')) return true;
+        if (selMalo === 'zr' && bazeMalo.includes('radu')) return true;
+
+        return false;
+    }
+
+    // Popravljeno filtriranje za slanje AI-ju
     const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => {
-        const nazivIzBaze = (clan.naziv_zakona || "").toLowerCase().trim();
-        return selektovaniZakoni.some(selZakon => {
-            const selMalo = selZakon.toLowerCase().trim();
-            return nazivIzBaze.includes(selMalo) || selMalo.includes(nazivIzBaze);
-        });
+        return selektovaniZakoni.some(selZakon => daLiSePoklapa(clan.naziv_zakona || "", selZakon));
     });
 
     // Pakujemo kompletan tekst svih označenih zakona u čist JSON format bez HTML smeća
@@ -1141,7 +1155,9 @@ const izabraniModel = document.getElementById('ai-model-select').value;
         });
 
         // Filtriramo i razdvajamo bazu na predložene i ostale kako bi UI iscrtao kartice ispravnim redoslijedom
-        const aktivniZakoniZaPrikaz = sviZakonPodaci.filter(clan => selektovaniZakoni.includes(clan.naziv_zakona));
+        const aktivniZakoniZaPrikaz = sviZakonPodaci.filter(clan => {
+            return selektovaniZakoni.some(selZakon => daLiSePoklapa(clan.naziv_zakona || "", selZakon));
+        });
         
         const filtriraniZakon = aktivniZakoniZaPrikaz.filter(clan => {
             const stvarniBroj = clan.broj_clana || clan.clan_broj || "";
