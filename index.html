@@ -1019,62 +1019,43 @@ function osvjeziPrintPanel() {
 
         // AI PRETRAGA
 async function traziAI() {
-
-
- 
-const izabraniModel = document.getElementById('ai-model-select').value;
- 
+    const izabraniModel = document.getElementById('ai-model-select').value;
     const problemText = document.getElementById('ai-problem').value.trim();
-    const selektovaniZakoni = getSelektovaniZakoni();
 
     if (!problemText) { alert("Molimo unesite opis problema."); return; }
-    if (selektovaniZakoni.length === 0) { alert("Molimo označite barem jedan zakon."); return; }
+    
+    // ==========================================
+    // KRITIČNO: Koristi trenutniPrikazaniClanovi umjesto sviZakonPodaci
+    // ==========================================
+    if (!trenutniPrikazaniClanovi || trenutniPrikazaniClanovi.length === 0) {
+        alert("Molimo označite barem jedan zakon ili sekciju.");
+        return;
+    }
 
     document.getElementById('btn-ai-search').disabled = true;
     document.getElementById('loader').classList.remove('hidden');
     document.getElementById('ai-response-box').classList.add('hidden');
     document.getElementById('laws-container').innerHTML = '';
 
-// Pomoćna funkcija koja provjerava da li se odabrani zakon poklapa sa nazivom iz baze
-    function daLiSePoklapa(nazivIzBaze, selektovaniZakon) {
-        const bazeMalo = nazivIzBaze.toLowerCase().trim();
-        const selMalo = selektovaniZakon.toLowerCase().trim();
+    // ==========================================
+    // DIREKTNO KORISTI VEĆ FILTRIRANE ČLANOVE
+    // ==========================================
+    const aktivniZakoniPodaci = trenutniPrikazaniClanovi;
+    
+    console.log(`📊 Šaljem ${aktivniZakoniPodaci.length} članova AI-ju`);
+    console.log(`📋 Zakoni: ${[...new Set(aktivniZakoniPodaci.map(c => c.naziv_zakona))].join(', ')}`);
 
-        // Ako se poklapaju direktno ili podstringom
-        if (bazeMalo.includes(selMalo) || selMalo.includes(bazeMalo)) return true;
-
-        // Mapiranje skraćenica ako getSelektovaniZakoni() vraća "kz", "uz", itd.
-        if (selMalo === 'kz' && (bazeMalo.includes('krivični') || bazeMalo.includes('krivicni'))) return true;
-        if (selMalo === 'uz' && bazeMalo.includes('ustav')) return true;
-        if (selMalo === 'zd' && bazeMalo.includes('diskriminaci')) return true;
-        if (selMalo === 'zk' && bazeMalo.includes('klevet')) return true;
-        if (selMalo === 'zr' && bazeMalo.includes('radu')) return true;
-
-        return false;
-    }
-
-    // Popravljeno filtriranje za slanje AI-ju
-    const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => {
-        return selektovaniZakoni.some(selZakon => daLiSePoklapa(clan.naziv_zakona || "", selZakon));
-    });
-
-    // Pakujemo kompletan tekst svih označenih zakona u čist JSON format bez HTML smeća
-    const sviOznaceniZakoniTekst = JSON.stringify(
-        aktivniZakoniPodaci.map(clan => ({
-            zakon: clan.naziv_zakona,
-            clan: clan.broj_clana || clan.clan_broj || "",
-            naslov: clan.naziv_clana || clan.naslov || "",
-            tekst: clan.cisti_tekst || clan.tekst || ""
-        })), 
-        null, 
-        2
-    );
-
+    // Generiši kontekst SAMO za ove članove
     const finalniKontekstZakona = generisiKontekstZakona(aktivniZakoniPodaci, izabraniModel);
 
-    console.log("Šaljem KOMPLETAN indeksirani kontekst od", finalniKontekstZakona.length, "karaktera za ukupno", aktivniZakoniPodaci.length, "članova.");
+    console.log(`📦 Veličina konteksta: ${finalniKontekstZakona.length} karaktera`);
 
- 
+    // Provjeri veličinu
+    if (finalniKontekstZakona.length > 35000) {
+        alert(`⚠️ Odabrano je ${aktivniZakoniPodaci.length} članova (${finalniKontekstZakona.length} karaktera). 
+Preporučuje se odabir manjeg broja članova.`);
+    }
+
     // Sistemski prompt
     const sistemskiPrompt = `
     Ti si napredni pravni asistent za zakonodavstvo Federacije Bosne i Hercegovine.
@@ -1092,28 +1073,26 @@ const izabraniModel = document.getElementById('ai-model-select').value;
     - zk = Zakon o zaštiti od klevete
     - zr = Zakon o radu
 
-    Ako je UKUPNO_ISTIH_NASLOVA veći od 1, to znači da u bazi postoji toliko članova sa istim naslovom i rješenje je tu negdje skriveno.
+    Ako je UKUPNO_ISTIH_NASLOVA veći od 1, to znači da u bazi postoji toliko članova sa istim naslovom.
 
-
-    [KOMPLETNA BAZA KRIVIČNOG ZAKONA FBIH]:
-    Ovdje se nalazi kompletan sadržaj svih zakona koje je korisnik odabrao. Prioritet je krivični zakon. Koristi isključivo ove podatke i njihove tačne oznake članova (posebno obrati pažnju na specifične članove sa slovima poput 181b, 166a, itd.):
+    [SELEKTOVANI ZAKONI I ČLANOVI]:
     ${finalniKontekstZakona}
     
     ZADATAK:
-    Analiziraj pravni problem korisnika i pronađi tačne članove koji ga rješavaju koristeći dostavljene linkove kao apsolutni prioritet.
+    Analiziraj pravni problem korisnika i pronađi tačne članove koji ga rješavaju.
     
     STROGO PRAVILO ZA FORMAT:
-    Vrati ODGOVOR ISKLJUČIVO KAO VALIDAN JSON OBJEKAT. Poredaj rezultate po relevantnosti. Nemoj pisati uvod, objašnjenja van JSON-a, niti markdown oznake poput \`\`\`json.
+    Vrati ODGOVOR ISKLJUČIVO KAO VALIDAN JSON OBJEKAT.
     
     STRUKTURA ODGOVORA:
     {
-        "objasnjenje": "Detaljno pravno obrazloženje i savjet klijentu na bosanskom jeziku na osnovu članova iz baze...",
+        "objasnjenje": "Detaljno pravno obrazloženje...",
         "predlozeni_clanovi": [
-            {"zakon": "Upiši tačan naziv zakona kako je naveden u bazi", "clan": "Upiši tačan broj člana (npr. 181b)"}
+            {"zakon": "Naziv zakona", "clan": "Broj člana"}
         ]
     }
     `;
-         
+
     try {
         const response = await fetch(AI_API_URL, {
             method: 'POST',
@@ -1129,7 +1108,12 @@ const izabraniModel = document.getElementById('ai-model-select').value;
             })
         });
 
-        if (!response.ok) throw new Error(response.status); // Bacamo samo broj statusa radi lakšeg mapiranja
+        if (!response.ok) {
+            if (response.status === 413) {
+                throw new Error(`413 - Payload prevelik! ${aktivniZakoniPodaci.length} članova (${finalniKontekstZakona.length} karaktera).`);
+            }
+            throw new Error(response.status);
+        }
 
         const data = await response.json();
         
@@ -1144,17 +1128,13 @@ const izabraniModel = document.getElementById('ai-model-select').value;
 
         const aiContent = JSON.parse(cistiContent);
         
-        // Prikazujemo tekstualno objašnjenje na ekranu
         document.getElementById('ai-response-text').innerText = aiContent.objasnjenje;
         document.getElementById('ai-response-box').classList.remove('hidden');
 
-        // Izvlačimo članove koje je AI predložio
         const preporuke = aiContent.predlozeni_clanovi || [];
         
-        // Kreiramo jedinstvene ključeve za upoređivanje (npr. "Krivični Zakon FBiH__181b")
         const preporuceniKljucevi = preporuke.map(p => {
             let nazivZakona = p.zakon || "";
-            // Normalizacija naziva zakona radi sigurnog spajanja sa lokalnom bazom
             if (nazivZakona.toLowerCase().includes("ustav")) nazivZakona = "Ustav FBiH";
             if (nazivZakona.toLowerCase().includes("krivični") || nazivZakona.toLowerCase().includes("krivicni")) nazivZakona = "Krivični Zakon FBiH";
             if (nazivZakona.toLowerCase().includes("diskriminaci")) nazivZakona = "Zakon o zabrani diskriminacije";
@@ -1165,26 +1145,21 @@ const izabraniModel = document.getElementById('ai-model-select').value;
             return `${nazivZakona}__${cistiBroj}`;
         });
 
-        // Filtriramo i razdvajamo bazu na predložene i ostale kako bi UI iscrtao kartice ispravnim redoslijedom
-        const aktivniZakoniZaPrikaz = sviZakonPodaci.filter(clan => {
-            return selektovaniZakoni.some(selZakon => daLiSePoklapa(clan.naziv_zakona || "", selZakon));
-        });
-        
-        const filtriraniZakon = aktivniZakoniZaPrikaz.filter(clan => {
+        // Koristi VEĆ filtrirane članove
+        const filtriraniZakon = aktivniZakoniPodaci.filter(clan => {
             const stvarniBroj = clan.broj_clana || clan.clan_broj || "";
             let lokalniCistiBroj = String(stvarniBroj).toLowerCase().replace('član', '').replace('.', '').trim();
             const kljuc = `${clan.naziv_zakona}__${lokalniCistiBroj}`;
             return preporuceniKljucevi.includes(kljuc);
         });
 
-        const OstatakZakona = aktivniZakoniZaPrikaz.filter(clan => {
+        const OstatakZakona = aktivniZakoniPodaci.filter(clan => {
             const stvarniBroj = clan.broj_clana || clan.clan_broj || "";
             let lokalniCistiBroj = String(stvarniBroj).toLowerCase().replace('član', '').replace('.', '').trim();
             const kljuc = `${clan.naziv_zakona}__${lokalniCistiBroj}`;
             return !preporuceniKljucevi.includes(kljuc);
         });
         
-        // Renderovanje rezultata na korisnički interfejs
         document.getElementById('results-title').innerText = `AI Preporuke (${filtriraniZakon.length})`;
         prikaziClanove([...filtriraniZakon, ...OstatakZakona], preporuceniKljucevi);
         document.getElementById('laws-container').scrollTop = 0;
@@ -1192,32 +1167,25 @@ const izabraniModel = document.getElementById('ai-model-select').value;
     } catch (error) {
         console.error("Greška prilikom AI analize:", error);
 
-        // Mapiranje grešaka na tvoje prilagođene, jasne poruke
         const porukeGreski = {
-            "429": "⏳ Besplatni model se odmara! (Previše zahtjeva u kratkom vremenu, sačekajte minutu).",
-            "500": "💥 Server je preopterećen ili je došlo do unutrašnje greške na Vercelu.",
-            "504": "⏱️ Vercel Timeout! AI modelu je trebalo više od 10 sekundi da odgovori.",
-            "401": "🔑 Problem sa API ključem. Provjerite backend konfiguraciju.",
-            "403": "🚫 Pristup odbijen! Nemate dozvolu za pozivanje ovog modela."
+            "413": "📦 Payload prevelik! Odabrano je previše članova. Molimo odaberite manji broj članova (npr. jednu glavu zakona).",
+            "503": "⏳ Server je trenutno nedostupan (503). Pokušajte ponovo za minut.",
+            "429": "⏳ Previše zahtjeva. Sačekajte minut.",
+            "500": "💥 Interna greška servera.",
+            "504": "⏱️ Timeout! AI modelu je trebalo više od 10 sekundi."
         };
 
-        // Izvlačimo samo brojeve iz poruke (npr. ako piše "API greška: 429" uzeće samo "429")
         const match = error.message.match(/\d+/);
         const kodGreske = match ? match[0] : error.message.trim();
 
-        // Ako imamo definisanu poruku za taj kod, iskoristi je. U suprotnom daj generičku poruku.
         const konacnaPoruka = porukeGreski[kodGreske] 
             ? porukeGreski[kodGreske] 
-            : `Došlo je do mrežne greške (${kodGreske || "Nepoznato"}). Vraćam standardni prikaz.`;
+            : `Greška (${kodGreske || "Nepoznato"}). Pokušajte ponovo.`;
 
-        // Prikazujemo prilagođenu poruku korisniku
         alert(konacnaPoruka);
-        
-        // Vraćamo stabilan prikaz kartica na desnoj strani ekrana da interfejs ne ostane blokiran
         filtrirajPrikaz();
 
     } finally {
-        // Vraćanje dugmeta u aktivno stanje i skrivanje loadera bez obzira na ishod
         document.getElementById('btn-ai-search').disabled = false;
         document.getElementById('loader').classList.add('hidden');
     }
