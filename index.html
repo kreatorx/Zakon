@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bs">
 <head>
     <meta charset="UTF-8">
@@ -24,7 +24,6 @@
 <body class="bg-gray-50 font-sans text-gray-800 antialiased text-xs">
 
     <div class="min-h-screen flex flex-col">
-        <!-- HEADER -->
         <header class="bg-blue-900 text-white shadow-sm px-4 py-3">
             <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 
@@ -53,13 +52,10 @@
             </div>
         </header>
 
-        <!-- MAIN SADRŽAJ -->
         <main class="flex-grow max-w-7xl w-full mx-auto p-3 grid grid-cols-1 lg:grid-cols-3 gap-4">
             
-            <!-- LIJEVA KOLONA (SIDEBAR) -->
             <div class="lg:col-span-1 flex flex-col gap-3">
                 
-                <!-- ODABIR ZAKONA -->
                 <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
                     <div class="flex items-center gap-1.5 mb-2 text-gray-700 font-semibold text-sm border-b pb-1">
                         <i class="fa-solid fa-gavel text-xs text-blue-900"></i>
@@ -67,122 +63,111 @@
                     </div>
                     
                     <div class="space-y-2" id="law-selectors">
-                        <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
-                            <input type="checkbox" id="chk-all" onchange="toggleSve(this)" checked class="w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                            <span class="text-xs font-bold text-gray-950">Prikaži / Pretraži SVE</span>
+                        <label class="flex items-center gap-2 p-2 bg-slate-900 text-white rounded-lg cursor-pointer transition shadow-sm">
+                            <input type="checkbox" id="chk-all" onchange="toggleApsolutnoSve(this)" checked class="w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                            <span class="text-xs font-bold">Prikaži / Pretraži SVE zakone</span>
                         </label>
                         
-                        <!-- KRIVIČNI ZAKON ACCORDION -->
-                        <div class="border border-gray-200 rounded-lg p-1.5 bg-gray-50">
-                            <details class="group border border-gray-200 rounded-xl bg-gray-50 overflow-hidden transition-all duration-300">
-                                <summary class="flex items-center justify-between p-3 bg-white cursor-pointer select-none list-none">
+                        <div class="border border-red-300 rounded-lg p-1.5 bg-red-50/30">
+                            <details class="group overflow-hidden transition-all duration-300" open>
+                                <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-red-200">
                                     <div class="flex items-center" onclick="event.stopPropagation();">
-                                        <input type="checkbox" id="chk-kz" value="Krivični Zakon FBiH" onchange="toggleSveUnutarZakona(this)" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                        <label for="chk-kz" class="ml-2 text-xs font-bold text-gray-900 cursor-pointer">
-                                            Krivični Zakon FBiH (Kompletan)
-                                        </label>
+                                        <input type="checkbox" id="chk-kz" value="Krivični Zakon FBiH" onchange="toggleSveUnutarZakona(this)" checked class="master-checkbox w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500">
+                                        <label for="chk-kz" class="ml-2 text-xs font-bold text-red-910 cursor-pointer">Krivični Zakon FBiH</label>
                                     </div>
-                                    <span class="text-xs text-gray-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+                                    <span class="text-xs text-red-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
                                 </summary>
-
-                                <div class="p-3 border-t border-gray-200 ml-2 space-y-3 max-h-60 overflow-y-auto text-[11px] text-gray-700">
-                                    <!-- OPĆI DIO -->
+                                <div class="p-2 mt-1.5 ml-1 space-y-2 max-h-52 overflow-y-auto text-[11px] text-gray-700">
                                     <div class="border-l-2 border-amber-400 pl-2">
                                         <div class="flex items-center mb-1 bg-amber-50 p-1 rounded font-bold text-gray-700">
-                                            <input type="checkbox" id="chk-kz-opci" onchange="toggleGrupuCheckboxa(this, '.kz-opci-chk')" class="mr-1.5">
+                                            <input type="checkbox" id="chk-kz-opci" onchange="toggleGrupuCheckboxa(this, '.kz-opci-chk')" checked class="mr-1.5">
                                             <label for="chk-kz-opci" class="cursor-pointer text-[10px] tracking-wider uppercase">--- OPĆI DIO ---</label>
                                         </div>
                                         <div class="space-y-1 mt-1 pl-1">
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="1-2" data-glava="I" checked> I - Predmet zakona i značaj izraza (1-2)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="3-8" data-glava="II"> II - Osnovne odredbe (3-8)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="9-14" data-glava="III"> III - Primjena krivičnog zakonodavstva (9-14)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="15-20" data-glava="IV"> IV - Zastara (15-20)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="21-34" data-glava="V"> V - Krivično djelo (21-34)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="35-40" data-glava="VI"> VI - Krivica (35-40)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="41-58" data-glava="VII"> VII - Kazne (41-58)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="59-70" data-glava="VIII"> VIII - Mjere upozorenja (59-70)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="71-78b" data-glava="IX"> IX - Sigurnosne mjere (71-78b)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="110-113" data-glava="XI"> XI - Izvršenje sankcija (110-113)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="114-120" data-glava="XII"> XII - Lišenje imovinske koristi (114-120)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="121-125a" data-glava="XIII"> XIII - Rehabilitacija i amnestija (121-125a)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="126-148" data-glava="XIV"> XIV - Odgovornost pravnih osoba (126-148)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="1-2" data-glava="I" checked> I - Predmet zakona (1-2)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="3-8" data-glava="II" checked> II - Osnovne odredbe (3-8)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="9-14" data-glava="III" checked> III - Primjena (9-14)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="15-20" data-glava="IV" checked> IV - Zastara (15-20)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="21-34" data-glava="V" checked> V - Krivično djelo (21-34)</label>
                                         </div>
                                     </div>
-
-                                    <!-- POSEBNI DIO -->
                                     <div class="border-l-2 border-blue-500 pl-2">
                                         <div class="flex items-center mb-1 bg-blue-50 p-1 rounded font-bold text-gray-700">
-                                            <input type="checkbox" id="chk-kz-posebni" onchange="toggleGrupuCheckboxa(this, '.kz-posebni-chk')" class="mr-1.5" checked>
+                                            <input type="checkbox" id="chk-kz-posebni" onchange="toggleGrupuCheckboxa(this, '.kz-posebni-chk')" checked class="mr-1.5">
                                             <label for="chk-kz-posebni" class="cursor-pointer text-[10px] tracking-wider uppercase">--- POSEBNI DIO ---</label>
                                         </div>
                                         <div class="space-y-1 mt-1 pl-1">
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="149-165" data-glava="XV" checked> XV - Protiv ustavnog poretka (149-165)</label>
                                             <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="166-176" data-glava="XVI" checked> XVI - Protiv života i tijela (166-176)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="177-199a" data-glava="XVII" checked> XVII - Protiv slobode i prava čovjeka (177-199a)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="200-202" data-glava="XVIII" checked> XVIII - Terorizam (200-202)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="203-210b" data-glava="XIX" checked> XIX - Protiv spolne slobode i morala (203-210b)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="210c-210j" data-glava="XIXa" checked> XIXa - Spolno zlostavljanje djeteta (210c-210j)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="214-224" data-glava="XX" checked> XX - Protiv braka i porodice (214-224)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="225-240" data-glava="XXI" checked> XXI - Protiv zdravlja ljudi (225-240)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="241-272" data-glava="XXII" checked> XXII - Privreda i platni promet (241-272)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="273-278" data-glava="XXIII" checked> XXIII - Porezi (273-278)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="279-285" data-glava="XXIV" checked> XXIV - Protiv radnih odnosa (279-285)</label>
                                             <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="286-302" data-glava="XXV" checked> XXV - Protiv imovine (286-302)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="303-322" data-glava="XXVI" checked> XXVI - Protiv okoliša i prirode (303-322)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="323-331" data-glava="XXVII" checked> XXVII - Protiv opće sigurnosti (323-331)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="332-337" data-glava="XXVIII" checked> Sigurnost javnog prometa (332-337)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="338-357" data-glava="XXIX" checked> XXIX - Protiv pravosuđa (338-357)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="358-379" data-glava="XXX" checked> XXX - Javni red i pravni promet (358-379)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="380-392" data-glava="XXXI" checked> XXXI - Podmićivanje i službena dužnost (380-392)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="393-398" data-glava="XXXII" checked> XXXII - Elektronska obrada podataka (393-398)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="419-421" data-glava="XXX4" checked> XXXIV - Prijelazne i završne odredbe (419-421)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="380-392" data-glava="XXXI" checked> XXXI - Podmićivanje (380-392)</label>
                                         </div>
                                     </div>
                                 </div>
                             </details>
                         </div>
-                        
-                        <!-- SVI OSTALI ZAKONI -->
-                        <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
-                            <input type="checkbox" value="Ustav FBiH" onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                            <span class="text-xs text-gray-700">Ustav FBiH</span>
-                        </label>
 
-                        <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
-                            <input type="checkbox" value="Zakon o zabrani diskriminacije" checked onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                            <span class="text-xs text-gray-700">Zakon o zabrani diskriminacije</span>
-                        </label>
+                        <div class="border border-lime-300 rounded-lg p-1.5 bg-lime-50/30">
+                            <details class="group overflow-hidden transition-all duration-300" open>
+                                <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-lime-200">
+                                    <div class="flex items-center" onclick="event.stopPropagation();">
+                                        <input type="checkbox" id="chk-zr" value="Zakon o radu" onchange="toggleSvePodCjeline(this, '.zr-glava-chk')" checked class="master-checkbox w-4 h-4 text-lime-600 border-gray-300 rounded focus:ring-lime-500">
+                                        <label for="chk-zr" class="ml-2 text-xs font-bold text-lime-900 cursor-pointer">Zakon o radu</label>
+                                    </div>
+                                    <span class="text-xs text-lime-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+                                </summary>
+                                <div class="p-2 mt-1.5 ml-1 space-y-1 max-h-40 overflow-y-auto text-[11px] text-gray-700">
+                                    <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="1-10" checked> I - Osnovne odredbe (1-10)</label>
+                                    <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="11-30" checked> II - Ugovori o radu (11-30)</label>
+                                    <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="31-50" checked> III - Radno vrijeme (31-50)</label>
+                                    <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="51-90" checked> IV - Odmori i odsustva (51-90)</label>
+                                    <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="116-170" checked> V - Prestanak ugovora (116-170)</label>
+                                </div>
+                            </details>
+                        </div>
 
-                        <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
-                            <input type="checkbox" value="Zakon o zaštiti od klevete" checked onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                            <span class="text-xs text-gray-700">Zakon o zaštiti od klevete</span>
-                        </label>
+                        <div class="border border-blue-300 rounded-lg p-1.5 bg-blue-50/30">
+                            <details class="group overflow-hidden transition-all duration-300">
+                                <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-blue-200">
+                                    <div class="flex items-center" onclick="event.stopPropagation();">
+                                        <input type="checkbox" value="Ustav FBiH" id="chk-uz" checked onchange="provjeriGlobalniMaster(); filtrirajPrikaz();" class="master-checkbox law-checkbox w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                        <label for="chk-uz" class="ml-2 text-xs font-bold text-blue-900 cursor-pointer">Ustav FBiH</label>
+                                    </div>
+                                    <span class="text-xs text-blue-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+                                </summary>
+                                <div class="p-2 text-gray-500 italic text-[10px]">Učitava se kompletan dokument (nema podjela po glavama u meniju).</div>
+                            </details>
+                        </div>
 
-                        <div class="border border-gray-200 rounded-lg p-1.5 bg-gray-50">
-    <details class="group border border-gray-200 rounded-xl bg-gray-50 overflow-hidden transition-all duration-300">
-        <summary class="flex items-center justify-between p-3 bg-white cursor-pointer select-none list-none">
-            <div class="flex items-center" onclick="event.stopPropagation();">
-                <input type="checkbox" id="chk-zr-master" value="Zakon o radu" onchange="toggleSvePodCjeline(this, '.zr-glava-chk'); filtrirajPrikaz();" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                <label for="chk-zr-master" class="ml-2 text-xs font-bold text-gray-900 cursor-pointer">
-                    Zakon o radu (Po cjelinama)
-                </label>
-            </div>
-            <span class="text-xs text-gray-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
-        </summary>
+                        <div class="border border-emerald-300 rounded-lg p-1.5 bg-emerald-50/30">
+                            <details class="group overflow-hidden transition-all duration-300" open>
+                                <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-emerald-200">
+                                    <div class="flex items-center" onclick="event.stopPropagation();">
+                                        <input type="checkbox" id="chk-zd" value="Zakon o zabrani diskriminacije" onchange="toggleSvePodCjeline(this, '.zd-glava-chk')" checked class="master-checkbox w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500">
+                                        <label for="chk-zd" class="ml-2 text-xs font-bold text-emerald-900 cursor-pointer">Zakon o zabrani diskriminacije</label>
+                                    </div>
+                                    <span class="text-xs text-emerald-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+                                </summary>
+                                <div class="p-2 mt-1.5 ml-1 space-y-1 max-h-32 overflow-y-auto text-[11px] text-gray-700">
+                                    <label class="flex items-center"><input type="checkbox" class="zd-glava-chk mr-1.5" value="1-5" checked> I - Opće odredbe (1-5)</label>
+                                    <label class="flex items-center"><input type="checkbox" class="zd-glava-chk mr-1.5" value="6-15" checked> II - Postupci i zaštita (6-15)</label>
+                                </div>
+                            </details>
+                        </div>
 
-        <div class="p-3 border-t border-gray-200 ml-2 space-y-1.5 max-h-40 overflow-y-auto text-[11px] text-gray-700">
-            <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="1-10" checked> I - Osnovne odredbe (1-10)</label>
-            <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="11-30" checked> II - Zaključivanje ugovora o radu (11-30)</label>
-            <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="31-50" checked> III - Radno vrijeme (31-50)</label>
-            <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="51-90" checked> IV - Odmori i odsustva (51-90)</label>
-            <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="91-115" checked> V - Plaća i naknada plaće (91-115)</label>
-            <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="116-170" checked> VI - Prestanak ugovora o radu (116-170)</label>
-        </div>
-    </details>
-</div>
+                        <div class="border border-amber-300 rounded-lg p-1.5 bg-amber-50/30">
+                            <details class="group overflow-hidden transition-all duration-300">
+                                <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-amber-200">
+                                    <div class="flex items-center" onclick="event.stopPropagation();">
+                                        <input type="checkbox" value="Zakon o zaštiti od klevete" id="chk-zk" checked onchange="provjeriGlobalniMaster(); filtrirajPrikaz();" class="master-checkbox law-checkbox w-4 h-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
+                                        <label for="chk-zk" class="ml-2 text-xs font-bold text-amber-900 cursor-pointer">Zakon o zaštiti od klevete</label>
+                                    </div>
+                                    <span class="text-xs text-amber-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+                                </summary>
+                                <div class="p-2 text-gray-500 italic text-[10px]">Učitava se kompletan dokument (nema podjela po glavama u meniju).</div>
+                            </details>
+                        </div>
                     </div>
-
-                    <!-- METRIKA I OPCIJE UPITA -->
+                    
                     <div class="mt-3 pt-2 border-t border-gray-100 space-y-1.5">
                         <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
                             <input type="checkbox" value="skraceno" checked onchange="filtrirajPrikaz()" class="w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
@@ -199,7 +184,6 @@
                     </div>
                 </div>
              
-                <!-- AI PRAVNI ASISTENT -->
                 <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
                     <div class="flex items-center gap-1.5 mb-1.5 text-purple-700 font-semibold text-sm border-b pb-1">
                         <i class="fa-solid fa-brain text-xs"></i>
@@ -224,7 +208,6 @@
                     </div>
                 </div>
 
-                <!-- KLASIČNA PRETRAGA -->
                 <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
                     <div class="flex items-center gap-1.5 mb-1.5 text-blue-700 font-semibold text-sm border-b pb-1">
                         <i class="fa-solid fa-magnifying-glass text-xs"></i>
@@ -236,14 +219,12 @@
                     <div id="search-stats" class="text-[11px] text-gray-500 font-medium">Učitavanje zakona...</div>
                 </div>
 
-                <!-- DISKLAJMER -->
                 <div class="flex flex-col items-center justify-center px-4 gap-1.5 mb-1.5 text-gray-500 text-[10px] border-b pb-2 text-center leading-normal">
                     <p>AI asistent služi kao alat za informisanje i pretragu, a ne kao zamjena za stručnu pravnu pomoć.
                        Generisani odgovori su isključivo informativnog karaktera i ne garantuju apsolutnu
                        tačnost niti pravnu sigurnost. -2026-</p>
                 </div>
 
-                <!-- PRINT PANEL -->
                 <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mt-auto">
                     <div class="flex items-center justify-between mb-1.5 text-green-700 font-semibold text-sm border-b pb-1">
                         <div class="flex items-center gap-1.5">
@@ -261,10 +242,8 @@
                 </div>
             </div>
 
-            <!-- DESNA KOLONA (GLAVNI PANEL ZA REZULTATE ČLANOVA) -->
             <div class="lg:col-span-2 flex flex-col gap-3">
                 
-                <!-- AI ODGOVOR BOX -->
                 <div id="ai-response-box" class="hidden bg-purple-50 p-3 rounded-lg border border-purple-200 shadow-sm">
                     <div class="flex justify-between items-start mb-1">
                         <div class="flex items-center gap-1.5 text-purple-800 font-semibold text-xs">
@@ -276,7 +255,6 @@
                     <div id="ai-response-text" class="text-xs text-purple-900 leading-relaxed whitespace-pre-wrap"></div>
                 </div>
 
-                <!-- KONTROLE PRIKAZA (LIST/GRID) -->
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-100 px-3 py-1.5 rounded-lg gap-2">
                     <div class="flex items-center gap-2">
                         <span id="results-title" class="font-bold text-gray-700 text-xs">Svi aktivni članovi zakona</span>
@@ -304,19 +282,16 @@
                     </div>
                 </div>
 
-                <!-- LOADER -->
                 <div id="loader" class="hidden flex flex-col items-center justify-center py-10 gap-2">
                     <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-700"></div>
                     <p class="text-xs text-gray-500">AI analizira zakonsku bazu podataka...</p>
                 </div>
 
-                <!-- GLAVNI KONTEJNER ZA ČLANOVE -->
                 <div id="laws-container" class="overflow-y-auto max-h-[75vh] pr-1"></div>
             </div>
         </main>
     </div>
 
-    <!-- MODAL ZA ČLANOVE (DETALJNI PREGLED) -->
     <div id="member-modal" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden" onclick="zatvoriModal()">
         
         <div class="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[85vh] flex flex-col overflow-hidden border border-gray-100" onclick="event.stopPropagation()">    
@@ -411,101 +386,164 @@ async function ucitajSveZakone() {
     filtrirajPrikaz();
 }
 
-// Konfiguraciona mapa: Povezuje identifikatore iz tvoje baze sa klasama na frontendu
+// ==========================================
+// KONFIGURACIJA I TOGGLE SISTEM
+// ==========================================
 const konfiguracijaMrezeZakon = {
     "krivični zakon fbih": ".kz-glava-chk",
     "krivicni zakon fbih": ".kz-glava-chk",
+    "zakon o radu": ".zr-glava-chk",
+    "zakon o radu fbih": ".zr-glava-chk",
     "zakon o zabrani diskriminacije": ".zd-glava-chk"
 };
 
-async function formirajBazuAktivnihZakona() {
-    let ucitaniPodaci = [];
+// 1. GLAVNI KROVNI TOGGLE ZA SVE
+function toggleApsolutnoSve(krovniMaster) {
+    const stanje = krovniMaster.checked;
+    
+    document.querySelectorAll('.master-checkbox').forEach(cb => { cb.checked = stanje; });
 
-    // Filter radi dinamički za SVAKI zakon koji propustiš kroz njega:
-    const filtriraniPodaci = sviZakonPodaci.filter(clan => {
-        const nazivZakona = (clan.naziv_zakona || "").toLowerCase().trim();
-        
-        // Pronalaženje odgovarajuće klase checkboxa iz naše konfiguracione mape
-        const klasaCheckboxa = konfiguracijaMrezeZakon[nazivZakona];
+    const opci = document.getElementById('chk-kz-opci');
+    const posebni = document.getElementById('chk-kz-posebni');
+    if (opci) opci.checked = stanje;
+    if (posebni) posebni.checked = stanje;
 
-        // Ako zakon ima definisanu pod-podjelu na interfejsu, filtriraj po opsegu članova
-        if (klasaCheckboxa) {
-            const brojClana = String(clan.broj_clana || clan.clan_broj || "");
-            return daLiClanPripadaOznacenimOpsezima(brojClana, klasaCheckboxa);
-        }
-
-        // Ako zakon nema pod-podjele (npr. Ustav se učitava uvijek cio), pusti ako je master označen
-        return true; 
+    document.querySelectorAll('.kz-glava-chk, .zr-glava-chk, .zd-glava-chk, .kz-opci-chk, .kz-posebni-chk').forEach(cb => {
+        cb.checked = stanje;
     });
 
-    ucitaniPodaci = ucitaniPodaci.concat(filtriraniPodaci);
-    sviZakonPodaci = ucitaniPodaci;
+    filtrirajPrikaz();
 }
 
+// 2. TOGGLE ZA POJEDINAČNE ZAKONE
+function toggleSvePodCjeline(masterChk, klasaPodCheckboxa) {
+    const stanje = masterChk.checked;
+    document.querySelectorAll(klasaPodCheckboxa).forEach(chk => { chk.checked = stanje; });
+    provjeriGlobalniMaster();
+    filtrirajPrikaz();
+}
+
+// 3. TOGGLE ZA KRIVIČNI ZAKON (Više nivoa)
 function toggleSveUnutarZakona(glavniMaster) {
-    // Upali/ugasi dva pod-mastera
-    document.getElementById('chk-kz-opci').checked = glavniMaster.checked;
-    document.getElementById('chk-kz-posebni').checked = glavniMaster.checked;
+    const stanje = glavniMaster.checked;
+    const opci = document.getElementById('chk-kz-opci');
+    const posebni = document.getElementById('chk-kz-posebni');
+    if (opci) opci.checked = stanje;
+    if (posebni) posebni.checked = stanje;
     
-    // Upali/ugasi apsolutno sve glave
-    const sveGlave = document.querySelectorAll('.kz-glava-chk');
-    sveGlave.forEach(chk => {
-        chk.checked = glavniMaster.checked;
-    });
+    document.querySelectorAll('.kz-glava-chk').forEach(chk => { chk.checked = stanje; });
+    provjeriGlobalniMaster();
+    filtrirajPrikaz();
 }
 
-// Kada klikneš na "Opći dio" ili "Posebni dio" -> pali/gasi samo checkboxe koji pripadaju toj grupi
 function toggleGrupuCheckboxa(podMaster, klasaGrupe) {
-    const clanoviGrupe = document.querySelectorAll(klasaGrupe);
-    clanoviGrupe.forEach(chk => {
-        chk.checked = podMaster.checked;
-    });
+    const stanje = podMaster.checked;
+    document.querySelectorAll(klasaGrupe).forEach(chk => { chk.checked = stanje; });
     
-    // Sinhronizacija glavnog mastera: ako su oba pod-mastera ugašena, gasi i glavni
-    const opciChecked = document.getElementById('chk-kz-opci').checked;
-    const posebniChecked = document.getElementById('chk-kz-posebni').checked;
-    document.getElementById('chk-kz').checked = (opciChecked && posebniChecked);
+    const opciChecked = document.getElementById('chk-kz-opci')?.checked || false;
+    const posebniChecked = document.getElementById('chk-kz-posebni')?.checked || false;
+    const glavniMaster = document.getElementById('chk-kz');
+    if (glavniMaster) glavniMaster.checked = (opciChecked && posebniChecked);
+    
+    provjeriGlobalniMaster();
+    filtrirajPrikaz();
 }
-     
+
+// 4. RETROAKTIVNA SINHRONIZACIJA MASTERA (iznutra ka van)
+function osveziMasterCheckboxove() {
+    const sveZrGlave = document.querySelectorAll('.zr-glava-chk');
+    const oznaceneZrGlave = document.querySelectorAll('.zr-glava-chk:checked');
+    const masterZr = document.getElementById('chk-zr');
+    if (masterZr && sveZrGlave.length > 0) masterZr.checked = (sveZrGlave.length === oznaceneZrGlave.length);
+
+    const sveZdGlave = document.querySelectorAll('.zd-glava-chk');
+    const oznaceneZdGlave = document.querySelectorAll('.zd-glava-chk:checked');
+    const masterZd = document.getElementById('chk-zd');
+    if (masterZd && sveZdGlave.length > 0) masterZd.checked = (sveZdGlave.length === oznaceneZdGlave.length);
+
+    const sveKzOpci = document.querySelectorAll('.kz-opci-chk:not(#chk-kz-opci)');
+    const oznaceneKzOpci = document.querySelectorAll('.kz-opci-chk:not(#chk-kz-opci):checked');
+    const podMasterOpci = document.getElementById('chk-kz-opci');
+    if (podMasterOpci && sveKzOpci.length > 0) podMasterOpci.checked = (sveKzOpci.length === oznaceneKzOpci.length);
+
+    const sveKzPosebni = document.querySelectorAll('.kz-posebni-chk:not(#chk-kz-posebni)');
+    const oznaceneKzPosebni = document.querySelectorAll('.kz-posebni-chk:not(#chk-kz-posebni):checked');
+    const podMasterPosebni = document.getElementById('chk-kz-posebni');
+    if (podMasterPosebni && sveKzPosebni.length > 0) podMasterPosebni.checked = (sveKzPosebni.length === oznaceneKzPosebni.length);
+
+    const glavniMasterKz = document.getElementById('chk-kz');
+    if (glavniMasterKz && podMasterOpci && podMasterPosebni) {
+        glavniMasterKz.checked = (podMasterOpci.checked && podMasterPosebni.checked);
+    }
+
+    provjeriGlobalniMaster();
+}
+
+function provjeriGlobalniMaster() {
+    const sviMasteri = document.querySelectorAll('.master-checkbox');
+    const sviOznaceniMasteri = document.querySelectorAll('.master-checkbox:checked');
+    const globalniMaster = document.getElementById('chk-all');
+    if (globalniMaster && sviMasteri.length > 0) {
+        globalniMaster.checked = (sviMasteri.length === sviOznaceniMasteri.length);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Slušaj sitne podglave
+    document.querySelectorAll('.kz-glava-chk, .zr-glava-chk, .zd-glava-chk').forEach(chk => {
+        chk.addEventListener('change', () => {
+            osveziMasterCheckboxove();
+            filtrirajPrikaz();
+        });
+    });
+});
+
 // =========================================================================
-// 1. GLAVNA FUNKCIJA ZA FILTRIRANJE (Reaguje na raspone i krovne checkboxove)
+// GLAVNA FUNKCIJA ZA FILTRIRANJE
 // =========================================================================
 function filtrirajPrikaz() {
-    // Prolazimo kroz sve učitane članove iz baze i filtriramo ih prema stanju checkboxova
     const filtriraniPodaci = sviZakonPodaci.filter(clan => {
         const nazivZakona = (clan.naziv_zakona || "").toLowerCase().trim();
-        
-        // Tražimo klasu pod-checkboxa iz konfiguracione mape (npr. '.kz-glava-chk')
         const klasaCheckboxa = konfiguracijaMrezeZakon[nazivZakona];
 
         if (klasaCheckboxa) {
-            // Ako zakon ima definisane podglave (Krivični, Rad, Diskriminacija), provjeri opseg
             return daLiClanPripadaOznacenimOpsezima(String(clan.broj_clana), klasaCheckboxa);
         }
 
-        // Za zakone bez podglava (npr. Ustav FBiH, Kleveta), provjeravamo krovni checkbox
         return Array.from(document.querySelectorAll('.law-checkbox:checked'))
             .some(chk => chk.value.toLowerCase().trim() === nazivZakona);
     });
 
-    // Ažuriramo globalni niz trenutno vidljivih članova
     trenutniPrikazaniClanovi = filtriraniPodaci;
-
-    // Prosjeđujemo filtrirane članove tvojoj originalnoj funkciji za ispis na ekran
     prikaziClanove(trenutniPrikazaniClanovi, globalniIstaknutiKljucevi);
-
-    // Pokrećemo korigovane AI brojače
     osvjeziBrojacSlovaAI();
     osvjeziBrojacRijeciAI();
 }
 
+function daLiClanPripadaOznacenimOpsezima(brojClanaString, klasaCheckboxa) {
+    const oznaceniCheckboxi = document.querySelectorAll(`${klasaCheckboxa}:checked`);
+    if (oznaceniCheckboxi.length === 0) return false;
+
+    const cistiBroj = parseInt(brojClanaString.replace(/\D/g, ''));
+    if (isNaN(cistiBroj)) return false;
+
+    for (const chk of oznaceniCheckboxi) {
+        const dijelovi = chk.value.split('-').map(num => parseInt(num.replace(/\D/g, '')));
+        const odBroja = dijelovi[0];
+        const doBroja = dijelovi[1] !== undefined ? dijelovi[1] : dijelovi[0];
+
+        if (cistiBroj >= odBroja && cistiBroj <= doBroja) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // =========================================================================
-// 2. KORIGOVANI AI BROJAČI (Sada tačno broje slova iz aktivnih/prikazanih članova)
+// AI BROJAČI
 // =========================================================================
 function osvjeziBrojacSlovaAI() {
     let ukupanBrojSlova = 0;
-
-    // Brojimo samo iz članova koji su trenutno prošli selekciju i prikazani su
     trenutniPrikazaniClanovi.forEach(clan => {
         const tekst = clan.cisti_tekst || clan.tekst || "";
         ukupanBrojSlova += tekst.length;
@@ -515,7 +553,6 @@ function osvjeziBrojacSlovaAI() {
     if (!brojacElement) return;
 
     brojacElement.innerText = ukupanBrojSlova.toLocaleString('bs');
-
     const MAKS_NORMATIV = 65000; 
     if (ukupanBrojSlova > MAKS_NORMATIV) {
         brojacElement.className = "font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded border border-red-200 animate-pulse";
@@ -528,7 +565,6 @@ function osvjeziBrojacSlovaAI() {
 
 function osvjeziBrojacRijeciAI() {
     let ukupanBrojRijeci = 0;
-
     trenutniPrikazaniClanovi.forEach(clan => {
         const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
         if (tekst.length > 0) {
@@ -541,7 +577,6 @@ function osvjeziBrojacRijeciAI() {
     if (!brojacElement) return;
 
     brojacElement.innerText = ukupanBrojRijeci.toLocaleString('bs');
-
     const MAKS_NORMATIV = 10000; 
     if (ukupanBrojRijeci > MAKS_NORMATIV) {
         brojacElement.className = "font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded border border-red-200 animate-pulse";
@@ -552,119 +587,9 @@ function osvjeziBrojacRijeciAI() {
     }
 }
 
-// =========================================================================
-// 3. EVENT LISTENERI (Osiguravaju instant reakciju na klik bilo kojeg checkboxa)
-// =========================================================================
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Slušaj klikove na krovne zakone (.law-checkbox)
-    document.querySelectorAll('.law-checkbox').forEach(chk => {
-        chk.addEventListener('change', filtrirajPrikaz);
-    });
-
-    // 2. Slušaj klikove na sve podglave u harmonici (Krivični, Rad, Diskriminacija)
-    document.querySelectorAll('.kz-glava-chk, .zr-glava-chk, .zd-glava-chk, .kz-opci-chk, .kz-posebni-chk').forEach(chk => {
-    chk.addEventListener('change', filtrirajPrikaz);
-    });
-
-    // 3. Slušaj krovni toggle "Prikaži Sve" ako postoji
-    const chkAll = document.getElementById('chk-all');
-    if (chkAll) chkAll.addEventListener('change', filtrirajPrikaz);
-
-    // 4. Sinhronizacija i filtriranje za Krivični Zakon (Master i pod-masteri)
-    const chkKz = document.getElementById('chk-kz');
-    if (chkKz) {
-        chkKz.addEventListener('change', (e) => {
-            toggleSveUnutarZakona(e.target);
-            filtrirajPrikaz();
-        });
-    }
-
-    const chkOpci = document.getElementById('chk-kz-opci');
-    if (chkOpci) {
-        chkOpci.addEventListener('change', (e) => {
-            toggleGrupuCheckboxa(e.target, '.kz-opci-chk');
-            filtrirajPrikaz();
-        });
-    }
-
-    const chkPosebni = document.getElementById('chk-kz-posebni');
-    if (chkPosebni) {
-        chkPosebni.addEventListener('change', (e) => {
-            toggleGrupuCheckboxa(e.target, '.kz-posebni-chk');
-            filtrirajPrikaz();
-        });
-    }
-});
-
-/**
- * Univerzalno provjerava da li član pripada bilo kojem od označenih opsega na interfejsu.
- * @param {string} brojClanaString - Sirovi broj člana iz JSON-a (npr. "Član 166a.", "12", "Zakon 45")
- * @param {string} klasaCheckboxa - CSS klasa pod-checkboxa za taj specifični zakon (npr. '.kz-glava-chk')
- * @returns {boolean}
- */
-function daLiClanPripadaOznacenimOpsezima(brojClanaString, klasaCheckboxa) {
-    const oznaceniCheckboxi = document.querySelectorAll(`${klasaCheckboxa}:checked`);
-    
-    // Provjera varijable bez kvačice 'č' kako bi izbjegli ReferenceError
-    if (oznaceniCheckboxi.length === 0) return false;
-
-    // Čistimo broj člana: čupamo samo prve cifre
-    const cistiBroj = parseInt(brojClanaString.replace(/\D/g, ''));
-    if (isNaN(cistiBroj)) return false;
-
-    // Prolazimo kroz sve označene pod-cjeline i provjeravamo opsege iz "value" atributa
-    for (const chk of oznaceniCheckboxi) {
-        const dijelovi = chk.value.split('-').map(num => parseInt(num.replace(/\D/g, '')));
-        
-        const odBroja = dijelovi[0];
-        const doBroja = dijelovi[1] !== undefined ? dijelovi[1] : dijelovi[0];
-
-        if (cistiBroj >= odBroja && cistiBroj <= doBroja) {
-            return true;
-        }
-    }
-    return false;
-}
-
-/**
- * Univerzalni toggle za automatsko označavanje svih pod-glava nekog zakona.
- * @param {HTMLElement} masterChk - Glavni checkbox zakona
- * @param {string} klasaPodCheckboxa - CSS klasa uvučenih elemenata (npr. '.zr-glava-chk')
- */
-function toggleSvePodCjeline(masterChk, klasaPodCheckboxa) {
-    const svePodCjeline = document.querySelectorAll(klasaPodCheckboxa);
-    svePodCjeline.forEach(chk => {
-        chk.checked = masterChk.checked;
-    });
-}
-     
 // ==========================================
-// 3. POMOĆNA FUNKCIJA ZA MATRIČNI ISPIS U HTML
+// PRIKAZ, LAYOUT I HTML RENDERING
 // ==========================================
-function prikaziClanoveUKontejneru(clanovi) {
-    const kontejner = document.getElementById('laws-container');
-    if (!kontejner) return;
-
-    if (clanovi.length === 0) {
-        kontejner.innerHTML = `<p class="text-gray-400 italic p-4 text-center">Nema aktivnih članova za prikaz. Označite zakone ili sekcije u lijevom meniju.</p>`;
-        return;
-    }
-
-    let html = "";
-    clanovi.forEach(clan => {
-        html += `
-            <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mb-2 hover:border-blue-300 transition">
-                <div class="flex justify-between items-start border-b pb-1 mb-1.5">
-                    <span class="font-bold text-blue-900">${clan.broj_clana} - ${clan.naziv_clana}</span>
-                    <span class="text-[10px] bg-gray-100 px-1.5 py-0.5 rounded text-gray-500 font-medium">${clan.naziv_zakona}</span>
-                </div>
-                <div class="text-gray-700 leading-relaxed">${clan.sadrzaj_html}</div>
-            </div>
-        `;
-    });
-    kontejner.innerHTML = html;
-}
-
 function promijeniLayout(tip) {
     trenutniLayout = tip;
     const btnList = document.getElementById('btn-layout-list');
@@ -702,43 +627,16 @@ function promijeniKolone() {
     prikaziClanove(trenutniPrikazaniClanovi, globalniIstaknutiKljucevi);
 }
 
-function toggleSve(master) {
-    const checkboxes = document.querySelectorAll('.law-checkbox');
-    checkboxes.forEach(cb => cb.checked = master.checked);
-    filtrirajPrikaz();
-}
-
 function getSelektovaniZakoni() {
-    // Ako imamo filtrirane članove, uzmi nazive zakona iz njih
     if (trenutniPrikazaniClanovi && trenutniPrikazaniClanovi.length > 0) {
-        const jedinstveniZakoni = [...new Set(trenutniPrikazaniClanovi.map(clan => clan.naziv_zakona))];
-        return jedinstveniZakoni;
+        return [...new Set(trenutniPrikazaniClanovi.map(clan => clan.naziv_zakona))];
     }
-    
-    // Fallback: uzmi iz krovnih checkboxova
     const checkboxes = document.querySelectorAll('.law-checkbox');
     const selektovani = [];
     checkboxes.forEach(cb => { 
-        if (cb.checked && cb.value !== 'skraceno') {
-            selektovani.push(cb.value);
-        }
+        if (cb.checked && cb.value !== 'skraceno') selektovani.push(cb.value);
     });
     return selektovani;
-}
-
-// Pomoćna funkcija za automatsko prelamanje segmenata (a, b, c, 1, 2, 3...)
-function formatirajSegmenteTeksta(tekst) {
-    if (!tekst) return "";
-
-    let formatiranTekst = tekst;
-
-    // 1. Prelom za slovne oznake tipa: a) b) c) ili a. b. c.
-    formatiranTekst = formatiranTekst.replace(/(?<=\s)([a-zžšđčć])[\)|.]\s/gi, '<br><span class="pl-4 font-semibold text-blue-800">$1) </span>');
-
-    // 2. Prelom za brojevne oznake tipa: 1) 2) 3) ili 1. 2. 3.
-    formatiranTekst = formatiranTekst.replace(/(?<=\s)(\d{1,2})[\)|.]\s/g, '<br><span class="pl-2 font-semibold">$1. </span>');
-
-    return formatiranTekst.trim();
 }
 
 function prikaziClanove(clanovi, istaknutiKljucevi = []) {
@@ -760,7 +658,6 @@ function prikaziClanove(clanovi, istaknutiKljucevi = []) {
         return;
     }
 
-    // MAPA BLAGIH PASTELNIH BOJA
     const bojeZakona = {
         'krivični': { pozadina: 'bg-red-50/40', okvir: 'border-red-200/60' },
         'ustav': { pozadina: 'bg-blue-50/40', okvir: 'border-blue-200/60' },
@@ -768,7 +665,6 @@ function prikaziClanove(clanovi, istaknutiKljucevi = []) {
         'klevet': { pozadina: 'bg-amber-50/40', okvir: 'border-amber-200/60' },
         'o radu': { pozadina: 'bg-lime-50/40', okvir: 'border-lime-200/60' }
     };
-
     const podrazumijevanaBoja = { pozadina: 'bg-white', okvir: 'border-gray-200' };
 
     clanovi.forEach(clan => {
@@ -842,7 +738,6 @@ function otvoriModal(idSistema) {
     siroviTekst = siroviTekst.replace(/\s+/g, ' ').trim();
 
     let stavke = [];
-
     if (clan.segmenti && clan.segmenti.length > 0) {
         stavke = clan.segmenti;
     } else {
@@ -912,7 +807,6 @@ function zatvoriModal() {
 function dodajUPrint(idSistema) {
     const clan = sviZakonPodaci.find(c => c.id_sistema === idSistema);
     if (!clan || listaZaPrint.some(c => c.id_sistema === idSistema)) return;
-
     listaZaPrint.push(clan);
     osvjeziPrintPanel();
 }
@@ -956,93 +850,89 @@ function osvjeziPrintPanel() {
         previewList.appendChild(item);
     });
 }
-        function stampajOdabrano() {
-            if (listaZaPrint.length === 0) return;
 
-            const printProzor = window.open('', '_blank');
-            
-            let htmlSadrzaj = `
-                <html>
-                <head>
-                    <title>Odabrani zakonski članovi - Ispis</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; padding: 30px; font-size: 13px; line-height: 1.5; color: #333; }
-                        .print-header { border-bottom: 2px solid #1e3a8a; padding-bottom: 10px; margin-bottom: 25px; }
-                        .print-header h1 { margin: 0; font-size: 20px; color: #1e3a8a; }
-                        .print-header p { margin: 4px 0 0 0; font-size: 11px; color: #666; }
-                        .clan-blok { page-break-inside: avoid; border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 4px; }
-                        .clan-broj { font-weight: bold; color: #1e3a8a; font-size: 14px; background: #f0f4f8; padding: 2px 6px; border-radius: 3px; display: inline-block; }
-                        .clan-naslov { font-weight: bold; font-size: 14px; margin-top: 5px; color: #111; }
-                        .clan-izvor { font-size: 11px; color: #777; font-style: italic; margin-top: 10px; border-top: 1px solid #eee; padding-top: 5px; }
-                        @media print {
-                            body { padding: 0; }
-                            .clan-blok { border: none; border-bottom: 1px dashed #ccc; padding: 15px 0; border-radius: 0; }
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="print-header">
-                        <h1>Sveobuhvatna Pravna Baza FBiH - Izvještaj za štampu</h1>
-                        <p>Dokument generisan: ${new Date().toLocaleDateString('bs')} u ${new Date().toLocaleTimeString('bs')}</p>
-                    </div>
-            `;
+function stampajOdabrano() {
+    if (listaZaPrint.length === 0) return;
+    const printProzor = window.open('', '_blank');
+    
+    let htmlSadrzaj = `
+        <html>
+        <head>
+            <title>Odabrani zakonski članovi - Ispis</title>
+            <style>
+                body { font-family: Arial, sans-serif; padding: 30px; font-size: 13px; line-height: 1.5; color: #333; }
+                .print-header { border-bottom: 2px solid #1e3a8a; padding-bottom: 10px; margin-bottom: 25px; }
+                .print-header h1 { margin: 0; font-size: 20px; color: #1e3a8a; }
+                .print-header p { margin: 4px 0 0 0; font-size: 11px; color: #666; }
+                .clan-blok { page-break-inside: avoid; border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 4px; }
+                .clan-broj { font-weight: bold; color: #1e3a8a; font-size: 14px; background: #f0f4f8; padding: 2px 6px; border-radius: 3px; display: inline-block; }
+                .clan-naslov { font-weight: bold; font-size: 14px; margin-top: 5px; color: #111; }
+                .clan-izvor { font-size: 11px; color: #777; font-style: italic; margin-top: 10px; border-top: 1px solid #eee; padding-top: 5px; }
+                @media print {
+                    body { padding: 0; }
+                    .clan-blok { border: none; border-bottom: 1px dashed #ccc; padding: 15px 0; border-radius: 0; }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="print-header">
+                <h1>Sveobuhvatna Pravna Baza FBiH - Izvještaj za štampu</h1>
+                <p>Dokument generisan: ${new Date().toLocaleDateString('bs')} u ${new Date().toLocaleTimeString('bs')}</p>
+            </div>
+    `;
 
-            listaZaPrint.forEach(clan => {
-                htmlSadrzaj += `
-                    <div class="clan-blok">
-                        <div>
-                            <span class="clan-broj">${clan.broj_clana}</span>
-                            <div class="clan-naslov">${clan.naziv_clana}</div>
-                        </div>
-                        <div style="margin-top: 10px;">${clan.sadrzaj_html}</div>
-                        <div class="clan-izvor">Izvor: ${clan.naziv_zakona}</div>
-                    </div>
-                `;
-            });
+    listaZaPrint.forEach(clan => {
+        htmlSadrzaj += `
+            <div class="clan-blok">
+                <div>
+                    <span class="clan-broj">${clan.broj_clana}</span>
+                    <div class="clan-naslov">${clan.naziv_clana}</div>
+                </div>
+                <div style="margin-top: 10px;">${clan.sadrzaj_html}</div>
+                <div class="clan-izvor">Izvor: ${clan.naziv_zakona}</div>
+            </div>
+        `;
+    });
 
-            htmlSadrzaj += `</body></html>`;
+    htmlSadrzaj += `</body></html>`;
+    printProzor.document.write(htmlSadrzaj);
+    printProzor.document.close();
+    
+    printProzor.focus();
+    setTimeout(() => { printProzor.print(); }, 500);
+}
 
-            printProzor.document.write(htmlSadrzaj);
-            printProzor.document.close();
-            
-            printProzor.focus();
-            setTimeout(() => { printProzor.print(); }, 500);
-        }
+// KLASIČNA PRETRAGA
+function klasicnaPretraga() {
+    const upit = document.getElementById('classic-search').value.toLowerCase().trim();
+    const selektovani = getSelektovaniZakoni();
+    
+    document.getElementById('results-title').innerText = "Rezultati pretrage";
+    const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovani.includes(clan.naziv_zakona));
 
-        // KLASIČNA PRETRAGA
-        function klasicnaPretraga() {
-            const upit = document.getElementById('classic-search').value.toLowerCase().trim();
-            const selektovani = getSelektovaniZakoni();
-            
-            document.getElementById('results-title').innerText = "Rezultati pretrage";
-            const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovani.includes(clan.naziv_zakona));
+    if (!upit) {
+        document.getElementById('results-title').innerText = "Svi članovi";
+        prikaziClanove(aktivniZakoniPodaci, globalniIstaknutiKljucevi);
+        return;
+    }
 
-            if (!upit) {
-                document.getElementById('results-title').innerText = "Svi članovi";
-                prikaziClanove(aktivniZakoniPodaci, globalniIstaknutiKljucevi);
-                return;
-            }
+    const filtrirani = aktivniZakoniPodaci.filter(clan => {
+        const uBroju = String(clan.broj_clana).toLowerCase().includes(upit);
+        const uNazivu = clan.naziv_clana.toLowerCase().includes(upit);
+        const uTekstu = clan.cisti_tekst.toLowerCase().includes(upit);
+        return uBroju || uNazivu || uTekstu;
+    });
 
-            const filtrirani = aktivniZakoniPodaci.filter(clan => {
-                const uBroju = String(clan.broj_clana).toLowerCase().includes(upit);
-                const uNazivu = clan.naziv_clana.toLowerCase().includes(upit);
-                const uTekstu = clan.cisti_tekst.toLowerCase().includes(upit);
-                return uBroju || uNazivu || uTekstu;
-            });
+    prikaziClanove(filtrirani, globalniIstaknutiKljucevi);
+}
 
-            prikaziClanove(filtrirani, globalniIstaknutiKljucevi);
-        }
-
-        // AI PRETRAGA
+// AI PRETRAGA
 async function traziAI() {
     const izabraniModel = document.getElementById('ai-model-select').value;
     const problemText = document.getElementById('ai-problem').value.trim();
 
     if (!problemText) { alert("Molimo unesite opis problema."); return; }
     
-    // ==========================================
-    // KRITIČNO: Koristi trenutniPrikazaniClanovi umjesto sviZakonPodaci
-    // ==========================================
     if (!trenutniPrikazaniClanovi || trenutniPrikazaniClanovi.length === 0) {
         alert("Molimo označite barem jedan zakon ili sekciju.");
         return;
@@ -1053,26 +943,9 @@ async function traziAI() {
     document.getElementById('ai-response-box').classList.add('hidden');
     document.getElementById('laws-container').innerHTML = '';
 
-    // ==========================================
-    // DIREKTNO KORISTI VEĆ FILTRIRANE ČLANOVE
-    // ==========================================
     const aktivniZakoniPodaci = trenutniPrikazaniClanovi;
-    
-    console.log(`📊 Šaljem ${aktivniZakoniPodaci.length} članova AI-ju`);
-    console.log(`📋 Zakoni: ${[...new Set(aktivniZakoniPodaci.map(c => c.naziv_zakona))].join(', ')}`);
-
-    // Generiši kontekst SAMO za ove članove
     const finalniKontekstZakona = generisiKontekstZakona(aktivniZakoniPodaci, izabraniModel);
 
-    console.log(`📦 Veličina konteksta: ${finalniKontekstZakona.length} karaktera`);
-
-    // Provjeri veličinu
-/*    if (finalniKontekstZakona.length > 35000) {
-        alert(`⚠️ Odabrano je ${aktivniZakoniPodaci.length} članova (${finalniKontekstZakona.length} karaktera). 
-Preporučuje se odabir manjeg broja članova.`);
-    }*/
-
-    // Sistemski prompt
     const sistemskiPrompt = `
     Ti si napredni pravni asistent za zakonodavstvo Federacije Bosne i Hercegovine.
     Prije analize problema obavezno zaboravi prethodnu memoriju.
@@ -1161,7 +1034,6 @@ Preporučuje se odabir manjeg broja članova.`);
             return `${nazivZakona}__${cistiBroj}`;
         });
 
-        // Koristi VEĆ filtrirane članove
         const filtriraniZakon = aktivniZakoniPodaci.filter(clan => {
             const stvarniBroj = clan.broj_clana || clan.clan_broj || "";
             let lokalniCistiBroj = String(stvarniBroj).toLowerCase().replace('član', '').replace('.', '').trim();
@@ -1207,11 +1079,9 @@ Preporučuje se odabir manjeg broja članova.`);
     }
 }
 
-     // Pomoćna metoda za generisanje kompletnog konteksta bez kraćenja baze
 function generisiKontekstZakona(aktivniZakoniPodaci, izabraniModel) {
     const isGroqReasoning = izabraniModel.includes('qwen') || izabraniModel.includes('openai');
     
-    // Mapa za ultra-kratke ID-eve zakona
     const mapaIdZakon = {
         "krivični zakon fbih": "kz",
         "krivicni zakon fbih": "kz",
@@ -1222,7 +1092,6 @@ function generisiKontekstZakona(aktivniZakoniPodaci, izabraniModel) {
         "zakon o radu": "zr"
     };
 
-    // 1. Prebrojavamo ponavljanja naslova kroz cijelu bazu radi kratke napomene
     const brojaciNaslova = {};
     aktivniZakoniPodaci.forEach(clan => {
         const naslov = (clan.naziv_clana || clan.naslov || "Bez naslova").trim();
@@ -1230,23 +1099,17 @@ function generisiKontekstZakona(aktivniZakoniPodaci, izabraniModel) {
     });
 
     if (isGroqReasoning) {
-        // 2. Pakujemo SVE članove (apsolutno bez slice-a) u ultra-kratki format
         return aktivniZakoniPodaci.map(clan => {
             const siroviNaziv = (clan.naziv_zakona || "").toLowerCase().trim();
-            
-            // Tražimo skraćenicu (ako ne nađe, ostavlja očišćen naziv)
             let zakonId = mapaIdZakon[siroviNaziv] || siroviNaziv;
             
             const brojClana = String(clan.broj_clana || clan.clan_broj || "").toLowerCase().replace('član', '').replace('.', '').trim();
             const naslov = (clan.naziv_clana || clan.naslov || "Bez naslova").trim();
             const brojPonavljanja = brojaciNaslova[naslov];
 
-            // Format: ID | ČLAN | "NASLOV" | BROJ_ISTIH
             return `${zakonId}|${brojClana}|"${naslov}"|${brojPonavljanja}`;
         }).join('\n');
-
     } else {
-        // Standardni fallback za Gemini ako zatreba
         return aktivniZakoniPodaci.map(clan => {
             const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
             return `${clan.naziv_zakona} - ${clan.broj_clana}:\n${tekst.substring(0, 300)}...`;
