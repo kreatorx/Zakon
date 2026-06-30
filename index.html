@@ -812,6 +812,17 @@ const izabraniModel = document.getElementById('ai-model-select').value;
     [STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
     Obavezno vrati odgovor u roku od 9 sekundi! Odgovor prilagodi na max 200 riječi.
 
+    [LEGENDA I STRUKTURA INDEKSA]:
+    Podaci u bazi su poslani u formatu: ZAKON_ID|BROJ_ČLANA|"NASLOV_ČLANA"|UKUPNO_ISTIH_NASLOVA
+    Skraćenice za ZAKON_ID su:
+    - kz = Krivični Zakon FBiH
+    - uz = Ustav FBiH
+    - zd = Zakon o zabrani diskriminacije
+    - zk = Zakon o zaštiti od klevete
+    - zr = Zakon o radu
+
+    Ako je UKUPNO_ISTIH_NASLOVA veći od 1, to znači da u bazi postoji toliko članova sa istim naslovom i rješenje je tu negdje skriveno.
+
 
     [KOMPLETNA BAZA KRIVIČNOG ZAKONA FBIH]:
     Ovdje se nalazi kompletan sadržaj svih zakona koje je korisnik odabrao. Prioritet je krivični zakon. Koristi isključivo ove podatke i njihove tačne oznake članova (posebno obrati pažnju na specifične članove sa slovima poput 181b, 166a, itd.):
@@ -943,33 +954,46 @@ const izabraniModel = document.getElementById('ai-model-select').value;
 function generisiKontekstZakona(aktivniZakoniPodaci, izabraniModel) {
     const isGroqReasoning = izabraniModel.includes('qwen') || izabraniModel.includes('openai');
     
-    if (isGroqReasoning) {
-        // 1. Prvo prebrojimo ponavljanja naslova kroz CIJELU bazu (svih 180+ članova)
-        const brojaciNaslova = {};
-        aktivniZakoniPodaci.forEach(clan => {
-            const naslov = (clan.naziv_clana || clan.naslov || "Bez naslova").trim();
-            brojaciNaslova[naslov] = (brojaciNaslova[naslov] || 0) + 1;
-        });
+    // Mapa za ultra-kratke ID-eve zakona
+    const mapaIdZakon = {
+        "krivični zakon fbih": "kz",
+        "krivicni zakon fbih": "kz",
+        "ustav fbih": "uz",
+        "zakon o zabrani diskriminacije": "zd",
+        "zakon o zaštiti od klevete": "zk",
+        "zakon o zastiti od klevete": "zk",
+        "zakon o radu": "zr"
+    };
 
-        // 2. Mapiramo SVE članove u ultra-lagani indeks (samo broj i naslov)
+    // 1. Prebrojavamo ponavljanja naslova kroz cijelu bazu radi kratke napomene
+    const brojaciNaslova = {};
+    aktivniZakoniPodaci.forEach(clan => {
+        const naslov = (clan.naziv_clana || clan.naslov || "Bez naslova").trim();
+        brojaciNaslova[naslov] = (brojaciNaslova[naslov] || 0) + 1;
+    });
+
+    if (isGroqReasoning) {
+        // 2. Pakujemo SVE članove (apsolutno bez slice-a) u ultra-kratki format
         return aktivniZakoniPodaci.map(clan => {
-            const naslov = (clan.naziv_clana || clan.naslov || "Bez naslova").trim();
-            let infoLinija = `- ${clan.naziv_zakona || 'Zakon'} | Član: ${clan.broj_clana || clan.clan_broj || ''} | Naslov: "${naslov}"`;
+            const siroviNaziv = (clan.naziv_zakona || "").toLowerCase().trim();
             
-            // Ako ima više članova sa istim naslovom, dodajemo tvoju prilagođenu napomenu
-            if (brojaciNaslova[naslov] > 1) {
-                infoLinija += ` [Napomena: Postoji ukupno ${brojaciNaslova[naslov]} članova sa ovim naslovom u bazi. Ovaj naslov je primjenjiv i rješenje je tu negdje!]`;
-            }
-            return infoLinija;
+            // Tražimo skraćenicu (ako ne nađe, ostavlja očišćen naziv)
+            let zakonId = mapaIdZakon[siroviNaziv] || siroviNaziv;
+            
+            const brojClana = String(clan.broj_clana || clan.clan_broj || "").toLowerCase().replace('član', '').replace('.', '').trim();
+            const naslov = (clan.naziv_clana || clan.naslov || "Bez naslova").trim();
+            const brojPonavljanja = brojaciNaslova[naslov];
+
+            // Format: ID | ČLAN | "NASLOV" | BROJ_ISTIH
+            return `${zakonId}|${brojClana}|"${naslov}"|${brojPonavljanja}`;
         }).join('\n');
 
     } else {
-        // Standardna strategija za Gemini/Llamu (šaljemo i tekst, ali ga režemo po članu radi sigurnosti)
+        // Standardni fallback za Gemini ako zatreba
         return aktivniZakoniPodaci.map(clan => {
             const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
-            const skraceniTekst = tekst.length > 400 ? tekst.substring(0, 400) + "..." : tekst;
-            return `${clan.naziv_zakona || 'Zakon'} - ${clan.broj_clana || clan.clan_broj || ''}: ${clan.naziv_clana || ''}\n${skraceniTekst}`;
-        }).join('\n\n---\n\n');
+            return `${clan.naziv_zakona} - ${clan.broj_clana}:\n${tekst.substring(0, 300)}...`;
+        }).join('\n---\n');
     }
 }
      
