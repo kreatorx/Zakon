@@ -67,10 +67,54 @@
                             <span class="text-xs font-bold text-gray-950">Prikaži / Pretraži SVE</span>
                         </label>
                         
-                        <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
-                            <input type="checkbox" value="Krivični Zakon FBiH" checked onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                            <span class="text-xs text-gray-700">Krivični Zakon FBiH</span>
-                        </label>
+                        <div class="border border-gray-200 rounded-lg p-3 bg-gray-50">
+    <div class="flex items-center mb-2">
+        <input type="checkbox" id="chk-kz" value="Krivični Zakon FBiH" onchange="toggleSveGlaveKZ(this)" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+        <label for="chk-kz" class="ml-2 text-xs font-bold text-gray-900">Krivični Zakon FBiH (Kompletan)</label>
+    </div>
+
+    <div class="ml-6 space-y-2 max-h-60 overflow-y-auto pt-1 border-t border-gray-200 text-[11px] text-gray-700">
+        
+        <div class="font-bold text-gray-500 my-1 tracking-wider text-[10px]">--- OPĆI DIO ---</div>
+        
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="1-2" data-glava="I"> I - Predmet zakona i značaj izraza (1-2)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="3-8" data-glava="II"> II - Osnovne odredbe (3-8)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="9-14" data-glava="III"> III - Primjena krivičnog zakonodavstva (9-14)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="15-20" data-glava="IV"> IV - Zastara (15-20)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="21-34" data-glava="V"> V - Krivično djelo (21-34)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="35-40" data-glava="VI"> VI - Krivica (35-40)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="41-58" data-glava="VII"> VII - Kazne (41-58)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="59-70" data-glava="VIII"> VIII - Mjere upozorenja (59-70)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="71-78b" data-glava="IX"> IX - Sigurnosne mjere (71-78b)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="110-113" data-glava="XI"> XI - Izvršenje sankcija (110-113)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="114-120" data-glava="XII"> XII - Lišenje imovinske koristi (114-120)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="121-125a" data-glava="XIII"> XIII - Rehabilitacija i amnestija (121-125a)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="126-148" data-glava="XIV"> XIV - Odgovornost pravnih osoba (126-148)</label>
+
+        <div class="font-bold text-gray-500 my-1 tracking-wider text-[10px]">--- POSEBNI DIO ---</div>
+        
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="149-165" data-glava="XV"> XV - Protiv ustavnog poretka (149-165)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="166-176" data-glava="XVI"> XVI - Protiv života i tijela (166-176)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="177-199a" data-glava="XVII"> XVII - Protiv slobode i prava čovjeka (177-199a)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="200-202" data-glava="XVIII"> XVIII - Terorizam (200-202)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="203-210b" data-glava="XIX"> XIX - Protiv spolne slobode i morala (203-210b)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="210c-210j" data-glava="XIXa"> XIXa - Spolno zlostavljanje djeteta (210c-210j)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="214-224" data-glava="XX"> XX - Protiv braka i porodice (214-224)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="225-240" data-glava="XXI"> XXI - Protiv zdravlja ljudi (225-240)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="241-272" data-glava="XXII"> XXII - Privreda i platni promet (241-272)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="273-278" data-glava="XXIII"> XXIII - Porezi (273-278)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="279-285" data-glava="XXIV"> XXIV - Protiv radnih odnosa (279-285)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="286-302" data-glava="XXV"> XXV - Protiv imovine (286-302)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="303-322" data-glava="XXVI"> XXVI - Protiv okoliša i prirode (303-322)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="323-331" data-glava="XXVII"> XXVII - Protiv opće sigurnosti (323-331)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="332-337" data-glava="XXVIII"> XXVIII - Sigurnost javnog prometa (332-337)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="338-357" data-glava="XXIX"> XXIX - Protiv pravosuđa (338-357)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="358-379" data-glava="XXX"> XXX - Javni red i pravni promet (358-379)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="380-392" data-glava="XXXI"> XXXI - Podmićivanje i službena dužnost (380-392)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="393-398" data-glava="XXXII"> XXXII - Elektronska obrada podataka (393-398)</label>
+        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk mr-1.5" value="419-421" data-glava="XXXIV"> XXXIV - Prijelazne i završne odredbe (419-421)</label>
+    </div>
+</div>
                         
                         <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
                             <input type="checkbox" value="Ustav FBiH" onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
@@ -319,6 +363,40 @@
             filtrirajPrikaz();
         }
 
+// Konfiguraciona mapa: Povezuje identifikatore iz tvoje baze sa klasama na frontendu
+const konfiguracijaMrezeZakon = {
+    "krivični zakon fbih": ".kz-glava-chk",
+    "krivicni zakon fbih": ".kz-glava-chk",
+    "zakon o radu": ".zr-glava-chk",
+    "zakon o radu fbih": ".zr-glava-chk",
+    "zakon o zabrani diskriminacije": ".zd-glava-chk"
+};
+
+async function formirajBazuAktivnihZakona() {
+    let ucitaniPodaci = [];
+
+    // Pretpostavimo da je 'siroviPodaciIzJsonFajla' niz objekata članova učitanih sa fetch-a
+    // Ovaj filter radi dinamički za SVAKI zakon koji propustiš kroz njega:
+    const filtriraniPodaci = siroviPodaciIzJsonFajla.filter(clan => {
+        const nazivZakona = (clan.naziv_zakona || "").toLowerCase().trim();
+        
+        // Pronalaženje odgovarajuće klase checkboxa iz naše konfiguracione mape
+        const klasaCheckboxa = konfiguracijaMrezeZakon[nazivZakona];
+
+        // Ako zakon ima definisanu pod-podjelu na interfejsu, filtriraj po opsegu članova
+        if (klasaCheckboxa) {
+            const brojClana = String(clan.broj_clana || clan.clan_broj || "");
+            return daLiClanPripadaOznacenimOpsezima(brojClana, klasaCheckboxa);
+        }
+
+        // Ako zakon nema pod-podjele (npr. Ustav se učitava uvijek cio), samo ga pusti ako je master označen
+        return true; 
+    });
+
+    ucitaniPodaci = ucitaniPodaci.concat(filtriraniPodaci);
+    sviZakonPodaci = ucitaniPodaci;
+}
+     
      function osvjeziBrojacSlovaAI() {
     const selektovani = getSelektovaniZakoni();
     let ukupanBrojSlova = 0;
@@ -375,6 +453,50 @@
         brojacElement.className = "font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded border border-green-100";
         brojacElement.title = "Optimalan broj riječi za brzu AI analizu.";
     }
+}
+
+     /**
+ * Univerzalno provjerava da li član pripada bilo kojem od označenih opsega na interfejsu.
+ * @param {string} brojClanaString - Sirovi broj člana iz JSON-a (npr. "Član 166a.", "12", "Zakon 45")
+ * @param {string} klasaCheckboxa - CSS klasa pod-checkboxa za taj specifični zakon (npr. '.kz-glava-chk')
+ * @returns {boolean}
+ */
+function daLiClanPripadaOznacenimOpsezima(brojClanaString, klasaCheckboxa) {
+    const oznaceniCheckboxi = document.querySelectorAll(`${klasaCheckboxa}:checked`);
+    
+    // Ako je zakon označen, ali nema pod-podjele (klasa ne postoji) ili ništa unutar nje nije označeno,
+    // podrazumijevamo da se pušta cijeli zakon ako je to master pravilo, ili ništa ako se traži striktna podjela.
+    if (označeniCheckboxi.length === 0) return false;
+
+    // Čistimo broj člana: čupamo samo prve cifre (npr. "Član 166a." postaje 166, "12b" postaje 12)
+    const cistiBroj = parseInt(brojClanaString.replace(/\D/g, ''));
+    if (isNaN(cistiBroj)) return false;
+
+    // Prolazimo kroz sve označene pod-cjeline i provjeravamo opsege iz "value" atributa (npr. "149-165")
+    for (const chk of oznaceniCheckboxi) {
+        // Podržava formate "149-165" ili samo pojedinačni broj "150"
+        const dijelovi = chk.value.split('-').map(num => parseInt(num.replace(/\D/g, '')));
+        
+        const odBroja = dijelovi[0];
+        const doBroja = dijelovi[1] !== undefined ? dijelovi[1] : dijelovi[0]; // Ako nema crtice, opseg je taj jedan broj
+
+        if (cistiBroj >= odBroja && cistiBroj <= doBroja) {
+            return true; // Član je pronađen u jednom od aktivnih opsega!
+        }
+    }
+    return false;
+}
+
+     /**
+ * Univerzalni toggle za automatsko označavanje svih pod-glava nekog zakona.
+ * @param {HTMLElement} masterChk - Glavni checkbox zakona (uvijek proslijedi 'this')
+ * @param {string} klasaPodCheckboxa - CSS klasa uvučenih elemenata (npr. '.zr-glava-chk')
+ */
+function toggleSvePodCjeline(masterChk, klasaPodCheckboxa) {
+    const svePodCjeline = document.querySelectorAll(klasaPodCheckboxa);
+    svePodCjeline.forEach(chk => {
+        chk.checked = masterChk.checked;
+    });
 }
 
         function promijeniLayout(tip) {
