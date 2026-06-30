@@ -657,7 +657,7 @@ function promijeniLayout(tip) {
 function postaviLayoutKlase() {
     const container = document.getElementById('laws-container');
     if (!container) return;
-    container.className = "overflow-y-auto max-h-[75vh] pr-1";
+    container.className = "overflow-y-auto max-h-[75vh] pr-1 pb-20";
     if (trenutniLayout === 'grid') {
         const selektovaneKolone = document.getElementById('grid-columns').value;
         container.classList.add('grid', ...selektovaneKolone.split(' '), 'gap-2', 'items-stretch');
