@@ -63,110 +63,146 @@
                     </div>
                     
                     <div class="space-y-2" id="law-selectors">
-                        <label class="flex items-center gap-2 p-2 bg-slate-900 text-white rounded-lg cursor-pointer transition shadow-sm">
-                            <input type="checkbox" id="chk-all" onchange="toggleApsolutnoSve(this)" checked class="w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                            <span class="text-xs font-bold">Prikaži / Pretraži SVE zakone</span>
-                        </label>
-                        
-                        <div class="border border-red-300 rounded-lg p-1.5 bg-red-50/30">
-                            <details class="group overflow-hidden transition-all duration-300" open>
-                                <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-red-200">
-                                    <div class="flex items-center" onclick="event.stopPropagation();">
-                                        <input type="checkbox" id="chk-kz" value="Krivični Zakon FBiH" onchange="toggleSveUnutarZakona(this)" checked class="master-checkbox w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500">
-                                        <label for="chk-kz" class="ml-2 text-xs font-bold text-red-910 cursor-pointer">Krivični Zakon FBiH</label>
-                                    </div>
-                                    <span class="text-xs text-red-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
-                                </summary>
-                                <div class="p-2 mt-1.5 ml-1 space-y-2 max-h-52 overflow-y-auto text-[11px] text-gray-700">
-                                    <div class="border-l-2 border-amber-400 pl-2">
-                                        <div class="flex items-center mb-1 bg-amber-50 p-1 rounded font-bold text-gray-700">
-                                            <input type="checkbox" id="chk-kz-opci" onchange="toggleGrupuCheckboxa(this, '.kz-opci-chk')" checked class="mr-1.5">
-                                            <label for="chk-kz-opci" class="cursor-pointer text-[10px] tracking-wider uppercase">--- OPĆI DIO ---</label>
-                                        </div>
-                                        <div class="space-y-1 mt-1 pl-1">
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="1-2" data-glava="I" checked> I - Predmet zakona (1-2)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="3-8" data-glava="II" checked> II - Osnovne odredbe (3-8)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="9-14" data-glava="III" checked> III - Primjena (9-14)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="15-20" data-glava="IV" checked> IV - Zastara (15-20)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="21-34" data-glava="V" checked> V - Krivično djelo (21-34)</label>
-                                        </div>
-                                    </div>
-                                    <div class="border-l-2 border-blue-500 pl-2">
-                                        <div class="flex items-center mb-1 bg-blue-50 p-1 rounded font-bold text-gray-700">
-                                            <input type="checkbox" id="chk-kz-posebni" onchange="toggleGrupuCheckboxa(this, '.kz-posebni-chk')" checked class="mr-1.5">
-                                            <label for="chk-kz-posebni" class="cursor-pointer text-[10px] tracking-wider uppercase">--- POSEBNI DIO ---</label>
-                                        </div>
-                                        <div class="space-y-1 mt-1 pl-1">
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="166-176" data-glava="XVI" checked> XVI - Protiv života i tijela (166-176)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="286-302" data-glava="XXV" checked> XXV - Protiv imovine (286-302)</label>
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="380-392" data-glava="XXXI" checked> XXXI - Podmićivanje (380-392)</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </details>
-                        </div>
-
-                        <div class="border border-lime-300 rounded-lg p-1.5 bg-lime-50/30">
-                            <details class="group overflow-hidden transition-all duration-300" open>
-                                <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-lime-200">
-                                    <div class="flex items-center" onclick="event.stopPropagation();">
-                                        <input type="checkbox" id="chk-zr" value="Zakon o radu" onchange="toggleSvePodCjeline(this, '.zr-glava-chk')" checked class="master-checkbox w-4 h-4 text-lime-600 border-gray-300 rounded focus:ring-lime-500">
-                                        <label for="chk-zr" class="ml-2 text-xs font-bold text-lime-900 cursor-pointer">Zakon o radu</label>
-                                    </div>
-                                    <span class="text-xs text-lime-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
-                                </summary>
-                                <div class="p-2 mt-1.5 ml-1 space-y-1 max-h-40 overflow-y-auto text-[11px] text-gray-700">
-                                    <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="1-10" checked> I - Osnovne odredbe (1-10)</label>
-                                    <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="11-30" checked> II - Ugovori o radu (11-30)</label>
-                                    <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="31-50" checked> III - Radno vrijeme (31-50)</label>
-                                    <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="51-90" checked> IV - Odmori i odsustva (51-90)</label>
-                                    <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="116-170" checked> V - Prestanak ugovora (116-170)</label>
-                                </div>
-                            </details>
-                        </div>
-
-                        <div class="border border-blue-300 rounded-lg p-1.5 bg-blue-50/30">
-                            <details class="group overflow-hidden transition-all duration-300">
-                                <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-blue-200">
-                                    <div class="flex items-center" onclick="event.stopPropagation();">
-                                        <input type="checkbox" value="Ustav FBiH" id="chk-uz" checked onchange="provjeriGlobalniMaster(); filtrirajPrikaz();" class="master-checkbox law-checkbox w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                        <label for="chk-uz" class="ml-2 text-xs font-bold text-blue-900 cursor-pointer">Ustav FBiH</label>
-                                    </div>
-                                    <span class="text-xs text-blue-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
-                                </summary>
-                                <div class="p-2 text-gray-500 italic text-[10px]">Učitava se kompletan dokument (nema podjela po glavama u meniju).</div>
-                            </details>
-                        </div>
-
-                        <div class="border border-emerald-300 rounded-lg p-1.5 bg-emerald-50/30">
-                            <details class="group overflow-hidden transition-all duration-300" open>
-                                <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-emerald-200">
-                                    <div class="flex items-center" onclick="event.stopPropagation();">
-                                        <input type="checkbox" id="chk-zd" value="Zakon o zabrani diskriminacije" onchange="toggleSvePodCjeline(this, '.zd-glava-chk')" checked class="master-checkbox w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500">
-                                        <label for="chk-zd" class="ml-2 text-xs font-bold text-emerald-900 cursor-pointer">Zakon o zabrani diskriminacije</label>
-                                    </div>
-                                    <span class="text-xs text-emerald-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
-                                </summary>
-                                <div class="p-2 mt-1.5 ml-1 space-y-1 max-h-32 overflow-y-auto text-[11px] text-gray-700">
-                                    <label class="flex items-center"><input type="checkbox" class="zd-glava-chk mr-1.5" value="1-5" checked> I - Opće odredbe (1-5)</label>
-                                    <label class="flex items-center"><input type="checkbox" class="zd-glava-chk mr-1.5" value="6-15" checked> II - Postupci i zaštita (6-15)</label>
-                                </div>
-                            </details>
-                        </div>
-
-                        <div class="border border-amber-300 rounded-lg p-1.5 bg-amber-50/30">
-                            <details class="group overflow-hidden transition-all duration-300">
-                                <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-amber-200">
-                                    <div class="flex items-center" onclick="event.stopPropagation();">
-                                        <input type="checkbox" value="Zakon o zaštiti od klevete" id="chk-zk" checked onchange="provjeriGlobalniMaster(); filtrirajPrikaz();" class="master-checkbox law-checkbox w-4 h-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
-                                        <label for="chk-zk" class="ml-2 text-xs font-bold text-amber-900 cursor-pointer">Zakon o zaštiti od klevete</label>
-                                    </div>
-                                    <span class="text-xs text-amber-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
-                                </summary>
-                                <div class="p-2 text-gray-500 italic text-[10px]">Učitava se kompletan dokument (nema podjela po glavama u meniju).</div>
-                            </details>
-                        </div>
+    <!-- GLAVNI KROVNI TOGGLE -->
+    <label class="flex items-center gap-2 p-2 bg-slate-900 text-white rounded-lg cursor-pointer transition shadow-sm">
+        <input type="checkbox" id="chk-all" onchange="toggleApsolutnoSve(this)" checked class="w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+        <span class="text-xs font-bold">Prikaži / Pretraži SVE zakone</span>
+    </label>
+    
+    <!-- 1. KRIVIČNI ZAKON FBIH (Crveni tonovi) -->
+    <div class="border border-red-300 rounded-lg p-1.5 bg-red-50/30">
+        <details class="group overflow-hidden transition-all duration-300" open>
+            <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-red-200">
+                <div class="flex items-center" onclick="event.stopPropagation();">
+                    <input type="checkbox" id="chk-kz" value="Krivični Zakon FBiH" onchange="toggleSveUnutarZakona(this)" checked class="master-checkbox w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500">
+                    <label for="chk-kz" class="ml-2 text-xs font-bold text-red-900 cursor-pointer">Krivični Zakon FBiH</label>
+                </div>
+                <span class="text-xs text-red-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+            </summary>
+            
+            <div class="p-2 mt-1.5 ml-1 space-y-2 max-h-[350px] overflow-y-auto text-[11px] text-gray-700 pr-1">
+                
+                <!-- OPĆI DIO -->
+                <div class="border-l-2 border-amber-400 pl-2">
+                    <div class="flex items-center mb-1.5 bg-amber-50 p-1 rounded font-bold text-gray-700">
+                        <input type="checkbox" id="chk-kz-opci" onchange="toggleGrupuCheckboxa(this, '.kz-opci-chk')" checked class="mr-1.5">
+                        <label for="chk-kz-opci" class="cursor-pointer text-[10px] tracking-wider uppercase">--- OPĆI DIO ---</label>
                     </div>
+                    <div class="space-y-1.5 mt-1 pl-1">
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="1-2" checked> I - Predmet zakona (1-2)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="3-8" checked> II - Osnovne odredbe (3-8)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="9-14" checked> III - Primjena zakonodavstva (9-14)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="15-20" checked> IV - Zastara (15-20)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="21-34" checked> V - Krivično djelo (21-34)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="35-40" checked> VI - Krivica (35-40)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="41-58" checked> VII - Kazne (41-58)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="59-70" checked> VIII - Mjere upozorenja (59-70)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="71-78" checked> IX - Sigurnosne mjere (71-78b)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="110-113" checked> XI - Izvršenje sankcija (110-113)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="114-120" checked> XII - Lišenje imovinske koristi (114-120)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="121-125" checked> XIII - Rehabilitacija i amnestija (121-125a)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="126-148" checked> XIV - Odgovornost pravnih osoba (126-148)</label>
+                    </div>
+                </div>
+
+                <!-- POSEBNI DIO -->
+                <div class="border-l-2 border-blue-500 pl-2 mt-3">
+                    <div class="flex items-center mb-1.5 bg-blue-50 p-1 rounded font-bold text-gray-700">
+                        <input type="checkbox" id="chk-kz-posebni" onchange="toggleGrupuCheckboxa(this, '.kz-posebni-chk')" checked class="mr-1.5">
+                        <label for="chk-kz-posebni" class="cursor-pointer text-[10px] tracking-wider uppercase">--- POSEBNI DIO ---</label>
+                    </div>
+                    <div class="space-y-1.5 mt-1 pl-1">
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="149-165" checked> XV - Protiv ustavnog poretka (149-165)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="166-176" checked> XVI - Protiv života i tijela (166-176)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="177-199" checked> XVII - Protiv slobode i prava (177-199a)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="200-202" checked> XVIII - Terorizam (200-202)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="203-210" checked> XIX - Spolna sloboda i moral (203-210b)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="210-210" checked> XIXa - Zlostavljanje djeteta (210c-210j)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="214-224" checked> XX - Protiv braka i porodice (214-224)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="225-240" checked> XXI - Protiv zdravlja ljudi (225-240)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="241-272" checked> XXII - Privreda i poslovanje (241-272)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="273-278" checked> XXIII - Porezi (273-278)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="279-285" checked> XXIV - Protiv radnih odnosa (279-285)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="286-302" checked> XXV - Protiv imovine (286-302)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="303-322" checked> XXVI - Okoliš i priroda (303-322)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="323-331" checked> XXVII - Opća sigurnost (323-331)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="332-337" checked> XXVIII - Javni promet (332-337)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="338-357" checked> XXIX - Protiv pravosuđa (338-357)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="358-379" checked> XXX - Javni red (358-379)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="380-392" checked> XXXI - Podmićivanje (380-392)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="393-398" checked> XXXII - Obrada podataka (393-398)</label>
+                        <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-posebni-chk mr-1.5" value="419-421" checked> XXXIV - Završne odredbe (419-421)</label>
+                    </div>
+                </div>
+            </div>
+        </details>
+    </div>
+
+    <!-- 2. ZAKON O RADU (Svijetlo-zeleni tonovi) - RASPON POPRAVLJEN BEZ RUPA (1-200) -->
+    <div class="border border-lime-300 rounded-lg p-1.5 bg-lime-50/30">
+        <details class="group overflow-hidden transition-all duration-300">
+            <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-lime-200">
+                <div class="flex items-center" onclick="event.stopPropagation();">
+                    <input type="checkbox" id="chk-zr" value="Zakon o radu" onchange="toggleSvePodCjeline(this, '.zr-glava-chk')" checked class="master-checkbox w-4 h-4 text-lime-600 border-gray-300 rounded focus:ring-lime-500">
+                    <label for="chk-zr" class="ml-2 text-xs font-bold text-lime-900 cursor-pointer">Zakon o radu</label>
+                </div>
+                <span class="text-xs text-lime-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+            </summary>
+            <div class="p-2 mt-1.5 ml-1 space-y-1.5 max-h-40 overflow-y-auto text-[11px] text-gray-700">
+                <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="1-35" checked> I i II - Osnovne odredbe i ugovor (1-35)</label>
+                <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="36-74" checked> III do V - Radno vrijeme i zaštita (36-74)</label>
+                <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="75-113" checked> VI do X - Plaće, naknade i prestanak (75-113)</label>
+                <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="114-142" checked> XI do XV - Prava, sindikati i ugovori (114-142)</label>
+                <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="143-200" checked> XVI do XX - Sporovi, nadzor i kazne (143-182+)</label>
+            </div>
+        </details>
+    </div>
+
+    <!-- 3. USTAV FBIH (Plavi tonovi) -->
+    <div class="border border-blue-300 rounded-lg p-1.5 bg-blue-50/30">
+        <details class="group overflow-hidden transition-all duration-300">
+            <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-blue-200">
+                <div class="flex items-center" onclick="event.stopPropagation();">
+                    <input type="checkbox" value="Ustav FBiH" id="chk-uz" checked onchange="provjeriGlobalniMaster(); filtrirajPrikaz();" class="master-checkbox law-checkbox w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                    <label for="chk-uz" class="ml-2 text-xs font-bold text-blue-900 cursor-pointer">Ustav FBiH</label>
+                </div>
+                <span class="text-xs text-blue-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+            </summary>
+            <div class="p-2 text-gray-500 italic text-[10px]">Učitava se kompletan dokument.</div>
+        </details>
+    </div>
+
+    <!-- 4. ZAKON O ZABRANI DISKRIMINACIJE (Smaragdno-zeleni tonovi) -->
+    <div class="border border-emerald-300 rounded-lg p-1.5 bg-emerald-50/30">
+        <details class="group overflow-hidden transition-all duration-300">
+            <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-emerald-200">
+                <div class="flex items-center" onclick="event.stopPropagation();">
+                    <input type="checkbox" id="chk-zd" value="Zakon o zabrani diskriminacije" onchange="toggleSvePodCjeline(this, '.zd-glava-chk')" checked class="master-checkbox w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500">
+                    <label for="chk-zd" class="ml-2 text-xs font-bold text-emerald-900 cursor-pointer">Zakon o zabrani diskriminacije</label>
+                </div>
+                <span class="text-xs text-emerald-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+            </summary>
+            <div class="p-2 mt-1.5 ml-1 space-y-1.5 max-h-32 overflow-y-auto text-[11px] text-gray-700">
+                <label class="flex items-center"><input type="checkbox" class="zd-glava-chk mr-1.5" value="1-14" checked> I - Opće odredbe i definicije (1-14)</label>
+                <label class="flex items-center"><input type="checkbox" class="zd-glava-chk mr-1.5" value="15-30" checked> II - Postupci, nadzor i kazne (15-28+)</label>
+            </div>
+        </details>
+    </div>
+
+    <!-- 5. ZAKON O ZAŠTITI OD KLEVETE (Narandžasti tonovi) -->
+    <div class="border border-amber-300 rounded-lg p-1.5 bg-amber-50/30">
+        <details class="group overflow-hidden transition-all duration-300">
+            <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-amber-200">
+                <div class="flex items-center" onclick="event.stopPropagation();">
+                    <input type="checkbox" value="Zakon o zaštiti od klevete" id="chk-zk" checked onchange="provjeriGlobalniMaster(); filtrirajPrikaz();" class="master-checkbox law-checkbox w-4 h-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
+                    <label for="chk-zk" class="ml-2 text-xs font-bold text-amber-900 cursor-pointer">Zakon o zaštiti od klevete</label>
+                </div>
+                <span class="text-xs text-amber-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+            </summary>
+            <div class="p-2 text-gray-500 italic text-[10px]">Učitava se kompletan dokument.</div>
+        </details>
+    </div>
+</div>
                     
                     <div class="mt-3 pt-2 border-t border-gray-100 space-y-1.5">
                         <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
