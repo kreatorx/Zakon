@@ -93,7 +93,7 @@
                                             <label for="chk-kz-opci" class="cursor-pointer text-[10px] tracking-wider uppercase">--- OPĆI DIO ---</label>
                                         </div>
                                         <div class="space-y-1 mt-1 pl-1">
-                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="1-2" data-glava="I"> I - Predmet zakona i značaj izraza (1-2)</label>
+                                            <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="1-2" data-glava="I" checked> I - Predmet zakona i značaj izraza (1-2)</label>
                                             <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="3-8" data-glava="II"> II - Osnovne odredbe (3-8)</label>
                                             <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="9-14" data-glava="III"> III - Primjena krivičnog zakonodavstva (9-14)</label>
                                             <label class="flex items-center"><input type="checkbox" class="kz-glava-chk kz-opci-chk mr-1.5" value="15-20" data-glava="IV"> IV - Zastara (15-20)</label>
@@ -693,9 +693,18 @@ function toggleSve(master) {
 }
 
 function getSelektovaniZakoni() {
+    // Ako već imamo filtrirane članove, izvuci jedinstvene nazive zakona
+    if (trenutniPrikazaniClanovi && trenutniPrikazaniClanovi.length > 0) {
+        const jedinstveniZakoni = [...new Set(trenutniPrikazaniClanovi.map(clan => clan.naziv_zakona))];
+        return jedinstveniZakoni;
+    }
+    
+    // Fallback - ako nema filtriranih, uzmi iz checkboxova
     const checkboxes = document.querySelectorAll('.law-checkbox');
-    let selektovani = [];
-    checkboxes.forEach(cb => { if (cb.checked) selektovani.push(cb.value); });
+    const selektovani = [];
+    checkboxes.forEach(cb => { 
+        if (cb.checked && cb.value !== 'skraceno') selektovani.push(cb.value); 
+    });
     return selektovani;
 }
 
