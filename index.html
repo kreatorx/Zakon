@@ -74,7 +74,7 @@
                             <details class="group overflow-hidden transition-all duration-300" open>
                                 <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-red-200">
                                     <div class="flex items-center" onclick="event.stopPropagation();">
-                                        <input type="checkbox" id="chk-kz" value="Krivični Zakon FBiH" onchange="toggleSveUnutarZakona(this)" indeterminate class="master-checkbox w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500">
+                                        <input type="checkbox" id="chk-kz" value="Krivični Zakon FBiH" onchange="toggleSveUnutarZakona(this)" checked class="master-checkbox w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500">
                                         <label for="chk-kz" class="ml-2 text-xs font-bold text-red-900 cursor-pointer">Krivični Zakon FBiH</label>
                                     </div>
                                     <span class="text-xs text-red-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
@@ -108,7 +108,7 @@
                                     <!-- POSEBNI DIO -->
                                     <div class="border-l-2 border-blue-500 pl-2 mt-3">
                                         <div class="flex items-center mb-1.5 bg-blue-50 p-1 rounded font-bold text-gray-700">
-                                            <input type="checkbox" id="chk-kz-posebni" onchange="toggleGrupuCheckboxa(this, '.kz-posebni-chk')" indeterminate class="mr-1.5">
+                                            <input type="checkbox" id="chk-kz-posebni" onchange="toggleGrupuCheckboxa(this, '.kz-posebni-chk')" checked class="mr-1.5">
                                             <label for="chk-kz-posebni" class="cursor-pointer text-[10px] tracking-wider uppercase">--- POSEBNI DIO ---</label>
                                         </div>
                                         <div class="space-y-1.5 mt-1 pl-1">
@@ -413,6 +413,7 @@ async function ucitajSveZakone() {
     document.getElementById('search-stats').innerText = `Baza učitana. Ukupno članova: ${sviZakonPodaci.length}`;
     postaviLayoutKlase();
     filtrirajPrikaz();
+    osveziMasterCheckboxove();
 }
 
 const konfiguracijaMrezeZakon = {
