@@ -158,10 +158,28 @@
                             <span class="text-xs text-gray-700">Zakon o zaštiti od klevete</span>
                         </label>
 
-                        <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded cursor-pointer transition">
-                            <input type="checkbox" value="Zakon o radu" onchange="filtrirajPrikaz()" class="law-checkbox w-3.5 h-3.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                            <span class="text-xs text-gray-700">Zakon o radu</span>
-                        </label>
+                        <div class="border border-gray-200 rounded-lg p-1.5 bg-gray-50">
+    <details class="group border border-gray-200 rounded-xl bg-gray-50 overflow-hidden transition-all duration-300">
+        <summary class="flex items-center justify-between p-3 bg-white cursor-pointer select-none list-none">
+            <div class="flex items-center" onclick="event.stopPropagation();">
+                <input type="checkbox" id="chk-zr-master" value="Zakon o radu" onchange="toggleSvePodCjeline(this, '.zr-glava-chk'); filtrirajPrikaz();" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                <label for="chk-zr-master" class="ml-2 text-xs font-bold text-gray-900 cursor-pointer">
+                    Zakon o radu (Po cjelinama)
+                </label>
+            </div>
+            <span class="text-xs text-gray-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+        </summary>
+
+        <div class="p-3 border-t border-gray-200 ml-2 space-y-1.5 max-h-40 overflow-y-auto text-[11px] text-gray-700">
+            <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="1-10" checked> I - Osnovne odredbe (1-10)</label>
+            <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="11-30" checked> II - Zaključivanje ugovora o radu (11-30)</label>
+            <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="31-50" checked> III - Radno vrijeme (31-50)</label>
+            <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="51-90" checked> IV - Odmori i odsustva (51-90)</label>
+            <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="91-115" checked> V - Plaća i naknada plaće (91-115)</label>
+            <label class="flex items-center"><input type="checkbox" class="zr-glava-chk mr-1.5" value="116-170" checked> VI - Prestanak ugovora o radu (116-170)</label>
+        </div>
+    </details>
+</div>
                     </div>
 
                     <!-- METRIKA I OPCIJE UPITA -->
@@ -397,8 +415,6 @@ async function ucitajSveZakone() {
 const konfiguracijaMrezeZakon = {
     "krivični zakon fbih": ".kz-glava-chk",
     "krivicni zakon fbih": ".kz-glava-chk",
-    "zakon o radu": ".zr-glava-chk",
-    "zakon o radu fbih": ".zr-glava-chk",
     "zakon o zabrani diskriminacije": ".zd-glava-chk"
 };
 
@@ -547,7 +563,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Slušaj klikove na sve podglave u harmonici (Krivični, Rad, Diskriminacija)
     document.querySelectorAll('.kz-glava-chk, .zr-glava-chk, .zd-glava-chk, .kz-opci-chk, .kz-posebni-chk').forEach(chk => {
-        chk.addEventListener('change', filtrirajPrikaz);
+    chk.addEventListener('change', filtrirajPrikaz);
     });
 
     // 3. Slušaj krovni toggle "Prikaži Sve" ako postoji
