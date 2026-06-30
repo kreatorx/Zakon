@@ -250,7 +250,7 @@
                         <h2>Klasična Pretraga</h2>
                     </div>
                     <div class="mb-1.5">
-                        <input type="text" id="classic-search" oninput="klasicnaPretraga()" class="w-full p-2 border border-gray-300 rounded text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" placeholder="Unesite pojam ili broj člana...">
+                        <input type="text" id="classic-search" class="w-full p-2 border border-gray-300 rounded text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" placeholder="Unesite pojam ili broj člana...">
                     </div>
                     <div id="search-stats" class="text-[11px] text-gray-500 font-medium">Učitavanje zakona...</div>
                 </div>
@@ -626,6 +626,33 @@ function osvjeziBrojacRijeciAI() {
 // ==========================================
 // PRIKAZ, LAYOUT I HTML RENDERING
 // ==========================================
+let debounceTimer;
+function klasicnaPretraga() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        const upit = document.getElementById('classic-search').value.toLowerCase().trim();
+        const selektovani = getSelektovaniZakoni();
+        
+        document.getElementById('results-title').innerText = "Rezultati pretrage";
+        const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovani.includes(clan.naziv_zakona));
+
+        if (!upit) {
+            document.getElementById('results-title').innerText = "Svi članovi";
+            prikaziClanove(aktivniZakoniPodaci, globalniIstaknutiKljucevi);
+            return;
+        }
+
+        const filtrirani = aktivniZakoniPodaci.filter(clan => {
+            const uBroju = String(clan.broj_clana).toLowerCase().includes(upit);
+            const uNazivu = clan.naziv_clana.toLowerCase().includes(upit);
+            const uTekstu = (clan.cisti_tekst || "").toLowerCase().includes(upit);
+            return uBroju || uNazivu || uTekstu;
+        });
+
+        prikaziClanove(filtrirani, globalniIstaknutiKljucevi);
+    }, 300); // 300ms debounce
+}
+
 function promijeniLayout(tip) {
     trenutniLayout = tip;
     const btnList = document.getElementById('btn-layout-list');
@@ -727,9 +754,10 @@ function prikaziClanove(clanovi, istaknutiKljucevi = []) {
 
         card.setAttribute('onclick', `otvoriModal('${clan.id_sistema}')`);
 
+        // POTPUNO UKLONJENI PROBLEMATIČNI REGEXI
         let siroviTekst = clan.sadrzaj_html || clan.cisti_tekst || clan.tekst || "";  
-        let formatiranTekst = siroviTekst.replace(/(?<=\s)([a-zžšđčć])[\)|.]\s/gi, '<br><span class="pl-2 font-semibold text-blue-800">$1) </span>');
-        formatiranTekst = formatiranTekst.replace(/(?<=\s)(\d{1,2})[\)|.]\s/g, '<br><span class="pl-1 font-semibold text-blue-800">$1) </span>');
+        // Siguran prikaz, bez ikakvih regex zamjena koje bi mogle blokirati stranicu
+        const formatiranTekst = siroviTekst;
 
         card.innerHTML = `
             <div class="flex-grow">
@@ -936,30 +964,6 @@ function stampajOdabrano() {
     
     printProzor.focus();
     setTimeout(() => { printProzor.print(); }, 500);
-}
-
-// KLASIČNA PRETRAGA
-function klasicnaPretraga() {
-    const upit = document.getElementById('classic-search').value.toLowerCase().trim();
-    const selektovani = getSelektovaniZakoni();
-    
-    document.getElementById('results-title').innerText = "Rezultati pretrage";
-    const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovani.includes(clan.naziv_zakona));
-
-    if (!upit) {
-        document.getElementById('results-title').innerText = "Svi članovi";
-        prikaziClanove(aktivniZakoniPodaci, globalniIstaknutiKljucevi);
-        return;
-    }
-
-    const filtrirani = aktivniZakoniPodaci.filter(clan => {
-        const uBroju = String(clan.broj_clana).toLowerCase().includes(upit);
-        const uNazivu = clan.naziv_clana.toLowerCase().includes(upit);
-        const uTekstu = clan.cisti_tekst.toLowerCase().includes(upit);
-        return uBroju || uNazivu || uTekstu;
-    });
-
-    prikaziClanove(filtrirani, globalniIstaknutiKljucevi);
 }
 
 // AI PRETRAGA
