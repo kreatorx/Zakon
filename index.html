@@ -1009,6 +1009,144 @@ window.onclick = function(event) {
 }
 
 window.onload = ucitajSveZakone;
+
+
+
+
+let trebaPrekinutiTest = false;
+
+// Pomoćna funkcija koja generiše generički tekst zadate dužine u riječima
+function generisiBulkTekst(brojRijeci) {
+    const rijeci = ["zakon", "član", "federacija", "pravno", "pitanje", "odredba", "krivični", "postupak", "analiza", "paragraf", "odgovornost", "fbih", "sud", "odluka", "propis"];
+    let tekst = [];
+    for (let i = 0; i < brojRijeci; i++) {
+        const nasumicnaRijec = rijeci[Math.floor(Math.random() * rijeci.length)];
+        tekst.push(nasumicnaRijec);
+    }
+    return tekst.join(" ");
+}
+
+// Funkcija za ispisivanje logova u crnu kutiju
+function logujUApplet(poruka, tip = 'info') {
+    const logBox = document.getElementById('stress-test-logs');
+    let boja = 'text-emerald-400';
+    if (tip === 'error') boja = 'text-rose-500 font-bold';
+    if (tip === 'success') boja = 'text-amber-400 font-bold';
+    
+    logBox.innerHTML += `<div class="${boja}">[${new Date().toLocaleTimeString()}] ${poruka}</div>`;
+    logBox.scrollTop = logBox.scrollHeight; // Automatski skroluj na dno
+}
+
+function prekiniStresTest() {
+    trebaPrekinutiTest = true;
+    logujUApplet("⚠️ Testiranje ručno prekinuto od strane korisnika.", "error");
+}
+
+async function pokreniStresTest() {
+    // Čistimo stare logove i resetujemo flag za prekid
+    document.getElementById('stress-test-logs').innerHTML = "";
+    trebaPrekinutiTest = false;
+
+    // Čitamo trenutno izabrani model sa tvog glavnog selektora i parametre alata
+    const izabraniModel = document.getElementById('ai-model-select').value;
+    let trenutniBrojRijeci = parseInt(document.getElementById('test-start-words').value) || 500;
+    const korakPovecanja = parseInt(document.getElementById('test-step-words').value) || 300;
+
+    logujUApplet(`Započinjem stres test za model: <b>${izabraniModel}</b>`, 'success');
+    document.getElementById('btn-run-stress-test').disabled = true;
+
+    while (!trebaPrekinutiTest) {
+        logujUApplet(`Generišem paket od <b>${trenutniBrojRijeci} riječi</b>...`);
+        const bulkPayload = generisiBulkTekst(trenutniBrojRijeci);
+        
+        logujUApplet(`Veličina paketa: ~${(bulkPayload.length / 1024).toFixed(2)} KB (${bulkPayload.length} karaktera). Šaljem zahtjev...`);
+
+        try {
+            // Šaljemo direktno na tvoj postojeći Vercel endpoint
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    model: izabraniModel,
+                    messages: [
+                        { "role": "user", "content": `Ovo je automatski test izdržljivosti tvog API-ja. Ignoriši i samo vrati riječ OK na kraju. Evo bulk podataka: ${bulkPayload}` }
+                    ],
+                    temperature: 0.6
+                })
+            });
+
+            // Ako server vrati bilo kakvu grešku (400, 413, 429...) ulazimo u catch blok
+            if (!response.ok) {
+                throw new Error(`STATUS_${response.status}`);
+            }
+
+            const data = await response.json();
+            logujUApplet(`✅ Paket od ${trenutniBrojRijeci} riječi USPJEŠNO prošao! Model odgovorio bez greške.`, 'info');
+            
+            // Povećavamo ulog za sljedeću iteraciju
+            trenutniBrojRijeci += korakPovecanja;
+            
+            // Mala pauza od 1.5 sekundi između zahtjeva da ne triggerujemo bazični rate limit prebrzo
+            await new Promise(r => setTimeout(r, 1500));
+
+        } catch (error) {
+            logujUApplet(`❌ TEST JE PUKAO na ${trenutniBrojRijeci} riječi!`, 'error');
+            logujUApplet(`Detalji greške: ${error.message}`, 'error');
+            
+            if (error.message.includes("413")) {
+                logujUApplet("💡 Razlog: Vercel Payload Limit (Prešli smo 4.5 MB granicu klijentskog zahtjeva).", "success");
+            } else if (error.message.includes("429")) {
+                logujUApplet("💡 Razlog: Groq Rate Limit (TPM - Previše tokena u minuti za besplatni nivo).", "success");
+            } else if (error.message.includes("400")) {
+                logujUApplet("💡 Razlog: Bad Request / Context Window Limit (Model ili API validator je odbio ovoliki ulaz).", "success");
+            } else {
+                logujUApplet("💡 Razlog: Mrežni prekid ili nepodržan parametar.", "success");
+            }
+            
+            break; // Prekidamo petlju jer smo našli granicu
+        }
+    }
+
+    document.getElementById('btn-run-stress-test').disabled = false;
+    logujUApplet("🏁 Stres test završen.", "success");
+}
 </script>
+  <!-- Stilovi za ljepši prikaz (koristi Tailwind klase ako ih već imaš na projektu) -->
+<div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm max-w-2xl mx-auto my-8 font-sans">
+    <h3 class="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
+        🧪 Groq Limit Stress Tester
+    </h3>
+    <p class="text-xs text-gray-600 mb-4">
+        Ovaj alat šalje sukcesivno veće pakete teksta prema tvom backendu kako bi utvrdio tačnu tačku pucanja (TPM/RPM limite) za izabrani model.
+    </p>
+
+    <!-- Kontrole za podešavanje testa -->
+    <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+            <label class="block text-xs font-medium text-gray-700 mb-1">Početni broj riječi</label>
+            <input type="number" id="test-start-words" value="500" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg p-2 font-medium">
+        </div>
+        <div>
+            <label class="block text-xs font-medium text-gray-700 mb-1">Korak povećanja (riječi)</label>
+            <input type="number" id="test-step-words" value="300" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg p-2 font-medium">
+        </div>
+    </div>
+
+    <!-- Glavna akcija -->
+    <div class="flex gap-2 mb-4">
+        <button id="btn-run-stress-test" onclick="pokreniStresTest()" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-lg text-xs transition duration-200">
+            🚀 Pokreni Stres Test Modela
+        </button>
+        <button onclick="prekiniStresTest()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-3 rounded-lg text-xs">
+            Stop
+        </button>
+    </div>
+
+    <!-- Prozor za logove i praćenje rezultata -->
+    <label class="block text-xs font-medium text-gray-700 mb-1">Rezultati testiranja uživo:</label>
+    <div id="stress-test-logs" class="w-full h-64 bg-gray-950 text-emerald-400 font-mono text-xs p-3 rounded-lg overflow-y-auto border border-gray-800 leading-relaxed">
+        [Sistem spreman] Čekam pokretanje testa...
+    </div>
+</div>
 </body>
 </html>
