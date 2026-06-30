@@ -465,40 +465,76 @@ function toggleGrupuCheckboxa(podMaster, klasaGrupe) {
     filtrirajPrikaz();
 }
 
+// =========================================================================
+// RETROAKTIVNA SINHRONIZACIJA MASTERA (Svi nivoi + Indeterminate vodoravna crtica)
+// =========================================================================
 function osveziMasterCheckboxove() {
+    // --- 1. ZAKON O RADU ---
     const sveZrGlave = document.querySelectorAll('.zr-glava-chk');
     const oznaceneZrGlave = document.querySelectorAll('.zr-glava-chk:checked');
     const masterZr = document.getElementById('chk-zr');
-    if (masterZr && sveZrGlave.length > 0) masterZr.checked = (sveZrGlave.length === oznaceneZrGlave.length);
+    if (masterZr && sveZrGlave.length > 0) {
+        masterZr.checked = (sveZrGlave.length === oznaceneZrGlave.length);
+        // Ako je označeno više od 0, ali manje od ukupnog broja -> stvori vodoravnu crticu
+        masterZr.indeterminate = (oznaceneZrGlave.length > 0 && oznaceneZrGlave.length < sveZrGlave.length);
+        // Ako ima crticu, smanji mu opasnost/prozirnost da izgleda bljeđe
+        masterZr.style.opacity = masterZr.indeterminate ? '0.5' : '1';
+    }
 
+    // --- 2. ZAKON O ZABRANI DISKRIMINACIJE ---
     const sveZdGlave = document.querySelectorAll('.zd-glava-chk');
     const oznaceneZdGlave = document.querySelectorAll('.zd-glava-chk:checked');
     const masterZd = document.getElementById('chk-zd');
-    if (masterZd && sveZdGlave.length > 0) masterZd.checked = (sveZdGlave.length === oznaceneZdGlave.length);
+    if (masterZd && sveZdGlave.length > 0) {
+        masterZd.checked = (sveZdGlave.length === oznaceneZdGlave.length);
+        masterZd.indeterminate = (oznaceneZdGlave.length > 0 && oznaceneZdGlave.length < sveZdGlave.length);
+        masterZd.style.opacity = masterZd.indeterminate ? '0.5' : '1';
+    }
 
+    // --- 3. KRIVIČNI ZAKON - OPĆI DIO ---
     const sveKzOpci = document.querySelectorAll('.kz-opci-chk:not(#chk-kz-opci)');
     const oznaceneKzOpci = document.querySelectorAll('.kz-opci-chk:not(#chk-kz-opci):checked');
     const podMasterOpci = document.getElementById('chk-kz-opci');
-    if (podMasterOpci && sveKzOpci.length > 0) podMasterOpci.checked = (sveKzOpci.length === oznaceneKzOpci.length);
+    if (podMasterOpci && sveKzOpci.length > 0) {
+        podMasterOpci.checked = (sveKzOpci.length === oznaceneKzOpci.length);
+        podMasterOpci.indeterminate = (oznaceneKzOpci.length > 0 && oznaceneKzOpci.length < sveKzOpci.length);
+        podMasterOpci.style.opacity = podMasterOpci.indeterminate ? '0.5' : '1';
+    }
 
+    // --- 4. KRIVIČNI ZAKON - POSEBNI DIO ---
     const sveKzPosebni = document.querySelectorAll('.kz-posebni-chk:not(#chk-kz-posebni)');
     const oznaceneKzPosebni = document.querySelectorAll('.kz-posebni-chk:not(#chk-kz-posebni):checked');
     const podMasterPosebni = document.getElementById('chk-kz-posebni');
-    if (podMasterPosebni && sveKzPosebni.length > 0) podMasterPosebni.checked = (sveKzPosebni.length === oznaceneKzPosebni.length);
-
-    const glavniMasterKz = document.getElementById('chk-kz');
-    if (glavniMasterKz && podMasterOpci && podMasterPosebni) {
-        glavniMasterKz.checked = (podMasterOpci.checked && podMasterPosebni.checked);
+    if (podMasterPosebni && sveKzPosebni.length > 0) {
+        podMasterPosebni.checked = (sveKzPosebni.length === oznaceneKzPosebni.length);
+        podMasterPosebni.indeterminate = (oznaceneKzPosebni.length > 0 && oznaceneKzPosebni.length < sveKzPosebni.length);
+        podMasterPosebni.style.opacity = podMasterPosebni.indeterminate ? '0.5' : '1';
     }
+
+    // --- 5. GLAVNI KROVNI MASTER ZA KRIVIČNI ZAKON (chk-kz) ---
+    const glavniMasterKz = document.getElementById('chk-kz');
+    if (glavniMasterKz) {
+        const sveKzGlave = document.querySelectorAll('.kz-glava-chk');
+        const oznaceneKzGlave = document.querySelectorAll('.kz-glava-chk:checked');
+        glavniMasterKz.checked = (sveKzGlave.length === oznaceneKzGlave.length);
+        glavniMasterKz.indeterminate = (oznaceneKzGlave.length > 0 && oznaceneKzGlave.length < sveKzGlave.length);
+        glavniMasterKz.style.opacity = glavniMasterKz.indeterminate ? '0.5' : '1';
+    }
+
     provjeriGlobalniMaster();
 }
 
+// --- 6. APSOLUTNI KROVNI MASTER ZA SVE ZAKONE (chk-all) ---
 function provjeriGlobalniMaster() {
-    const sviMasteri = document.querySelectorAll('.master-checkbox');
-    const sviOznaceniMasteri = document.querySelectorAll('.master-checkbox:checked');
+    // Skupljamo sve krajnje aktivne pod-cjeline i samostalne zakone da izračunamo krovno stanje sistema
+    const sveAktivneGlave = document.querySelectorAll('.kz-glava-chk, .zr-glava-chk, .zd-glava-chk, #chk-uz, #chk-zk');
+    const oznaceneAktivneGlave = document.querySelectorAll('.kz-glava-chk:checked, .zr-glava-chk:checked, .zd-glava-chk:checked, #chk-uz:checked, #chk-zk:checked');
     const globalniMaster = document.getElementById('chk-all');
-    if (globalniMaster && sviMasteri.length > 0) {
-        globalniMaster.checked = (sviMasteri.length === sviOznaceniMasteri.length);
+    
+    if (globalniMaster && sveAktivneGlave.length > 0) {
+        globalniMaster.checked = (sveAktivneGlave.length === oznaceneAktivneGlave.length);
+        globalniMaster.indeterminate = (oznaceneAktivneGlave.length > 0 && oznaceneAktivneGlave.length < sveAktivneGlave.length);
+        globalniMaster.style.opacity = globalniMaster.indeterminate ? '0.6' : '1';
     }
 }
 
