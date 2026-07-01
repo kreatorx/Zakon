@@ -1206,7 +1206,8 @@ function generisiKontekstZakona(aktivniZakoniPodaci, izabraniModel) {
     } else {
         return aktivniZakoniPodaci.map(clan => {
             const tekst = (clan.cisti_tekst || clan.tekst || "").trim();
-            return `${clan.naziv_zakona} - ${clan.broj_clana}:\n${tekst.substring(0, 300)}...`;
+            const naslov = (clan.naziv_clana || clan.naslov || "Bez naslova").trim();
+            return `${clan.naziv_zakona} - ${clan.broj_clana} ("${naslov}"):\n${tekst.substring(0, 300)}...`;
         }).join('\n---\n');
     }
 }
