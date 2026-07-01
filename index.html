@@ -1181,33 +1181,13 @@ function zatvoriDonacijeBox() {
 // SISTEM ZA PROCESIRANJE DONACIJA
 // =========================================================================
 function procesirajDonaciju(metoda) {
-    const poruka = document.getElementById('donation-message').value.trim();
-    
+        
     // Ovdje unesi svoje zvanične linkove za naplatu
     const PAYPAL_URL = "https://www.paypal.me/smilefreely"; 
-    const STRIPE_URL = "https://donate.stripe.com/TVOJ_STRIPE_PAYMENT_LINK"; // Stripe automatski nudi GPay i Apple Pay
-
-    // Ako korisnik želi poslati poruku, kopiramo je u clipboard radi lakšeg unosa na platnoj stranici
-    if (poruka.length > 0) {
-        navigator.clipboard.writeText(poruka).then(() => {
-            alert(`📝 Vaša poruka je kopirana!\n\nPreusmjeravamo vas na plaćanje. Kada se otvori stranica, možete je jednostavno "Zalijepiti" (Paste) u polje za napomenu/komentar.`);
-            preusmjeriNaPlacanje(metoda, PAYPAL_URL, STRIPE_URL);
-        }).catch(err => {
-            // Fallback u slučaju da browser blokira clipboard API
-            preusmjeriNaPlacanje(metoda, PAYPAL_URL, STRIPE_URL);
-        });
-    } else {
-        preusmjeriNaPlacanje(metoda, PAYPAL_URL, STRIPE_URL);
-    }
+    
+    window.open(PAYPAL_URL, '_blank');
 }
 
-function preusmjeriNaPlacanje(metoda, paypalUrl, stripeUrl) {
-    if (metoda === 'paypal') {
-        window.open(paypalUrl, '_blank');
-    } else if (metoda === 'stripe') {
-        window.open(stripeUrl, '_blank');
-    }
-}
 
 window.onclick = function(event) {
     const modal = document.getElementById('member-modal');
