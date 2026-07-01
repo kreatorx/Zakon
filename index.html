@@ -947,6 +947,18 @@ function stampajOdabrano() {
     setTimeout(() => { printProzor.print(); }, 500);
 }
 
+function downloadDebugger(dataObj) {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataObj, null, 2));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "debug_zakon_kontekst.json");
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+}
+// Poziv unutar traziAI funkcije:
+// downloadDebugger({ model: trenutniModel, context: aktivniZakoniPodaci });
+
 // -------------------------------------------------------------------------
 // POTPUNO ENHANCED AI PRETRAGA (S 503 FALLBACK-OM I ISPISOM MODELA NA KRAJU)
 // -------------------------------------------------------------------------
@@ -1008,7 +1020,7 @@ async function traziAI() {
             ]
         }
         `;
-
+downloadDebugger({ model: trenutniModel, context: aktivniZakoniPodaci });
         const response = await fetch(AI_API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
