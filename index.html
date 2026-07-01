@@ -1177,6 +1177,38 @@ function zatvoriDonacijeBox() {
     }
 }
 
+// =========================================================================
+// SISTEM ZA PROCESIRANJE DONACIJA
+// =========================================================================
+function procesirajDonaciju(metoda) {
+    const poruka = document.getElementById('donation-message').value.trim();
+    
+    // Ovdje unesi svoje zvanične linkove za naplatu
+    const PAYPAL_URL = "https://www.paypal.com/donate/?hosted_button_id=TVOJ_ID_DUGMETA"; 
+    const STRIPE_URL = "https://donate.stripe.com/TVOJ_STRIPE_PAYMENT_LINK"; // Stripe automatski nudi GPay i Apple Pay
+
+    // Ako korisnik želi poslati poruku, kopiramo je u clipboard radi lakšeg unosa na platnoj stranici
+    if (poruka.length > 0) {
+        navigator.clipboard.writeText(poruka).then(() => {
+            alert(`📝 Vaša poruka je kopirana!\n\nPreusmjeravamo vas na plaćanje. Kada se otvori stranica, možete je jednostavno "Zalijepiti" (Paste) u polje za napomenu/komentar.`);
+            preusmjeriNaPlacanje(metoda, PAYPAL_URL, STRIPE_URL);
+        }).catch(err => {
+            // Fallback u slučaju da browser blokira clipboard API
+            preusmjeriNaPlacanje(metoda, PAYPAL_URL, STRIPE_URL);
+        });
+    } else {
+        preusmjeriNaPlacanje(metoda, PAYPAL_URL, STRIPE_URL);
+    }
+}
+
+function preusmjeriNaPlacanje(metoda, paypalUrl, stripeUrl) {
+    if (metoda === 'paypal') {
+        window.open(paypalUrl, '_blank');
+    } else if (metoda === 'stripe') {
+        window.open(stripeUrl, '_blank');
+    }
+}
+
 window.onclick = function(event) {
     const modal = document.getElementById('member-modal');
     if (event.target == modal) zatvoriModal();
@@ -1197,21 +1229,12 @@ window.onload = ucitajSveZakone;
     </div>
     
     <p class="text-gray-600 text-[11px] leading-normal mb-2.5">
-        Sva prikupljena sredstva koristit će se za kontinuirano **unapređenje stranice** i **uplatu kredita za napredni GPT-5.4 model**, kako bi sistem ostao brz i dostupan svima. Prilikom uplate je poželjno da ostavite i kratku poruku kako bismo znali vaše prijedloge ili utiske!
+        Sva prikupljena sredstva koristit će se za **unapređenje stranice** i **uplatu kredita za napredni GPT-5.4 model**, kako bi sistem ostao brz i dostupan svima. Prilikom uplate je poželjno da ostavite i kratku poruku.
     </p>
     
-    <div class="mb-2.5">
-        <label class="block text-[10px] font-medium text-gray-500 mb-0.5">Vaša poruka uz donaciju (opcionalno):</label>
-        <input type="text" id="donation-message" class="w-full p-1.5 border border-gray-300 rounded-lg text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none placeholder-gray-400 bg-white" placeholder="Napišite nešto ili ostavite prazno...">
-    </div>
-
     <div class="grid grid-cols-1 gap-1.5">
         <button onclick="procesirajDonaciju('paypal')" class="w-full bg-[#0070ba] hover:bg-[#005ea6] text-white font-medium py-1.5 px-3 rounded-lg text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
             <i class="fa-brands fa-paypal text-sm"></i> Doniraj putem PayPal-a
-        </button>
-        
-        <button onclick="procesirajDonaciju('stripe')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-1.5 px-3 rounded-lg text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
-            <i class="fa-brands fa-google-pay text-base"></i> / <i class="fa-brands fa-apple-pay text-base"></i> Doniraj (GPay / Apple Pay)
         </button>
     </div>
 </div>
