@@ -1169,6 +1169,14 @@ function zatvoriAiBox() {
     filtrirajPrikaz();
 }
 
+function zatvoriDonacijeBox() {
+    const box = document.getElementById('donation-box');
+    if (box) {
+        // Dodajemo skrivanje, a možeš se poigrati i sa animacijama ako želiš
+        box.classList.add('hidden');
+    }
+}
+
 window.onclick = function(event) {
     const modal = document.getElementById('member-modal');
     if (event.target == modal) zatvoriModal();
@@ -1176,5 +1184,37 @@ window.onclick = function(event) {
 
 window.onload = ucitajSveZakone;
     </script>
+
+<div id="donation-box" class="fixed bottom-4 right-4 w-72 md:w-80 bg-white p-3.5 rounded-xl shadow-2xl border border-amber-200 bg-amber-50/20 z-40 transition-all duration-300">
+    
+    <button onclick="zatvoriDonacijeBox()" title="Zatvori napomenu" class="absolute top-2.5 right-2.5 text-amber-400 hover:text-amber-600 transition-colors p-1 rounded-md hover:bg-amber-100/50">
+        <i class="fa-solid fa-xmark text-sm"></i>
+    </button>
+
+    <div class="flex items-center gap-1.5 mb-1.5 text-amber-700 font-semibold text-sm border-b pb-1.5 pr-6">
+        <i class="fa-solid fa-heart text-xs animate-pulse"></i>
+        <h2>Podržite rad projekta</h2>
+    </div>
+    
+    <p class="text-gray-600 text-[11px] leading-normal mb-2.5">
+        Sva prikupljena sredstva koristit će se za kontinuirano **unapređenje stranice** i **uplatu kredita za napredni GPT-5.4 model**, kako bi sistem ostao brz i dostupan svima. Prilikom uplate je poželjno da ostavite i kratku poruku kako bismo znali vaše prijedloge ili utiske!
+    </p>
+    
+    <div class="mb-2.5">
+        <label class="block text-[10px] font-medium text-gray-500 mb-0.5">Vaša poruka uz donaciju (opcionalno):</label>
+        <input type="text" id="donation-message" class="w-full p-1.5 border border-gray-300 rounded-lg text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none placeholder-gray-400 bg-white" placeholder="Napišite nešto ili ostavite prazno...">
+    </div>
+
+    <div class="grid grid-cols-1 gap-1.5">
+        <button onclick="procesirajDonaciju('paypal')" class="w-full bg-[#0070ba] hover:bg-[#005ea6] text-white font-medium py-1.5 px-3 rounded-lg text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
+            <i class="fa-brands fa-paypal text-sm"></i> Doniraj putem PayPal-a
+        </button>
+        
+        <button onclick="procesirajDonaciju('stripe')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-1.5 px-3 rounded-lg text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
+            <i class="fa-brands fa-google-pay text-base"></i> / <i class="fa-brands fa-apple-pay text-base"></i> Doniraj (GPay / Apple Pay)
+        </button>
+    </div>
+</div>
+    
 </body>
 </html>
