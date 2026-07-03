@@ -372,9 +372,15 @@
             </div>
             <div id="modal-body-content" class="px-6 py-5 overflow-y-auto flex-grow text-gray-800 text-[11.5px] leading-relaxed"></div>
             <div class="px-5 py-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between gap-2 shrink-0">
-                <div id="modal-footer-law" class="text-[10px] text-gray-400 font-medium truncate max-w-[60%]"></div>
-                <button id="modal-print-btn" class="transition-colors"></button>
-            </div>
+    <div id="modal-footer-law" class="text-[10px] text-gray-400 font-medium truncate"></div>
+    
+    <div class="flex items-center gap-2 ml-auto shrink-0">
+        <button id="modal-hipokrat-btn" onclick="prikaziHipokratovuZakletvu()" class="hidden bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 px-3 py-1 rounded font-medium flex items-center gap-1.5 text-xs transition-colors shadow-sm">
+            <i class="fa-solid fa-staff-snake"></i> Zakletva
+        </button>
+        <button id="modal-print-btn" class="transition-colors"></button>
+    </div>
+</div>
         </div>
     </div>
 
@@ -855,11 +861,62 @@ function otvoriModal(idSistema) {
         printBtn.innerHTML = `<i class="fa-solid fa-print"></i> Dodaj za štampu`;
         printBtn.setAttribute('onclick', `dodajUPrint('${clan.id_sistema}'); otvoriModal('${clan.id_sistema}'); event.stopPropagation();`);
     }
+
+// --- DUGME ZA HIPOKRATOVU ZAKLETVU ---
+const hipokratBtn = document.getElementById('modal-hipokrat-btn');
+// Provjeravamo da li naslov člana sadrži ključne riječi
+if (clan.naziv_clana && clan.naziv_clana.toLowerCase().includes("nesavjesno liječenje")) {
+    hipokratBtn.classList.remove('hidden');
+} else {
+    hipokratBtn.classList.add('hidden');
+}
+// -----------------------------------------------------
+
+document.getElementById('member-modal').classList.remove('hidden');
     document.getElementById('member-modal').classList.remove('hidden');
+
+    
 }
 
 function zatvoriModal() {
     document.getElementById('member-modal').classList.add('hidden');
+}
+
+async function prikaziHipokratovuZakletvu() {
+    const kontejner = document.getElementById('modal-body-content');
+    
+    // Sprječavamo ponovno učitavanje ako je korisnik već kliknuo na dugme
+    if (document.getElementById('hipokrat-tekst-box')) {
+        document.getElementById('hipokrat-tekst-box').scrollIntoView({ behavior: 'smooth' });
+        return;
+    }
+
+    try {
+        // Zovemo txt fajl sa tvog servera/github-a
+        const response = await fetch('./hipokratovazakletva.txt');
+        if (!response.ok) throw new Error("Fajl nije pronađen.");
+        const tekst = await response.text();
+
+        // Kreiramo novi element i ubacujemo ga na kraj modala
+        const zakletvaBox = document.createElement('div');
+        zakletvaBox.id = 'hipokrat-tekst-box';
+        zakletvaBox.className = "mt-5 p-4 bg-sky-50 border border-sky-200 rounded-lg text-sky-900 shadow-inner";
+        zakletvaBox.innerHTML = `
+            <div class="flex items-center gap-2 mb-2 border-b border-sky-200 pb-2">
+                <i class="fa-solid fa-staff-snake text-sky-700 text-lg"></i>
+                <h4 class="font-bold text-sm text-sky-800">Hipokratova zakletva</h4>
+            </div>
+            <p class="whitespace-pre-wrap text-[11px] leading-relaxed">${tekst}</p>
+        `;
+        
+        kontejner.appendChild(zakletvaBox);
+        
+        // Automatski skrolamo modal prema dole da korisnik odmah vidi tekst
+        zakletvaBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } catch (error) {
+        console.error(error);
+        alert("Nije moguće učitati tekst. Provjerite da li 'hipokratovazakletva.txt' postoji u istom folderu.");
+    }
 }
 
 function dodajUPrint(idSistema) {
