@@ -874,37 +874,6 @@ function ukloniIzPrinta(idSistema) {
     osvjeziPrintPanel();
 }
 
-function osvjeziPrintPanel() {
-    const countBadge = document.getElementById('print-count');
-    const previewList = document.getElementById('print-preview-list');
-    const printBtn = document.getElementById('btn-print');
-    if (countBadge) countBadge.innerText = listaZaPrint.length;
-    if (!previewList) return;
-    previewList.innerHTML = '';
-
-    if (listaZaPrint.length === 0) {
-        previewList.innerHTML = `<p class="italic text-gray-400">Nema odabranih članova za štampu.</p>`;
-        if (printBtn) {
-            printBtn.disabled = true;
-            printBtn.className = "w-full bg-gray-400 text-white font-medium py-1.5 px-3 rounded text-xs cursor-not-allowed flex items-center justify-center gap-1.5 shadow-sm";
-        }
-        return;
-    }
-    if (printBtn) {
-        printBtn.disabled = false;
-        printBtn.className = "w-full bg-green-600 hover:bg-green-700 text-white font-medium py-1.5 px-3 rounded text-xs cursor-pointer flex items-center justify-center gap-1.5 shadow-sm";
-    }
-    listaZaPrint.forEach(clan => {
-        const item = document.createElement('div');
-        item.className = "flex justify-between items-center bg-gray-100 p-1 rounded border border-gray-200";
-        item.innerHTML = `
-            <span class="truncate font-medium max-w-[80%]">${clan.broj_clana} - ${clan.naziv_zakona}</span>
-            <button onclick="ukloniIzPrinta('${clan.id_sistema}')" class="text-red-500 hover:text-red-700 px-1"><i class="fa-solid fa-trash-can"></i></button>
-        `;
-        previewList.appendChild(item);
-    });
-}
-
 function stampajOdabrano() {
     if (listaZaPrint.length === 0) return;
     const printProzor = window.open('', '_blank');
@@ -989,7 +958,7 @@ async function traziAI() {
         Prije analize problema obavezno zaboravi prethodnu memoriju.
         
         [STRIKTNI PRIORITET ZA ANALIZU I NUMERACIJU]:
-        Obavezno vrati odgovor u roku od 8 sekundi! Odgovor prilagodi na max 300 riječi.
+        Obavezno vrati odgovor u roku od 8 sekundi! Odgovor prilagodi na max 400 riječi.
 
         [LEGENDA I STRUKTURA INDEKSA]:
         Podaci u bazi su poslani u formatu: ZAKON_ID|BROJ_ČLANA|"NASLOV_ČLANA"|UKUPNO_ISTIH_NASLOVA
@@ -1144,45 +1113,99 @@ async function traziAI() {
     }
 }
 
-// FUNKCIJA ZA ŠTAMPANJE SAMOG AI MIŠLJENJA
+// DODAVANJE UNESENOG PROMPTA NA LISTU ZA ŠTAMPU
+function stampajPrompt() {
+    const tekstKorisnika = document.getElementById('ai-problem').value.trim();
+    if (!tekstKorisnika) {
+        alert("Nema unesenog teksta koji se može dodati za štampu.");
+        return;
+    }
+
+    const idSistema = "korisnik_prompt";
+    // Provjera da li je već dodano
+    if (listaZaPrint.some(c => c.id_sistema === idSistema)) {
+        alert("Vaš opis problema je već dodat na listu za štampu.");
+        return;
+    }
+
+    // Kreiramo vještački objekat sa istom strukturom radi kompatibilnosti
+    const lazniClan = {
+        id_sistema: idSistema,
+        broj_clana: "📝 Opis problema",
+        naziv_clana: "Tekst koji ste unijeli u AI asistent",
+        sadrzaj_html: `<div style="white-space: pre-wrap; background: #faf5ff; padding: 15px; border: 1px solid #e9d5ff; border-radius: 4px;">${tekstKorisnika}</div>`,
+        naziv_zakona: "Korisnički unos"
+    };
+
+    listaZaPrint.push(lazniClan);
+    osvjeziPrintPanel();
+}
+
+// DODAVANJE AI ANALIZE NA LISTU ZA ŠTAMPU
 function stampajAiAnalizu() {
-    // Čitamo tekst iz onog polja koje u sebi ima upisan sadržaj u tom trenutku
     const tekstAnalize = document.getElementById('ai-response-text-desktop').innerText || 
                          document.getElementById('ai-response-text-mobile').innerText;
-    if (!tekstAnalize) return;
+    if (!tekstAnalize) {
+        alert("Nema generisane AI analize koja se može dodati za štampu.");
+        return;
+    }
 
-    const printProzor = window.open('', '_blank');
-    let htmlSadrzaj = `
-        <html>
-        <head>
-            <title>AI Pravna Analiza - Sveobuhvatna Pravna Baza FBiH</title>
-            <style>
-                body { font-family: Arial, sans-serif; padding: 40px; font-size: 13px; line-height: 1.6; color: #333; }
-                .header { border-bottom: 2px solid #6b21a8; padding-bottom: 12px; margin-bottom: 25px; }
-                .header h1 { margin: 0; font-size: 20px; color: #662d91; }
-                .header p { margin: 4px 0 0 0; font-size: 11px; color: #666; }
-                .sadrzaj { white-space: pre-wrap; background: #faf5ff; padding: 25px; border: 1px solid #e9d5ff; border-radius: 6px; }
-                .footer { margin-top: 35px; font-size: 11px; color: #777; border-top: 1px solid #eee; padding-top: 10px; text-align: center; }
-                @media print { body { padding: 0; } .sadrzaj { border: none; background: none; padding: 0; } }
-            </style>
-        </head>
-        <body>
-            <div class="header">
-                <h1>Sveobuhvatna Pravna Baza FBiH - Mišljenje AI Asistenta</h1>
-                <p>Dokument generisan: ${new Date().toLocaleDateString('bs')} u ${new Date().toLocaleTimeString('bs')}</p>
-            </div>
-            <div class="sadrzaj">${tekstAnalize}</div>
-            <div class="footer">
-                Ovaj dokument je informativnog karaktera i generisan je automatizovano pomoću vještačke inteligencije.
-            </div>
-        </body>
-        </html>
-    `;
-    printProzor.document.write(htmlSadrzaj);
-    printProzor.document.close();
-    printProzor.focus();
-    setTimeout(() => { printProzor.print(); }, 500);
+    const idSistema = "ai_analiza_blok";
+    if (listaZaPrint.some(c => c.id_sistema === idSistema)) {
+        alert("AI analiza je već dodata na listu za štampu.");
+        return;
+    }
+
+    const lazniClan = {
+        id_sistema: idSistema,
+        broj_clana: "🤖 AI Analiza",
+        naziv_clana: "Pravno mišljenje i analiza AI asistenta",
+        sadrzaj_html: `<div style="white-space: pre-wrap; background: #f0fdf4; padding: 15px; border: 1px solid #bbf7d0; border-radius: 4px; color: #166534;">${tekstAnalize}</div>`,
+        naziv_zakona: "AI Asistent"
+    };
+
+    listaZaPrint.push(lazniClan);
+    osvjeziPrintPanel();
 }
+        
+function osvjeziPrintPanel() {
+    const countBadge = document.getElementById('print-count');
+    const previewList = document.getElementById('print-preview-list');
+    const printBtn = document.getElementById('btn-print');
+    if (countBadge) countBadge.innerText = listaZaPrint.length;
+    if (!previewList) return;
+    previewList.innerHTML = '';
+
+    if (listaZaPrint.length === 0) {
+        previewList.innerHTML = `<p class="italic text-gray-400">Nema odabranih članova za štampu.</p>`;
+        if (printBtn) {
+            printBtn.disabled = true;
+            printBtn.className = "w-full bg-gray-400 text-white font-medium py-1.5 px-3 rounded text-xs cursor-not-allowed flex items-center justify-center gap-1.5 shadow-sm";
+        }
+        return;
+    }
+    if (printBtn) {
+        printBtn.disabled = false;
+        printBtn.className = "w-full bg-green-600 hover:bg-green-700 text-white font-medium py-1.5 px-3 rounded text-xs cursor-pointer flex items-center justify-center gap-1.5 shadow-sm";
+    }
+    listaZaPrint.forEach(clan => {
+        const item = document.createElement('div');
+        item.className = "flex justify-between items-center bg-gray-100 p-1 rounded border border-gray-200";
+        
+        // Prilagođavamo prikaz u listi ako je u pitanju prompt/analiza
+        const prikazImena = clan.id_sistema.startsWith("korisnik") || clan.id_sistema.startsWith("ai") 
+            ? `${clan.broj_clana}`
+            : `${clan.broj_clana} - ${clan.naziv_zakona}`;
+
+        item.innerHTML = `
+            <span class="truncate font-medium max-w-[80%]">${prikazImena}</span>
+            <button onclick="ukloniIzPrinta('${clan.id_sistema}')" class="text-red-500 hover:text-red-700 px-1"><i class="fa-solid fa-trash-can"></i></button>
+        `;
+        previewList.appendChild(item);
+    });
+}
+
+        
 function generisiKontekstZakona(aktivniZakoniPodaci, izabraniModel) {
     const isGroqReasoning = izabraniModel.includes('qwen') || izabraniModel.includes('openai');
     const mapaIdZakon = {
