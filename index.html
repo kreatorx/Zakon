@@ -579,22 +579,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function filtrirajPrikaz() {
-    const filtriraniPodaci = sviZakonPodaci.filter(clan => {
-        const nazivZakona = (clan.naziv_zakona || "").toLowerCase().trim();
-        const klasaCheckboxa = konfiguracijaMrezeZakon[nazivZakona];
-        if (klasaCheckboxa) {
-            return daLiClanPripadaOznacenimOpsezima(String(clan.broj_clana), klasaCheckboxa);
-        }
-        return Array.from(document.querySelectorAll('.law-checkbox:checked'))
-            .some(chk => chk.value.toLowerCase().trim() === nazivZakona);
-    });
-    trenutniPrikazaniClanovi = filtriraniPodaci;
-    prikaziClanove(trenutniPrikazaniClanovi, globalniIstaknutiKljucevi);
-    osvjeziBrojacSlovaAI();
-    osvjeziBrojacRijeciAI();
-}
-
 function daLiClanPripadaOznacenimOpsezima(brojClanaString, klasaCheckboxa) {
     const oznaceniCheckboxi = document.querySelectorAll(`${klasaCheckboxa}:checked`);
     if (oznaceniCheckboxi.length === 0) return false;
@@ -645,26 +629,49 @@ function osvjeziBrojacRijeciAI() {
     }
 }
 
-let debounceTimer;
-function klasicnaPretraga() {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-        const upit = document.getElementById('classic-search').value.toLowerCase().trim();
-        const selektovani = getSelektovaniZakoni();
-        document.getElementById('results-title').innerText = "Rezultati pretrage";
-        const aktivniZakoniPodaci = sviZakonPodaci.filter(clan => selektovani.includes(clan.naziv_zakona));
-        if (!upit) {
-            document.getElementById('results-title').innerText = "Svi članovi";
-            prikaziClanove(aktivniZakoniPodaci, globalniIstaknutiKljucevi);
-            return;
+function filtrirajPrikaz() {
+    // 1. Prvo uvijek dobijamo sve članove koji su označeni u lijevom meniju (glavna baza)
+    let filtriraniPodaci = sviZakonPodaci.filter(clan => {
+        const nazivZakona = (clan.naziv_zakona || "").toLowerCase().trim();
+        const klasaCheckboxa = konfiguracijaMrezeZakon[nazivZakona];
+        
+        if (klasaCheckboxa) {
+            return daLiClanPripadaOznacenimOpsezima(String(clan.broj_clana), klasaCheckboxa);
         }
-        const filtrirani = aktivniZakoniPodaci.filter(clan => {
+        return Array.from(document.querySelectorAll('.law-checkbox:checked'))
+            .some(chk => chk.value.toLowerCase().trim() === nazivZakona);
+    });
+
+    // 2. Čitamo šta piše u polju za pretragu
+    const poljeZaPretragu = document.getElementById('classic-search');
+    const upit = poljeZaPretragu ? poljeZaPretragu.value.toLowerCase().trim() : '';
+
+    // 3. Ako korisnik nešto traži, dinamično sužavamo taj označeni spisak
+    if (upit) {
+        document.getElementById('results-title').innerText = "Rezultati pretrage";
+        filtriraniPodaci = filtriraniPodaci.filter(clan => {
             const uBroju = String(clan.broj_clana).toLowerCase().includes(upit);
             const uNazivu = clan.naziv_clana.toLowerCase().includes(upit);
             const uTekstu = (clan.cisti_tekst || "").toLowerCase().includes(upit);
             return uBroju || uNazivu || uTekstu;
         });
-        prikaziClanove(filtrirani, globalniIstaknutiKljucevi);
+    } else {
+        document.getElementById('results-title').innerText = "Svi aktivni članovi zakona";
+    }
+
+    // 4. Šaljemo konačan rezultat na prikaz i ažuriramo brojače
+    trenutniPrikazaniClanovi = filtriraniPodaci;
+    prikaziClanove(trenutniPrikazaniClanovi, globalniIstaknutiKljucevi);
+    osvjeziBrojacSlovaAI();
+    osvjeziBrojacRijeciAI();
+}
+
+// 5. Klasična pretraga sada postaje super jednostavna jer filtrirajPrikaz radi svu pametnu logiku
+let debounceTimer;
+function klasicnaPretraga() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        filtrirajPrikaz();
     }, 300);
 }
 
