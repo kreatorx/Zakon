@@ -213,7 +213,13 @@
         "clan_broj": "36",
         "naslov": "Stručno obrazovanje inspektora",
         "glava": "IV. INSPEKTORI I NJIHOV STATUS",
-        "tekst": "Inspektor je obavezan da se permanentno stručno obrazuje i usavršava za obavljanje poslova inspekcijskog nadzora iz propisa koji se odnose na oblast inspekcijskog, upravnog i prekršajnog postupka u skladu sa programom stručne obuke inspektora koji donosi rukovodilac organa nadležnog za obavljanje inspekcijskih poslova.\nČlan 37*\n(Potvrda o uspješnosti u radu - certifikat)\n(prestalo da važi odlukom US)"
+        "tekst": "Inspektor je obavezan da se permanentno stručno obrazuje i usavršava za obavljanje poslova inspekcijskog nadzora iz propisa koji se odnose na oblast inspekcijskog, upravnog i prekršajnog postupka u skladu sa programom stručne obuke inspektora koji donosi rukovodilac organa nadležnog za obavljanje inspekcijskih poslova."
+    },
+    {
+        "clan_broj": "37",
+        "naslov": "Potvrda o uspješnosti u radu - certifikat",
+        "glava": "IV. INSPEKTORI I NJIHOV STATUS",
+        "tekst": "<i>prestalo da  važi odlukom US</i>"
     },
     {
         "clan_broj": "38",
@@ -249,7 +255,13 @@
         "clan_broj": "43",
         "naslov": "Prijedlog za suspenziju inspektora",
         "glava": "IV. INSPEKTORI I NJIHOV STATUS",
-        "tekst": "Prijedlog za suspenziju glavnog inspektora podnosi direktor a za inspektora glavni inspektor i direktor Federalne uprave u skladu sa Zakonom o državnoj službi u Federaciji BiH.\nČlan 44*\n(Odlučivanje o suspenziji inspektora)\n1) (prestalo da važi odlukom US)\n2) Protiv rješenja iz stava 1) ovog člana ima se pravo uložiti žalbu u skladu sa Zakonom o državnoj službi.\n3) (prestalo da važi odlukom US)"
+        "tekst": "Prijedlog za suspenziju glavnog inspektora podnosi direktor a za inspektora glavni inspektor i direktor Federalne uprave u skladu sa Zakonom o državnoj službi u Federaciji BiH."
+    },
+    {
+        "clan_broj": "44",
+        "naslov": "Odlučivanje o suspenziji inspektora",
+        "glava": "IV. INSPEKTORI I NJIHOV STATUS",
+        "tekst": "<i>prestalo da  važi odlukom US</i>"
     },
     {
         "clan_broj": "45",
