@@ -233,6 +233,20 @@
                             </details>
                         </div>
 
+                        <!-- 7. ZAKON O SUKOBU INTERESA (Indigo tonovi) -->
+                        <div class="border border-indigo-300 rounded-lg p-1.5 bg-indigo-50/30">
+                            <details class="group overflow-hidden transition-all duration-300">
+                                <summary class="flex items-center justify-between p-2 bg-white rounded-md cursor-pointer select-none border border-indigo-200">
+                                    <div class="flex items-center" onclick="event.stopPropagation();">
+                                        <input type="checkbox" value="Zakon o sukobu interesa" id="chk-si" onchange="provjeriGlobalniMaster(); filtrirajPrikaz();" class="master-checkbox law-checkbox w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" />
+                                        <label for="chk-si" class="ml-2 text-xs font-bold text-indigo-900 cursor-pointer">Zakon o sukobu interesa</label>
+                                    </div>
+                                    <span class="text-xs text-indigo-400 transition-transform duration-200 group-open:rotate-180 mr-1">▼</span>
+                                </summary>
+                                <div class="p-2 text-gray-500 italic text-[10px]">Učitava se kompletan dokument.</div>
+                            </details>
+                        </div>
+
                     </div> <!-- end #law-selectors -->
 
                     <!-- Brojači / opcije -->
@@ -442,7 +456,7 @@
 
     <script>
         // ============================================================
-        // IZVORI ZAKONA – uključen je i Zakon o inspekcijama (zi)
+        // IZVORI ZAKONA – uključen je i Zakon o sukobu interesa (si)
         // ============================================================
         const IZVORI_ZAKONA = [
             { id: 'kz', naziv: 'Krivični Zakon FBiH', url: './krivicni_zakon_fbih.json' },
@@ -450,7 +464,8 @@
             { id: 'zd', naziv: 'Zakon o zabrani diskriminacije', url: './diskriminacija_fbih.json' },
             { id: 'zk', naziv: 'Zakon o zaštiti od klevete', url: './kleveta_fbih.json' },
             { id: 'zi', naziv: 'Zakon o inspekcijama', url: './o_inspekcijama_fbih.json' },
-            { id: 'zr', naziv: 'Zakon o radu', url: './o_radu_fbih.json' }
+            { id: 'zr', naziv: 'Zakon o radu', url: './o_radu_fbih.json' },
+            { id: 'si', naziv: 'Zakon o sukobu interesa', url: './o_sukobu_interesa.json' }
         ];
 
         const AI_API_URL = 'https://zakon-nine.vercel.app/api/chat';
@@ -519,7 +534,7 @@
             "zakon o radu": ".zr-glava-chk",
             "zakon o radu fbih": ".zr-glava-chk",
             "zakon o zabrani diskriminacije": ".zd-glava-chk",
-            "zakon o inspekcijama": ".zi-glava-chk" // <-- ispravljeno
+            "zakon o inspekcijama": ".zi-glava-chk"
         };
 
         // ============================================================
@@ -590,7 +605,7 @@
                 masterZd.style.opacity = masterZd.indeterminate ? '0.5' : '1';
             }
 
-            // Zakon o inspekcijama (NOVO)
+            // Zakon o inspekcijama
             const sveZiGlave = document.querySelectorAll('.zi-glava-chk');
             const oznaceneZiGlave = document.querySelectorAll('.zi-glava-chk:checked');
             const masterZi = document.getElementById('chk-zi');
@@ -635,10 +650,10 @@
 
         function provjeriGlobalniMaster() {
             const sveAktivneGlave = document.querySelectorAll(
-                '.kz-glava-chk, .zr-glava-chk, .zd-glava-chk, .zi-glava-chk, #chk-uz, #chk-zk'
+                '.kz-glava-chk, .zr-glava-chk, .zd-glava-chk, .zi-glava-chk, #chk-uz, #chk-zk, #chk-si'
             );
             const oznaceneAktivneGlave = document.querySelectorAll(
-                '.kz-glava-chk:checked, .zr-glava-chk:checked, .zd-glava-chk:checked, .zi-glava-chk:checked, #chk-uz:checked, #chk-zk:checked'
+                '.kz-glava-chk:checked, .zr-glava-chk:checked, .zd-glava-chk:checked, .zi-glava-chk:checked, #chk-uz:checked, #chk-zk:checked, #chk-si:checked'
             );
             const globalniMaster = document.getElementById('chk-all');
             if (globalniMaster && sveAktivneGlave.length > 0) {
@@ -820,7 +835,8 @@
                 'diskriminacij': { pozadina: 'bg-emerald-50/40', okvir: 'border-emerald-200/60' },
                 'klevet': { pozadina: 'bg-amber-50/40', okvir: 'border-amber-200/60' },
                 'o radu': { pozadina: 'bg-lime-50/40', okvir: 'border-lime-200/60' },
-                'inspekcijama': { pozadina: 'bg-teal-50/40', okvir: 'border-teal-200/60' } // NOVO
+                'inspekcijama': { pozadina: 'bg-teal-50/40', okvir: 'border-teal-200/60' },
+                'sukobu interesa': { pozadina: 'bg-indigo-50/40', okvir: 'border-indigo-200/60' }
             };
             const podrazumijevanaBoja = { pozadina: 'bg-white', okvir: 'border-gray-200' };
 
@@ -1145,7 +1161,8 @@
                 "zakon o zaštiti od klevete": "zk",
                 "zakon o zastiti od klevete": "zk",
                 "zakon o radu": "zr",
-                "zakon o inspekcijama": "zi" // NOVO
+                "zakon o inspekcijama": "zi",
+                "zakon o sukobu interesa": "si"
             };
 
             const brojaciNaslova = {};
@@ -1209,6 +1226,7 @@
                 - zk = Zakon o zaštiti od klevete
                 - zr = Zakon o radu
                 - zi = Zakon o inspekcijama
+                - si = Zakon o sukobu interesa
 
                 Ako je UKUPNO_ISTIH_NASLOVA veći od 1, to znači da u bazi postoji toliko članova sa istim naslovom.
 
@@ -1308,7 +1326,8 @@
                     "Zakon o zabrani diskriminacije";
                     if (nazivZakona.toLowerCase().includes("klevet")) nazivZakona = "Zakon o zaštiti od klevete";
                     if (nazivZakona.toLowerCase().includes("o radu")) nazivZakona = "Zakon o radu";
-                    if (nazivZakona.toLowerCase().includes("inspekcijama")) nazivZakona = "Zakon o inspekcijama"; // NOVO
+                    if (nazivZakona.toLowerCase().includes("inspekcijama")) nazivZakona = "Zakon o inspekcijama";
+                    if (nazivZakona.toLowerCase().includes("sukob") || nazivZakona.toLowerCase().includes("interes")) nazivZakona = "Zakon o sukobu interesa";
                     let cistiBroj = String(p.clan || "").toLowerCase().replace('član', '').replace('.', '').trim();
                     return `${nazivZakona}__${cistiBroj}`;
                 });
