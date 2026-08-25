@@ -1285,7 +1285,7 @@
                     data = await posaljiApiZahtjev(izabraniModel);
                 } catch (err) {
                     if (err.message === "503_FALLBACK") {
-                        finalnoKoristenModel = izabraniModel === "gemini-3.7-flash" ? "qwen/qwen3-32b" : "gemini-3.7-flash";
+                        finalnoKoristenModel = izabraniModel === "gemini-3.7-flash" ? "gemini-flash-latest" : "qwen/qwen3.6-27b";
                         console.warn(
                             `Server vratio 503. Automatski prebacujem na rezervni model: ${finalnoKoristenModel}`);
                         data = await posaljiApiZahtjev(finalnoKoristenModel);
