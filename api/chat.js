@@ -82,7 +82,7 @@ export default async function handler(req, res) {
       for (const kandidatModel of geminiModeliZaPokusaj) {
         try {
           console.log(`📡 Pokušavam Gemini model: ${kandidatModel}`);
-          const url = `[https://generativelanguage.googleapis.com/v1beta/models/$](https://generativelanguage.googleapis.com/v1beta/models/$){kandidatModel}:generateContent?key=${geminiKey}`;
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${kandidatModel}:generateContent?key=${geminiKey}`;
 
           const controller = new AbortController();
           const timeoutId = setTimeout(() => controller.abort(), 9000);
