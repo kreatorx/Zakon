@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     const izabraniModel = (model || 'gemini-flash-latest').toLowerCase().trim();
 
     // =========================================================================
-    // 1. GEMINI FLASH LOGIKA (STRIKTNO 4 TRAŽENA MODELA)
+    // 1. GEMINI FLASH LOGIKA
     // =========================================================================
     if (izabraniModel.includes('gemini')) {
       const geminiKey = process.env.GEMINI_API_KEY;
@@ -37,7 +37,6 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'GEMINI_API_KEY nije podešen u Vercel Environment Variables.' });
       }
 
-      // Konverzija OpenAI → Gemini format
       const geminiContents = [];
       let systemInstruction = "Ti si pravni AI asistent za zakonodavstvo FBiH.";
 
@@ -69,7 +68,6 @@ export default async function handler(req, res) {
         }
       };
 
-      // TAČNO TRAŽENA 4 MODELA BEZ IKAKVIH DODATNIH MODELA:
       const geminiModeliZaPokusaj = [
         'gemini-flash-latest',
         'gemini-3.7-flash',
@@ -87,7 +85,7 @@ export default async function handler(req, res) {
           const url = `[https://generativelanguage.googleapis.com/v1beta/models/$](https://generativelanguage.googleapis.com/v1beta/models/$){kandidatModel}:generateContent?key=${geminiKey}`;
 
           const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 9000); // 9 sekundi po pozivu
+          const timeoutId = setTimeout(() => controller.abort(), 9000);
 
           const geminiResponse = await fetch(url, {
             method: 'POST',
@@ -136,7 +134,7 @@ export default async function handler(req, res) {
     }
 
     // =========================================================================
-    // 2. OPENAI GPT 5.4 (gpt-5.4-2026-03-05)
+    // 2. OPENAI GPT 5.4
     // =========================================================================
     const openAiKey = process.env.OPENAI_API_KEY || process.env.OPEN_API_KEY;
 
