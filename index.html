@@ -1246,16 +1246,11 @@
                 }
                 `;
 
-                // Ako je izabran bilo koji Gemini model, osigurava se da se uvijek šalje gemini-3.7-flash
-                const modelZaSlanje = (izabraniModel && izabraniModel.toLowerCase().includes('gemini')) 
-                    ? 'gemini-3.7-flash' 
-                    : izabraniModel;
-
                 const response = await fetch(AI_API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        model: modelZaSlanje,
+                        model: trenutniModel,
                         messages: [
                             { "role": "system", "content": sistemskiPrompt },
                             { "role": "user", "content": `Problem: "${problemText}"` }
@@ -1265,31 +1260,46 @@
                     })
                 });
 
+                if (response.status === 503) {
+                    throw new Error("503_FALLBACK");
+                }
                 if (!response.ok) {
                     if (response.status === 413) {
                         throw new Error(
                             `413 - Payload prevelik! ${aktivniZakoniPodaci.length} članova (${finalniKontekstZakona.length} karaktera).`
-                        );
+                            );
                     }
-                    throw new Error(`Status HTTP ${response.status}`);
+                    throw new Error(response.status);
                 }
                 return await response.json();
             }
 
             try {
-                // Direktno pozivanje bez 503 fallback/Qwen logike
-                const data = await posaljiApiZahtjev(modelZaSlanje);
+                let data;
+                let finalnoKoristenModel = izabraniModel;
+
+                try {
+                    data = await posaljiApiZahtjev(izabraniModel);
+                } catch (err) {
+                    if (err.message === "503_FALLBACK") {
+                        finalnoKoristenModel = izabraniModel === "gemini-3.7-flash" ? "gemini-3.6-flash" : "gemini-3.7-flash";
+                        console.warn(
+                            `Server vratio 503. Automatski prebacujem na rezervni model: ${finalnoKoristenModel}`);
+                        data = await posaljiApiZahtjev(finalnoKoristenModel);
+                    } else {
+                        throw err;
+                    }
+                }
 
                 let cistiContent = "";
-                if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+                if (data.choices && data.choices[0].message && data.choices[0].message.content) {
                     cistiContent = data.choices[0].message.content.trim();
                 } else if (data.output) {
                     cistiContent = data.output.trim();
-                } else if (data.text) {
-                    cistiContent = data.text.trim();
                 } else {
                     throw new Error("Format odgovora nije prepoznat.");
                 }
+
                 const aiContent = JSON.parse(cistiContent);
                 const konacniTekstOdgovora = aiContent.objasnjenje +
                     `\n\n----------------------------------------\n🤖 Generisano modelom: ${finalnoKoristenModel}`;
